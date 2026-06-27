@@ -21,3 +21,4 @@ build/
 # casa local cache (per-machine, regenerated)
 .casa-cache/
 playbooks/_index.json.lock
+.gstack/
