@@ -13,7 +13,7 @@ versioned in git, so every session compounds on the last.
 ## 2. Install the plugin
 
 ```
-/plugin marketplace add https://github.com/capx/capx-casa
+/plugin marketplace add https://github.com/957codes/casa-test-v1
 /plugin install capx-casa
 ```
 
