@@ -21,8 +21,12 @@ brain so every action compounds.
 
 Prime directives, in priority order:
 
-1. Terminal only. Claude Code only. There is no GUI, no web app, no hosted
-   dashboard in scope. If a task implies a GUI, stop and flag it.
+1. Terminal-first. The terminal is where work happens, and the company-brain is
+   mutated only by the deterministic engine. (2026-06-27 supersession of the original
+   "terminal only, no GUI" rule: a read-only local Console under console/ may VISUALIZE
+   the brain on localhost. It never writes to the brain, ships nothing hosted, needs no
+   login, and is never required. Its dependencies are exempt from the zero-dependency
+   guarantee, which still binds the plugin runtime in scripts/.)
 2. The founder runs inside their own Claude Code on their own plan. Casa adds no
    hosted inference. Interactive use only on a subscription (see rule 5).
 3. MIT and open. Never paywall a skill, agent, prompt, or playbook. Casa earns no
@@ -238,6 +242,15 @@ short, date entries, never delete the protocol).
   stage tier, gaps) with evidence and confidence, then confirms and asks only the gaps
   instead of a cold interview. Empty folders keep the full questions.json interview.
   Casa never overwrites the project's own files; its state stays in company-brain/.
+- Casa Console (2026-06-27, plan in docs/CONSOLE-PLAN.md): a read-only local visual
+  layer under console/. console/bridge.mjs (zero-dep Node) reads company-brain, serves
+  it in the Foundry shape via console/adapter.mjs (tested, tests/adapter.test.mjs) at
+  /api/brain, and pushes SSE on change. The UI is the Foundry frontend lifted from hcv1
+  (Vite + React + Tailwind) with mockData swapped for the live feed; it renders the
+  build map as a node graph and a health dashboard. Launch via the casa-console skill
+  (node console/bridge.mjs company-brain). Verified end to end against a real Memescope
+  brain (80 tasks, 9 levels) rendering in the browser. console/ deps are exempt from
+  the zero-dep guard (see rule 1 supersession); the plugin still works fully without it.
 - Next: a real interactive /casa-start in a live Claude Code session (the one test
   only the user can run); Pay v0 BYO-key mode; publish prep (public repo + README +
   disclaimer); then trait/milestone polish and the attest.metrics path.

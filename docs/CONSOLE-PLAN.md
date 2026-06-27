@@ -96,3 +96,12 @@ No write endpoints in v1. The Console only reads.
 - Headless triggers (`claude -p` on the founder's own API key): Phase 3, ToS 3.7 path.
 - Department OrgView and per-area health: needs the `department` tag.
 - Portfolio and HoldCo view across many brains.
+
+## Build status (2026-06-27)
+
+v1 done. console/bridge.mjs + console/adapter.mjs (adapter tested), the Foundry UI
+lifted into console/src with mockData swapped for a live feed (feed.ts), the Onboarding
+flow dropped, and the casa-console launch skill. Verified end to end: the bridge serves
+the built UI plus a real Memescope brain (80 tasks, 9 levels), and the browser renders
+the node graph and the health dashboard with no console errors. Suite stays green
+(adapter unit tests added). Deferred items above remain for later.
