@@ -229,6 +229,15 @@ short, date entries, never delete the protocol).
   Suite 50 tests, preflight 45 checks, all green. Two deterministic linters
   (copy-lint, design-check) under the zero-dep guard. Pending: a verification pass on
   the external-repo leads in CAPABILITIES-PLAN before any external lift.
+- Existing-project onboarding (2026-06-27): casa-start now detects whether it runs
+  inside an existing project. scripts/scan.mjs (zero-dep, tested) is a deterministic
+  signal sweep (repo, deployed app, payments/auth/analytics deps, type hint) that
+  excludes company-brain/ so an initialized-but-empty folder still reads as greenfield.
+  If the folder has project files, casa-start spawns the project-scanner agent to
+  deep-read README/CLAUDE.md/manifests/source and infer the profile (type, traits,
+  stage tier, gaps) with evidence and confidence, then confirms and asks only the gaps
+  instead of a cold interview. Empty folders keep the full questions.json interview.
+  Casa never overwrites the project's own files; its state stays in company-brain/.
 - Next: a real interactive /casa-start in a live Claude Code session (the one test
   only the user can run); Pay v0 BYO-key mode; publish prep (public repo + README +
   disclaimer); then trait/milestone polish and the attest.metrics path.
