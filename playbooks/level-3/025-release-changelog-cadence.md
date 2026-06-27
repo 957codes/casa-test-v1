@@ -6,6 +6,7 @@ summary: Establish a shipping rhythm and a customer-facing release communication
 applies_to:
   types:
     - saas
+    - consumer
     - marketplace
     - ecommerce
     - content

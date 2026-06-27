@@ -95,6 +95,30 @@
             { "label": "Raising or plan to raise venture capital", "sets": { "trait": "raising_capital" } },
             { "label": "Bootstrapped / self-funded", "sets": { "trait": "bootstrapped_only" } }
           ]
+        },
+        {
+          "id": "collects_data",
+          "prompt": "Do you store customer or personal data (accounts, emails, payment info)?",
+          "kind": "boolean",
+          "sets_when_true": { "trait": "collects_user_data" }
+        },
+        {
+          "id": "sends_email",
+          "prompt": "Do you send email to your users or customers (welcome, transactional, or marketing)?",
+          "kind": "boolean",
+          "sets_when_true": { "trait": "sends_email" }
+        },
+        {
+          "id": "local_service",
+          "prompt": "Is this a local, in-person service (served in one area, not sold online nationally)?",
+          "kind": "boolean",
+          "sets_when_true": { "trait": "local_service_only" }
+        },
+        {
+          "id": "runs_agents",
+          "prompt": "Will AI agents run parts of this company autonomously, beyond you using AI tools yourself?",
+          "kind": "boolean",
+          "sets_when_true": { "trait": "runs_agents" }
         }
       ]
     },

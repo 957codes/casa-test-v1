@@ -6,6 +6,7 @@ summary: Run lean five-user moderated tests on a continuous cadence to find wher
 applies_to:
   types:
     - saas
+    - consumer
     - marketplace
     - ecommerce
     - content

@@ -6,6 +6,7 @@ summary: Run a dual-track B2B LinkedIn motion (demand creation plus demand captu
 applies_to:
   types:
     - saas
+    - consumer
     - marketplace
   requires_traits:
     - b2b

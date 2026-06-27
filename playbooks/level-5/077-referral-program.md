@@ -7,7 +7,6 @@ applies_to:
   types:
     - "*"
   requires_traits:
-    - pmf_achieved
     - takes_payments
   excluded_traits: []
 relevance: optional

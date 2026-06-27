@@ -105,7 +105,7 @@ function nowText(profile, actions, level, due = [], spend = 0) {
   if (!top) out.push(`- Nothing ready at this level. Run /casa-map or advance the level.`);
   else {
     out.push(`- ${top.title}  (${top.id})${top.human_gate ? "  [needs your approval]" : ""}`);
-    const par = actions.slice(1).filter((a) => levelKey(a.level) === levelKey(top.level)).slice(0, 3);
+    const par = actions.slice(1, 4); // next-highest ready actions, any level (all are startable now)
     if (par.length) { out.push(``, `## You can also start now`); for (const p of par) out.push(`- ${p.title}  (${p.id})`); }
   }
   if (due.length) { out.push(``, `## Loops due now`); for (const l of due) out.push(`- ${l.title}  (loop: ${l.id})`); }
@@ -149,7 +149,7 @@ function sync(dir) {
     const top = actions[0];
     const nextInner = top
       ? [`Next: ${top.title} (${top.id})${top.human_gate ? " [needs approval]" : ""}`,
-         ...actions.slice(1).filter((a) => levelKey(a.level) === levelKey(top.level)).slice(0, 2).map((p) => `Parallel: ${p.title} (${p.id})`)].join("\n")
+         ...actions.slice(1, 3).map((p) => `Parallel: ${p.title} (${p.id})`)].join("\n")
       : `Next: nothing ready at level ${level}.`;
     cm = setBlock(cm, "next", nextInner);
     const doneTitles = completed.slice(-10).map((id) => `- ${titles.get(id) || id}`);

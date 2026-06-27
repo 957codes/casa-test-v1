@@ -88,7 +88,12 @@ export function validateAnswers(answers, playbooks) {
 export function deriveStage(answers, playbooks) {
   validateAnswers(answers, playbooks);
   const start_level = TIER_START[answers.tier];
-  const traits = [...new Set([...(answers.traits || []), ...milestoneFlags(answers.tier)])];
+  // Software milestone flags imply a codebase, so only a software business inherits
+  // has_repo / has_deployed_app / has_datastore. A non-software business does not.
+  const builds = (answers.traits || []).includes("builds_software");
+  const traitSet = new Set([...(answers.traits || []), ...milestoneFlags(answers.tier)]);
+  if (!builds) for (const f of ["has_repo", "has_deployed_app", "has_datastore"]) traitSet.delete(f);
+  const traits = [...traitSet];
 
   const profile = {
     company_name: answers.company_name || "",
@@ -103,6 +108,10 @@ export function deriveStage(answers, playbooks) {
 
   const gaps = new Set(answers.gaps || []);
   const { members } = select(playbooks, profile);
+  const memberIds = new Set(members.map((m) => m.id));
+  // Gaps the founder named that do not apply to this business (wrong type or trait): they
+  // would be neither seeded nor surfaced, so flag them rather than dropping them silently.
+  const gaps_not_applicable = [...gaps].filter((g) => !memberIds.has(g));
   const completed_seed = members
     .filter(
       (m) =>
@@ -113,7 +122,7 @@ export function deriveStage(answers, playbooks) {
     )
     .map((m) => m.id);
 
-  return { profile, start_level, completed_seed };
+  return { profile, start_level, completed_seed, gaps_not_applicable };
 }
 
 // ---- CLI ----
@@ -144,6 +153,12 @@ function main() {
       `seeded ${brainDir}: tier ${answers.tier}, start level ${result.start_level}, ` +
         `${result.completed_seed.length} playbooks pre-completed. Run brain.mjs sync next.`,
     );
+    if (result.gaps_not_applicable.length) {
+      console.warn(
+        `note: these named gaps do not apply to this business (wrong type or trait) and were ignored: ` +
+          result.gaps_not_applicable.join(", "),
+      );
+    }
   } else {
     console.error(`unknown command: ${cmd}`);
     process.exit(2);

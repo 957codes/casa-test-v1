@@ -6,6 +6,7 @@ summary: Choose a production-ready, boring-by-default stack scoped to the MVP an
 applies_to:
   types:
     - saas
+    - consumer
     - marketplace
     - ecommerce
     - content

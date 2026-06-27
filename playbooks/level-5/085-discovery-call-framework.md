@@ -6,6 +6,7 @@ summary: Run a diagnostic discovery call that qualifies the deal and uncovers qu
 applies_to:
   types:
     - saas
+    - consumer
     - marketplace
     - hardware
     - b2b-service

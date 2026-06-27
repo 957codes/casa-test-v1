@@ -6,7 +6,8 @@ summary: Route each LLM call to the cheapest model that meets the quality bar, w
 applies_to:
   types:
     - "*"
-  requires_traits: []
+  requires_traits:
+    - runs_agents
   excluded_traits: []
 relevance: core
 selection_hint: Installed day zero before Level 0, right after HITL gates. Every LLM call passes through it. A misconfigured loop can burn five figures in minutes.

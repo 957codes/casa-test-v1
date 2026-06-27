@@ -6,6 +6,7 @@ summary: Translate a validated initiative into an unambiguous, testable product 
 applies_to:
   types:
     - saas
+    - consumer
     - marketplace
     - ecommerce
     - content

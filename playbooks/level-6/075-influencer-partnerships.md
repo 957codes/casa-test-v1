@@ -8,6 +8,7 @@ applies_to:
     - ecommerce
     - content
     - saas
+    - consumer
     - marketplace
   requires_traits:
     - b2c

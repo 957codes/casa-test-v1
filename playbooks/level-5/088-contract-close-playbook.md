@@ -6,6 +6,7 @@ summary: Navigate procurement, security, and legal redlines to a signed contract
 applies_to:
   types:
     - saas
+    - consumer
     - marketplace
     - hardware
     - b2b-service

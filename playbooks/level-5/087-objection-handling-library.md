@@ -6,6 +6,7 @@ summary: A callable library that classifies and responds to prospect resistance 
 applies_to:
   types:
     - saas
+    - consumer
     - marketplace
     - hardware
     - b2b-service

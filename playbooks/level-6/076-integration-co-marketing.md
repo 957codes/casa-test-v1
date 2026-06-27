@@ -6,6 +6,7 @@ summary: Identify integration partners, ship the technical integration, and orch
 applies_to:
   types:
     - saas
+    - consumer
     - marketplace
   requires_traits:
     - b2b

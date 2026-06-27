@@ -6,6 +6,7 @@ summary: Produce an auditable, politics-resistant ranking of the backlog with RI
 applies_to:
   types:
     - saas
+    - consumer
     - marketplace
     - ecommerce
     - content

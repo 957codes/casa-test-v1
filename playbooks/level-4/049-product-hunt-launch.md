@@ -6,6 +6,7 @@ summary: Execute a Product Hunt launch end to end, from the 30-day prep window t
 applies_to:
   types:
     - saas
+    - consumer
     - content
     - crypto
     - hardware

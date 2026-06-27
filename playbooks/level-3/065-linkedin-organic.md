@@ -6,6 +6,7 @@ summary: Run a founder-led organic LinkedIn strategy to build a compounding B2B 
 applies_to:
   types:
     - saas
+    - consumer
     - b2b
     - marketplace
   requires_traits:

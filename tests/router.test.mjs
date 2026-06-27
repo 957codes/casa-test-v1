@@ -1,7 +1,7 @@
 // Unit tests for the deterministic router engine (scripts/router.mjs).
 // These assert the graph math directly through the library exports, against the
 // real 100-playbook catalog and the two shipped example profiles. The numbers
-// here (97/100, 81/100) are the golden build maps the README and CLAUDE.md cite.
+// here (95/100, 79/100) are the golden build maps the README and CLAUDE.md cite.
 
 import { test } from "node:test";
 import assert from "node:assert/strict";
@@ -13,17 +13,17 @@ const MEME = loadJson("examples/profile-solana-analytics.json"); // b2c, self_se
 
 // ---- select ----
 
-test("select: b2b high-acv profile selects 97/100", () => {
+test("select: b2b high-acv profile selects 95/100", () => {
   const { members, skipped } = select(INDEX, PROBE);
-  assert.equal(members.length, 97);
-  assert.equal(skipped.length, 3);
+  assert.equal(members.length, 95);
+  assert.equal(skipped.length, 5);
   assert.equal(members.length + skipped.length, INDEX.length);
 });
 
-test("select: b2c self-serve profile selects 81/100", () => {
+test("select: b2c self-serve profile selects 79/100", () => {
   const { members, skipped } = select(INDEX, MEME);
-  assert.equal(members.length, 81);
-  assert.equal(skipped.length, 19);
+  assert.equal(members.length, 79);
+  assert.equal(skipped.length, 21);
 });
 
 test("select: every skipped playbook carries a non-empty reason", () => {
@@ -132,7 +132,8 @@ test("nextActions: gating — every ready action has its member-deps satisfied",
   for (const a of acts) {
     assert.ok(!completedSet.has(a.id), "completed actions are not re-recommended");
     const deps = (byId.get(a.id).depends_on || []).filter((d) => memberIds.has(d));
-    for (const d of deps) assert.ok(completedSet.has(d), `${a.id} surfaced before dep ${d}`);
+    // a dependency must be completed, unless it is a recurring loop (which never blocks)
+    for (const d of deps) assert.ok(completedSet.has(d) || byId.get(d).recurring, `${a.id} surfaced before non-recurring dep ${d}`);
   }
 });
 

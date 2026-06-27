@@ -6,6 +6,7 @@ summary: Recruit, manage, and graduate a beta cohort with structured feedback lo
 applies_to:
   types:
     - saas
+    - consumer
     - marketplace
     - ecommerce
     - content

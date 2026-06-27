@@ -6,6 +6,7 @@ summary: Run a Show HN launch to reach the front page, sustain visibility, and c
 applies_to:
   types:
     - saas
+    - consumer
     - content
     - crypto
   requires_traits:

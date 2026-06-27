@@ -123,12 +123,30 @@ function sequence(members) {
   return { order, slack, preds };
 }
 
-const ready = (pb, completedSet, flags, currentLevel) =>
-  !completedSet.has(pb.id) &&
-  levelKey(pb.level) <= currentLevel &&
-  arr(pb.depends_on).every((d) => completedSet.has(d)) &&
-  pb.applies_to.requires_traits.every((r) => !STATE_FLAGS.has(r) || flags.has(r)) &&
-  pb.applies_to.excluded_traits.every((x) => !STATE_FLAGS.has(x) || !flags.has(x));
+// Precompute the readiness context once per call: which members are recurring (loops
+// never "complete", so they do not block their dependents) and which artifacts already
+// exist (produced by a completed or a recurring member).
+function readinessCtx(members, completedSet, flags, currentLevel) {
+  const recurringSet = new Set(members.filter((m) => m.recurring).map((m) => m.id));
+  const producedSet = new Set();
+  for (const m of members)
+    if (completedSet.has(m.id) || m.recurring) for (const a of arr(m.produces)) producedSet.add(a);
+  return { completedSet, flags, currentLevel, recurringSet, producedSet };
+}
+
+function ready(pb, ctx) {
+  if (ctx.completedSet.has(pb.id)) return false;
+  // A founder actively running paid can reach the paid-acquisition playbooks one level early.
+  const lift = ctx.flags.has("runs_paid_media") && pb.department === "Marketing" ? 1 : 0;
+  if (levelKey(pb.level) > ctx.currentLevel + lift) return false;
+  // Dependencies must be done; a recurring dependency (a loop) counts as satisfied.
+  if (!arr(pb.depends_on).every((d) => ctx.completedSet.has(d) || ctx.recurringSet.has(d))) return false;
+  // Inputs must exist: do not recommend a playbook before its consumed artifacts are produced.
+  if (!arr(pb.consumes).every((c) => ctx.producedSet.has(c))) return false;
+  if (!pb.applies_to.requires_traits.every((r) => !STATE_FLAGS.has(r) || ctx.flags.has(r))) return false;
+  if (!pb.applies_to.excluded_traits.every((x) => !STATE_FLAGS.has(x) || !ctx.flags.has(x))) return false;
+  return true;
+}
 
 // Founder-priority multiplier from the pulse (deterministic lookup). No pulse means
 // 1, so behavior is unchanged for anyone without one. Explicit per-id overrides win,
@@ -157,11 +175,12 @@ function buildMap(playbooks, profile, { completed = [], level = 0 } = {}) {
   const { slack } = sequence(members);
   const completedSet = new Set(completed);
   const flags = achievedFlags(profile, completed, level);
+  const ctx = readinessCtx(members, completedSet, flags, level);
   const byLevel = new Map();
   for (const pb of members) {
     const k = pb.level;
     if (!byLevel.has(k)) byLevel.set(k, []);
-    const status = completedSet.has(pb.id) ? "done" : ready(pb, completedSet, flags, level) ? "ready" : "blocked";
+    const status = completedSet.has(pb.id) ? "done" : ready(pb, ctx) ? "ready" : "blocked";
     byLevel.get(k).push({
       id: pb.id, title: pb.title, status, slack: slack.get(pb.id),
       on_critical_path: slack.get(pb.id) === 0, leverage: pb.leverage, effort: pb.effort,
@@ -181,8 +200,9 @@ function nextActions(playbooks, profile, { completed = [], level = 0, weights = 
   const { slack } = sequence(members);
   const completedSet = new Set(completed);
   const flags = achievedFlags(profile, completed, level);
+  const ctx = readinessCtx(members, completedSet, flags, level);
   const scored = members
-    .filter((pb) => ready(pb, completedSet, flags, level))
+    .filter((pb) => ready(pb, ctx))
     .map((pb) => ({ id: pb.id, title: pb.title, level: pb.level, department: pb.department || null,
       score: score(pb, slack.get(pb.id), flags, weights),
       human_gate: pb.human_gate, blocks_revenue: pb.blocks_revenue, leverage: pb.leverage, effort: pb.effort }))

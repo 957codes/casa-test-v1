@@ -30,15 +30,15 @@ const REQUIRED = [
 // pulse priority weights and the Console node graph. A `department` field in the
 // frontmatter overrides this heuristic.
 const DEPARTMENT_RULES = [
-  [/(brand|naming|positioning|category|visual-identity|tone|messaging)/, "Brand"],
-  [/(entity|incorporat|tos|privacy|trademark|legal|founding-docs|compliance)/, "Legal"],
-  [/(design|onboarding-flow|landing|wireframe|ux)/, "Design"],
-  [/(pricing|unit-econ|financ|fundrais|model|packaging|burn|runway|forecast)/, "Finance"],
-  [/(sales|discovery|contract|deal|pipeline|enterprise|outbound)/, "Sales"],
-  [/(support|nps|csat|churn|customer-success|helpdesk|winback)/, "Support"],
-  [/(growth|seo|ads|content|referral|affiliate|influencer|launch|product-hunt|email|newsletter|social|retarget)/, "Marketing"],
-  [/(hosting|repo|stack|security|observability|analytics|deploy|tech|infra|database|event-taxonomy)/, "Engineering"],
-  [/(opportunity|problem-validation|market-sizing|jtbd|red-team|why-now|mvp|interview|research)/, "Operations"],
+  [/(brand|naming|positioning|category|visual-identity|tone|messaging|logo)/, "Brand"],
+  [/(entity|incorporat|tos|privacy|trademark|legal|founding-docs|compliance|terms-of)/, "Legal"],
+  [/(pricing|unit-econ|financ|fundrais|forecast|packaging|burn|runway|revenue-model|cohort|\bltv\b|\bcac\b)/, "Finance"],
+  [/(onboarding|usability|prd|feature-prioritization|product-spec|wireframe|\bux\b|design|prototype)/, "Design"],
+  [/(sales|discovery|contract|deal|pipeline|enterprise|outbound|quota|account-exec)/, "Sales"],
+  [/(support|nps|csat|churn|customer-success|helpdesk|winback|ticketing)/, "Support"],
+  [/(seo|ads|content|referral|affiliate|influencer|launch|product-hunt|newsletter|email|social|retarget|discount|promo|campaign|nurture|creative|blog|press|waitlist|community|funnel|conversion|\bcro\b|attribution|paid|webinar|podcast|partnership|distribution|growth|marketing)/, "Marketing"],
+  [/(hosting|repo|stack|security|observability|analytics|deploy|tech-stack|infra|database|event-taxonomy|\bapi\b|ci-cd|monitoring|incident|backup|scaling)/, "Engineering"],
+  [/(opportunity|problem-validation|market-sizing|jtbd|red-team|why-now|mvp|interview|research|hiring|process)/, "Operations"],
 ];
 function deriveDepartment(id, title) {
   const s = `${id} ${title}`.toLowerCase();

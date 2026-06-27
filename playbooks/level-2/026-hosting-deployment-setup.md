@@ -6,6 +6,7 @@ summary: Pick and configure hosting plus a CI/CD pipeline and secrets management
 applies_to:
   types:
     - saas
+    - consumer
     - marketplace
     - ecommerce
     - content

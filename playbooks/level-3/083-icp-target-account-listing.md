@@ -6,6 +6,7 @@ summary: Define the Ideal Customer Profile and build a scored, tiered, enriched 
 applies_to:
   types:
     - saas
+    - consumer
     - marketplace
     - hardware
     - b2b-service

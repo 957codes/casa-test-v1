@@ -6,6 +6,7 @@ summary: Engineer the first-run path that moves a new user to the aha moment wit
 applies_to:
   types:
     - saas
+    - consumer
     - marketplace
     - ecommerce
     - content

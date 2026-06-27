@@ -6,6 +6,7 @@ summary: Run signal-based, deliverability-safe cold outbound that books qualifie
 applies_to:
   types:
     - saas
+    - consumer
     - marketplace
     - hardware
     - b2b-service

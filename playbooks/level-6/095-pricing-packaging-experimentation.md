@@ -6,6 +6,7 @@ summary: Run a continuous, structured program to test pricing, packaging, and va
 applies_to:
   types:
     - saas
+    - consumer
     - marketplace
     - ecommerce
     - content

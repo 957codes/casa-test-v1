@@ -6,6 +6,7 @@ summary: Run a high-conversion, problem-led product demo that maps value to the 
 applies_to:
   types:
     - saas
+    - consumer
     - marketplace
     - hardware
     - b2b-service

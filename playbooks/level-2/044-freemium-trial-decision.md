@@ -6,6 +6,7 @@ summary: Choose free, time-boxed trial, freemium, reverse-trial, or paid-only, v
 applies_to:
   types:
     - saas
+    - consumer
     - content
     - crypto
     - marketplace

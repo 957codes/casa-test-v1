@@ -6,7 +6,8 @@ summary: Classify every agent action by reversibility and consequence, and gate 
 applies_to:
   types:
     - "*"
-  requires_traits: []
+  requires_traits:
+    - runs_agents
   excluded_traits: []
 relevance: core
 selection_hint: Installed day zero before Level 0, before any agent takes any action. The safety wrapper around every other playbook. Never skip.
