@@ -142,3 +142,15 @@ set. That is the line that makes Casa feel like a partner instead of a checklist
   (department tag), `scripts/build-index.mjs` (carry the tag), `skills/casa-start`
   (pulse cascade), `skills/casa-next` + `skills/casa-priority` (briefing + judgment),
   `console/adapter.mjs` (use the real department tag), `CLAUDE.md`.
+
+## Build status (2026-06-27)
+
+Done. department tag in build-index + _index.json; the deterministic weight factor in
+router.mjs (priorityWeight) with brain.mjs reading company-brain/pulse.json; the Console
+adapter reads the real department. casa-start runs the until-confident pulse cascade
+(writes pulse.md + pulse.json); casa-next and casa-priority pass --weights and deliver
+the reasoned briefing instead of a table; casa-priority refreshes the pulse each session.
+Rule 4 amended in CLAUDE.md. Tested (tests/weights.test.mjs) and demonstrated: a
+capx-style pulse moves Engineering above Legal and demotes launch/marketing. Suite 68
+tests, preflight 48, green. Note: pulse.json (founder priorities) is distinct from the
+casa-pulse skill (KPI recap).

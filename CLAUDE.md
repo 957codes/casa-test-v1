@@ -32,10 +32,13 @@ Prime directives, in priority order:
 3. MIT and open. Never paywall a skill, agent, prompt, or playbook. Casa earns no
    money directly. Real-world paid actions are run and billed by the companion
    product Capx Pay; Casa never prices, charges, or holds funds.
-4. Deterministic core, LLM at the leaves. Graph math, scoring, gating, ordering,
-   and state mutations are deterministic code. The model is used only for fuzzy
-   judgment (idea validation, final selection from a shortlist, drafting, phrasing
-   a recommendation). Never let the model invent a dependency or skip a gate.
+4. Deterministic core, LLM at the leaves. Graph math, gating, the (pulse-weighted)
+   score, and state mutations are deterministic code, so an ineligible or blocked item
+   can never be recommended. (2026-06-27 amendment: the FINAL relevance ranking of the
+   eligible candidates and the reasoning move to the LLM advisor, weighed against the
+   founder's pulse. The deterministic score is now one input, personalized by
+   pulse-derived weights; the advisor makes the final call over the eligible set.) Never
+   let the model invent a dependency, skip a gate, or recommend a blocked item.
 5. ToS line. Anthropic Consumer Terms section 3.7 prohibits automated or headless
    use except via an Anthropic API key. So everything in v1 is interactive and
    subscription-safe (the founder is present). Autonomous or scheduled "operate
@@ -251,6 +254,17 @@ short, date entries, never delete the protocol).
   (node console/bridge.mjs company-brain). Verified end to end against a real Memescope
   brain (80 tasks, 9 levels) rendering in the browser. console/ deps are exempt from
   the zero-dep guard (see rule 1 supersession); the plugin still works fully without it.
+- Pulse and relevance (2026-06-27, plan in docs/PULSE-PLAN.md): recommendations now sync
+  to the founder, not just the graph. Playbooks carry a department (build-index heuristic).
+  router.mjs score multiplies by a deterministic pulse weight (by id/department/level from
+  company-brain/pulse.json); brain.mjs sync reads it. casa-start runs an adaptive,
+  until-confident pulse cascade writing pulse.md + pulse.json (focus, win, anti-priorities,
+  weights). casa-next and casa-priority pass --weights to the router and deliver a reasoned
+  briefing (Next / Also ready / Holding back), not a table; casa-priority refreshes the
+  pulse each session. Rule 4 amended (above): engine owns eligibility + weighted score +
+  gating; the advisor owns the final relevance ranking + reasoning. Tested in
+  tests/weights.test.mjs (weights move rankings). NOTE: pulse.json (founder priorities,
+  drives recommendations) is a different thing from the casa-pulse skill (weekly KPI recap).
 - Next: a real interactive /casa-start in a live Claude Code session (the one test
   only the user can run); Pay v0 BYO-key mode; publish prep (public repo + README +
   disclaimer); then trait/milestone polish and the attest.metrics path.

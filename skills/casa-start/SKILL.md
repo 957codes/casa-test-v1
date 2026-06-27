@@ -73,10 +73,48 @@ gaps instead of answering everything cold.
    node ${CLAUDE_PLUGIN_ROOT}/scripts/brain.mjs sync company-brain
    ```
 
-7. Show the build map with `casa-map` and get approval. Call out the current level, the
+7. Understand the founder's pulse. The build map shows what is eligible; this learns
+   what matters to THIS founder so the recommendations sync with their priorities. Run
+   an adaptive interview in short rounds, continuing until you can fill the pulse
+   checklist, never asking beyond what you need:
+   - Round 1, their reality: what they are pushing on now; what makes the next horizon a
+     win, and the horizon; the single biggest thing in the way; what they are
+     deliberately NOT doing yet; where they want Casa to push versus leave them alone.
+   - Each later round is generated from the prior answers and the project read, drilling
+     into what they raised and asking only about the still-empty checklist slots.
+   Guardrails: every round is skippable ("good enough, build my plan"); cap at five
+   rounds; reflect their last answers back so the questions feel earned, not like a form.
+
+   The pulse checklist to fill: focus (ranked areas), win (definition and horizon),
+   constraint, anti_priorities, priority_order, risk_appetite, resourcing, one_thing.
+
+   Write two files:
+   - `company-brain/pulse.md`: the human-readable pulse.
+   - `company-brain/pulse.json`: the structured pulse PLUS the priority weights it
+     implies, which the engine consumes:
+
+     ```
+     { "focus": [...], "win": { "definition": "...", "horizon": "..." }, "constraint": "...",
+       "anti_priorities": [...], "risk_appetite": "...", "resourcing": "...", "one_thing": "...",
+       "weights": { "byDepartment": { "Marketing": 0.4, "Finance": 1.6 }, "byLevel": { "4": 0.4 },
+                    "promote_ids": [...], "demote_ids": [...], "default": 1.0 } }
+     ```
+
+     Departments are Brand, Engineering, Legal, Design, Operations, Marketing, Finance,
+     Sales, Support. Down-weight what they are not doing yet, up-weight their focus. Be
+     decisive but conservative: the weights nudge the order, your judgment in casa-next
+     makes the final call.
+
+   Then re-render so the weights take effect:
+
+   ```
+   node ${CLAUDE_PLUGIN_ROOT}/scripts/brain.mjs sync company-brain
+   ```
+
+8. Show the build map with `casa-map` and get approval. Call out the current level, the
    catch-up items, and the critical path.
 
-8. Hand off to `casa-next` for the first action, or `casa-priority` for a fuller briefing.
+9. Hand off to `casa-next` for the first action, or `casa-priority` for a fuller briefing.
 
 ## Rules
 

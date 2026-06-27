@@ -1,47 +1,52 @@
 ---
 name: casa-priority
-description: Re-evaluate where the company is and return the founder's ranked priorities for this work session. Broader than casa-next, a full briefing (top actions, blockers, loops due, and what to defer) rather than a single action. Use at the start of a work session, when the user asks where are we or what should I focus on, or says casa priority.
+description: Re-evaluate where the company is and return the founder's ranked priorities for this work session, weighed against their pulse (focus and what they are not doing yet). Broader than casa-next, a full briefing rather than a single action, and it refreshes the pulse when the founder's focus has shifted. Use at the start of a work session, when the user asks where are we or what should I focus on, or says casa priority.
 ---
 
 # casa-priority
 
-The session opener. Reads the current state of the company, works out what has
-changed since the last check-in, and returns a short ranked briefing so the founder
-knows where to spend this session. The ranking is computed by the deterministic
-engine, not by hand.
+The session opener. Reads the state of the company, refreshes the founder's pulse if it
+has changed, and returns a short ranked briefing that is in sync with what the founder
+actually cares about. The candidates come from the deterministic engine; the relevance
+ranking and the reasoning are the advisor's.
 
 ## Steps
 
 1. Read state. Load `company-brain/NOW.md`, `profile.json`, `build-map.json`,
-   `state.json` (for `completed` and `last_priority`), the recent files in
-   `decisions/`, `learnings.jsonl`, and `finance/receipts.jsonl`. If there is no
-   build map, tell the founder to run `casa-start` and stop.
+   `state.json` (for `completed` and `last_priority`), `pulse.json` (focus,
+   anti-priorities, weights), recent `decisions/`, `learnings.jsonl`, and
+   `finance/receipts.jsonl`. If there is no build map, tell the founder to run
+   `casa-start`.
 
-2. Work out what changed since the last check-in. Compare against
-   `state.last_priority` and the completed set: what was finished, how much has been
-   spent, and how many days have passed. Note anything that stalled.
+2. Refresh the pulse (the continuous part). State back the founder's current focus in
+   one line and ask if it still holds or anything shifted this week. If it changed,
+   update `company-brain/pulse.md` and `pulse.json` (including the weights), then
+   re-render so the new weights take effect:
 
-3. Get the ranked actions from the engine (do not rank by hand):
+   ```
+   node ${CLAUDE_PLUGIN_ROOT}/scripts/brain.mjs sync company-brain
+   ```
+
+   If there is no pulse yet, offer to capture it now (the pulse cascade from casa-start).
+
+3. Note what changed since the last check-in: compare against `state.last_priority` and
+   the completed set (what was finished, spend delta, days elapsed, anything that
+   stalled).
+
+4. Get the pulse-weighted candidates from the engine:
 
    ```
    node ${CLAUDE_PLUGIN_ROOT}/scripts/router.mjs next company-brain/profile.json \
-     --level <current_level> --completed <done-id,done-id,...>
+     --level <current_level> --completed <done-id,...> --weights company-brain/pulse.json
    ```
 
-   `current_level` is `build-map.json`'s `current_level`; the completed ids come from
-   `state.json`. The engine applies the level gate and scores every ready node.
-
-4. Deliver the briefing, in this order:
+5. Deliver the briefing, weighed against the pulse:
    - One line on the state of the company: level and name, progress, spend to date.
-   - The top 3 priorities now, each with a one-line why. Flag any human-gate,
-     irreversible, money, or legal step.
+   - The top three priorities now, each with a one-line why tied to the founder's focus,
+     win, or the one thing. Flag any human-gate, irreversible, money, or legal step.
    - Blockers: what is waiting, and on what.
-   - Loops due now (read the "Loops due now" section of `NOW.md`, if present).
-   - Defer for now: one or two things the founder might expect to do but should not
-     yet, with the reason.
-
-5. Ask once whether the stage has changed (new traction, a launch, first revenue). If
-   yes, point the founder to re-run `casa-start`. Do not re-stage inline.
+   - Loops due now (the "Loops due now" section of `NOW.md`, if present).
+   - Holding back: one or two eligible but off-pulse items, with why not now.
 
 6. Record the check-in:
 
@@ -49,14 +54,13 @@ engine, not by hand.
    node ${CLAUDE_PLUGIN_ROOT}/scripts/brain.mjs priority-ran company-brain
    ```
 
-   This sets `state.last_priority` and refreshes `NOW.md` and the `CLAUDE.md` AUTO
-   blocks.
-
 ## Rules
 
-- One ranked briefing, not a wall of tasks. Respect the founder's attention.
-- Deterministic ranking comes from the engine, never from free reasoning here.
-- Never auto-execute a human-gate, irreversible, money, or legal step. Surface it and
-  let the founder decide.
-- Do not re-recommend a deferred or refused item until its cooldown passes.
+- Eligibility and gating are the engine's; the relevance ranking and the reasoning are
+  yours. Never recommend a blocked or out-of-level item.
+- A ranked briefing tied to the founder's pulse, not a wall of tasks and not a bare
+  table. Always say what you are holding back and why.
+- Refresh the pulse when it has shifted, so the recommendations stay in sync. Do not
+  re-stage the business here; for that, point the founder to `casa-start`.
+- Never auto-execute a human-gate, money, or legal step.
 - No em-dashes, no emojis.
