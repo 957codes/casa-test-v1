@@ -9,7 +9,6 @@
       "name": "capx-casa",
       "source": "./",
       "description": "The open control plane for building a company from your terminal.",
-      "version": "0.1.0",
       "license": "MIT",
       "category": "business"
     }

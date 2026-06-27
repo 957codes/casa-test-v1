@@ -31,7 +31,7 @@ function walk(dir, ext) {
 // 1. plugin + marketplace manifests
 try {
   const p = readJSON(join(repo, ".claude-plugin", "plugin.json"));
-  p.name && p.version ? ok(`plugin.json: ${p.name}@${p.version}`) : fail("plugin.json missing name/version");
+  p.name ? ok(`plugin.json: ${p.name}@${p.version || "git-sha"}`) : fail("plugin.json missing name");
 } catch (e) { fail(`plugin.json: ${e.message}`); }
 try { readJSON(join(repo, ".claude-plugin", "marketplace.json")); ok("marketplace.json parses"); }
 catch (e) { fail(`marketplace.json: ${e.message}`); }
