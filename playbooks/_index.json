@@ -1,6 +1,6 @@
 {
   "schema": "docs/PLAYBOOK-SCHEMA.md",
-  "count": 100,
+  "count": 107,
   "playbooks": [
     {
       "id": "opportunity-scan",
@@ -3889,6 +3889,236 @@
       "recurring": true,
       "typical_milestone": "foundations-installed",
       "department": "Operations"
+    },
+    {
+      "id": "marketplace-trust-and-safety",
+      "title": "Marketplace Trust and Safety",
+      "level": 3,
+      "file": "playbooks/level-3/101-marketplace-trust-and-safety.md",
+      "applies_to": {
+        "types": [
+          "marketplace"
+        ],
+        "requires_traits": [],
+        "excluded_traits": []
+      },
+      "relevance": "core",
+      "selection_hint": "Run before opening a marketplace to real transactions. Liquidity without trust is churn; the first bad transaction without a dispute path is a dead marketplace.",
+      "depends_on": [],
+      "soft_after": [
+        "beachhead-selection"
+      ],
+      "produces": [
+        "trust_safety_policy"
+      ],
+      "consumes": [],
+      "effort": "L",
+      "leverage": "critical",
+      "reversibility": "medium",
+      "human_gate": true,
+      "blocks_revenue": true,
+      "recurring": false,
+      "typical_milestone": "trust-layer-live",
+      "department": "Operations"
+    },
+    {
+      "id": "marketplace-liquidity-balancing",
+      "title": "Marketplace Liquidity Balancing",
+      "level": 5,
+      "file": "playbooks/level-5/102-marketplace-liquidity-balancing.md",
+      "applies_to": {
+        "types": [
+          "marketplace"
+        ],
+        "requires_traits": [],
+        "excluded_traits": []
+      },
+      "relevance": "core",
+      "selection_hint": "Run once the marketplace has live transactions and a measurable match rate. The single most important marketplace growth lever; balance the short side before spending on the long side.",
+      "depends_on": [],
+      "soft_after": [
+        "marketplace-trust-and-safety"
+      ],
+      "produces": [
+        "liquidity_plan"
+      ],
+      "consumes": [],
+      "effort": "L",
+      "leverage": "critical",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": true,
+      "recurring": true,
+      "typical_milestone": "liquidity-balanced",
+      "department": "Operations"
+    },
+    {
+      "id": "local-google-business-profile",
+      "title": "Local Google Business Profile and Maps",
+      "level": 2,
+      "file": "playbooks/level-2/103-local-google-business-profile.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [
+          "local_service_only"
+        ],
+        "excluded_traits": []
+      },
+      "relevance": "core",
+      "selection_hint": "Run early for any local service. For a local business this is the primary discovery channel, ahead of a website or paid ads.",
+      "depends_on": [],
+      "soft_after": [
+        "company-naming"
+      ],
+      "produces": [
+        "local_presence"
+      ],
+      "consumes": [],
+      "effort": "S",
+      "leverage": "critical",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": true,
+      "recurring": false,
+      "typical_milestone": "local-presence-live",
+      "department": "Operations"
+    },
+    {
+      "id": "local-reviews-reputation",
+      "title": "Local Reviews and Reputation",
+      "level": 5,
+      "file": "playbooks/level-5/104-local-reviews-reputation.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [
+          "local_service_only"
+        ],
+        "excluded_traits": []
+      },
+      "relevance": "core",
+      "selection_hint": "Run once a local service has repeat customers. Reviews are the compounding local-ranking and trust lever; start the loop as early as you have happy customers.",
+      "depends_on": [],
+      "soft_after": [
+        "local-google-business-profile"
+      ],
+      "produces": [
+        "reputation_system"
+      ],
+      "consumes": [],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "reviews-compounding",
+      "department": "Operations"
+    },
+    {
+      "id": "b2b-soc2-readiness",
+      "title": "B2B Security and SOC2 Readiness",
+      "level": 6,
+      "file": "playbooks/level-6/105-b2b-soc2-readiness.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [
+          "b2b",
+          "collects_user_data"
+        ],
+        "excluded_traits": []
+      },
+      "relevance": "recommended",
+      "selection_hint": "Run when enterprise deals start stalling on security review, or before moving upmarket. Security review is a gate on B2B revenue once deal sizes grow.",
+      "depends_on": [],
+      "soft_after": [
+        "security-baseline"
+      ],
+      "produces": [
+        "security_compliance_posture"
+      ],
+      "consumes": [],
+      "effort": "XL",
+      "leverage": "high",
+      "reversibility": "hard",
+      "human_gate": true,
+      "blocks_revenue": true,
+      "recurring": false,
+      "typical_milestone": "enterprise-security-ready",
+      "department": "Engineering"
+    },
+    {
+      "id": "app-store-optimization",
+      "title": "App Store Optimization and Mobile Growth",
+      "level": 4,
+      "file": "playbooks/level-4/106-app-store-optimization.md",
+      "applies_to": {
+        "types": [
+          "consumer",
+          "saas"
+        ],
+        "requires_traits": [
+          "builds_software",
+          "b2c"
+        ],
+        "excluded_traits": []
+      },
+      "relevance": "recommended",
+      "selection_hint": "Run for a consumer mobile app around launch. The store listing is the top of the mobile funnel; optimize it before spending on installs.",
+      "depends_on": [],
+      "soft_after": [
+        "onboarding-flow-design"
+      ],
+      "produces": [
+        "aso_plan"
+      ],
+      "consumes": [],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "aso-optimized",
+      "department": "Marketing"
+    },
+    {
+      "id": "pre-seed-fundraise",
+      "title": "Pre-seed Fundraise Narrative",
+      "level": 1,
+      "file": "playbooks/level-1/107-pre-seed-fundraise.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [
+          "raising_capital"
+        ],
+        "excluded_traits": []
+      },
+      "relevance": "recommended",
+      "selection_hint": "Run early for a founder who intends to raise, before revenue or PMF exist. The pre-seed raise sells the team and the insight, not metrics; do not wait for traction the round does not require.",
+      "depends_on": [],
+      "soft_after": [
+        "why-now-memo"
+      ],
+      "produces": [
+        "preseed_raise_plan"
+      ],
+      "consumes": [],
+      "effort": "L",
+      "leverage": "high",
+      "reversibility": "medium",
+      "human_gate": true,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "preseed-ready",
+      "department": "Finance"
     }
   ]
 }
