@@ -1,0 +1,3769 @@
+{
+  "schema": "docs/PLAYBOOK-SCHEMA.md",
+  "count": 100,
+  "playbooks": [
+    {
+      "id": "opportunity-scan",
+      "title": "Opportunity Scan",
+      "level": 0,
+      "file": "playbooks/level-0/001-opportunity-scan.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": []
+      },
+      "relevance": "core",
+      "selection_hint": "First step of validation. Surfaces and scores real evidence of demand. Run for every business.",
+      "depends_on": [],
+      "soft_after": [],
+      "produces": [
+        "opportunity_brief",
+        "candidate_niches"
+      ],
+      "consumes": [],
+      "effort": "M",
+      "leverage": "critical",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "validated-opportunity"
+    },
+    {
+      "id": "problem-validation-interviews",
+      "title": "Problem Validation Interviews",
+      "level": 0,
+      "file": "playbooks/level-0/002-problem-validation-interviews.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": []
+      },
+      "relevance": "core",
+      "selection_hint": "Run before building anything. Confirms the problem is real and urgent, not just plausible. Skip only if a strong review corpus already substitutes.",
+      "depends_on": [],
+      "soft_after": [
+        "opportunity-scan"
+      ],
+      "produces": [
+        "problem_evidence",
+        "refined_icp",
+        "problem_validation_decision"
+      ],
+      "consumes": [
+        "opportunity_brief",
+        "candidate_niches"
+      ],
+      "effort": "L",
+      "leverage": "critical",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "validated-opportunity"
+    },
+    {
+      "id": "competitive-teardown",
+      "title": "Competitive Teardown",
+      "level": 0,
+      "file": "playbooks/level-0/003-competitive-teardown.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": []
+      },
+      "relevance": "core",
+      "selection_hint": "Run for every business to find defensible whitespace. Not a feature checklist; a strategy and moat diagnosis.",
+      "depends_on": [],
+      "soft_after": [
+        "opportunity-scan"
+      ],
+      "produces": [
+        "competitive_landscape",
+        "whitespace_map"
+      ],
+      "consumes": [
+        "opportunity_brief"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "validated-opportunity"
+    },
+    {
+      "id": "market-sizing-tam-sam-som",
+      "title": "Market Sizing (TAM/SAM/SOM)",
+      "level": 0,
+      "file": "playbooks/level-0/004-market-sizing-tam-sam-som.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": []
+      },
+      "relevance": "core",
+      "selection_hint": "Run for every business to confirm the opportunity is large enough to justify the build. Kill if SOM is below threshold.",
+      "depends_on": [],
+      "soft_after": [
+        "opportunity-scan"
+      ],
+      "produces": [
+        "market_sizing_model",
+        "market_go_no_go"
+      ],
+      "consumes": [
+        "opportunity_brief",
+        "refined_icp"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "validated-opportunity"
+    },
+    {
+      "id": "jobs-to-be-done-extraction",
+      "title": "Jobs-to-be-Done Extraction",
+      "level": 0,
+      "file": "playbooks/level-0/005-jobs-to-be-done-extraction.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": []
+      },
+      "relevance": "recommended",
+      "selection_hint": "Run when interview data or a review corpus exists. Feeds positioning, roadmap, and the competitive teardown. Needs source material to be useful.",
+      "depends_on": [],
+      "soft_after": [
+        "opportunity-scan"
+      ],
+      "produces": [
+        "jtbd"
+      ],
+      "consumes": [
+        "problem_evidence",
+        "opportunity_brief"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "validated-opportunity"
+    },
+    {
+      "id": "red-team-thesis",
+      "title": "Red-Team the Thesis",
+      "level": 0,
+      "file": "playbooks/level-0/006-red-team-thesis.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": []
+      },
+      "relevance": "core",
+      "selection_hint": "The L0 gate. Run before committing capital. Produces the validated thesis and kill criteria that unlock incorporation.",
+      "depends_on": [
+        "problem-validation-interviews",
+        "market-sizing-tam-sam-som"
+      ],
+      "soft_after": [
+        "competitive-teardown",
+        "jobs-to-be-done-extraction"
+      ],
+      "produces": [
+        "validated_thesis",
+        "kill_criteria"
+      ],
+      "consumes": [
+        "problem_evidence",
+        "market_sizing_model"
+      ],
+      "effort": "M",
+      "leverage": "critical",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "validated-opportunity"
+    },
+    {
+      "id": "why-now-memo",
+      "title": "Why-Now Memo",
+      "level": 0,
+      "file": "playbooks/level-0/007-why-now-memo.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": []
+      },
+      "relevance": "recommended",
+      "selection_hint": "Run when the thesis is articulated. Produces the timing narrative reused later in the fundraise deck. Skip if only validating internally.",
+      "depends_on": [],
+      "soft_after": [
+        "opportunity-scan",
+        "red-team-thesis"
+      ],
+      "produces": [
+        "why_now_memo"
+      ],
+      "consumes": [
+        "opportunity_brief",
+        "market_sizing_model"
+      ],
+      "effort": "S",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "validated-opportunity"
+    },
+    {
+      "id": "beachhead-selection",
+      "title": "Beachhead Selection",
+      "level": 1,
+      "file": "playbooks/level-1/008-beachhead-selection.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": []
+      },
+      "relevance": "core",
+      "selection_hint": "The first L1 commit. Choose one wedge so all force concentrates on a single point. Unlocks positioning and naming.",
+      "depends_on": [
+        "problem-validation-interviews",
+        "market-sizing-tam-sam-som"
+      ],
+      "soft_after": [
+        "jobs-to-be-done-extraction",
+        "competitive-teardown"
+      ],
+      "produces": [
+        "beachhead",
+        "committed_wedge"
+      ],
+      "consumes": [
+        "problem_evidence",
+        "jtbd",
+        "market_sizing_model"
+      ],
+      "effort": "M",
+      "leverage": "critical",
+      "reversibility": "medium",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "company-exists"
+    },
+    {
+      "id": "company-naming",
+      "title": "Company Naming",
+      "level": 1,
+      "file": "playbooks/level-1/009-company-naming.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": []
+      },
+      "relevance": "core",
+      "selection_hint": "Run after the wedge is chosen so the name targets the right audience. The name is the most durable IP; do not rush it.",
+      "depends_on": [
+        "beachhead-selection"
+      ],
+      "soft_after": [
+        "positioning-canvas"
+      ],
+      "produces": [
+        "brand_name",
+        "name_shortlist"
+      ],
+      "consumes": [
+        "beachhead",
+        "positioning"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "hard",
+      "human_gate": true,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "company-exists"
+    },
+    {
+      "id": "domain-acquisition",
+      "title": "Domain Acquisition",
+      "level": 1,
+      "file": "playbooks/level-1/010-domain-acquisition.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": []
+      },
+      "relevance": "core",
+      "selection_hint": "Run once the name is final. Secures the primary digital identity. Money and broker negotiation make this a human-gated spend.",
+      "depends_on": [
+        "company-naming"
+      ],
+      "soft_after": [
+        "trademark-clearance"
+      ],
+      "produces": [
+        "primary_domain"
+      ],
+      "consumes": [
+        "brand_name"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "medium",
+      "human_gate": true,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "company-exists"
+    },
+    {
+      "id": "trademark-clearance",
+      "title": "Trademark Clearance",
+      "level": 1,
+      "file": "playbooks/level-1/011-trademark-clearance.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": []
+      },
+      "relevance": "recommended",
+      "selection_hint": "Run the knockout search the moment the name is chosen; file once goods/services are defined. Filing is a legal, money, hard-to-reverse action.",
+      "depends_on": [
+        "company-naming"
+      ],
+      "soft_after": [
+        "domain-acquisition"
+      ],
+      "produces": [
+        "trademark_clearance",
+        "trademark_filing"
+      ],
+      "consumes": [
+        "brand_name"
+      ],
+      "effort": "M",
+      "leverage": "med",
+      "reversibility": "hard",
+      "human_gate": true,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "company-exists"
+    },
+    {
+      "id": "entity-formation",
+      "title": "Entity Formation",
+      "level": 1,
+      "file": "playbooks/level-1/012-entity-formation.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": []
+      },
+      "relevance": "core",
+      "selection_hint": "Run once the venture is committed and you need to bank, contract, hire, or raise. Default Delaware C-Corp; deviations need a documented reason.",
+      "depends_on": [],
+      "soft_after": [
+        "company-naming"
+      ],
+      "produces": [
+        "legal_entity",
+        "ein"
+      ],
+      "consumes": [
+        "committed_wedge"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "hard",
+      "human_gate": true,
+      "blocks_revenue": true,
+      "recurring": false,
+      "typical_milestone": "company-exists"
+    },
+    {
+      "id": "founding-docs",
+      "title": "Founding Docs",
+      "level": 1,
+      "file": "playbooks/level-1/013-founding-docs.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": []
+      },
+      "relevance": "core",
+      "selection_hint": "Run the moment the entity is registered; the 83(b) clock is 30 days. Errors here are fatal to future fundraising.",
+      "depends_on": [
+        "entity-formation"
+      ],
+      "soft_after": [],
+      "produces": [
+        "cap_table",
+        "ip_assignment",
+        "founding_docs"
+      ],
+      "consumes": [
+        "legal_entity"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "hard",
+      "human_gate": true,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "company-exists"
+    },
+    {
+      "id": "tos-and-privacy-policy",
+      "title": "ToS & Privacy Policy",
+      "level": 3,
+      "file": "playbooks/level-3/014-tos-and-privacy-policy.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [
+          "collects_user_data"
+        ],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "Required before any product that collects user data goes public. Gates on a formed entity and known data practices. Legal and irreversible; always human-gated.",
+      "depends_on": [
+        "entity-formation"
+      ],
+      "soft_after": [
+        "data-backup-recovery"
+      ],
+      "produces": [
+        "legal_pages"
+      ],
+      "consumes": [
+        "legal_entity"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "medium",
+      "human_gate": true,
+      "blocks_revenue": true,
+      "recurring": false,
+      "typical_milestone": "legal-pages-published"
+    },
+    {
+      "id": "brand-positioning-statement",
+      "title": "Brand Positioning Statement",
+      "level": 2,
+      "file": "playbooks/level-2/015-brand-positioning-statement.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": []
+      },
+      "relevance": "core",
+      "selection_hint": "Strategic positioning bet that every content, brand, and trademark step downstream consumes. Run once the MVP slice is scoped.",
+      "depends_on": [
+        "mvp-scoping"
+      ],
+      "soft_after": [
+        "positioning-canvas"
+      ],
+      "produces": [
+        "brand_positioning",
+        "messaging_hierarchy"
+      ],
+      "consumes": [
+        "mvp_scope"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "medium",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "positioning-locked"
+    },
+    {
+      "id": "visual-identity-brief",
+      "title": "Visual Identity Brief",
+      "level": 3,
+      "file": "playbooks/level-3/016-visual-identity-brief.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "recommended",
+      "selection_hint": "At L3 ship only the Minimum Viable Brand (Inter, one primary color, text wordmark). The full identity here is a post-PMF mature variant; do not run the full build pre-PMF.",
+      "depends_on": [
+        "brand-positioning-statement"
+      ],
+      "soft_after": [
+        "tone-of-voice-guide"
+      ],
+      "produces": [
+        "visual_identity"
+      ],
+      "consumes": [
+        "brand_positioning"
+      ],
+      "effort": "L",
+      "leverage": "med",
+      "reversibility": "medium",
+      "human_gate": true,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "brand-shipped"
+    },
+    {
+      "id": "tone-of-voice-guide",
+      "title": "Tone of Voice Guide",
+      "level": 2,
+      "file": "playbooks/level-2/017-tone-of-voice-guide.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": []
+      },
+      "relevance": "core",
+      "selection_hint": "The voice contract every content-producing agent reads. Run after positioning so all copy speaks consistently.",
+      "depends_on": [
+        "brand-positioning-statement"
+      ],
+      "soft_after": [],
+      "produces": [
+        "tone_of_voice",
+        "voice_rules"
+      ],
+      "consumes": [
+        "brand_positioning"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "voice-locked"
+    },
+    {
+      "id": "mvp-scoping",
+      "title": "MVP Scoping",
+      "level": 0,
+      "file": "playbooks/level-0/018-mvp-scoping.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": []
+      },
+      "relevance": "core",
+      "selection_hint": "Defines the smallest buildable product after the thesis survives red-teaming. Gates tech stack, positioning, and PRD.",
+      "depends_on": [
+        "red-team-thesis"
+      ],
+      "soft_after": [
+        "beachhead-selection"
+      ],
+      "produces": [
+        "mvp_scope",
+        "non_goals"
+      ],
+      "consumes": [
+        "validated_thesis"
+      ],
+      "effort": "M",
+      "leverage": "critical",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "mvp-scoped"
+    },
+    {
+      "id": "tech-stack-selection",
+      "title": "Tech Stack Selection",
+      "level": 2,
+      "file": "playbooks/level-2/019-tech-stack-selection.md",
+      "applies_to": {
+        "types": [
+          "saas",
+          "marketplace",
+          "ecommerce",
+          "content",
+          "crypto"
+        ],
+        "requires_traits": [
+          "builds_software"
+        ],
+        "excluded_traits": []
+      },
+      "relevance": "core",
+      "selection_hint": "The infra gate. Pick the stack before hosting, observability, or any build can start. Skip only for businesses that ship no software.",
+      "depends_on": [
+        "mvp-scoping"
+      ],
+      "soft_after": [],
+      "produces": [
+        "tech_stack"
+      ],
+      "consumes": [
+        "mvp_scope"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "hard",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "stack-chosen"
+    },
+    {
+      "id": "prd-drafting",
+      "title": "PRD Drafting",
+      "level": 3,
+      "file": "playbooks/level-3/020-prd-drafting.md",
+      "applies_to": {
+        "types": [
+          "saas",
+          "marketplace",
+          "ecommerce",
+          "content",
+          "crypto"
+        ],
+        "requires_traits": [
+          "builds_software"
+        ],
+        "excluded_traits": []
+      },
+      "relevance": "core",
+      "selection_hint": "The source of truth engineering and design agents execute against. Run per initiative once the MVP slice is scoped and validated.",
+      "depends_on": [
+        "mvp-scoping"
+      ],
+      "soft_after": [],
+      "produces": [
+        "prd"
+      ],
+      "consumes": [
+        "mvp_scope"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "prd-ready"
+    },
+    {
+      "id": "feature-prioritization",
+      "title": "Feature Prioritization",
+      "level": 3,
+      "file": "playbooks/level-3/021-feature-prioritization.md",
+      "applies_to": {
+        "types": [
+          "saas",
+          "marketplace",
+          "ecommerce",
+          "content",
+          "crypto"
+        ],
+        "requires_traits": [
+          "builds_software"
+        ],
+        "excluded_traits": []
+      },
+      "relevance": "core",
+      "selection_hint": "The standing decision of what to build next. Runs continuously through build and beyond, not once. Full scoring every two weeks; triage daily.",
+      "depends_on": [],
+      "soft_after": [
+        "prd-drafting"
+      ],
+      "produces": [
+        "prioritized_backlog",
+        "sprint_commitment"
+      ],
+      "consumes": [
+        "prd"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "backlog-ranked"
+    },
+    {
+      "id": "onboarding-flow-design",
+      "title": "Onboarding Flow Design",
+      "level": 3,
+      "file": "playbooks/level-3/022-onboarding-flow-design.md",
+      "applies_to": {
+        "types": [
+          "saas",
+          "marketplace",
+          "ecommerce",
+          "content",
+          "crypto"
+        ],
+        "requires_traits": [
+          "has_user_accounts"
+        ],
+        "excluded_traits": []
+      },
+      "relevance": "core",
+      "selection_hint": "The highest-leverage growth surface. Design it once the product core value and signup flow exist; it feeds the beta program.",
+      "depends_on": [],
+      "soft_after": [
+        "prd-drafting"
+      ],
+      "produces": [
+        "onboarding_flow",
+        "activation_event"
+      ],
+      "consumes": [
+        "prd",
+        "event_taxonomy"
+      ],
+      "effort": "M",
+      "leverage": "critical",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "activation-instrumented"
+    },
+    {
+      "id": "usability-testing-protocol",
+      "title": "Usability Testing Protocol",
+      "level": 3,
+      "file": "playbooks/level-3/023-usability-testing-protocol.md",
+      "applies_to": {
+        "types": [
+          "saas",
+          "marketplace",
+          "ecommerce",
+          "content",
+          "crypto"
+        ],
+        "requires_traits": [
+          "builds_software"
+        ],
+        "excluded_traits": []
+      },
+      "relevance": "recommended",
+      "selection_hint": "Behavioral testing of whether users can accomplish goals. Run on a stable prototype or staging build, repeatedly through build. Not for attitudinal questions.",
+      "depends_on": [],
+      "soft_after": [
+        "onboarding-flow-design"
+      ],
+      "produces": [
+        "usability_findings"
+      ],
+      "consumes": [
+        "onboarding_flow"
+      ],
+      "effort": "S",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "usability-validated"
+    },
+    {
+      "id": "beta-program-management",
+      "title": "Beta Program Management",
+      "level": 4,
+      "file": "playbooks/level-4/024-beta-program-management.md",
+      "applies_to": {
+        "types": [
+          "saas",
+          "marketplace",
+          "ecommerce",
+          "content",
+          "crypto"
+        ],
+        "requires_traits": [
+          "has_user_accounts"
+        ],
+        "excluded_traits": []
+      },
+      "relevance": "core",
+      "selection_hint": "PMF-validation and relationship-building, not QA. Run once the core workflow is functional and instrumented, ahead of public launch.",
+      "depends_on": [
+        "onboarding-flow-design"
+      ],
+      "soft_after": [
+        "event-taxonomy-design"
+      ],
+      "produces": [
+        "beta_cohort",
+        "activation_evidence",
+        "testimonials"
+      ],
+      "consumes": [
+        "onboarding_flow",
+        "activation_event"
+      ],
+      "effort": "L",
+      "leverage": "high",
+      "reversibility": "medium",
+      "human_gate": true,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "beta-graduated"
+    },
+    {
+      "id": "release-changelog-cadence",
+      "title": "Release & Changelog Cadence",
+      "level": 3,
+      "file": "playbooks/level-3/025-release-changelog-cadence.md",
+      "applies_to": {
+        "types": [
+          "saas",
+          "marketplace",
+          "ecommerce",
+          "content",
+          "crypto"
+        ],
+        "requires_traits": [
+          "builds_software"
+        ],
+        "excluded_traits": []
+      },
+      "relevance": "recommended",
+      "selection_hint": "Decouples deploy from release and turns the changelog into a marketing, retention, and recruiting asset. Stands up once CI/CD exists; then operates continuously.",
+      "depends_on": [
+        "hosting-deployment-setup"
+      ],
+      "soft_after": [
+        "feature-prioritization"
+      ],
+      "produces": [
+        "release_cadence",
+        "changelog"
+      ],
+      "consumes": [
+        "cicd"
+      ],
+      "effort": "S",
+      "leverage": "med",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "release-rhythm-set"
+    },
+    {
+      "id": "hosting-deployment-setup",
+      "title": "Hosting & Deployment Setup",
+      "level": 2,
+      "file": "playbooks/level-2/026-hosting-deployment-setup.md",
+      "applies_to": {
+        "types": [
+          "saas",
+          "marketplace",
+          "ecommerce",
+          "content",
+          "crypto"
+        ],
+        "requires_traits": [
+          "builds_software"
+        ],
+        "excluded_traits": []
+      },
+      "relevance": "core",
+      "selection_hint": "Stands up the deploy foundation once the stack is chosen. Everything observability, security, backup, and release depends on this landing.",
+      "depends_on": [
+        "tech-stack-selection"
+      ],
+      "soft_after": [
+        "domain-acquisition"
+      ],
+      "produces": [
+        "hosting",
+        "cicd"
+      ],
+      "consumes": [
+        "tech_stack"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "medium",
+      "human_gate": true,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "hosting-live"
+    },
+    {
+      "id": "observability-setup",
+      "title": "Observability Setup",
+      "level": 2,
+      "file": "playbooks/level-2/027-observability-setup.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [
+          "has_deployed_app"
+        ],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "Run once a deployed app exists. It is the sensory layer that arms incident response and tells you why something broke, not just that it broke.",
+      "depends_on": [
+        "hosting-deployment-setup"
+      ],
+      "soft_after": [],
+      "produces": [
+        "observability_stack",
+        "slo_definitions",
+        "alerting_rules",
+        "postmortem_template"
+      ],
+      "consumes": [
+        "hosting"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "medium",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "app-observable"
+    },
+    {
+      "id": "incident-response",
+      "title": "Incident Response",
+      "level": 2,
+      "file": "playbooks/level-2/028-incident-response.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [
+          "has_deployed_app"
+        ],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "Install once observability is live, then it runs always-on. Triggered by any alert, outage, or security event. Never a one-time checkbox.",
+      "depends_on": [
+        "observability-setup"
+      ],
+      "soft_after": [
+        "security-baseline",
+        "data-backup-recovery"
+      ],
+      "produces": [
+        "incident_runbook",
+        "severity_matrix",
+        "postmortem_log"
+      ],
+      "consumes": [
+        "observability_stack",
+        "alerting_rules"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "medium",
+      "human_gate": true,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "incident-process-live"
+    },
+    {
+      "id": "security-baseline",
+      "title": "Security Baseline",
+      "level": 2,
+      "file": "playbooks/level-2/029-security-baseline.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [
+          "has_repo"
+        ],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "Stand up day one alongside hosting. Prevents the cheap, predictable breaches (stolen credentials dominate) and avoids expensive SOC 2 retrofits.",
+      "depends_on": [],
+      "soft_after": [
+        "hosting-deployment-setup"
+      ],
+      "produces": [
+        "security_baseline",
+        "secrets_policy",
+        "auth_architecture"
+      ],
+      "consumes": [],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "medium",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "security-baseline-set"
+    },
+    {
+      "id": "data-backup-recovery",
+      "title": "Data Backup & Recovery",
+      "level": 2,
+      "file": "playbooks/level-2/030-data-backup-recovery.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [
+          "has_datastore"
+        ],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "Run once any data store exists. Turns an outage, ransomware event, or bad migration into a 30-minute problem instead of an existential one.",
+      "depends_on": [
+        "hosting-deployment-setup"
+      ],
+      "soft_after": [
+        "security-baseline"
+      ],
+      "produces": [
+        "backup_policy",
+        "rpo_rto_targets",
+        "restore_drill_log"
+      ],
+      "consumes": [
+        "hosting"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "hard",
+      "human_gate": true,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "backups-verified"
+    },
+    {
+      "id": "analytics-stack-setup",
+      "title": "Analytics Stack Setup",
+      "level": 2,
+      "file": "playbooks/level-2/031-analytics-stack-setup.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "The sensory apparatus of the business. Every downstream metric, funnel, cohort, and dashboard depends on it. Set up in week one to avoid an 18-month rebuild.",
+      "depends_on": [],
+      "soft_after": [
+        "hosting-deployment-setup"
+      ],
+      "produces": [
+        "analytics_stack"
+      ],
+      "consumes": [],
+      "effort": "L",
+      "leverage": "critical",
+      "reversibility": "medium",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "analytics-instrumented"
+    },
+    {
+      "id": "event-taxonomy-design",
+      "title": "Event Taxonomy Design",
+      "level": 2,
+      "file": "playbooks/level-2/032-event-taxonomy-design.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "Run right after the analytics stack lands. A disciplined taxonomy is what makes funnels, cohorts, and reads trustworthy; without it tracking drifts into chaos.",
+      "depends_on": [
+        "analytics-stack-setup"
+      ],
+      "soft_after": [],
+      "produces": [
+        "event_taxonomy",
+        "tracking_plan"
+      ],
+      "consumes": [
+        "analytics_stack"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "medium",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "taxonomy-governed"
+    },
+    {
+      "id": "north-star-metric",
+      "title": "North Star Metric Definition",
+      "level": 5,
+      "file": "playbooks/level-5/033-north-star-metric.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "Define once early PMF signal exists so every agent optimizes one number. Before PMF, anchor it on retention or core-action completion, not growth.",
+      "depends_on": [
+        "analytics-stack-setup"
+      ],
+      "soft_after": [
+        "event-taxonomy-design"
+      ],
+      "produces": [
+        "north_star_metric",
+        "metric_tree",
+        "guardrail_metrics"
+      ],
+      "consumes": [
+        "analytics_stack",
+        "event_taxonomy"
+      ],
+      "effort": "M",
+      "leverage": "critical",
+      "reversibility": "medium",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "nsm-defined"
+    },
+    {
+      "id": "funnel-analysis",
+      "title": "Funnel Analysis",
+      "level": 5,
+      "file": "playbooks/level-5/034-funnel-analysis.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "Run once events flow and there are users moving through the funnel. Diagnoses where the funnel leaks and produces testable remediation hypotheses.",
+      "depends_on": [
+        "analytics-stack-setup",
+        "event-taxonomy-design"
+      ],
+      "soft_after": [
+        "north-star-metric"
+      ],
+      "produces": [
+        "funnel_analysis",
+        "activation_metric",
+        "remediation_hypotheses"
+      ],
+      "consumes": [
+        "analytics_stack",
+        "event_taxonomy"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "funnel-instrumented"
+    },
+    {
+      "id": "cohort-retention-analysis",
+      "title": "Cohort & Retention Analysis",
+      "level": 5,
+      "file": "playbooks/level-5/035-cohort-retention-analysis.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "Run once a critical event and a usage interval are definable. Retention is the most leveraged metric; a 10% lift beats a 10% acquisition lift many times over.",
+      "depends_on": [
+        "analytics-stack-setup",
+        "event-taxonomy-design"
+      ],
+      "soft_after": [
+        "north-star-metric"
+      ],
+      "produces": [
+        "retention_report",
+        "cohort_tables",
+        "critical_event"
+      ],
+      "consumes": [
+        "analytics_stack",
+        "event_taxonomy"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "retention-baselined"
+    },
+    {
+      "id": "attribution-modeling",
+      "title": "Attribution Modeling",
+      "level": 6,
+      "file": "playbooks/level-6/036-attribution-modeling.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [
+          "runs_paid_media"
+        ],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "recommended",
+      "selection_hint": "Run before scaling paid spend, once there is meaningful spend history and conversion volume. Attribution is causal inference, not a reporting exercise.",
+      "depends_on": [
+        "analytics-stack-setup",
+        "event-taxonomy-design"
+      ],
+      "soft_after": [
+        "growth-loop-design"
+      ],
+      "produces": [
+        "attribution_model",
+        "budget_reallocation",
+        "tracking_audit"
+      ],
+      "consumes": [
+        "analytics_stack",
+        "event_taxonomy"
+      ],
+      "effort": "L",
+      "leverage": "high",
+      "reversibility": "medium",
+      "human_gate": true,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "attribution-operating"
+    },
+    {
+      "id": "ceo-dashboard-build",
+      "title": "CEO Dashboard Build",
+      "level": 5,
+      "file": "playbooks/level-5/037-ceo-dashboard-build.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "Build once the NSM is defined and data sources are connected. Gives the founder one health screen that alerts on exception rather than being checked.",
+      "depends_on": [
+        "analytics-stack-setup",
+        "north-star-metric"
+      ],
+      "soft_after": [
+        "cohort-retention-analysis"
+      ],
+      "produces": [
+        "ceo_dashboard",
+        "alert_thresholds"
+      ],
+      "consumes": [
+        "analytics_stack",
+        "north_star_metric"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "ceo-dashboard-live"
+    },
+    {
+      "id": "ga4-reading-playbook",
+      "title": "GA4 Reading Playbook",
+      "level": 4,
+      "file": "playbooks/level-4/038-ga4-reading-playbook.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [
+          "uses_ga4"
+        ],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "recommended",
+      "selection_hint": "Run once GA4 (ideally with a BigQuery export) is live and there is traffic to read, typically from launch. Skip products that do not use GA4.",
+      "depends_on": [
+        "analytics-stack-setup"
+      ],
+      "soft_after": [
+        "event-taxonomy-design"
+      ],
+      "produces": [
+        "ga4_read",
+        "tracking_health_report"
+      ],
+      "consumes": [
+        "analytics_stack"
+      ],
+      "effort": "S",
+      "leverage": "med",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "ga4-read-operating"
+    },
+    {
+      "id": "mixpanel-reading-playbook",
+      "title": "Mixpanel Reading Playbook",
+      "level": 4,
+      "file": "playbooks/level-4/039-mixpanel-reading-playbook.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [
+          "uses_mixpanel"
+        ],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "recommended",
+      "selection_hint": "Run once Mixpanel has events flowing and a tracking plan exists, typically from launch. Skip products that do not use Mixpanel.",
+      "depends_on": [
+        "analytics-stack-setup",
+        "event-taxonomy-design"
+      ],
+      "soft_after": [],
+      "produces": [
+        "mixpanel_read",
+        "product_health_summary"
+      ],
+      "consumes": [
+        "analytics_stack",
+        "event_taxonomy"
+      ],
+      "effort": "S",
+      "leverage": "med",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "mixpanel-read-operating"
+    },
+    {
+      "id": "weekly-business-review",
+      "title": "Weekly Business Review",
+      "level": 5,
+      "file": "playbooks/level-5/040-weekly-business-review.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "Install once data flows and metrics have owners, then it runs always-on every week. The primary mechanism against operational drift. Never cancelled.",
+      "depends_on": [
+        "analytics-stack-setup",
+        "north-star-metric",
+        "ceo-dashboard-build"
+      ],
+      "soft_after": [
+        "funnel-analysis",
+        "cohort-retention-analysis"
+      ],
+      "produces": [
+        "wbr_artifact",
+        "action_register"
+      ],
+      "consumes": [
+        "analytics_stack",
+        "north_star_metric",
+        "ceo_dashboard"
+      ],
+      "effort": "S",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": true,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "wbr-operating"
+    },
+    {
+      "id": "pricing-research",
+      "title": "Pricing Research",
+      "level": 2,
+      "file": "playbooks/level-2/041-pricing-research.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [
+          "takes_payments"
+        ],
+        "excluded_traits": []
+      },
+      "relevance": "core",
+      "selection_hint": "Run before any packaging or pricing-page decision, once positioning and an ICP exist. Skip only for permanently-free products.",
+      "depends_on": [
+        "positioning-canvas"
+      ],
+      "soft_after": [
+        "competitive-teardown",
+        "market-sizing-tam-sam-som"
+      ],
+      "produces": [
+        "pricing_research"
+      ],
+      "consumes": [
+        "positioning",
+        "icp",
+        "competitive_landscape"
+      ],
+      "effort": "L",
+      "leverage": "critical",
+      "reversibility": "medium",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "pricing-direction-set"
+    },
+    {
+      "id": "packaging-tier-design",
+      "title": "Packaging & Tier Design",
+      "level": 2,
+      "file": "playbooks/level-2/042-packaging-tier-design.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [
+          "takes_payments"
+        ],
+        "excluded_traits": []
+      },
+      "relevance": "core",
+      "selection_hint": "Run after pricing research lands a price range and value metric. The structural decision that pricing-page copy and freemium choice both depend on.",
+      "depends_on": [
+        "pricing-research"
+      ],
+      "soft_after": [],
+      "produces": [
+        "pricing_tiers"
+      ],
+      "consumes": [
+        "pricing_research",
+        "positioning"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "medium",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "pricing-direction-set"
+    },
+    {
+      "id": "pricing-page-copy-layout",
+      "title": "Pricing Page Copy & Layout",
+      "level": 3,
+      "file": "playbooks/level-3/043-pricing-page-copy-layout.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [
+          "takes_payments",
+          "has_website"
+        ],
+        "excluded_traits": []
+      },
+      "relevance": "core",
+      "selection_hint": "Run once positioning and tiers are locked, never before, or the page gets rewritten around placeholder prices. The highest-intent page on the site.",
+      "depends_on": [
+        "pricing-research",
+        "packaging-tier-design",
+        "positioning-canvas"
+      ],
+      "soft_after": [
+        "tone-of-voice-guide"
+      ],
+      "produces": [
+        "pricing_page"
+      ],
+      "consumes": [
+        "positioning",
+        "pricing_tiers"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "launch-assets-ready"
+    },
+    {
+      "id": "freemium-trial-decision",
+      "title": "Freemium / Trial Decision",
+      "level": 2,
+      "file": "playbooks/level-2/044-freemium-trial-decision.md",
+      "applies_to": {
+        "types": [
+          "saas",
+          "content",
+          "crypto",
+          "marketplace"
+        ],
+        "requires_traits": [
+          "takes_payments"
+        ],
+        "excluded_traits": []
+      },
+      "relevance": "core",
+      "selection_hint": "Run after pricing research, before launch. Decides the shape of the acquisition funnel. Most relevant to self-serve software; less so to high-touch services.",
+      "depends_on": [
+        "pricing-research"
+      ],
+      "soft_after": [
+        "packaging-tier-design"
+      ],
+      "produces": [
+        "pricing_model"
+      ],
+      "consumes": [
+        "pricing_research",
+        "unit_economics"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "medium",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "pricing-direction-set"
+    },
+    {
+      "id": "discount-promo-policy",
+      "title": "Discount & Promo Policy",
+      "level": 5,
+      "file": "playbooks/level-5/045-discount-promo-policy.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [
+          "takes_payments"
+        ],
+        "excluded_traits": []
+      },
+      "relevance": "recommended",
+      "selection_hint": "Install once a list price and gross margin exist, before the sales motion starts giving discounts. A standing guardrail, not a one-off campaign.",
+      "depends_on": [
+        "pricing-research",
+        "packaging-tier-design"
+      ],
+      "soft_after": [
+        "unit-economics"
+      ],
+      "produces": [
+        "discount_policy"
+      ],
+      "consumes": [
+        "pricing_tiers",
+        "unit_economics"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "medium",
+      "human_gate": true,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "revenue-engine-tuned"
+    },
+    {
+      "id": "positioning-canvas",
+      "title": "Positioning Canvas",
+      "level": 1,
+      "file": "playbooks/level-1/046-positioning-canvas.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "The strategic root of all GTM. Run once a beachhead is committed; every pricing, launch, and content decision derives from it.",
+      "depends_on": [
+        "beachhead-selection"
+      ],
+      "soft_after": [
+        "competitive-teardown",
+        "jobs-to-be-done-extraction"
+      ],
+      "produces": [
+        "positioning"
+      ],
+      "consumes": [
+        "beachhead",
+        "competitive_landscape",
+        "jtbd"
+      ],
+      "effort": "M",
+      "leverage": "critical",
+      "reversibility": "medium",
+      "human_gate": true,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "positioning-locked"
+    },
+    {
+      "id": "category-design-decision",
+      "title": "Category Design Decision",
+      "level": 1,
+      "file": "playbooks/level-1/047-category-design-decision.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": [
+          "pre_product_pre_customer"
+        ]
+      },
+      "relevance": "recommended",
+      "selection_hint": "Run after positioning when the market frame is genuinely in question. Skip if the category is obvious and the play is clearly to win share in it.",
+      "depends_on": [
+        "positioning-canvas"
+      ],
+      "soft_after": [
+        "competitive-teardown",
+        "market-sizing-tam-sam-som"
+      ],
+      "produces": [
+        "category_pov"
+      ],
+      "consumes": [
+        "positioning",
+        "competitive_landscape"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "hard",
+      "human_gate": true,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "positioning-locked"
+    },
+    {
+      "id": "launch-plan-t90",
+      "title": "Launch Plan (T-90)",
+      "level": 4,
+      "file": "playbooks/level-4/048-launch-plan-t90.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": []
+      },
+      "relevance": "core",
+      "selection_hint": "The conductor of the launch level. Run once product, positioning, and pricing are ready; it sequences PH, HN, PR, and podcast plays under one countdown.",
+      "depends_on": [
+        "positioning-canvas",
+        "packaging-tier-design",
+        "pricing-page-copy-layout",
+        "freemium-trial-decision"
+      ],
+      "soft_after": [
+        "category-design-decision",
+        "beta-program-management"
+      ],
+      "produces": [
+        "launch_plan"
+      ],
+      "consumes": [
+        "positioning",
+        "pricing_tiers",
+        "pricing_model",
+        "pricing_page",
+        "category_pov"
+      ],
+      "effort": "L",
+      "leverage": "critical",
+      "reversibility": "medium",
+      "human_gate": true,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "launched"
+    },
+    {
+      "id": "product-hunt-launch",
+      "title": "Product Hunt Launch",
+      "level": 4,
+      "file": "playbooks/level-4/049-product-hunt-launch.md",
+      "applies_to": {
+        "types": [
+          "saas",
+          "content",
+          "crypto",
+          "hardware",
+          "marketplace"
+        ],
+        "requires_traits": [
+          "has_website"
+        ],
+        "excluded_traits": [
+          "local_service_only"
+        ]
+      },
+      "relevance": "recommended",
+      "selection_hint": "Run under the launch plan when the product is live with no waitlist and the audience is the tech community. Skip for local services and pure offline plays.",
+      "depends_on": [
+        "launch-plan-t90"
+      ],
+      "soft_after": [
+        "beta-program-management",
+        "community-seeding"
+      ],
+      "produces": [
+        "product_hunt_launch"
+      ],
+      "consumes": [
+        "launch_plan",
+        "positioning"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "hard",
+      "human_gate": true,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "launched"
+    },
+    {
+      "id": "hacker-news-launch",
+      "title": "Hacker News Launch",
+      "level": 4,
+      "file": "playbooks/level-4/050-hacker-news-launch.md",
+      "applies_to": {
+        "types": [
+          "saas",
+          "content",
+          "crypto"
+        ],
+        "requires_traits": [
+          "has_website",
+          "technical_audience"
+        ],
+        "excluded_traits": [
+          "local_service_only",
+          "b2c"
+        ]
+      },
+      "relevance": "optional",
+      "selection_hint": "Run under the launch plan only when the product appeals to a technical audience and the submitting account is aged. Skip for non-technical B2C.",
+      "depends_on": [
+        "launch-plan-t90"
+      ],
+      "soft_after": [
+        "product-hunt-launch"
+      ],
+      "produces": [
+        "hn_launch"
+      ],
+      "consumes": [
+        "launch_plan",
+        "positioning"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "hard",
+      "human_gate": true,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "launched"
+    },
+    {
+      "id": "pr-press-launch",
+      "title": "PR & Press Launch",
+      "level": 4,
+      "file": "playbooks/level-4/051-pr-press-launch.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": []
+      },
+      "relevance": "recommended",
+      "selection_hint": "Run for any public announcement with a real narrative. Owned media leads; earned media amplifies. Hold wire distribution until Series A.",
+      "depends_on": [],
+      "soft_after": [
+        "launch-plan-t90",
+        "positioning-canvas"
+      ],
+      "produces": [
+        "press_coverage"
+      ],
+      "consumes": [
+        "positioning",
+        "launch_plan"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "hard",
+      "human_gate": true,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "launched"
+    },
+    {
+      "id": "podcast-tour",
+      "title": "Podcast Tour",
+      "level": 4,
+      "file": "playbooks/level-4/052-podcast-tour.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": []
+      },
+      "relevance": "optional",
+      "selection_hint": "Run when a speaker has 4+ hours a week for 8 weeks and conversion infrastructure exists. A high-trust, zero-media-spend channel; not a branded podcast.",
+      "depends_on": [],
+      "soft_after": [
+        "pr-press-launch",
+        "launch-plan-t90"
+      ],
+      "produces": [
+        "podcast_appearances"
+      ],
+      "consumes": [
+        "positioning",
+        "icp"
+      ],
+      "effort": "L",
+      "leverage": "med",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "channels-compounding"
+    },
+    {
+      "id": "community-seeding",
+      "title": "Community Seeding",
+      "level": 3,
+      "file": "playbooks/level-3/053-community-seeding.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": []
+      },
+      "relevance": "recommended",
+      "selection_hint": "Run from L3 when owned audience is under ~500 and a landing page or demo exists. Value-first participation; never a paid-ads or owned-community play.",
+      "depends_on": [],
+      "soft_after": [
+        "positioning-canvas",
+        "case-study-testimonial-pipeline"
+      ],
+      "produces": [
+        "community_presence"
+      ],
+      "consumes": [
+        "icp",
+        "positioning",
+        "testimonials",
+        "competitive_landscape"
+      ],
+      "effort": "L",
+      "leverage": "med",
+      "reversibility": "medium",
+      "human_gate": true,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "channels-compounding"
+    },
+    {
+      "id": "seo-keyword-research",
+      "title": "SEO Keyword Research",
+      "level": 2,
+      "file": "playbooks/level-2/054-seo-keyword-research.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": []
+      },
+      "relevance": "recommended",
+      "selection_hint": "Run before any content or SEO work. Foundation that every content and programmatic-SEO playbook consumes. Skip only if SEO is not a planned channel.",
+      "depends_on": [],
+      "soft_after": [
+        "positioning-canvas"
+      ],
+      "produces": [
+        "keyword_research"
+      ],
+      "consumes": [],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "content-foundation"
+    },
+    {
+      "id": "content-calendar",
+      "title": "Content Calendar",
+      "level": 3,
+      "file": "playbooks/level-3/055-content-calendar.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": []
+      },
+      "relevance": "recommended",
+      "selection_hint": "The operating engine for content. Install once keywords and personas exist; then run continuously to plan, brief, publish, and refresh.",
+      "depends_on": [
+        "seo-keyword-research"
+      ],
+      "soft_after": [
+        "tone-of-voice-guide",
+        "positioning-canvas"
+      ],
+      "produces": [
+        "content_calendar",
+        "content_briefs"
+      ],
+      "consumes": [
+        "keyword_research"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "content-engine-live"
+    },
+    {
+      "id": "pillar-cluster-content",
+      "title": "Pillar + Cluster Content",
+      "level": 3,
+      "file": "playbooks/level-3/056-pillar-cluster-content.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": []
+      },
+      "relevance": "recommended",
+      "selection_hint": "Use to build topical authority on a target domain. Run after keywords exist; produces the linkable long-form assets later channels and link-building depend on.",
+      "depends_on": [
+        "seo-keyword-research"
+      ],
+      "soft_after": [
+        "content-calendar"
+      ],
+      "produces": [
+        "long_form_content",
+        "topical_authority_map"
+      ],
+      "consumes": [
+        "keyword_research"
+      ],
+      "effort": "L",
+      "leverage": "high",
+      "reversibility": "medium",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "topical-authority-built"
+    },
+    {
+      "id": "long-form-blog-post",
+      "title": "Long-form Blog Post",
+      "level": 3,
+      "file": "playbooks/level-3/057-long-form-blog-post.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": []
+      },
+      "relevance": "recommended",
+      "selection_hint": "The primary organic acquisition unit. Run per keyword cluster once research exists; produces the linkable assets link-building later needs.",
+      "depends_on": [
+        "seo-keyword-research"
+      ],
+      "soft_after": [
+        "pillar-cluster-content",
+        "tone-of-voice-guide"
+      ],
+      "produces": [
+        "long_form_content"
+      ],
+      "consumes": [
+        "keyword_research"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "content-engine-live"
+    },
+    {
+      "id": "programmatic-seo",
+      "title": "Programmatic SEO",
+      "level": 6,
+      "file": "playbooks/level-6/058-programmatic-seo.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": [
+          "pre_pmf"
+        ]
+      },
+      "relevance": "conditional",
+      "selection_hint": "Only when a keyword pattern has aggregate volume and a unique dataset can populate 100+ genuinely distinct pages. Scale only post-PMF; thin pages at scale risk sitewide deindexation.",
+      "depends_on": [
+        "seo-keyword-research"
+      ],
+      "soft_after": [
+        "technical-seo-audit"
+      ],
+      "produces": [
+        "programmatic_pages"
+      ],
+      "consumes": [
+        "keyword_research"
+      ],
+      "effort": "L",
+      "leverage": "high",
+      "reversibility": "hard",
+      "human_gate": true,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "scaled-organic"
+    },
+    {
+      "id": "technical-seo-audit",
+      "title": "Technical SEO Audit",
+      "level": 3,
+      "file": "playbooks/level-3/059-technical-seo-audit.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": []
+      },
+      "relevance": "recommended",
+      "selection_hint": "Run quarterly, after migrations, after core updates, or on a traffic drop. Keeps the site crawlable and indexable so content and programmatic SEO can rank.",
+      "depends_on": [],
+      "soft_after": [
+        "hosting-deployment-setup"
+      ],
+      "produces": [
+        "technical_seo_audit",
+        "seo_remediation_backlog"
+      ],
+      "consumes": [],
+      "effort": "M",
+      "leverage": "med",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "content-engine-live"
+    },
+    {
+      "id": "link-building",
+      "title": "Link Building",
+      "level": 5,
+      "file": "playbooks/level-5/060-link-building.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": []
+      },
+      "relevance": "recommended",
+      "selection_hint": "Run once long-form linkable assets exist and a domain is warmed. Safe earlier, but compounds best post-PMF. Never outreach without a linkable asset to point at.",
+      "depends_on": [
+        "long-form-blog-post"
+      ],
+      "soft_after": [
+        "pillar-cluster-content"
+      ],
+      "produces": [
+        "backlinks",
+        "domain_authority"
+      ],
+      "consumes": [
+        "long_form_content"
+      ],
+      "effort": "L",
+      "leverage": "med",
+      "reversibility": "medium",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "scaled-organic"
+    },
+    {
+      "id": "newsletter-growth",
+      "title": "Newsletter Growth",
+      "level": 3,
+      "file": "playbooks/level-3/061-newsletter-growth.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": []
+      },
+      "relevance": "recommended",
+      "selection_hint": "The owned, algorithm-independent audience channel. Stand up once an ESP and authenticated domain exist; then run continuously. Other channels feed it.",
+      "depends_on": [],
+      "soft_after": [
+        "email-deliverability-setup"
+      ],
+      "produces": [
+        "newsletter_channel",
+        "owned_audience"
+      ],
+      "consumes": [],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "audience-channels-live"
+    },
+    {
+      "id": "youtube-strategy",
+      "title": "YouTube Strategy",
+      "level": 3,
+      "file": "playbooks/level-3/062-youtube-strategy.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": []
+      },
+      "relevance": "optional",
+      "selection_hint": "A compounding video channel where packaging and retention drive distribution. Run continuously if video fits the audience and the team can sustain production.",
+      "depends_on": [],
+      "soft_after": [
+        "positioning-canvas",
+        "newsletter-growth"
+      ],
+      "produces": [
+        "youtube_channel",
+        "video_content"
+      ],
+      "consumes": [],
+      "effort": "L",
+      "leverage": "med",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "audience-channels-live"
+    },
+    {
+      "id": "tiktok-growth",
+      "title": "TikTok Growth",
+      "level": 3,
+      "file": "playbooks/level-3/063-tiktok-growth.md",
+      "applies_to": {
+        "types": [
+          "ecommerce",
+          "content",
+          "consumer",
+          "marketplace"
+        ],
+        "requires_traits": [
+          "b2c"
+        ],
+        "excluded_traits": [
+          "b2b"
+        ]
+      },
+      "relevance": "conditional",
+      "selection_hint": "B2C / consumer channel. Short-form video where the first 3 seconds decide reach. Skip for pure B2B; run continuously when the audience is on TikTok.",
+      "depends_on": [],
+      "soft_after": [
+        "newsletter-growth"
+      ],
+      "produces": [
+        "tiktok_channel",
+        "short_form_video"
+      ],
+      "consumes": [],
+      "effort": "L",
+      "leverage": "med",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "audience-channels-live"
+    },
+    {
+      "id": "twitter-x-playbook",
+      "title": "Twitter / X Content Engine",
+      "level": 3,
+      "file": "playbooks/level-3/064-twitter-x-playbook.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": []
+      },
+      "relevance": "optional",
+      "selection_hint": "Real-time audience and reply-surface channel; strong for founder-led and tech audiences. Run continuously where the ICP is active on X.",
+      "depends_on": [],
+      "soft_after": [
+        "tone-of-voice-guide",
+        "newsletter-growth"
+      ],
+      "produces": [
+        "twitter_channel",
+        "social_audience"
+      ],
+      "consumes": [],
+      "effort": "M",
+      "leverage": "med",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "audience-channels-live"
+    },
+    {
+      "id": "linkedin-organic",
+      "title": "LinkedIn Organic",
+      "level": 3,
+      "file": "playbooks/level-3/065-linkedin-organic.md",
+      "applies_to": {
+        "types": [
+          "saas",
+          "b2b",
+          "marketplace"
+        ],
+        "requires_traits": [
+          "b2b"
+        ],
+        "excluded_traits": [
+          "b2c"
+        ]
+      },
+      "relevance": "conditional",
+      "selection_hint": "B2B channel. Founder-led authority content into a high-intent professional audience; feeds the dark funnel. Skip for pure B2C. Gates LinkedIn Ads (070) later.",
+      "depends_on": [],
+      "soft_after": [
+        "icp-target-account-listing",
+        "tone-of-voice-guide"
+      ],
+      "produces": [
+        "linkedin_channel",
+        "b2b_inbound_pipeline"
+      ],
+      "consumes": [],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "audience-channels-live"
+    },
+    {
+      "id": "instagram-growth",
+      "title": "Instagram Growth",
+      "level": 3,
+      "file": "playbooks/level-3/066-instagram-growth.md",
+      "applies_to": {
+        "types": [
+          "ecommerce",
+          "content",
+          "consumer",
+          "marketplace"
+        ],
+        "requires_traits": [
+          "b2c"
+        ],
+        "excluded_traits": [
+          "b2b"
+        ]
+      },
+      "relevance": "conditional",
+      "selection_hint": "B2C / consumer channel. Reels-first acquisition with DM funnels replacing link-in-bio. Skip for pure B2B; run continuously when the audience is on Instagram.",
+      "depends_on": [],
+      "soft_after": [
+        "newsletter-growth"
+      ],
+      "produces": [
+        "instagram_channel",
+        "short_form_video"
+      ],
+      "consumes": [],
+      "effort": "L",
+      "leverage": "med",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "audience-channels-live"
+    },
+    {
+      "id": "reddit-marketing",
+      "title": "Reddit Marketing",
+      "level": 3,
+      "file": "playbooks/level-3/067-reddit-marketing.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": []
+      },
+      "relevance": "optional",
+      "selection_hint": "Community-first channel with evergreen SEO and heavy AI-citation weight. Run continuously where the ICP has active subreddits. Requires a warmed account; never spam.",
+      "depends_on": [],
+      "soft_after": [
+        "icp-target-account-listing"
+      ],
+      "produces": [
+        "reddit_presence",
+        "community_traffic"
+      ],
+      "consumes": [],
+      "effort": "M",
+      "leverage": "med",
+      "reversibility": "medium",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "audience-channels-live"
+    },
+    {
+      "id": "google-ads",
+      "title": "Google Ads",
+      "level": 6,
+      "file": "playbooks/level-6/068-google-ads.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [
+          "takes_payments"
+        ],
+        "excluded_traits": []
+      },
+      "relevance": "recommended",
+      "selection_hint": "Run post-PMF once analytics, event taxonomy, and attribution exist. Demand capture for categories where buyers already search; needs conversion data to optimize.",
+      "depends_on": [
+        "analytics-stack-setup",
+        "event-taxonomy-design"
+      ],
+      "soft_after": [
+        "growth-loop-design",
+        "attribution-modeling",
+        "landing-page-cro"
+      ],
+      "produces": [
+        "google_ads_program"
+      ],
+      "consumes": [
+        "analytics_stack",
+        "event_taxonomy",
+        "optimized_landing_page"
+      ],
+      "effort": "L",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": true,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "paid-channel-live"
+    },
+    {
+      "id": "meta-ads",
+      "title": "Meta Ads",
+      "level": 6,
+      "file": "playbooks/level-6/069-meta-ads.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [
+          "takes_payments"
+        ],
+        "excluded_traits": []
+      },
+      "relevance": "recommended",
+      "selection_hint": "Run post-PMF once analytics, event taxonomy, and attribution exist, and Business Manager plus pixel/CAPI (EMQ high) are live. Strong for B2C/DTC volume.",
+      "depends_on": [
+        "analytics-stack-setup",
+        "event-taxonomy-design"
+      ],
+      "soft_after": [
+        "growth-loop-design",
+        "attribution-modeling",
+        "landing-page-cro",
+        "creative-testing"
+      ],
+      "produces": [
+        "meta_ads_program"
+      ],
+      "consumes": [
+        "analytics_stack",
+        "event_taxonomy",
+        "optimized_landing_page"
+      ],
+      "effort": "L",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": true,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "paid-channel-live"
+    },
+    {
+      "id": "linkedin-ads",
+      "title": "LinkedIn Ads",
+      "level": 7,
+      "file": "playbooks/level-7/070-linkedin-ads.md",
+      "applies_to": {
+        "types": [
+          "saas",
+          "marketplace"
+        ],
+        "requires_traits": [
+          "b2b",
+          "high_acv"
+        ],
+        "excluded_traits": [
+          "b2c",
+          "low_acv"
+        ]
+      },
+      "relevance": "conditional",
+      "selection_hint": "Only with ACV >= $5k, budget >= $3k/mo, audience >= 50k, and CAPI. CPM economics are fatal below the ACV floor; a B2C or low-ACV company never runs this.",
+      "depends_on": [
+        "linkedin-organic"
+      ],
+      "soft_after": [
+        "icp-target-account-listing",
+        "attribution-modeling"
+      ],
+      "produces": [
+        "linkedin_ads_program"
+      ],
+      "consumes": [
+        "icp",
+        "analytics_stack",
+        "attribution_model"
+      ],
+      "effort": "L",
+      "leverage": "med",
+      "reversibility": "easy",
+      "human_gate": true,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "enterprise-pipeline-live"
+    },
+    {
+      "id": "retargeting",
+      "title": "Retargeting",
+      "level": 6,
+      "file": "playbooks/level-6/071-retargeting.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [
+          "takes_payments"
+        ],
+        "excluded_traits": []
+      },
+      "relevance": "recommended",
+      "selection_hint": "Run post-PMF once a live page has audience volume (>= 1000 visitors/30d) and the landing page is optimized. Harvests existing demand; never a brand-building channel.",
+      "depends_on": [
+        "landing-page-cro"
+      ],
+      "soft_after": [
+        "google-ads",
+        "meta-ads",
+        "attribution-modeling"
+      ],
+      "produces": [
+        "retargeting_program"
+      ],
+      "consumes": [
+        "optimized_landing_page",
+        "analytics_stack",
+        "event_taxonomy"
+      ],
+      "effort": "M",
+      "leverage": "med",
+      "reversibility": "easy",
+      "human_gate": true,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "paid-channel-live"
+    },
+    {
+      "id": "creative-testing",
+      "title": "Creative Testing",
+      "level": 6,
+      "file": "playbooks/level-6/072-creative-testing.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [
+          "takes_payments"
+        ],
+        "excluded_traits": []
+      },
+      "relevance": "recommended",
+      "selection_hint": "Run continuously alongside active paid social once CPA targets are set. Creative drives ~56% of paid ROI; volume and speed of iteration are the structural advantage.",
+      "depends_on": [],
+      "soft_after": [
+        "meta-ads",
+        "tiktok-growth"
+      ],
+      "produces": [
+        "winning_creative"
+      ],
+      "consumes": [
+        "meta_ads_program",
+        "tone_of_voice"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "creative-engine-live"
+    },
+    {
+      "id": "landing-page-cro",
+      "title": "Landing Page CRO",
+      "level": 3,
+      "file": "playbooks/level-3/073-landing-page-cro.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [
+          "has_landing_page"
+        ],
+        "excluded_traits": []
+      },
+      "relevance": "recommended",
+      "selection_hint": "Run on a live page with traffic or qualitative signal. The pre-flight gate for paid: scaling spend onto an unoptimized page wastes budget.",
+      "depends_on": [],
+      "soft_after": [
+        "analytics-stack-setup",
+        "pricing-page-copy-layout"
+      ],
+      "produces": [
+        "optimized_landing_page"
+      ],
+      "consumes": [
+        "analytics_stack",
+        "positioning"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "conversion-baseline"
+    },
+    {
+      "id": "affiliate-program-setup",
+      "title": "Affiliate Program Setup",
+      "level": 6,
+      "file": "playbooks/level-6/074-affiliate-program-setup.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [
+          "takes_payments",
+          "pmf_achieved"
+        ],
+        "excluded_traits": []
+      },
+      "relevance": "optional",
+      "selection_hint": "Gated on M1 retention >= 40%, 50+ paying customers, and a clean funnel. An affiliate program is a multiplier for existing momentum, never a primary early channel.",
+      "depends_on": [
+        "landing-page-cro"
+      ],
+      "soft_after": [
+        "referral-program",
+        "unit-economics"
+      ],
+      "produces": [
+        "affiliate_program"
+      ],
+      "consumes": [
+        "optimized_landing_page",
+        "paying_customer"
+      ],
+      "effort": "L",
+      "leverage": "med",
+      "reversibility": "medium",
+      "human_gate": true,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "partner-channel-live"
+    },
+    {
+      "id": "influencer-partnerships",
+      "title": "Influencer Partnerships",
+      "level": 6,
+      "file": "playbooks/level-6/075-influencer-partnerships.md",
+      "applies_to": {
+        "types": [
+          "ecommerce",
+          "content",
+          "saas",
+          "marketplace"
+        ],
+        "requires_traits": [
+          "b2c"
+        ],
+        "excluded_traits": []
+      },
+      "relevance": "optional",
+      "selection_hint": "Run post-PMF once unit economics are validated and a conversion path exists. Strongest for B2C/DTC; the mechanism is trust transfer, so audience fit and authenticity beat reach.",
+      "depends_on": [
+        "landing-page-cro"
+      ],
+      "soft_after": [
+        "unit-economics",
+        "creative-testing"
+      ],
+      "produces": [
+        "influencer_program"
+      ],
+      "consumes": [
+        "icp",
+        "optimized_landing_page",
+        "tone_of_voice"
+      ],
+      "effort": "L",
+      "leverage": "med",
+      "reversibility": "medium",
+      "human_gate": true,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "partner-channel-live"
+    },
+    {
+      "id": "integration-co-marketing",
+      "title": "Integration & Co-marketing",
+      "level": 6,
+      "file": "playbooks/level-6/076-integration-co-marketing.md",
+      "applies_to": {
+        "types": [
+          "saas",
+          "marketplace"
+        ],
+        "requires_traits": [
+          "b2b"
+        ],
+        "excluded_traits": []
+      },
+      "relevance": "recommended",
+      "selection_hint": "Run once you have 50+ closed-won accounts, engineering bandwidth, and CRM partner fields. Ecosystem-led growth compounds where paid cannot; B2B SaaS oriented.",
+      "depends_on": [],
+      "soft_after": [
+        "icp-target-account-listing"
+      ],
+      "produces": [
+        "integration_partnerships"
+      ],
+      "consumes": [
+        "icp",
+        "prd"
+      ],
+      "effort": "XL",
+      "leverage": "high",
+      "reversibility": "hard",
+      "human_gate": true,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "partner-channel-live"
+    },
+    {
+      "id": "referral-program",
+      "title": "Referral Program",
+      "level": 5,
+      "file": "playbooks/level-5/077-referral-program.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [
+          "pmf_achieved",
+          "takes_payments"
+        ],
+        "excluded_traits": []
+      },
+      "relevance": "optional",
+      "selection_hint": "Gated on PMF. Never run before retention proves out; a referral loop on a leaky bucket amplifies churn and burns treasury.",
+      "depends_on": [],
+      "soft_after": [
+        "nps-csat-program",
+        "north-star-metric"
+      ],
+      "produces": [
+        "referral_program"
+      ],
+      "consumes": [
+        "activation_event",
+        "paying_customer"
+      ],
+      "effort": "M",
+      "leverage": "med",
+      "reversibility": "medium",
+      "human_gate": true,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "referral-live"
+    },
+    {
+      "id": "welcome-email-sequence",
+      "title": "Welcome Email Sequence",
+      "level": 3,
+      "file": "playbooks/level-3/078-welcome-email-sequence.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [
+          "sends_email",
+          "has_user_accounts"
+        ],
+        "excluded_traits": []
+      },
+      "relevance": "core",
+      "selection_hint": "Highest-leverage lifecycle asset. Run once deliverability is warmed and the aha event is instrumented; it escorts new users to activation.",
+      "depends_on": [
+        "email-deliverability-setup"
+      ],
+      "soft_after": [
+        "onboarding-flow-design",
+        "event-taxonomy-design"
+      ],
+      "produces": [
+        "welcome_sequence"
+      ],
+      "consumes": [
+        "email_deliverability",
+        "activation_event"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "onboarding-live"
+    },
+    {
+      "id": "nurture-campaign",
+      "title": "Nurture Campaign",
+      "level": 5,
+      "file": "playbooks/level-5/079-nurture-campaign.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [
+          "sends_email"
+        ],
+        "excluded_traits": []
+      },
+      "relevance": "recommended",
+      "selection_hint": "Run once a CRM, lead scoring, and a content library exist. Behavior-responsive education for prospects who have raised their hand but are not yet ready to buy.",
+      "depends_on": [
+        "welcome-email-sequence"
+      ],
+      "soft_after": [
+        "transactional-emails"
+      ],
+      "produces": [
+        "nurture_campaign"
+      ],
+      "consumes": [
+        "welcome_sequence",
+        "email_deliverability",
+        "long_form_content"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "lifecycle-live"
+    },
+    {
+      "id": "win-back-campaign",
+      "title": "Win-back Campaign",
+      "level": 5,
+      "file": "playbooks/level-5/080-win-back-campaign.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [
+          "sends_email"
+        ],
+        "excluded_traits": []
+      },
+      "relevance": "recommended",
+      "selection_hint": "Run once you have customers with churn or dormancy events and warmed deliverability. Recovers former customers at 5 to 25x lower cost than new acquisition.",
+      "depends_on": [
+        "welcome-email-sequence"
+      ],
+      "soft_after": [
+        "transactional-emails",
+        "churn-diagnosis-winback"
+      ],
+      "produces": [
+        "winback_campaign"
+      ],
+      "consumes": [
+        "welcome_sequence",
+        "email_deliverability",
+        "churn_diagnosis"
+      ],
+      "effort": "M",
+      "leverage": "med",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "lifecycle-live"
+    },
+    {
+      "id": "transactional-emails",
+      "title": "Transactional Emails",
+      "level": 3,
+      "file": "playbooks/level-3/081-transactional-emails.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [
+          "sends_email",
+          "has_user_accounts"
+        ],
+        "excluded_traits": []
+      },
+      "relevance": "core",
+      "selection_hint": "Run once the product has user accounts and deliverability is warmed. These are the highest-open emails you own; treat as product surface, not marketing.",
+      "depends_on": [
+        "email-deliverability-setup"
+      ],
+      "soft_after": [
+        "hosting-deployment-setup"
+      ],
+      "produces": [
+        "transactional_emails"
+      ],
+      "consumes": [
+        "email_deliverability"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "transactional-email-live"
+    },
+    {
+      "id": "email-deliverability-setup",
+      "title": "Email Deliverability Setup",
+      "level": 2,
+      "file": "playbooks/level-2/082-email-deliverability-setup.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [
+          "sends_email"
+        ],
+        "excluded_traits": []
+      },
+      "relevance": "core",
+      "selection_hint": "Critical-path L2 item. Start day one because the warmup window is 30 to 45 days; every email playbook (078/079/080/081/084) is blocked until this is warmed.",
+      "depends_on": [],
+      "soft_after": [
+        "domain-acquisition"
+      ],
+      "produces": [
+        "email_deliverability"
+      ],
+      "consumes": [],
+      "effort": "M",
+      "leverage": "critical",
+      "reversibility": "medium",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "email-warmed"
+    },
+    {
+      "id": "icp-target-account-listing",
+      "title": "ICP & Target Account Listing",
+      "level": 3,
+      "file": "playbooks/level-3/083-icp-target-account-listing.md",
+      "applies_to": {
+        "types": [
+          "saas",
+          "marketplace",
+          "hardware",
+          "b2b-service"
+        ],
+        "requires_traits": [
+          "b2b"
+        ],
+        "excluded_traits": [
+          "b2c",
+          "self_serve_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "Run before any outbound for a sales-led or hybrid B2B motion. Skip for pure B2C or self-serve products with no named-account targeting. Refresh on ICP drift (CAC up, churn up, win rate down).",
+      "depends_on": [],
+      "soft_after": [
+        "positioning-canvas",
+        "pricing-research"
+      ],
+      "produces": [
+        "icp",
+        "target_account_list"
+      ],
+      "consumes": [
+        "positioning",
+        "pricing_tiers"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "gtm-foundation"
+    },
+    {
+      "id": "outbound-email-sequences",
+      "title": "Outbound Email Sequences",
+      "level": 5,
+      "file": "playbooks/level-5/084-outbound-email-sequences.md",
+      "applies_to": {
+        "types": [
+          "saas",
+          "marketplace",
+          "hardware",
+          "b2b-service"
+        ],
+        "requires_traits": [
+          "b2b"
+        ],
+        "excluded_traits": [
+          "b2c",
+          "self_serve_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "The outbound engine for a B2B sales-led motion. Needs warmed sending domains (082) and a target account list (083). Skip for pure B2C or self-serve.",
+      "depends_on": [
+        "email-deliverability-setup",
+        "icp-target-account-listing"
+      ],
+      "soft_after": [],
+      "produces": [
+        "outbound_sequences",
+        "booked_meetings"
+      ],
+      "consumes": [
+        "email_deliverability",
+        "icp",
+        "target_account_list"
+      ],
+      "effort": "L",
+      "leverage": "high",
+      "reversibility": "medium",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "first-pipeline"
+    },
+    {
+      "id": "discovery-call-framework",
+      "title": "Discovery Call Framework",
+      "level": 5,
+      "file": "playbooks/level-5/085-discovery-call-framework.md",
+      "applies_to": {
+        "types": [
+          "saas",
+          "marketplace",
+          "hardware",
+          "b2b-service"
+        ],
+        "requires_traits": [
+          "b2b"
+        ],
+        "excluded_traits": [
+          "b2c",
+          "self_serve_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "The first substantive sales conversation in a B2B sales-led motion. Fires when a prospect accepts a meeting. Skip for pure B2C or self-serve with no human sales call.",
+      "depends_on": [
+        "icp-target-account-listing"
+      ],
+      "soft_after": [
+        "outbound-email-sequences"
+      ],
+      "produces": [
+        "discovery_notes",
+        "qualification_score"
+      ],
+      "consumes": [
+        "icp",
+        "booked_meetings"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "first-pipeline"
+    },
+    {
+      "id": "demo-script",
+      "title": "Demo Script",
+      "level": 5,
+      "file": "playbooks/level-5/086-demo-script.md",
+      "applies_to": {
+        "types": [
+          "saas",
+          "marketplace",
+          "hardware",
+          "b2b-service"
+        ],
+        "requires_traits": [
+          "b2b"
+        ],
+        "excluded_traits": [
+          "b2c",
+          "self_serve_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "The persuasion event after discovery qualifies a B2B deal. Fires only when discovery is complete and a sandbox is ready. Skip for pure B2C or self-serve with no live demo.",
+      "depends_on": [
+        "discovery-call-framework"
+      ],
+      "soft_after": [],
+      "produces": [
+        "demo_delivered",
+        "demo_script"
+      ],
+      "consumes": [
+        "discovery_notes",
+        "qualification_score"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "first-pipeline"
+    },
+    {
+      "id": "objection-handling-library",
+      "title": "Objection Handling Library",
+      "level": 5,
+      "file": "playbooks/level-5/087-objection-handling-library.md",
+      "applies_to": {
+        "types": [
+          "saas",
+          "marketplace",
+          "hardware",
+          "b2b-service"
+        ],
+        "requires_traits": [
+          "b2b"
+        ],
+        "excluded_traits": [
+          "b2c",
+          "self_serve_only"
+        ]
+      },
+      "relevance": "recommended",
+      "selection_hint": "A callable, always-on library invoked by discovery (085), demo (086), and close (088) whenever a prospect resists. Install once a B2B sales motion exists. Not run standalone.",
+      "depends_on": [],
+      "soft_after": [
+        "discovery-call-framework",
+        "demo-script"
+      ],
+      "produces": [
+        "objection_battlecards"
+      ],
+      "consumes": [
+        "discovery_notes"
+      ],
+      "effort": "M",
+      "leverage": "med",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "first-pipeline"
+    },
+    {
+      "id": "contract-close-playbook",
+      "title": "Contract & Close",
+      "level": 5,
+      "file": "playbooks/level-5/088-contract-close-playbook.md",
+      "applies_to": {
+        "types": [
+          "saas",
+          "marketplace",
+          "hardware",
+          "b2b-service"
+        ],
+        "requires_traits": [
+          "b2b"
+        ],
+        "excluded_traits": [
+          "b2c",
+          "self_serve_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "The commercial/legal close for a B2B deal, triggered by a verbal yes. Skip for pure B2C or self-serve checkout. The binding contract is a human gate.",
+      "depends_on": [
+        "discovery-call-framework",
+        "demo-script"
+      ],
+      "soft_after": [
+        "objection-handling-library"
+      ],
+      "produces": [
+        "signed_contract",
+        "paying_customer"
+      ],
+      "consumes": [
+        "discovery_notes",
+        "demo_delivered",
+        "qualification_score"
+      ],
+      "effort": "L",
+      "leverage": "critical",
+      "reversibility": "hard",
+      "human_gate": true,
+      "blocks_revenue": true,
+      "recurring": true,
+      "typical_milestone": "first-revenue"
+    },
+    {
+      "id": "support-workflow",
+      "title": "Support Workflow",
+      "level": 5,
+      "file": "playbooks/level-5/089-support-workflow.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [
+          "has_paying_customers"
+        ],
+        "excluded_traits": [
+          "pre_launch_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "Install the moment the first paying customer exists. Applies to any business with customers, B2B or B2C. Operate continuously, not a one-time checkbox.",
+      "depends_on": [],
+      "soft_after": [
+        "contract-close-playbook",
+        "transactional-emails"
+      ],
+      "produces": [
+        "support_workflow",
+        "knowledge_base",
+        "health_score"
+      ],
+      "consumes": [
+        "paying_customer"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "first-customers"
+    },
+    {
+      "id": "churn-diagnosis-winback",
+      "title": "Churn Diagnosis & Win-back",
+      "level": 5,
+      "file": "playbooks/level-5/090-churn-diagnosis-winback.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [
+          "has_paying_customers",
+          "recurring_revenue"
+        ],
+        "excluded_traits": [
+          "pre_launch_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "Install once there is recurring revenue and billing webhooks. Highest-ROI lever is recovering involuntary (failed-payment) churn. Operate continuously.",
+      "depends_on": [
+        "contract-close-playbook",
+        "support-workflow"
+      ],
+      "soft_after": [
+        "win-back-campaign"
+      ],
+      "produces": [
+        "churn_diagnosis",
+        "winback_campaigns"
+      ],
+      "consumes": [
+        "paying_customer",
+        "health_score"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "medium",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "retention"
+    },
+    {
+      "id": "nps-csat-program",
+      "title": "NPS / CSAT Program",
+      "level": 5,
+      "file": "playbooks/level-5/091-nps-csat-program.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [
+          "has_paying_customers"
+        ],
+        "excluded_traits": [
+          "pre_launch_only"
+        ]
+      },
+      "relevance": "recommended",
+      "selection_hint": "Install once there are active customers and a survey channel. Applies to any business, B2B or B2C. Operate on a fixed cadence; promoters feed the case-study pipeline.",
+      "depends_on": [],
+      "soft_after": [
+        "support-workflow"
+      ],
+      "produces": [
+        "nps",
+        "csat"
+      ],
+      "consumes": [
+        "paying_customer"
+      ],
+      "effort": "M",
+      "leverage": "med",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "retention"
+    },
+    {
+      "id": "case-study-testimonial-pipeline",
+      "title": "Case Study & Testimonial Pipeline",
+      "level": 5,
+      "file": "playbooks/level-5/092-case-study-testimonial-pipeline.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [
+          "has_paying_customers"
+        ],
+        "excluded_traits": [
+          "pre_launch_only"
+        ]
+      },
+      "relevance": "recommended",
+      "selection_hint": "Install once customers have measurable outcomes and an NPS signal exists. Applies to any business, B2B or B2C. Publishing a customer's story requires their consent.",
+      "depends_on": [
+        "nps-csat-program"
+      ],
+      "soft_after": [],
+      "produces": [
+        "case_study",
+        "testimonials",
+        "customer_evidence"
+      ],
+      "consumes": [
+        "nps",
+        "csat"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "medium",
+      "human_gate": true,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "proof-and-evidence"
+    },
+    {
+      "id": "ab-testing-protocol",
+      "title": "A/B Testing Protocol",
+      "level": 4,
+      "file": "playbooks/level-4/093-ab-testing-protocol.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [
+          "has_live_traffic"
+        ],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "recommended",
+      "selection_hint": "Activate once a surface has live traffic (about 100+ users/day). Below that, use qualitative learning instead, not A/B tests.",
+      "depends_on": [],
+      "soft_after": [
+        "analytics-stack-setup",
+        "event-taxonomy-design"
+      ],
+      "produces": [
+        "ab_test_protocol",
+        "experiment_results"
+      ],
+      "consumes": [
+        "analytics_stack",
+        "event_taxonomy"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "launch-executed"
+    },
+    {
+      "id": "growth-loop-design",
+      "title": "Growth Loop Design",
+      "level": 6,
+      "file": "playbooks/level-6/094-growth-loop-design.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [
+          "pmf_achieved"
+        ],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "Run first in scale acquisition, before scaling paid spend. Needs market-product fit and channel data already in hand.",
+      "depends_on": [],
+      "soft_after": [
+        "analytics-stack-setup",
+        "attribution-modeling"
+      ],
+      "produces": [
+        "growth_loops"
+      ],
+      "consumes": [
+        "analytics_stack",
+        "attribution_model",
+        "north_star_metric"
+      ],
+      "effort": "L",
+      "leverage": "critical",
+      "reversibility": "medium",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "pmf-confirmed"
+    },
+    {
+      "id": "pricing-packaging-experimentation",
+      "title": "Pricing and Packaging Experimentation",
+      "level": 6,
+      "file": "playbooks/level-6/095-pricing-packaging-experimentation.md",
+      "applies_to": {
+        "types": [
+          "saas",
+          "marketplace",
+          "ecommerce",
+          "content",
+          "crypto"
+        ],
+        "requires_traits": [
+          "takes_payments",
+          "has_live_customers"
+        ],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "recommended",
+      "selection_hint": "Run when there are live paying customers (about 100+ willingness-to-pay respondents reachable). Highest-leverage profit lever, but every change passes a founder gate.",
+      "depends_on": [],
+      "soft_after": [
+        "pricing-research",
+        "packaging-tier-design",
+        "unit-economics"
+      ],
+      "produces": [
+        "pricing_experiment_results"
+      ],
+      "consumes": [
+        "pricing_research",
+        "pricing_tiers",
+        "unit_economics"
+      ],
+      "effort": "L",
+      "leverage": "critical",
+      "reversibility": "hard",
+      "human_gate": true,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "pmf-confirmed"
+    },
+    {
+      "id": "financial-model-forecast",
+      "title": "Financial Model and Forecast",
+      "level": 8,
+      "file": "playbooks/level-8/096-financial-model-forecast.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [
+          "has_revenue"
+        ],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "Run when 12 to 24 months of actuals exist and a raise or board cadence is near. Consumes unit economics; produces the model the fundraise leans on.",
+      "depends_on": [
+        "unit-economics"
+      ],
+      "soft_after": [
+        "growth-loop-design"
+      ],
+      "produces": [
+        "financial_model"
+      ],
+      "consumes": [
+        "unit_economics"
+      ],
+      "effort": "L",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "round-closed"
+    },
+    {
+      "id": "unit-economics",
+      "title": "Unit Economics",
+      "level": 5,
+      "file": "playbooks/level-5/097-unit-economics.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [
+          "takes_payments"
+        ],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "Baseline at L5 once customer-level billing and channel spend exist. The single answer to \"do we make money on one customer?\" Feeds the model and the raise.",
+      "depends_on": [],
+      "soft_after": [
+        "analytics-stack-setup",
+        "cohort-retention-analysis"
+      ],
+      "produces": [
+        "unit_economics"
+      ],
+      "consumes": [
+        "analytics_stack"
+      ],
+      "effort": "M",
+      "leverage": "critical",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "pmf-confirmed"
+    },
+    {
+      "id": "fundraise-deck-investor-outreach",
+      "title": "Fundraise Deck and Investor Outreach",
+      "level": 8,
+      "file": "playbooks/level-8/098-fundraise-deck-investor-outreach.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [
+          "pmf_achieved",
+          "raising_capital"
+        ],
+        "excluded_traits": [
+          "pre_idea_only",
+          "bootstrapped_only"
+        ]
+      },
+      "relevance": "conditional",
+      "selection_hint": "Only when raising. Needs PMF or a real milestone, a defensible model, and case studies. Skip entirely if staying unfunded.",
+      "depends_on": [
+        "financial-model-forecast",
+        "unit-economics"
+      ],
+      "soft_after": [
+        "case-study-testimonial-pipeline",
+        "why-now-memo"
+      ],
+      "produces": [
+        "fundraise_materials"
+      ],
+      "consumes": [
+        "financial_model",
+        "unit_economics",
+        "case_study"
+      ],
+      "effort": "L",
+      "leverage": "high",
+      "reversibility": "hard",
+      "human_gate": true,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "round-closed"
+    },
+    {
+      "id": "human-in-the-loop-approval-gates",
+      "title": "Human-in-the-Loop Approval Gates",
+      "level": "always-on",
+      "file": "playbooks/always-on/099-human-in-the-loop-approval-gates.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": []
+      },
+      "relevance": "core",
+      "selection_hint": "Installed day zero before Level 0, before any agent takes any action. The safety wrapper around every other playbook. Never skip.",
+      "depends_on": [],
+      "soft_after": [],
+      "produces": [
+        "hitl_gates"
+      ],
+      "consumes": [],
+      "effort": "M",
+      "leverage": "critical",
+      "reversibility": "easy",
+      "human_gate": true,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "foundations-installed"
+    },
+    {
+      "id": "llm-cost-and-model-routing",
+      "title": "LLM Cost and Model Routing",
+      "level": "always-on",
+      "file": "playbooks/always-on/100-llm-cost-and-model-routing.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": []
+      },
+      "relevance": "core",
+      "selection_hint": "Installed day zero before Level 0, right after HITL gates. Every LLM call passes through it. A misconfigured loop can burn five figures in minutes.",
+      "depends_on": [
+        "human-in-the-loop-approval-gates"
+      ],
+      "soft_after": [],
+      "produces": [
+        "llm_routing"
+      ],
+      "consumes": [
+        "hitl_gates"
+      ],
+      "effort": "M",
+      "leverage": "critical",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "foundations-installed"
+    }
+  ]
+}

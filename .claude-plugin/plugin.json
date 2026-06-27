@@ -1,0 +1,23 @@
+{
+  "name": "capx-casa",
+  "version": "0.1.0",
+  "description": "The open control plane for building a company from your terminal.",
+  "author": {
+    "name": "Capx",
+    "url": "https://capx.ai"
+  },
+  "homepage": "https://github.com/capx/capx-casa",
+  "license": "MIT",
+  "keywords": [
+    "founder",
+    "startup",
+    "company-building",
+    "agents",
+    "skills",
+    "loops",
+    "control-plane"
+  ],
+  "skills": "./skills",
+  "agents": "./agents",
+  "hooks": "./hooks/hooks.json"
+}

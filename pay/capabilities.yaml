@@ -1,0 +1,41 @@
+# Capx Pay capability registry (reference + Casa playbook mapping).
+# Canonical id list lives in Capx Pay at src/capabilities/registry.ts. The ids
+# here mirror it; Casa adds only the playbook -> capability mapping. Keep in sync.
+#
+# Capx Pay is the companion product that executes paid actions and owns the
+# wallet, billing, credentials, and spend governance. Casa does NOT price,
+# charge, hold funds, or set spend limits. Casa references a capability by id and
+# routes it to Capx Pay (the capx_* MCP tools, or the capx CLI) when a real-world
+# paid action is needed.
+#
+# Prices are dynamic and come from capx_quote at runtime. There are deliberately
+# no prices and no margins in this file. If Capx Pay is not installed, Casa
+# degrades to a bring-your-own-key path or hands the step to the founder.
+#
+# human_gate here means "money or legal, confirm by nature". The actual
+# confirmation threshold is enforced by Capx Pay; Casa only surfaces it.
+version: 1
+capabilities:
+  # Live now, fulfilled through Tempo MPP services
+  research.web: { category: research }
+  research.crawl: { category: research }
+  media.image: { category: creative, playbooks: [visual-identity-brief] }
+  media.video: { category: creative, playbooks: [tiktok-growth, youtube-strategy] }
+  media.voice: { category: creative }
+  model.llm: { category: compute }
+  leads.enrich: { category: sales, playbooks: [icp-target-account-listing, outbound-email-sequences] }
+  browser.run: { category: research }
+  compute.run: { category: compute }
+  data.market: { category: data }
+  maps.geo: { category: data }
+  agent.hire: { category: ops }
+
+  # Planned, Capx-integrated (gap-fillers not yet in the MPP catalog)
+  domain.register: { category: brand, human_gate: true, playbooks: [domain-acquisition] }
+  hosting.deploy: { category: infra, playbooks: [hosting-deployment-setup] }
+  email.send: { category: lifecycle, playbooks: [email-deliverability-setup] }
+  company.incorporate: { category: legal, human_gate: true, playbooks: [entity-formation] }
+
+  # Capx-native (the margin and Pillar-1 surface)
+  casa.playbook: { category: capx }
+  attest.metrics: { category: capx }

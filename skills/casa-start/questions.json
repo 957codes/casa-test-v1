@@ -1,0 +1,141 @@
+{
+  "_comment": "The casa-start stage interview. The skill asks these in order, skipping any whose ask_when is unmet (adaptive, ~8 to 12 questions). Each option's `sets` records the engine signal it produces. The skill assembles the answers object { type, secondary_type, company_name, one_liner, icp, monetization, traits, tier, gaps } and feeds it to scripts/stage.mjs, which deterministically derives the profile, start level, and seed. Keep prompts plain: no em-dashes, no emojis. Traits must stay within the catalog's canonical vocabulary (stage.mjs validates this).",
+  "version": 1,
+  "passes": [
+    {
+      "pass": "define",
+      "intent": "What the business is and who it serves. Sets the static traits that decide which playbooks are members.",
+      "questions": [
+        {
+          "id": "one_liner",
+          "prompt": "In one line, what is the business and who is it for?",
+          "kind": "text",
+          "sets": { "field": "one_liner" }
+        },
+        {
+          "id": "type",
+          "prompt": "Which best describes it?",
+          "kind": "single",
+          "options": [
+            { "label": "Software product (SaaS)", "sets": { "type": "saas" } },
+            { "label": "Marketplace (connects two sides)", "sets": { "type": "marketplace" } },
+            { "label": "Online store / ecommerce", "sets": { "type": "ecommerce" } },
+            { "label": "Done-for-you service for businesses", "sets": { "type": "b2b-service" } },
+            { "label": "Crypto / onchain", "sets": { "type": "crypto" } },
+            { "label": "Consumer app", "sets": { "type": "consumer" } },
+            { "label": "Content / media", "sets": { "type": "content" } },
+            { "label": "Hardware", "sets": { "type": "hardware" } }
+          ]
+        },
+        {
+          "id": "audience",
+          "prompt": "Who pays you?",
+          "kind": "single",
+          "options": [
+            { "label": "Businesses (B2B)", "sets": { "trait": "b2b" } },
+            { "label": "Individual people (B2C)", "sets": { "trait": "b2c" } }
+          ]
+        },
+        {
+          "id": "acv",
+          "prompt": "How do deals close?",
+          "kind": "single",
+          "ask_when": { "audience": "b2b" },
+          "options": [
+            {
+              "label": "High value, sales-led (roughly 10k+ per year per account)",
+              "sets": { "trait": "high_acv" }
+            },
+            {
+              "label": "Lower value, self-serve signup",
+              "sets": { "traits": ["low_acv", "self_serve_only"] }
+            }
+          ],
+          "default_when": { "audience": "b2c", "traits": ["low_acv", "self_serve_only"] }
+        },
+        {
+          "id": "monetization",
+          "prompt": "How does it make money?",
+          "kind": "single",
+          "options": [
+            {
+              "label": "Subscription",
+              "sets": { "field": "monetization", "value": "subscription", "traits": ["takes_payments", "recurring_revenue"] }
+            },
+            {
+              "label": "One-time purchase",
+              "sets": { "field": "monetization", "value": "one-time", "traits": ["takes_payments"] }
+            },
+            {
+              "label": "Transaction / take rate",
+              "sets": { "field": "monetization", "value": "transaction-fee", "traits": ["takes_payments"] }
+            },
+            { "label": "Advertising", "sets": { "field": "monetization", "value": "ads" } },
+            { "label": "Free for now", "sets": { "field": "monetization", "value": "free" } }
+          ]
+        },
+        {
+          "id": "software",
+          "prompt": "Are you building software?",
+          "kind": "boolean",
+          "sets_when_true": { "trait": "builds_software" }
+        },
+        {
+          "id": "technical_audience",
+          "prompt": "Is your audience technical (developers or engineers)?",
+          "kind": "boolean",
+          "ask_when": { "software": true },
+          "sets_when_true": { "trait": "technical_audience" }
+        },
+        {
+          "id": "capital",
+          "prompt": "How are you funding this?",
+          "kind": "single",
+          "options": [
+            { "label": "Raising or plan to raise venture capital", "sets": { "trait": "raising_capital" } },
+            { "label": "Bootstrapped / self-funded", "sets": { "trait": "bootstrapped_only" } }
+          ]
+        }
+      ]
+    },
+    {
+      "pass": "locate",
+      "intent": "Where the business is today. Sets the stage tier, which fixes the start level and the milestone state-flags, and decides how much work is pre-seeded as done.",
+      "questions": [
+        {
+          "id": "tier",
+          "prompt": "Where are you today?",
+          "kind": "single",
+          "options": [
+            { "label": "Just an idea, nothing built", "sets": { "tier": "idea" } },
+            { "label": "Landing page or waitlist up, no product yet", "sets": { "tier": "landing" } },
+            { "label": "Building the product, not launched (have a repo or a deploy)", "sets": { "tier": "building" } },
+            { "label": "Launched, have users, no revenue yet", "sets": { "tier": "launched" } },
+            { "label": "Have paying customers / revenue", "sets": { "tier": "revenue" } },
+            { "label": "Product-market fit, scaling on paid channels", "sets": { "tier": "scaling" } }
+          ]
+        }
+      ]
+    },
+    {
+      "pass": "backfill",
+      "intent": "For an existing business, find the foundational work that was skipped so it is not wrongly marked done. Anything selected here is left out of the seed and surfaces as a ready catch-up item at the current level. The level floor keeps the company from regressing.",
+      "questions": [
+        {
+          "id": "gaps",
+          "prompt": "Which of these have you NOT done yet? Select all that apply.",
+          "kind": "multi",
+          "ask_when": { "tier_not": "idea" },
+          "options": [
+            { "label": "Formed the company / incorporated", "sets": { "gap": "entity-formation" } },
+            { "label": "Secured a domain", "sets": { "gap": "domain-acquisition" } },
+            { "label": "Set up hosting and deployment", "sets": { "gap": "hosting-deployment-setup" } },
+            { "label": "Wired up analytics", "sets": { "gap": "analytics-stack-setup" } },
+            { "label": "Done a basic security pass", "sets": { "gap": "security-baseline" } },
+            { "label": "Published terms of service and a privacy policy", "sets": { "gap": "tos-and-privacy-policy" } }
+          ]
+        }
+      ]
+    }
+  ]
+}

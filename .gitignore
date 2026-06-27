@@ -1,0 +1,23 @@
+# dependencies
+node_modules/
+.pnpm-store/
+
+# env and secrets (a founder's API keys never get committed)
+.env
+.env.*
+!.env.example
+
+# build output
+dist/
+build/
+*.tsbuildinfo
+
+# os / editor
+.DS_Store
+*.log
+.idea/
+.vscode/
+
+# casa local cache (per-machine, regenerated)
+.casa-cache/
+playbooks/_index.json.lock

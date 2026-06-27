@@ -1,0 +1,56 @@
+---
+id: mvp-scoping
+title: MVP Scoping
+level: 0
+summary: Cut the thinnest slice that delivers the core value, with explicit non-goals.
+applies_to:
+  types:
+    - "*"
+  requires_traits: []
+  excluded_traits: []
+relevance: core
+selection_hint: Defines the smallest buildable product after the thesis survives red-teaming. Gates tech stack, positioning, and PRD.
+depends_on:
+  - red-team-thesis
+soft_after:
+  - beachhead-selection
+produces:
+  - mvp_scope
+  - non_goals
+consumes:
+  - validated_thesis
+effort: M
+leverage: critical
+reversibility: easy
+human_gate: false
+blocks_revenue: false
+recurring: false
+typical_milestone: mvp-scoped
+source: ../capx-ai/playbooks/playbooks-output/018-mvp-scoping.md
+---
+# MVP Scoping
+
+Define the walking skeleton: the smallest end-to-end slice that delivers the core
+value to the beachhead user. Kill scope before you build it, not after.
+
+## Procedure
+
+1. State the single core value the MVP must deliver to the beachhead user.
+2. List the minimum capabilities required to deliver it end to end.
+3. Write explicit non-goals. Everything tempting that is not in the thin slice
+   goes here, named, so it does not creep back in.
+4. Define the activation event (the moment the user gets the value) and how it is
+   measured.
+
+## Output
+
+`mvp_scope` (the thin slice plus the activation event) and `non_goals`, written to
+the company brain. Unblocks brand positioning (015), tech stack selection (019),
+and PRD drafting (020).
+
+## Rules
+
+- If the slice cannot be built in a few weeks, it is not an MVP. Cut again.
+- No full brand or full visual identity at this stage; those are post-PMF.
+
+The full source draft is at the path in the `source` field above.
