@@ -74,7 +74,7 @@ try {
 
 // 6. RUNTIME ZERO-DEPENDENCY GUARANTEE: the scripts a founder's session invokes
 //    must import only node: builtins or relative paths (no node_modules).
-const RUNTIME = ["router.mjs", "brain.mjs", "stage.mjs", "copy-lint.mjs", "design-check.mjs", "operate.mjs", "check-plugin.mjs"];
+const RUNTIME = ["router.mjs", "brain.mjs", "stage.mjs", "scan.mjs", "copy-lint.mjs", "design-check.mjs", "operate.mjs", "check-plugin.mjs"];
 for (const s of RUNTIME) {
   const src = readFileSync(join(repo, "scripts", s), "utf8");
   const specs = [...src.matchAll(/^\s*import\s+[^'"]*from\s+["']([^"']+)["']/gm)].map((m) => m[1]);
