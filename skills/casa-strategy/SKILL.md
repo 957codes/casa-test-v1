@@ -24,8 +24,8 @@ questions, with pushback on weak answers.
    - Key metrics: the one or two numbers that prove this is working (and the guardrail
      that would prove it is not).
    - Tracks: the two to four current lines of work, each tied to a metric.
-   - On-chain track (optional): if the founder intends to open ownership on Capx,
-     note the traction gate that would make the company eligible to tokenize.
+   - On-chain track (optional): if the company has or plans a token or on-chain layer,
+     note the traction gate that would make it eligible to tokenize.
 
 3. Write STRATEGY.md. Save a tight document to `company-brain/STRATEGY.md` with those
    sections, dated. Keep it short enough to reread every session.

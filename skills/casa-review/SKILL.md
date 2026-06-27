@@ -27,7 +27,7 @@ decisions. It is the review half of the build then review loop.
 2. Select personas. Always-on: `customer-skeptic`, `investor-redteam`,
    `brand-copy-critic`, `analyst-honesty`. Add conditional personas by signal:
    `designers-eye` for UI, `legal-risk` for legal or contract or privacy artifacts,
-   `tokenomics-critic` when the artifact touches the coin or on-chain mechanics,
+   `tokenomics-critic` when the artifact touches a token or on-chain mechanics,
    `compliance-trust` when it touches custody or payments. Select by judgment about
    the artifact, not by keyword.
 

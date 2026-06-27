@@ -13,7 +13,7 @@ ranking. Generate widely, kill most, explain the few that survive.
 1. Ground the question. Read `company-brain/STRATEGY.md`, `profile.json`,
    `build-map.json`, the latest `decisions/`, and `learnings.jsonl`. Frame the
    specific decision the founder faces and the constraint it lives under (budget,
-   stage, channel, the 50/50 pillar balance if on-chain is in scope).
+   stage, channel, and any token or on-chain layer if that is in scope).
 
 2. Generate many, deliberately varied. Produce eight to twelve options spanning real
    different angles (cheap and fast, high-ceiling and risky, contrarian, adjacent to
