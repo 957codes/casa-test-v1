@@ -26,6 +26,26 @@ const REQUIRED = [
   "recurring", "typical_milestone",
 ];
 
+// Derive a department for each playbook (the org area it belongs to). Used by the
+// pulse priority weights and the Console node graph. A `department` field in the
+// frontmatter overrides this heuristic.
+const DEPARTMENT_RULES = [
+  [/(brand|naming|positioning|category|visual-identity|tone|messaging)/, "Brand"],
+  [/(entity|incorporat|tos|privacy|trademark|legal|founding-docs|compliance)/, "Legal"],
+  [/(design|onboarding-flow|landing|wireframe|ux)/, "Design"],
+  [/(pricing|unit-econ|financ|fundrais|model|packaging|burn|runway|forecast)/, "Finance"],
+  [/(sales|discovery|contract|deal|pipeline|enterprise|outbound)/, "Sales"],
+  [/(support|nps|csat|churn|customer-success|helpdesk|winback)/, "Support"],
+  [/(growth|seo|ads|content|referral|affiliate|influencer|launch|product-hunt|email|newsletter|social|retarget)/, "Marketing"],
+  [/(hosting|repo|stack|security|observability|analytics|deploy|tech|infra|database|event-taxonomy)/, "Engineering"],
+  [/(opportunity|problem-validation|market-sizing|jtbd|red-team|why-now|mvp|interview|research)/, "Operations"],
+];
+function deriveDepartment(id, title) {
+  const s = `${id} ${title}`.toLowerCase();
+  for (const [re, dept] of DEPARTMENT_RULES) if (re.test(s)) return dept;
+  return "Operations";
+}
+
 function walk(dir) {
   const out = [];
   for (const name of readdirSync(dir)) {
@@ -94,6 +114,7 @@ for (const file of files) {
     effort: fm.effort, leverage: fm.leverage, reversibility: fm.reversibility,
     human_gate: !!fm.human_gate, blocks_revenue: !!fm.blocks_revenue,
     recurring: !!fm.recurring, typical_milestone: fm.typical_milestone,
+    department: fm.department || deriveDepartment(fm.id, fm.title || ""),
   });
 }
 

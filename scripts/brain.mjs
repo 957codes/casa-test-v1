@@ -119,8 +119,10 @@ function sync(dir) {
   const state = readState(dir);
   const completed = state.completed || [];
   const level = currentLevel(pb, profile, state);
+  const pulse = existsSync(join(dir, "pulse.json")) ? JSON.parse(readFileSync(join(dir, "pulse.json"), "utf8")) : null;
+  const weights = pulse?.weights || null;
   const map = buildMap(pb, profile, { completed, level });
-  const actions = nextActions(pb, profile, { completed, level });
+  const actions = nextActions(pb, profile, { completed, level, weights });
   const due = dueLoops(dir, profile, level, state);
   const spend = readSpend(dir);
   const titles = titleOf(pb);

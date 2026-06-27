@@ -130,11 +130,26 @@ const ready = (pb, completedSet, flags, currentLevel) =>
   pb.applies_to.requires_traits.every((r) => !STATE_FLAGS.has(r) || flags.has(r)) &&
   pb.applies_to.excluded_traits.every((x) => !STATE_FLAGS.has(x) || !flags.has(x));
 
-function score(pb, slack, flags) {
+// Founder-priority multiplier from the pulse (deterministic lookup). No pulse means
+// 1, so behavior is unchanged for anyone without one. Explicit per-id overrides win,
+// then promote/demote lists, then department, then level, then the default.
+function priorityWeight(pb, w) {
+  if (!w) return 1;
+  const has = (o, k) => o && Object.prototype.hasOwnProperty.call(o, k);
+  if (has(w.byId, pb.id)) return w.byId[pb.id];
+  if (Array.isArray(w.demote_ids) && w.demote_ids.includes(pb.id)) return 0.25;
+  if (Array.isArray(w.promote_ids) && w.promote_ids.includes(pb.id)) return 2;
+  if (pb.department && has(w.byDepartment, pb.department)) return w.byDepartment[pb.department];
+  if (has(w.byLevel, String(pb.level))) return w.byLevel[String(pb.level)];
+  return w.default ?? 1;
+}
+
+function score(pb, slack, flags, weights) {
   const lev = LEVERAGE_W[pb.leverage] || 2;
   const eff = EFFORT_W[pb.effort] || 1.3;
   const rev = pb.blocks_revenue && !flags.has("has_revenue") ? 1.5 : 1;
-  return Math.round((lev * (1 / (slack + 1)) * rev / eff) * 1000) / 1000;
+  const pw = priorityWeight(pb, weights);
+  return Math.round((lev * (1 / (slack + 1)) * rev / eff * pw) * 1000) / 1000;
 }
 
 function buildMap(playbooks, profile, { completed = [], level = 0 } = {}) {
@@ -151,7 +166,7 @@ function buildMap(playbooks, profile, { completed = [], level = 0 } = {}) {
       id: pb.id, title: pb.title, status, slack: slack.get(pb.id),
       on_critical_path: slack.get(pb.id) === 0, leverage: pb.leverage, effort: pb.effort,
       human_gate: pb.human_gate, blocks_revenue: pb.blocks_revenue, recurring: pb.recurring,
-      depends_on: pb.depends_on,
+      department: pb.department || null, depends_on: pb.depends_on,
     });
   }
   const levels = [...byLevel.keys()].sort((a, b) => levelKey(a) - levelKey(b)).map((k) => ({
@@ -161,14 +176,15 @@ function buildMap(playbooks, profile, { completed = [], level = 0 } = {}) {
   return { member_count: members.length, levels, skipped };
 }
 
-function nextActions(playbooks, profile, { completed = [], level = 0 } = {}) {
+function nextActions(playbooks, profile, { completed = [], level = 0, weights = null } = {}) {
   const { members } = select(playbooks, profile);
   const { slack } = sequence(members);
   const completedSet = new Set(completed);
   const flags = achievedFlags(profile, completed, level);
   const scored = members
     .filter((pb) => ready(pb, completedSet, flags, level))
-    .map((pb) => ({ id: pb.id, title: pb.title, level: pb.level, score: score(pb, slack.get(pb.id), flags),
+    .map((pb) => ({ id: pb.id, title: pb.title, level: pb.level, department: pb.department || null,
+      score: score(pb, slack.get(pb.id), flags, weights),
       human_gate: pb.human_gate, blocks_revenue: pb.blocks_revenue, leverage: pb.leverage, effort: pb.effort }))
     .sort((a, b) => b.score - a.score || levelKey(a.level) - levelKey(b.level));
   return scored;
@@ -181,6 +197,7 @@ function parseArgs(argv) {
     if (argv[i] === "--out") a.out = argv[++i];
     else if (argv[i] === "--completed") a.completed = argv[++i].split(",").map((s) => s.trim()).filter(Boolean);
     else if (argv[i] === "--level") a.level = Number(argv[++i]);
+    else if (argv[i] === "--weights") a.weights = argv[++i];
     else a._.push(argv[i]);
   }
   return a;
@@ -208,10 +225,11 @@ function main() {
   const profile = loadProfile(profileFile);
   const level = args.level ?? 0;
   const completed = args.completed ?? [];
+  const weights = args.weights ? (loadProfile(args.weights).weights ?? loadProfile(args.weights)) : null;
 
   if (cmd === "plan") {
     const map = buildMap(playbooks, profile, { completed, level });
-    const actions = nextActions(playbooks, profile, { completed, level });
+    const actions = nextActions(playbooks, profile, { completed, level, weights });
     console.log(`Business: ${profile.one_liner || profile.company_name || profileFile}`);
     console.log(`Type: ${[profile.primary_type, profile.secondary_type].filter(Boolean).join(" + ")}  traits: ${arr(profile.traits).join(", ")}`);
     console.log(`Selected ${map.member_count}/${playbooks.length} playbooks. Skipped ${map.skipped.length}.`);
@@ -231,7 +249,7 @@ function main() {
       console.log(`\nwrote ${join(args.out, "build-map.json")} and NOW.md`);
     }
   } else if (cmd === "next") {
-    const actions = nextActions(playbooks, profile, { completed, level });
+    const actions = nextActions(playbooks, profile, { completed, level, weights });
     console.log(`Next actions (level ${level}, ${completed.length} completed):`);
     for (const a of actions.slice(0, 8)) console.log(`  ${a.score}  ${a.id}  (L${a.level}, ${a.leverage})${a.human_gate ? " [gate]" : ""}${a.blocks_revenue ? " [revenue]" : ""}`);
   } else { console.error(`unknown command: ${cmd}`); process.exit(2); }

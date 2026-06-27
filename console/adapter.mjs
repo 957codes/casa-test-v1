@@ -46,7 +46,7 @@ export function toFoundry(brain) {
         id: n.id,
         title: n.title,
         state: st,
-        owner: departmentOf(n.id, n.title),
+        owner: n.department || departmentOf(n.id, n.title),
         stageId: String(lvl.level),
         dependsOn: n.depends_on || [],
         description: n.title,

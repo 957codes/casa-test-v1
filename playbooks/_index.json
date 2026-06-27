@@ -29,7 +29,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": false,
-      "typical_milestone": "validated-opportunity"
+      "typical_milestone": "validated-opportunity",
+      "department": "Operations"
     },
     {
       "id": "problem-validation-interviews",
@@ -64,7 +65,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": false,
-      "typical_milestone": "validated-opportunity"
+      "typical_milestone": "validated-opportunity",
+      "department": "Operations"
     },
     {
       "id": "competitive-teardown",
@@ -97,7 +99,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": false,
-      "typical_milestone": "validated-opportunity"
+      "typical_milestone": "validated-opportunity",
+      "department": "Operations"
     },
     {
       "id": "market-sizing-tam-sam-som",
@@ -131,7 +134,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": false,
-      "typical_milestone": "validated-opportunity"
+      "typical_milestone": "validated-opportunity",
+      "department": "Operations"
     },
     {
       "id": "jobs-to-be-done-extraction",
@@ -164,7 +168,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": false,
-      "typical_milestone": "validated-opportunity"
+      "typical_milestone": "validated-opportunity",
+      "department": "Operations"
     },
     {
       "id": "red-team-thesis",
@@ -202,7 +207,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": false,
-      "typical_milestone": "validated-opportunity"
+      "typical_milestone": "validated-opportunity",
+      "department": "Operations"
     },
     {
       "id": "why-now-memo",
@@ -236,7 +242,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": false,
-      "typical_milestone": "validated-opportunity"
+      "typical_milestone": "validated-opportunity",
+      "department": "Operations"
     },
     {
       "id": "beachhead-selection",
@@ -275,7 +282,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": false,
-      "typical_milestone": "company-exists"
+      "typical_milestone": "company-exists",
+      "department": "Operations"
     },
     {
       "id": "company-naming",
@@ -311,7 +319,8 @@
       "human_gate": true,
       "blocks_revenue": false,
       "recurring": false,
-      "typical_milestone": "company-exists"
+      "typical_milestone": "company-exists",
+      "department": "Brand"
     },
     {
       "id": "domain-acquisition",
@@ -345,7 +354,8 @@
       "human_gate": true,
       "blocks_revenue": false,
       "recurring": false,
-      "typical_milestone": "company-exists"
+      "typical_milestone": "company-exists",
+      "department": "Operations"
     },
     {
       "id": "trademark-clearance",
@@ -380,7 +390,8 @@
       "human_gate": true,
       "blocks_revenue": false,
       "recurring": false,
-      "typical_milestone": "company-exists"
+      "typical_milestone": "company-exists",
+      "department": "Legal"
     },
     {
       "id": "entity-formation",
@@ -413,7 +424,8 @@
       "human_gate": true,
       "blocks_revenue": true,
       "recurring": false,
-      "typical_milestone": "company-exists"
+      "typical_milestone": "company-exists",
+      "department": "Legal"
     },
     {
       "id": "founding-docs",
@@ -447,7 +459,8 @@
       "human_gate": true,
       "blocks_revenue": false,
       "recurring": false,
-      "typical_milestone": "company-exists"
+      "typical_milestone": "company-exists",
+      "department": "Legal"
     },
     {
       "id": "tos-and-privacy-policy",
@@ -485,7 +498,8 @@
       "human_gate": true,
       "blocks_revenue": true,
       "recurring": false,
-      "typical_milestone": "legal-pages-published"
+      "typical_milestone": "legal-pages-published",
+      "department": "Legal"
     },
     {
       "id": "brand-positioning-statement",
@@ -520,7 +534,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": false,
-      "typical_milestone": "positioning-locked"
+      "typical_milestone": "positioning-locked",
+      "department": "Brand"
     },
     {
       "id": "visual-identity-brief",
@@ -556,7 +571,8 @@
       "human_gate": true,
       "blocks_revenue": false,
       "recurring": false,
-      "typical_milestone": "brand-shipped"
+      "typical_milestone": "brand-shipped",
+      "department": "Brand"
     },
     {
       "id": "tone-of-voice-guide",
@@ -589,7 +605,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": false,
-      "typical_milestone": "voice-locked"
+      "typical_milestone": "voice-locked",
+      "department": "Brand"
     },
     {
       "id": "mvp-scoping",
@@ -624,7 +641,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": false,
-      "typical_milestone": "mvp-scoped"
+      "typical_milestone": "mvp-scoped",
+      "department": "Operations"
     },
     {
       "id": "tech-stack-selection",
@@ -662,7 +680,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": false,
-      "typical_milestone": "stack-chosen"
+      "typical_milestone": "stack-chosen",
+      "department": "Engineering"
     },
     {
       "id": "prd-drafting",
@@ -700,7 +719,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": false,
-      "typical_milestone": "prd-ready"
+      "typical_milestone": "prd-ready",
+      "department": "Operations"
     },
     {
       "id": "feature-prioritization",
@@ -739,7 +759,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "backlog-ranked"
+      "typical_milestone": "backlog-ranked",
+      "department": "Operations"
     },
     {
       "id": "onboarding-flow-design",
@@ -779,7 +800,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": false,
-      "typical_milestone": "activation-instrumented"
+      "typical_milestone": "activation-instrumented",
+      "department": "Design"
     },
     {
       "id": "usability-testing-protocol",
@@ -817,7 +839,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "usability-validated"
+      "typical_milestone": "usability-validated",
+      "department": "Operations"
     },
     {
       "id": "beta-program-management",
@@ -860,7 +883,8 @@
       "human_gate": true,
       "blocks_revenue": false,
       "recurring": false,
-      "typical_milestone": "beta-graduated"
+      "typical_milestone": "beta-graduated",
+      "department": "Operations"
     },
     {
       "id": "release-changelog-cadence",
@@ -901,7 +925,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "release-rhythm-set"
+      "typical_milestone": "release-rhythm-set",
+      "department": "Operations"
     },
     {
       "id": "hosting-deployment-setup",
@@ -942,7 +967,8 @@
       "human_gate": true,
       "blocks_revenue": false,
       "recurring": false,
-      "typical_milestone": "hosting-live"
+      "typical_milestone": "hosting-live",
+      "department": "Engineering"
     },
     {
       "id": "observability-setup",
@@ -981,7 +1007,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": false,
-      "typical_milestone": "app-observable"
+      "typical_milestone": "app-observable",
+      "department": "Engineering"
     },
     {
       "id": "incident-response",
@@ -1023,7 +1050,8 @@
       "human_gate": true,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "incident-process-live"
+      "typical_milestone": "incident-process-live",
+      "department": "Operations"
     },
     {
       "id": "security-baseline",
@@ -1059,7 +1087,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": false,
-      "typical_milestone": "security-baseline-set"
+      "typical_milestone": "security-baseline-set",
+      "department": "Engineering"
     },
     {
       "id": "data-backup-recovery",
@@ -1099,7 +1128,8 @@
       "human_gate": true,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "backups-verified"
+      "typical_milestone": "backups-verified",
+      "department": "Operations"
     },
     {
       "id": "analytics-stack-setup",
@@ -1131,7 +1161,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": false,
-      "typical_milestone": "analytics-instrumented"
+      "typical_milestone": "analytics-instrumented",
+      "department": "Engineering"
     },
     {
       "id": "event-taxonomy-design",
@@ -1166,7 +1197,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "taxonomy-governed"
+      "typical_milestone": "taxonomy-governed",
+      "department": "Design"
     },
     {
       "id": "north-star-metric",
@@ -1205,7 +1237,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": false,
-      "typical_milestone": "nsm-defined"
+      "typical_milestone": "nsm-defined",
+      "department": "Operations"
     },
     {
       "id": "funnel-analysis",
@@ -1245,7 +1278,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "funnel-instrumented"
+      "typical_milestone": "funnel-instrumented",
+      "department": "Operations"
     },
     {
       "id": "cohort-retention-analysis",
@@ -1285,7 +1319,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "retention-baselined"
+      "typical_milestone": "retention-baselined",
+      "department": "Operations"
     },
     {
       "id": "attribution-modeling",
@@ -1327,7 +1362,8 @@
       "human_gate": true,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "attribution-operating"
+      "typical_milestone": "attribution-operating",
+      "department": "Finance"
     },
     {
       "id": "ceo-dashboard-build",
@@ -1366,7 +1402,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": false,
-      "typical_milestone": "ceo-dashboard-live"
+      "typical_milestone": "ceo-dashboard-live",
+      "department": "Operations"
     },
     {
       "id": "ga4-reading-playbook",
@@ -1405,7 +1442,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "ga4-read-operating"
+      "typical_milestone": "ga4-read-operating",
+      "department": "Operations"
     },
     {
       "id": "mixpanel-reading-playbook",
@@ -1444,7 +1482,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "mixpanel-read-operating"
+      "typical_milestone": "mixpanel-read-operating",
+      "department": "Operations"
     },
     {
       "id": "weekly-business-review",
@@ -1486,7 +1525,8 @@
       "human_gate": true,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "wbr-operating"
+      "typical_milestone": "wbr-operating",
+      "department": "Operations"
     },
     {
       "id": "pricing-research",
@@ -1525,7 +1565,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": false,
-      "typical_milestone": "pricing-direction-set"
+      "typical_milestone": "pricing-direction-set",
+      "department": "Finance"
     },
     {
       "id": "packaging-tier-design",
@@ -1560,7 +1601,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": false,
-      "typical_milestone": "pricing-direction-set"
+      "typical_milestone": "pricing-direction-set",
+      "department": "Design"
     },
     {
       "id": "pricing-page-copy-layout",
@@ -1600,7 +1642,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": false,
-      "typical_milestone": "launch-assets-ready"
+      "typical_milestone": "launch-assets-ready",
+      "department": "Finance"
     },
     {
       "id": "freemium-trial-decision",
@@ -1640,7 +1683,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": false,
-      "typical_milestone": "pricing-direction-set"
+      "typical_milestone": "pricing-direction-set",
+      "department": "Operations"
     },
     {
       "id": "discount-promo-policy",
@@ -1678,7 +1722,8 @@
       "human_gate": true,
       "blocks_revenue": false,
       "recurring": false,
-      "typical_milestone": "revenue-engine-tuned"
+      "typical_milestone": "revenue-engine-tuned",
+      "department": "Operations"
     },
     {
       "id": "positioning-canvas",
@@ -1717,7 +1762,8 @@
       "human_gate": true,
       "blocks_revenue": false,
       "recurring": false,
-      "typical_milestone": "positioning-locked"
+      "typical_milestone": "positioning-locked",
+      "department": "Brand"
     },
     {
       "id": "category-design-decision",
@@ -1755,7 +1801,8 @@
       "human_gate": true,
       "blocks_revenue": false,
       "recurring": false,
-      "typical_milestone": "positioning-locked"
+      "typical_milestone": "positioning-locked",
+      "department": "Brand"
     },
     {
       "id": "launch-plan-t90",
@@ -1797,7 +1844,8 @@
       "human_gate": true,
       "blocks_revenue": false,
       "recurring": false,
-      "typical_milestone": "launched"
+      "typical_milestone": "launched",
+      "department": "Marketing"
     },
     {
       "id": "product-hunt-launch",
@@ -1841,7 +1889,8 @@
       "human_gate": true,
       "blocks_revenue": false,
       "recurring": false,
-      "typical_milestone": "launched"
+      "typical_milestone": "launched",
+      "department": "Marketing"
     },
     {
       "id": "hacker-news-launch",
@@ -1884,7 +1933,8 @@
       "human_gate": true,
       "blocks_revenue": false,
       "recurring": false,
-      "typical_milestone": "launched"
+      "typical_milestone": "launched",
+      "department": "Marketing"
     },
     {
       "id": "pr-press-launch",
@@ -1918,7 +1968,8 @@
       "human_gate": true,
       "blocks_revenue": false,
       "recurring": false,
-      "typical_milestone": "launched"
+      "typical_milestone": "launched",
+      "department": "Marketing"
     },
     {
       "id": "podcast-tour",
@@ -1952,7 +2003,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "channels-compounding"
+      "typical_milestone": "channels-compounding",
+      "department": "Operations"
     },
     {
       "id": "community-seeding",
@@ -1988,7 +2040,8 @@
       "human_gate": true,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "channels-compounding"
+      "typical_milestone": "channels-compounding",
+      "department": "Operations"
     },
     {
       "id": "seo-keyword-research",
@@ -2018,7 +2071,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": false,
-      "typical_milestone": "content-foundation"
+      "typical_milestone": "content-foundation",
+      "department": "Marketing"
     },
     {
       "id": "content-calendar",
@@ -2054,7 +2108,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "content-engine-live"
+      "typical_milestone": "content-engine-live",
+      "department": "Marketing"
     },
     {
       "id": "pillar-cluster-content",
@@ -2089,7 +2144,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "topical-authority-built"
+      "typical_milestone": "topical-authority-built",
+      "department": "Marketing"
     },
     {
       "id": "long-form-blog-post",
@@ -2124,7 +2180,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "content-engine-live"
+      "typical_milestone": "content-engine-live",
+      "department": "Operations"
     },
     {
       "id": "programmatic-seo",
@@ -2160,7 +2217,8 @@
       "human_gate": true,
       "blocks_revenue": false,
       "recurring": false,
-      "typical_milestone": "scaled-organic"
+      "typical_milestone": "scaled-organic",
+      "department": "Marketing"
     },
     {
       "id": "technical-seo-audit",
@@ -2191,7 +2249,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "content-engine-live"
+      "typical_milestone": "content-engine-live",
+      "department": "Marketing"
     },
     {
       "id": "link-building",
@@ -2226,7 +2285,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "scaled-organic"
+      "typical_milestone": "scaled-organic",
+      "department": "Operations"
     },
     {
       "id": "newsletter-growth",
@@ -2257,7 +2317,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "audience-channels-live"
+      "typical_milestone": "audience-channels-live",
+      "department": "Marketing"
     },
     {
       "id": "youtube-strategy",
@@ -2289,7 +2350,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "audience-channels-live"
+      "typical_milestone": "audience-channels-live",
+      "department": "Operations"
     },
     {
       "id": "tiktok-growth",
@@ -2327,7 +2389,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "audience-channels-live"
+      "typical_milestone": "audience-channels-live",
+      "department": "Marketing"
     },
     {
       "id": "twitter-x-playbook",
@@ -2359,7 +2422,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "audience-channels-live"
+      "typical_milestone": "audience-channels-live",
+      "department": "Marketing"
     },
     {
       "id": "linkedin-organic",
@@ -2397,7 +2461,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "audience-channels-live"
+      "typical_milestone": "audience-channels-live",
+      "department": "Operations"
     },
     {
       "id": "instagram-growth",
@@ -2435,7 +2500,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "audience-channels-live"
+      "typical_milestone": "audience-channels-live",
+      "department": "Marketing"
     },
     {
       "id": "reddit-marketing",
@@ -2466,7 +2532,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "audience-channels-live"
+      "typical_milestone": "audience-channels-live",
+      "department": "Operations"
     },
     {
       "id": "google-ads",
@@ -2507,7 +2574,8 @@
       "human_gate": true,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "paid-channel-live"
+      "typical_milestone": "paid-channel-live",
+      "department": "Marketing"
     },
     {
       "id": "meta-ads",
@@ -2549,7 +2617,8 @@
       "human_gate": true,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "paid-channel-live"
+      "typical_milestone": "paid-channel-live",
+      "department": "Marketing"
     },
     {
       "id": "linkedin-ads",
@@ -2593,7 +2662,8 @@
       "human_gate": true,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "enterprise-pipeline-live"
+      "typical_milestone": "enterprise-pipeline-live",
+      "department": "Marketing"
     },
     {
       "id": "retargeting",
@@ -2633,7 +2703,8 @@
       "human_gate": true,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "paid-channel-live"
+      "typical_milestone": "paid-channel-live",
+      "department": "Marketing"
     },
     {
       "id": "creative-testing",
@@ -2669,7 +2740,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "creative-engine-live"
+      "typical_milestone": "creative-engine-live",
+      "department": "Operations"
     },
     {
       "id": "landing-page-cro",
@@ -2705,7 +2777,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "conversion-baseline"
+      "typical_milestone": "conversion-baseline",
+      "department": "Design"
     },
     {
       "id": "affiliate-program-setup",
@@ -2744,7 +2817,8 @@
       "human_gate": true,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "partner-channel-live"
+      "typical_milestone": "partner-channel-live",
+      "department": "Marketing"
     },
     {
       "id": "influencer-partnerships",
@@ -2786,7 +2860,8 @@
       "human_gate": true,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "partner-channel-live"
+      "typical_milestone": "partner-channel-live",
+      "department": "Marketing"
     },
     {
       "id": "integration-co-marketing",
@@ -2822,7 +2897,8 @@
       "human_gate": true,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "partner-channel-live"
+      "typical_milestone": "partner-channel-live",
+      "department": "Operations"
     },
     {
       "id": "referral-program",
@@ -2859,7 +2935,8 @@
       "human_gate": true,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "referral-live"
+      "typical_milestone": "referral-live",
+      "department": "Marketing"
     },
     {
       "id": "welcome-email-sequence",
@@ -2898,7 +2975,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": false,
-      "typical_milestone": "onboarding-live"
+      "typical_milestone": "onboarding-live",
+      "department": "Marketing"
     },
     {
       "id": "nurture-campaign",
@@ -2936,7 +3014,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "lifecycle-live"
+      "typical_milestone": "lifecycle-live",
+      "department": "Operations"
     },
     {
       "id": "win-back-campaign",
@@ -2975,7 +3054,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "lifecycle-live"
+      "typical_milestone": "lifecycle-live",
+      "department": "Operations"
     },
     {
       "id": "transactional-emails",
@@ -3012,7 +3092,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": false,
-      "typical_milestone": "transactional-email-live"
+      "typical_milestone": "transactional-email-live",
+      "department": "Marketing"
     },
     {
       "id": "email-deliverability-setup",
@@ -3044,7 +3125,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "email-warmed"
+      "typical_milestone": "email-warmed",
+      "department": "Marketing"
     },
     {
       "id": "icp-target-account-listing",
@@ -3087,7 +3169,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "gtm-foundation"
+      "typical_milestone": "gtm-foundation",
+      "department": "Operations"
     },
     {
       "id": "outbound-email-sequences",
@@ -3131,7 +3214,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "first-pipeline"
+      "typical_milestone": "first-pipeline",
+      "department": "Sales"
     },
     {
       "id": "discovery-call-framework",
@@ -3175,7 +3259,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "first-pipeline"
+      "typical_milestone": "first-pipeline",
+      "department": "Sales"
     },
     {
       "id": "demo-script",
@@ -3217,7 +3302,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "first-pipeline"
+      "typical_milestone": "first-pipeline",
+      "department": "Operations"
     },
     {
       "id": "objection-handling-library",
@@ -3258,7 +3344,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "first-pipeline"
+      "typical_milestone": "first-pipeline",
+      "department": "Operations"
     },
     {
       "id": "contract-close-playbook",
@@ -3304,7 +3391,8 @@
       "human_gate": true,
       "blocks_revenue": true,
       "recurring": true,
-      "typical_milestone": "first-revenue"
+      "typical_milestone": "first-revenue",
+      "department": "Sales"
     },
     {
       "id": "support-workflow",
@@ -3343,7 +3431,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "first-customers"
+      "typical_milestone": "first-customers",
+      "department": "Support"
     },
     {
       "id": "churn-diagnosis-winback",
@@ -3385,7 +3474,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "retention"
+      "typical_milestone": "retention",
+      "department": "Support"
     },
     {
       "id": "nps-csat-program",
@@ -3422,7 +3512,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "retention"
+      "typical_milestone": "retention",
+      "department": "Support"
     },
     {
       "id": "case-study-testimonial-pipeline",
@@ -3461,7 +3552,8 @@
       "human_gate": true,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "proof-and-evidence"
+      "typical_milestone": "proof-and-evidence",
+      "department": "Sales"
     },
     {
       "id": "ab-testing-protocol",
@@ -3500,7 +3592,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "launch-executed"
+      "typical_milestone": "launch-executed",
+      "department": "Operations"
     },
     {
       "id": "growth-loop-design",
@@ -3539,7 +3632,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "pmf-confirmed"
+      "typical_milestone": "pmf-confirmed",
+      "department": "Design"
     },
     {
       "id": "pricing-packaging-experimentation",
@@ -3584,7 +3678,8 @@
       "human_gate": true,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "pmf-confirmed"
+      "typical_milestone": "pmf-confirmed",
+      "department": "Finance"
     },
     {
       "id": "financial-model-forecast",
@@ -3622,7 +3717,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "round-closed"
+      "typical_milestone": "round-closed",
+      "department": "Finance"
     },
     {
       "id": "unit-economics",
@@ -3659,7 +3755,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "pmf-confirmed"
+      "typical_milestone": "pmf-confirmed",
+      "department": "Finance"
     },
     {
       "id": "fundraise-deck-investor-outreach",
@@ -3703,7 +3800,8 @@
       "human_gate": true,
       "blocks_revenue": false,
       "recurring": false,
-      "typical_milestone": "round-closed"
+      "typical_milestone": "round-closed",
+      "department": "Finance"
     },
     {
       "id": "human-in-the-loop-approval-gates",
@@ -3731,7 +3829,8 @@
       "human_gate": true,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "foundations-installed"
+      "typical_milestone": "foundations-installed",
+      "department": "Operations"
     },
     {
       "id": "llm-cost-and-model-routing",
@@ -3763,7 +3862,8 @@
       "human_gate": false,
       "blocks_revenue": false,
       "recurring": true,
-      "typical_milestone": "foundations-installed"
+      "typical_milestone": "foundations-installed",
+      "department": "Finance"
     }
   ]
 }
