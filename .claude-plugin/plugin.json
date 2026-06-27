@@ -16,8 +16,5 @@
     "skills",
     "loops",
     "control-plane"
-  ],
-  "skills": "./skills",
-  "agents": "./agents",
-  "hooks": "./hooks/hooks.json"
+  ]
 }
