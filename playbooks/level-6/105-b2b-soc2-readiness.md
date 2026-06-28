@@ -11,6 +11,8 @@ applies_to:
     - collects_user_data
   excluded_traits: []
 relevance: recommended
+department: Legal
+criticality: growth
 selection_hint: Run when enterprise deals start stalling on security review, or before moving upmarket. Security review is a gate on B2B revenue once deal sizes grow.
 depends_on: []
 soft_after:

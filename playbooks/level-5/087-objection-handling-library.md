@@ -16,6 +16,8 @@ applies_to:
     - b2c
     - self_serve_only
 relevance: recommended
+department: Sales
+criticality: growth
 selection_hint: A callable, always-on library invoked by discovery (085), demo (086), and close (088) whenever a prospect resists. Install once a B2B sales motion exists. Not run standalone.
 depends_on: []
 soft_after:

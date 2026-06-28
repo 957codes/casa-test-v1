@@ -15,6 +15,9 @@ applies_to:
     - takes_payments
   excluded_traits: []
 relevance: core
+department: Finance
+criticality: core
+model_fit: [self_serve]
 selection_hint: Run after pricing research, before launch. Decides the shape of the acquisition funnel. Most relevant to self-serve software; less so to high-touch services.
 depends_on:
   - pricing-research

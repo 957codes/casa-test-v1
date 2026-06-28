@@ -11,6 +11,8 @@ applies_to:
   excluded_traits:
     - pre_idea_only
 relevance: recommended
+department: Data
+criticality: growth
 selection_hint: Run before scaling paid spend, once there is meaningful spend history and conversion volume. Attribution is causal inference, not a reporting exercise.
 depends_on:
   - analytics-stack-setup

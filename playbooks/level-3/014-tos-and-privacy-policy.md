@@ -11,6 +11,8 @@ applies_to:
   excluded_traits:
     - pre_idea_only
 relevance: core
+department: Legal
+criticality: core
 selection_hint: Required before any product that collects user data goes public. Gates on a formed entity and known data practices. Legal and irreversible; always human-gated.
 depends_on:
   - entity-formation

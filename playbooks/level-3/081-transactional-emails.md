@@ -10,6 +10,8 @@ applies_to:
     - sends_email
   excluded_traits: []
 relevance: core
+department: Product
+criticality: core
 selection_hint: Run once the product has user accounts and deliverability is warmed. These are the highest-open emails you own; treat as product surface, not marketing.
 depends_on:
   - email-deliverability-setup

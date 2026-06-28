@@ -9,6 +9,8 @@ applies_to:
   requires_traits: []
   excluded_traits: []
 relevance: recommended
+department: Legal
+criticality: core
 selection_hint: Run the knockout search the moment the name is chosen; file once goods/services are defined. Filing is a legal, money, hard-to-reverse action.
 depends_on:
   - company-naming

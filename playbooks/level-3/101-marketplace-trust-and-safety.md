@@ -9,6 +9,9 @@ applies_to:
   requires_traits: []
   excluded_traits: []
 relevance: core
+department: Operations
+criticality: existential
+model_fit: [marketplace]
 selection_hint: Run before opening a marketplace to real transactions. Liquidity without trust is churn; the first bad transaction without a dispute path is a dead marketplace.
 depends_on: []
 soft_after:

@@ -10,6 +10,8 @@ applies_to:
     - runs_agents
   excluded_traits: []
 relevance: core
+department: Operations
+criticality: core
 selection_hint: Installed day zero before Level 0, before any agent takes any action. The safety wrapper around every other playbook. Never skip.
 depends_on: []
 soft_after: []

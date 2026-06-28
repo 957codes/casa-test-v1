@@ -14,6 +14,7 @@ import { readFileSync, writeFileSync, existsSync, mkdirSync, cpSync, appendFileS
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { buildMap, nextActions, select } from "./router.mjs";
+import { northStar } from "./northstar.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const repo = dirname(here);
@@ -96,10 +97,11 @@ function setBlock(text, section, inner) {
   return re.test(text) ? text.replace(re, (_m, open, close) => `${open}\n${inner}\n${close}`) : text;
 }
 
-function nowText(profile, actions, level, due = [], spend = 0) {
+function nowText(profile, actions, level, due = [], spend = 0, ns = null) {
   const top = actions[0];
   const out = [`# Now`, ``, `Company: ${profile.company_name || profile.one_liner || "(unnamed)"}`,
     `Level ${level}: ${LEVEL_NAMES[level] || level}`];
+  if (ns) out.push(`North star now: ${ns.label}${ns.band === "scale" ? "" : ` (heading toward ${ns.mature_growth_label})`}`);
   if (spend > 0) out.push(`Spend to date (Capx Pay): $${spend}`);
   out.push(``, `## Next action`);
   if (!top) out.push(`- Nothing ready at this level. Run /casa-map or advance the level.`);
@@ -126,9 +128,10 @@ function sync(dir) {
   const due = dueLoops(dir, profile, level, state);
   const spend = readSpend(dir);
   const titles = titleOf(pb);
+  const ns = northStar(profile, level);
 
-  writeFileSync(join(dir, "build-map.json"), JSON.stringify({ business_profile: profile, current_level: level, ...map }, null, 2));
-  writeFileSync(join(dir, "NOW.md"), nowText(profile, actions, level, due, spend));
+  writeFileSync(join(dir, "build-map.json"), JSON.stringify({ business_profile: profile, current_level: level, active_north_star: ns, mature_north_star: profile.north_star || null, ...map }, null, 2));
+  writeFileSync(join(dir, "NOW.md"), nowText(profile, actions, level, due, spend, ns));
 
   // self-update the CLAUDE.md AUTO blocks (T1-T5)
   const cmPath = join(dir, "CLAUDE.md");
@@ -142,6 +145,8 @@ function sync(dir) {
       `- Traits: ${(profile.traits || []).join(", ")}`,
       `- ICP: ${profile.icp || ""}`,
       `- Monetization: ${profile.monetization || ""}`,
+      `- North star now: ${ns.label}`,
+      `- Heading toward: ${ns.mature_growth_label} (retention via ${ns.mature_retention_label})`,
     ].join("\n"));
     cm = setBlock(cm, "selected-levels", `Selected ${map.member_count} playbooks across ` +
       map.levels.map((l) => `L${l.level} (${l.nodes.length})`).join(", ") + ".");

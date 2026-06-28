@@ -9,6 +9,8 @@ applies_to:
   requires_traits: []
   excluded_traits: []
 relevance: recommended
+department: Growth
+criticality: growth
 selection_hint: Run before any content or SEO work. Foundation that every content and programmatic-SEO playbook consumes. Skip only if SEO is not a planned channel.
 depends_on: []
 soft_after:

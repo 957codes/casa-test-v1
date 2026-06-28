@@ -10,6 +10,8 @@ applies_to:
     - runs_agents
   excluded_traits: []
 relevance: core
+department: Engineering
+criticality: core
 selection_hint: Installed day zero before Level 0, right after HITL gates. Every LLM call passes through it. A misconfigured loop can burn five figures in minutes.
 depends_on:
   - human-in-the-loop-approval-gates

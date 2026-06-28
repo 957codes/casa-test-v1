@@ -7,8 +7,11 @@ applies_to:
   types:
     - "*"
   requires_traits: []
-  excluded_traits: []
+  excluded_traits:
+    - local_service_only
 relevance: optional
+department: Growth
+criticality: optional
 selection_hint: Community-first channel with evergreen SEO and heavy AI-citation weight. Run continuously where the ICP has active subreddits. Requires a warmed account; never spam.
 depends_on: []
 soft_after:

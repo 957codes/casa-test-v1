@@ -9,6 +9,8 @@ applies_to:
   requires_traits: []
   excluded_traits: []
 relevance: core
+department: Strategy
+criticality: core
 selection_hint: Run after the wedge is chosen so the name targets the right audience. The name is the most durable IP; do not rush it.
 depends_on:
   - beachhead-selection

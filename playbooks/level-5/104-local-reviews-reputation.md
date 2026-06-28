@@ -10,6 +10,10 @@ applies_to:
     - local_service_only
   excluded_traits: []
 relevance: core
+department: Growth
+criticality: core
+existential_at: [revenue, scaling]
+model_fit: [local]
 selection_hint: Run once a local service has repeat customers. Reviews are the compounding local-ranking and trust lever; start the loop as early as you have happy customers.
 depends_on: []
 soft_after:

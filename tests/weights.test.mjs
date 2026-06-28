@@ -21,7 +21,7 @@ test("score: no weights is identical to the default (backward compatible)", () =
 });
 
 test("score: department weight raises or lowers the score", () => {
-  const pb = INDEX.find((p) => p.department === "Marketing") || INDEX[0];
+  const pb = INDEX.find((p) => p.department === "Growth") || INDEX[0];
   const base = score(pb, 0, flags);
   assert.ok(score(pb, 0, flags, { byDepartment: { [pb.department]: 0.5 } }) < base, "demote lowers");
   assert.ok(score(pb, 0, flags, { byDepartment: { [pb.department]: 2 } }) > base, "promote raises");

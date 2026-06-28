@@ -10,6 +10,8 @@ applies_to:
     - sends_email
   excluded_traits: []
 relevance: recommended
+department: Growth
+criticality: growth
 selection_hint: Run once you have customers with churn or dormancy events and warmed deliverability. Recovers former customers at 5 to 25x lower cost than new acquisition.
 depends_on:
   - welcome-email-sequence

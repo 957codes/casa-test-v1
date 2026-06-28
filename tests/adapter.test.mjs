@@ -50,7 +50,7 @@ test("toFoundry: status and human_gate map to Foundry task states", () => {
 test("toFoundry: departments are derived from the playbook", () => {
   const byId = new Map(toFoundry({ buildMap: BUILD_MAP, profile: PROFILE }).tasks.map((t) => [t.id, t]));
   assert.equal(byId.get("entity-formation").owner, "Legal");
-  assert.equal(byId.get("opportunity-scan").owner, "Operations");
+  assert.equal(byId.get("opportunity-scan").owner, "Strategy");
 });
 
 test("toFoundry: an empty brain does not throw", () => {

@@ -9,6 +9,8 @@ applies_to:
   requires_traits: []
   excluded_traits: []
 relevance: core
+department: Legal
+criticality: existential
 selection_hint: Run once the venture is committed and you need to bank, contract, hire, or raise. Default Delaware C-Corp; deviations need a documented reason.
 depends_on: []
 soft_after:

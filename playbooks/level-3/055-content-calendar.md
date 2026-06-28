@@ -9,6 +9,8 @@ applies_to:
   requires_traits: []
   excluded_traits: []
 relevance: recommended
+department: Growth
+criticality: growth
 selection_hint: The operating engine for content. Install once keywords and personas exist; then run continuously to plan, brief, publish, and refresh.
 depends_on:
   - seo-keyword-research

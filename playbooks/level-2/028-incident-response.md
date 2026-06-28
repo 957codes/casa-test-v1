@@ -12,6 +12,8 @@ applies_to:
   excluded_traits:
     - pre_idea_only
 relevance: core
+department: Engineering
+criticality: core
 selection_hint: Install once observability is live, then it runs always-on. Triggered by any alert, outage, or security event. Never a one-time checkbox.
 depends_on:
   - observability-setup

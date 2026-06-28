@@ -9,6 +9,8 @@ applies_to:
   requires_traits: []
   excluded_traits: []
 relevance: core
+department: Strategy
+criticality: existential
 selection_hint: The L0 gate. Run before committing capital. Produces the validated thesis and kill criteria that unlock incorporation.
 depends_on:
   - problem-validation-interviews

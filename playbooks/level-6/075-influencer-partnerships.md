@@ -14,6 +14,8 @@ applies_to:
     - b2c
   excluded_traits: []
 relevance: optional
+department: Growth
+criticality: optional
 selection_hint: Run post-PMF once unit economics are validated and a conversion path exists. Strongest for B2C/DTC; the mechanism is trust transfer, so audience fit and authenticity beat reach.
 depends_on:
   - landing-page-cro

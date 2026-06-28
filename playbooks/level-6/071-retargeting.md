@@ -10,6 +10,8 @@ applies_to:
     - takes_payments
   excluded_traits: []
 relevance: recommended
+department: Growth
+criticality: growth
 selection_hint: Run post-PMF once a live page has audience volume (>= 1000 visitors/30d) and the landing page is optimized. Harvests existing demand; never a brand-building channel.
 depends_on:
   - landing-page-cro

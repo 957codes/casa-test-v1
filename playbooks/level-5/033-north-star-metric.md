@@ -10,6 +10,8 @@ applies_to:
   excluded_traits:
     - pre_idea_only
 relevance: core
+department: Data
+criticality: core
 selection_hint: Define once early PMF signal exists so every agent optimizes one number. Before PMF, anchor it on retention or core-action completion, not growth.
 depends_on:
   - analytics-stack-setup

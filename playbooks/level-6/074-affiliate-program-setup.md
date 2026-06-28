@@ -11,6 +11,8 @@ applies_to:
     - pmf_achieved
   excluded_traits: []
 relevance: optional
+department: Growth
+criticality: optional
 selection_hint: Gated on M1 retention >= 40%, 50+ paying customers, and a clean funnel. An affiliate program is a multiplier for existing momentum, never a primary early channel.
 depends_on:
   - landing-page-cro

@@ -10,6 +10,10 @@ applies_to:
   excluded_traits:
     - pre_idea_only
 relevance: core
+department: Data
+criticality: core
+existential_at: [revenue, scaling]
+model_fit: [recurring]
 selection_hint: Run once a critical event and a usage interval are definable. Retention is the most leveraged metric; a 10% lift beats a 10% acquisition lift many times over.
 depends_on:
   - analytics-stack-setup

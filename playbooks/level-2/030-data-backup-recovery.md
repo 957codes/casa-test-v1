@@ -12,6 +12,8 @@ applies_to:
   excluded_traits:
     - pre_idea_only
 relevance: core
+department: Engineering
+criticality: core
 selection_hint: Run once any data store exists. Turns an outage, ransomware event, or bad migration into a 30-minute problem instead of an existential one.
 depends_on:
   - hosting-deployment-setup

@@ -7,8 +7,11 @@ applies_to:
   types:
     - "*"
   requires_traits: []
-  excluded_traits: []
+  excluded_traits:
+    - local_service_only
 relevance: recommended
+department: Growth
+criticality: growth
 selection_hint: The primary organic acquisition unit. Run per keyword cluster once research exists; produces the linkable assets link-building later needs.
 depends_on:
   - seo-keyword-research

@@ -9,6 +9,8 @@ applies_to:
   requires_traits: []
   excluded_traits: []
 relevance: core
+department: Strategy
+criticality: core
 selection_hint: The first L1 commit. Choose one wedge so all force concentrates on a single point. Unlocks positioning and naming.
 depends_on:
   - problem-validation-interviews

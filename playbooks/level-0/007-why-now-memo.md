@@ -9,6 +9,8 @@ applies_to:
   requires_traits: []
   excluded_traits: []
 relevance: recommended
+department: Strategy
+criticality: growth
 selection_hint: Run when the thesis is articulated. Produces the timing narrative reused later in the fundraise deck. Skip if only validating internally.
 depends_on: []
 soft_after:

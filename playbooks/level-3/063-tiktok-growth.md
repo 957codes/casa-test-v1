@@ -14,6 +14,8 @@ applies_to:
   excluded_traits:
     - b2b
 relevance: conditional
+department: Growth
+criticality: optional
 selection_hint: B2C / consumer channel. Short-form video where the first 3 seconds decide reach. Skip for pure B2B; run continuously when the audience is on TikTok.
 depends_on: []
 soft_after:

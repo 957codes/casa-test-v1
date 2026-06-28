@@ -11,6 +11,8 @@ applies_to:
   excluded_traits:
     - pre_idea_only
 relevance: recommended
+department: Data
+criticality: optional
 selection_hint: Run once Mixpanel has events flowing and a tracking plan exists, typically from launch. Skip products that do not use Mixpanel.
 depends_on:
   - analytics-stack-setup

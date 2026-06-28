@@ -10,6 +10,9 @@ applies_to:
     - local_service_only
   excluded_traits: []
 relevance: core
+department: Growth
+criticality: existential
+model_fit: [local]
 selection_hint: Run early for any local service. For a local business this is the primary discovery channel, ahead of a website or paid ads.
 depends_on: []
 soft_after:

@@ -15,6 +15,8 @@ applies_to:
     - builds_software
   excluded_traits: []
 relevance: core
+department: Engineering
+criticality: core
 selection_hint: The infra gate. Pick the stack before hosting, observability, or any build can start. Skip only for businesses that ship no software.
 depends_on:
   - mvp-scoping

@@ -10,6 +10,8 @@ applies_to:
     - sends_email
   excluded_traits: []
 relevance: core
+department: Engineering
+criticality: core
 selection_hint: Critical-path L2 item. Start day one because the warmup window is 30 to 45 days; every email playbook (078/079/080/081/084) is blocked until this is warmed.
 depends_on: []
 soft_after:

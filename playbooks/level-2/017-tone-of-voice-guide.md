@@ -9,6 +9,8 @@ applies_to:
   requires_traits: []
   excluded_traits: []
 relevance: core
+department: Brand
+criticality: core
 selection_hint: The voice contract every content-producing agent reads. Run after positioning so all copy speaks consistently.
 depends_on:
   - brand-positioning-statement

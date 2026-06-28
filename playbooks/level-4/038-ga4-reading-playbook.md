@@ -11,6 +11,8 @@ applies_to:
   excluded_traits:
     - pre_idea_only
 relevance: recommended
+department: Data
+criticality: growth
 selection_hint: Run once GA4 (ideally with a BigQuery export) is live and there is traffic to read, typically from launch. Skip products that do not use GA4.
 depends_on:
   - analytics-stack-setup

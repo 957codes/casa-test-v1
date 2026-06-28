@@ -16,6 +16,8 @@ applies_to:
   excluded_traits:
     - local_service_only
 relevance: recommended
+department: Growth
+criticality: growth
 selection_hint: Run under the launch plan when the product is live with no waitlist and the audience is the tech community. Skip for local services and pure offline plays.
 depends_on:
   - launch-plan-t90

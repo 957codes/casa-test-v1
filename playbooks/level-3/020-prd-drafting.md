@@ -15,6 +15,8 @@ applies_to:
     - builds_software
   excluded_traits: []
 relevance: core
+department: Product
+criticality: core
 selection_hint: The source of truth engineering and design agents execute against. Run per initiative once the MVP slice is scoped and validated.
 depends_on:
   - mvp-scoping

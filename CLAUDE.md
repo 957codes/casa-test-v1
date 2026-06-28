@@ -294,7 +294,26 @@ short, date entries, never delete the protocol).
   and a realistic pulse (promote_ids + department demote) moves retention to #1 and pushes infra
   off the top. All score/weights invariants preserved (strictly decreasing in slack, multiplicative
   pulse, revenue boost). Two ranking tests added (weights.test.mjs). Suite 78 tests, preflight 48.
-- Next: a real interactive /casa-start in a live Claude Code session (the one test only the user
-  can run); department-tag accuracy (north-star-metric tags Operations, not Growth) so pulse dept
-  weights bite precisely; Pay v0 BYO-key mode; publish prep (public repo + README + disclaimer).
+- Deep engine: north star + criticality + fitness score (2026-06-27, plan in docs/DEEP-ENGINE-PLAN.md,
+  designed by a multi-agent pass). The default (no-pulse) ranking is now business-model-aware, fixing
+  the round-5 relevance regression (default ranking was model-blind). Four parts: (1) scripts/northstar.mjs
+  derives a business-type north star (B2B SaaS -> ARR, B2C sub -> MRR/retention, marketplace -> GMV,
+  physical goods -> repeat purchase, local -> rebooking), shown in NOW.md/build-map and used to seed the
+  initial pulse; it does NOT feed a score boost. (2) Playbooks carry criticality (existential|core|growth|
+  optional) + existential_at (stage promotions) + model_fit (recurring|transactional|self_serve|...); the
+  authored 11-department retag replaced the heuristic (department + criticality now REQUIRED, lint-validated;
+  codemod scripts/retag-catalog.mjs from scripts/catalog-tags.json). (3) The unified score in router.mjs
+  gains an optional fit arg: lev * urgency * stageFit * fitFactor * rev / eff * pulse, where stageFit is a
+  pure discount for stale low-level work and fitFactor = clamp(CRIT_W * modelFit, [0.7,1.8]); fit-absent is
+  byte-identical to before (backward compatible). Result: a revenue subscription business now leads with
+  unit-economics/cohort-retention/churn (existential at revenue) by DEFAULT, infra demoted to ~#8; the pulse
+  still steers (cohort promote -> #1 at 8.952); marketplace/ecommerce/local are model-differentiated; 0 dead
+  members held. (4) stage.mjs deriveInitialPulse seeds a model-aware pulse.json at onboarding; casa-start
+  intake gained a Core pass (north-star + do-or-die constraint archetypes); casa-next/casa-priority frame the
+  briefing around the north star, lead with existential work, and suppress recently-run recurring loops
+  (advisor-side, rule 4). 5 physical-goods playbooks added (cogs/inventory/shipping/repeat-purchase/
+  merchandising); 10 national content loops excluded for local_service_only. Catalog 107 -> 112; goldens
+  b2b 96/112, b2c 79/112. Suite 96 tests, preflight 49, all green. Next: the 20-company validation to 90+.
+- Next: the 20-company quality test to 90+ (relevance + output_usefulness, pulse_effect held, 0 dead); a real
+  interactive /casa-start in a live session; Pay v0 BYO-key mode; publish prep (public repo + README).
 <!-- /CASA:AUTO:repo-status -->

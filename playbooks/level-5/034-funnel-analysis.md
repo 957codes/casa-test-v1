@@ -10,6 +10,8 @@ applies_to:
   excluded_traits:
     - pre_idea_only
 relevance: core
+department: Data
+criticality: core
 selection_hint: Run once events flow and there are users moving through the funnel. Diagnoses where the funnel leaks and produces testable remediation hypotheses.
 depends_on:
   - analytics-stack-setup

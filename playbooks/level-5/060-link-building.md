@@ -7,8 +7,11 @@ applies_to:
   types:
     - "*"
   requires_traits: []
-  excluded_traits: []
+  excluded_traits:
+    - local_service_only
 relevance: recommended
+department: Growth
+criticality: growth
 selection_hint: Run once long-form linkable assets exist and a domain is warmed. Safe earlier, but compounds best post-PMF. Never outreach without a linkable asset to point at.
 depends_on:
   - long-form-blog-post

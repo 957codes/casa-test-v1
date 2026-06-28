@@ -7,8 +7,11 @@ applies_to:
   types:
     - "*"
   requires_traits: []
-  excluded_traits: []
+  excluded_traits:
+    - local_service_only
 relevance: optional
+department: Growth
+criticality: optional
 selection_hint: A compounding video channel where packaging and retention drive distribution. Run continuously if video fits the audience and the team can sustain production.
 depends_on: []
 soft_after:

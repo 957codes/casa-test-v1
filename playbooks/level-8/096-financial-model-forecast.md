@@ -11,6 +11,9 @@ applies_to:
   excluded_traits:
     - pre_idea_only
 relevance: core
+department: Finance
+criticality: core
+existential_at: [scaling]
 selection_hint: Run when 12 to 24 months of actuals exist and a raise or board cadence is near. Consumes unit economics; produces the model the fundraise leans on.
 depends_on:
   - unit-economics

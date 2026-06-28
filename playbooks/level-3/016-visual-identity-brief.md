@@ -10,6 +10,8 @@ applies_to:
   excluded_traits:
     - pre_idea_only
 relevance: recommended
+department: Brand
+criticality: growth
 selection_hint: At L3 ship only the Minimum Viable Brand (Inter, one primary color, text wordmark). The full identity here is a post-PMF mature variant; do not run the full build pre-PMF.
 depends_on:
   - brand-positioning-statement

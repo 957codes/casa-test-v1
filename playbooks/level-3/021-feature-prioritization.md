@@ -15,6 +15,8 @@ applies_to:
     - builds_software
   excluded_traits: []
 relevance: core
+department: Product
+criticality: core
 selection_hint: The standing decision of what to build next. Runs continuously through build and beyond, not once. Full scoring every two weeks; triage daily.
 depends_on: []
 soft_after:

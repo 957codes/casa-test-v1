@@ -10,6 +10,8 @@ applies_to:
     - takes_payments
   excluded_traits: []
 relevance: recommended
+department: Growth
+criticality: growth
 selection_hint: Run post-PMF once analytics, event taxonomy, and attribution exist, and Business Manager plus pixel/CAPI (EMQ high) are live. Strong for B2C/DTC volume.
 depends_on:
   - analytics-stack-setup

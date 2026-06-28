@@ -11,6 +11,8 @@ applies_to:
   excluded_traits:
     - pre_idea_only
 relevance: recommended
+department: Data
+criticality: growth
 selection_hint: Activate once a surface has live traffic (about 100+ users/day). Below that, use qualitative learning instead, not A/B tests.
 depends_on: []
 soft_after:

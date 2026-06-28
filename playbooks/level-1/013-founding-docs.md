@@ -9,6 +9,8 @@ applies_to:
   requires_traits: []
   excluded_traits: []
 relevance: core
+department: Legal
+criticality: core
 selection_hint: Run the moment the entity is registered; the 83(b) clock is 30 days. Errors here are fatal to future fundraising.
 depends_on:
   - entity-formation

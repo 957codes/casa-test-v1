@@ -15,6 +15,9 @@ applies_to:
     - builds_software
   excluded_traits: []
 relevance: core
+department: Product
+criticality: core
+model_fit: [self_serve]
 selection_hint: The highest-leverage growth surface. Design it once the product core value and signup flow exist; it feeds the beta program.
 depends_on: []
 soft_after:

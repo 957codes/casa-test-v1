@@ -10,6 +10,8 @@ applies_to:
     - takes_payments
   excluded_traits: []
 relevance: core
+department: Finance
+criticality: core
 selection_hint: Run before any packaging or pricing-page decision, once positioning and an ICP exist. Skip only for permanently-free products.
 depends_on:
   - positioning-canvas

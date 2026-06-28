@@ -47,9 +47,32 @@ Map the evidence onto the canonical vocabulary Casa uses (do not invent values):
   pages, entity-formation if nothing indicates a company exists).
 
 Give every inferred field a confidence (high, medium, low) and the evidence (the file
-or dependency that supports it). Where the files cannot tell you (paying customers yet,
-raising vs bootstrapped, target deal size, the real current stage), put a plain question
-in `ask_founder`. Never guess at those.
+or dependency that supports it).
+
+## What only the founder can answer (`ask_founder`)
+
+Keep this list tight. The interview budget is spent here, so ask only what the files
+genuinely cannot settle. Limit `ask_founder` to:
+
+1. Revenue-truth: launched vs revenue. Code can prove a deployed app, auth, and a
+   payments dependency, but it can NEVER prove paying customers or live revenue. If the
+   evidence points at launched or beyond, ask whether there are paying customers yet,
+   and never infer a revenue or scaling tier from code alone.
+2. Funding: raising venture capital vs bootstrapped. Nothing in the code shows this.
+3. North star: the one number that means this is working. The founder names it; you do
+   not infer it.
+4. Do-or-die constraint: the single thing most likely to kill the business right now.
+5. Done-vs-gap reconciliation for only four high-value unblockers, and only where the
+   signal is ambiguous: analytics (analytics-stack-setup), payments (the takes_payments
+   truth and the monetization model), legal and ToS (tos-and-privacy-policy), and deploy
+   (hosting-deployment-setup). A present dependency proves the wiring exists, not that
+   the work is done correctly, so surface these as confirmations rather than asserting
+   done. Put each unsettled one as a plain yes/no question.
+
+Do NOT widen the scan beyond this. Framework route enumeration, `.env` parsing,
+migration counting, and git-reflog history scanning are deliberately deferred; do not
+attempt them. Read enough to infer the profile and reconcile the four unblockers, then
+stop.
 
 If the project does not read as a business at all (a library, a personal script,
 scratch code), say so in `notes` and infer only what is defensible.
@@ -71,7 +94,13 @@ Return ONLY this JSON, no prose:
     "traits": [ { "value": "takes_payments", "evidence": "stripe in package.json" } ],
     "gaps": [ { "value": "analytics-stack-setup", "evidence": "no analytics dependency found" } ]
   },
-  "ask_founder": ["Do you have paying customers yet?", "Raising or bootstrapping?"],
+  "ask_founder": [
+    "Do you have paying customers yet, or users only?",
+    "Are you raising venture capital or bootstrapping?",
+    "What is your north star, the one number that means this is working?",
+    "What is the single thing most likely to kill this right now?",
+    "Analytics is wired (PostHog found) but is the event taxonomy actually live, or a gap?"
+  ],
   "notes": "<anything the founder should know about what you could not determine>"
 }
 ```

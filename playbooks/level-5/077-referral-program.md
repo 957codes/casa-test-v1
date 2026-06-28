@@ -10,6 +10,8 @@ applies_to:
     - takes_payments
   excluded_traits: []
 relevance: optional
+department: Growth
+criticality: growth
 selection_hint: Gated on PMF. Never run before retention proves out; a referral loop on a leaky bucket amplifies churn and burns treasury.
 depends_on: []
 soft_after:

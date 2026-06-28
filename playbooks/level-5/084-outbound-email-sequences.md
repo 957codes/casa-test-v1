@@ -16,6 +16,8 @@ applies_to:
     - b2c
     - self_serve_only
 relevance: core
+department: Sales
+criticality: core
 selection_hint: The outbound engine for a B2B sales-led motion. Needs warmed sending domains (082) and a target account list (083). Skip for pure B2C or self-serve.
 depends_on:
   - email-deliverability-setup

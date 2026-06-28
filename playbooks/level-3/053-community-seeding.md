@@ -7,8 +7,11 @@ applies_to:
   types:
     - "*"
   requires_traits: []
-  excluded_traits: []
+  excluded_traits:
+    - local_service_only
 relevance: recommended
+department: Success
+criticality: growth
 selection_hint: Run from L3 when owned audience is under ~500 and a landing page or demo exists. Value-first participation; never a paid-ads or owned-community play.
 depends_on: []
 soft_after:

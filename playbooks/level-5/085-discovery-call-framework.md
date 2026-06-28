@@ -16,6 +16,8 @@ applies_to:
     - b2c
     - self_serve_only
 relevance: core
+department: Sales
+criticality: core
 selection_hint: The first substantive sales conversation in a B2B sales-led motion. Fires when a prospect accepts a meeting. Skip for pure B2C or self-serve with no human sales call.
 depends_on:
   - icp-target-account-listing

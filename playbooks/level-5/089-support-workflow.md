@@ -11,6 +11,9 @@ applies_to:
   excluded_traits:
     - pre_launch_only
 relevance: core
+department: Success
+criticality: core
+existential_at: [revenue]
 selection_hint: Install the moment the first paying customer exists. Applies to any business with customers, B2B or B2C. Operate continuously, not a one-time checkbox.
 depends_on: []
 soft_after:

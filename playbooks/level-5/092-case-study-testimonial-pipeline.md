@@ -11,6 +11,8 @@ applies_to:
   excluded_traits:
     - pre_launch_only
 relevance: recommended
+department: Growth
+criticality: growth
 selection_hint: Install once customers have measurable outcomes and an NPS signal exists. Applies to any business, B2B or B2C. Publishing a customer's story requires their consent.
 depends_on:
   - nps-csat-program

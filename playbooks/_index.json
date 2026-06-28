@@ -1,6 +1,6 @@
 {
   "schema": "docs/PLAYBOOK-SCHEMA.md",
-  "count": 107,
+  "count": 112,
   "playbooks": [
     {
       "id": "opportunity-scan",
@@ -30,7 +30,10 @@
       "blocks_revenue": false,
       "recurring": false,
       "typical_milestone": "validated-opportunity",
-      "department": "Operations"
+      "department": "Strategy",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "problem-validation-interviews",
@@ -66,7 +69,10 @@
       "blocks_revenue": false,
       "recurring": false,
       "typical_milestone": "validated-opportunity",
-      "department": "Operations"
+      "department": "Strategy",
+      "criticality": "existential",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "competitive-teardown",
@@ -100,7 +106,10 @@
       "blocks_revenue": false,
       "recurring": false,
       "typical_milestone": "validated-opportunity",
-      "department": "Operations"
+      "department": "Strategy",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "market-sizing-tam-sam-som",
@@ -135,7 +144,10 @@
       "blocks_revenue": false,
       "recurring": false,
       "typical_milestone": "validated-opportunity",
-      "department": "Operations"
+      "department": "Strategy",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "jobs-to-be-done-extraction",
@@ -169,7 +181,10 @@
       "blocks_revenue": false,
       "recurring": false,
       "typical_milestone": "validated-opportunity",
-      "department": "Operations"
+      "department": "Strategy",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "red-team-thesis",
@@ -208,7 +223,10 @@
       "blocks_revenue": false,
       "recurring": false,
       "typical_milestone": "validated-opportunity",
-      "department": "Operations"
+      "department": "Strategy",
+      "criticality": "existential",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "why-now-memo",
@@ -243,7 +261,10 @@
       "blocks_revenue": false,
       "recurring": false,
       "typical_milestone": "validated-opportunity",
-      "department": "Operations"
+      "department": "Strategy",
+      "criticality": "growth",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "beachhead-selection",
@@ -283,7 +304,10 @@
       "blocks_revenue": false,
       "recurring": false,
       "typical_milestone": "company-exists",
-      "department": "Operations"
+      "department": "Strategy",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "company-naming",
@@ -320,7 +344,10 @@
       "blocks_revenue": false,
       "recurring": false,
       "typical_milestone": "company-exists",
-      "department": "Brand"
+      "department": "Strategy",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "domain-acquisition",
@@ -355,7 +382,10 @@
       "blocks_revenue": false,
       "recurring": false,
       "typical_milestone": "company-exists",
-      "department": "Operations"
+      "department": "Operations",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "trademark-clearance",
@@ -391,7 +421,10 @@
       "blocks_revenue": false,
       "recurring": false,
       "typical_milestone": "company-exists",
-      "department": "Legal"
+      "department": "Legal",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "entity-formation",
@@ -425,7 +458,10 @@
       "blocks_revenue": true,
       "recurring": false,
       "typical_milestone": "company-exists",
-      "department": "Legal"
+      "department": "Legal",
+      "criticality": "existential",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "founding-docs",
@@ -460,7 +496,10 @@
       "blocks_revenue": false,
       "recurring": false,
       "typical_milestone": "company-exists",
-      "department": "Legal"
+      "department": "Legal",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "tos-and-privacy-policy",
@@ -499,7 +538,10 @@
       "blocks_revenue": true,
       "recurring": false,
       "typical_milestone": "legal-pages-published",
-      "department": "Legal"
+      "department": "Legal",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "brand-positioning-statement",
@@ -535,7 +577,10 @@
       "blocks_revenue": false,
       "recurring": false,
       "typical_milestone": "positioning-locked",
-      "department": "Brand"
+      "department": "Brand",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "visual-identity-brief",
@@ -572,7 +617,10 @@
       "blocks_revenue": false,
       "recurring": false,
       "typical_milestone": "brand-shipped",
-      "department": "Brand"
+      "department": "Brand",
+      "criticality": "growth",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "tone-of-voice-guide",
@@ -606,7 +654,10 @@
       "blocks_revenue": false,
       "recurring": false,
       "typical_milestone": "voice-locked",
-      "department": "Brand"
+      "department": "Brand",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "mvp-scoping",
@@ -644,7 +695,10 @@
       "blocks_revenue": false,
       "recurring": false,
       "typical_milestone": "mvp-scoped",
-      "department": "Operations"
+      "department": "Product",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "tech-stack-selection",
@@ -684,7 +738,10 @@
       "blocks_revenue": false,
       "recurring": false,
       "typical_milestone": "stack-chosen",
-      "department": "Engineering"
+      "department": "Engineering",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "prd-drafting",
@@ -724,7 +781,10 @@
       "blocks_revenue": false,
       "recurring": false,
       "typical_milestone": "prd-ready",
-      "department": "Design"
+      "department": "Product",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "feature-prioritization",
@@ -765,7 +825,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "backlog-ranked",
-      "department": "Design"
+      "department": "Product",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "onboarding-flow-design",
@@ -807,7 +870,12 @@
       "blocks_revenue": false,
       "recurring": false,
       "typical_milestone": "activation-instrumented",
-      "department": "Design"
+      "department": "Product",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": [
+        "self_serve"
+      ]
     },
     {
       "id": "usability-testing-protocol",
@@ -847,7 +915,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "usability-validated",
-      "department": "Design"
+      "department": "Product",
+      "criticality": "growth",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "beta-program-management",
@@ -893,7 +964,10 @@
       "blocks_revenue": false,
       "recurring": false,
       "typical_milestone": "beta-graduated",
-      "department": "Operations"
+      "department": "Product",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "release-changelog-cadence",
@@ -936,7 +1010,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "release-rhythm-set",
-      "department": "Operations"
+      "department": "Engineering",
+      "criticality": "growth",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "hosting-deployment-setup",
@@ -979,7 +1056,10 @@
       "blocks_revenue": false,
       "recurring": false,
       "typical_milestone": "hosting-live",
-      "department": "Engineering"
+      "department": "Engineering",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "observability-setup",
@@ -1020,7 +1100,10 @@
       "blocks_revenue": false,
       "recurring": false,
       "typical_milestone": "app-observable",
-      "department": "Engineering"
+      "department": "Engineering",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "incident-response",
@@ -1064,7 +1147,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "incident-process-live",
-      "department": "Engineering"
+      "department": "Engineering",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "security-baseline",
@@ -1102,7 +1188,10 @@
       "blocks_revenue": false,
       "recurring": false,
       "typical_milestone": "security-baseline-set",
-      "department": "Engineering"
+      "department": "Engineering",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "data-backup-recovery",
@@ -1144,7 +1233,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "backups-verified",
-      "department": "Engineering"
+      "department": "Engineering",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "analytics-stack-setup",
@@ -1177,7 +1269,10 @@
       "blocks_revenue": false,
       "recurring": false,
       "typical_milestone": "analytics-instrumented",
-      "department": "Engineering"
+      "department": "Engineering",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "event-taxonomy-design",
@@ -1213,7 +1308,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "taxonomy-governed",
-      "department": "Design"
+      "department": "Data",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "north-star-metric",
@@ -1253,7 +1351,10 @@
       "blocks_revenue": false,
       "recurring": false,
       "typical_milestone": "nsm-defined",
-      "department": "Operations"
+      "department": "Data",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "funnel-analysis",
@@ -1294,7 +1395,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "funnel-instrumented",
-      "department": "Marketing"
+      "department": "Data",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "cohort-retention-analysis",
@@ -1335,7 +1439,15 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "retention-baselined",
-      "department": "Finance"
+      "department": "Data",
+      "criticality": "core",
+      "existential_at": [
+        "revenue",
+        "scaling"
+      ],
+      "model_fit": [
+        "recurring"
+      ]
     },
     {
       "id": "attribution-modeling",
@@ -1378,7 +1490,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "attribution-operating",
-      "department": "Marketing"
+      "department": "Data",
+      "criticality": "growth",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "ceo-dashboard-build",
@@ -1418,7 +1533,10 @@
       "blocks_revenue": false,
       "recurring": false,
       "typical_milestone": "ceo-dashboard-live",
-      "department": "Operations"
+      "department": "Data",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "ga4-reading-playbook",
@@ -1458,7 +1576,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "ga4-read-operating",
-      "department": "Operations"
+      "department": "Data",
+      "criticality": "growth",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "mixpanel-reading-playbook",
@@ -1498,7 +1619,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "mixpanel-read-operating",
-      "department": "Operations"
+      "department": "Data",
+      "criticality": "optional",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "weekly-business-review",
@@ -1541,7 +1665,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "wbr-operating",
-      "department": "Operations"
+      "department": "Operations",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "pricing-research",
@@ -1581,7 +1708,10 @@
       "blocks_revenue": false,
       "recurring": false,
       "typical_milestone": "pricing-direction-set",
-      "department": "Finance"
+      "department": "Finance",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "packaging-tier-design",
@@ -1617,7 +1747,10 @@
       "blocks_revenue": false,
       "recurring": false,
       "typical_milestone": "pricing-direction-set",
-      "department": "Finance"
+      "department": "Finance",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "pricing-page-copy-layout",
@@ -1658,7 +1791,10 @@
       "blocks_revenue": false,
       "recurring": false,
       "typical_milestone": "launch-assets-ready",
-      "department": "Finance"
+      "department": "Growth",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "freemium-trial-decision",
@@ -1701,7 +1837,12 @@
       "blocks_revenue": false,
       "recurring": false,
       "typical_milestone": "pricing-direction-set",
-      "department": "Operations"
+      "department": "Finance",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": [
+        "self_serve"
+      ]
     },
     {
       "id": "discount-promo-policy",
@@ -1740,7 +1881,10 @@
       "blocks_revenue": false,
       "recurring": false,
       "typical_milestone": "revenue-engine-tuned",
-      "department": "Marketing"
+      "department": "Finance",
+      "criticality": "growth",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "positioning-canvas",
@@ -1780,7 +1924,10 @@
       "blocks_revenue": false,
       "recurring": false,
       "typical_milestone": "positioning-locked",
-      "department": "Brand"
+      "department": "Strategy",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "category-design-decision",
@@ -1819,7 +1966,10 @@
       "blocks_revenue": false,
       "recurring": false,
       "typical_milestone": "positioning-locked",
-      "department": "Brand"
+      "department": "Strategy",
+      "criticality": "growth",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "launch-plan-t90",
@@ -1862,7 +2012,10 @@
       "blocks_revenue": false,
       "recurring": false,
       "typical_milestone": "launched",
-      "department": "Marketing"
+      "department": "Growth",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "product-hunt-launch",
@@ -1908,7 +2061,10 @@
       "blocks_revenue": false,
       "recurring": false,
       "typical_milestone": "launched",
-      "department": "Marketing"
+      "department": "Growth",
+      "criticality": "growth",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "hacker-news-launch",
@@ -1953,7 +2109,10 @@
       "blocks_revenue": false,
       "recurring": false,
       "typical_milestone": "launched",
-      "department": "Marketing"
+      "department": "Growth",
+      "criticality": "optional",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "pr-press-launch",
@@ -1988,7 +2147,10 @@
       "blocks_revenue": false,
       "recurring": false,
       "typical_milestone": "launched",
-      "department": "Marketing"
+      "department": "Growth",
+      "criticality": "growth",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "podcast-tour",
@@ -2000,7 +2162,9 @@
           "*"
         ],
         "requires_traits": [],
-        "excluded_traits": []
+        "excluded_traits": [
+          "local_service_only"
+        ]
       },
       "relevance": "optional",
       "selection_hint": "Run when a speaker has 4+ hours a week for 8 weeks and conversion infrastructure exists. A high-trust, zero-media-spend channel; not a branded podcast.",
@@ -2023,7 +2187,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "channels-compounding",
-      "department": "Marketing"
+      "department": "Growth",
+      "criticality": "optional",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "community-seeding",
@@ -2035,7 +2202,9 @@
           "*"
         ],
         "requires_traits": [],
-        "excluded_traits": []
+        "excluded_traits": [
+          "local_service_only"
+        ]
       },
       "relevance": "recommended",
       "selection_hint": "Run from L3 when owned audience is under ~500 and a landing page or demo exists. Value-first participation; never a paid-ads or owned-community play.",
@@ -2060,7 +2229,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "channels-compounding",
-      "department": "Marketing"
+      "department": "Success",
+      "criticality": "growth",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "seo-keyword-research",
@@ -2091,7 +2263,10 @@
       "blocks_revenue": false,
       "recurring": false,
       "typical_milestone": "content-foundation",
-      "department": "Marketing"
+      "department": "Growth",
+      "criticality": "growth",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "content-calendar",
@@ -2128,7 +2303,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "content-engine-live",
-      "department": "Marketing"
+      "department": "Growth",
+      "criticality": "growth",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "pillar-cluster-content",
@@ -2140,7 +2318,9 @@
           "*"
         ],
         "requires_traits": [],
-        "excluded_traits": []
+        "excluded_traits": [
+          "local_service_only"
+        ]
       },
       "relevance": "recommended",
       "selection_hint": "Use to build topical authority on a target domain. Run after keywords exist; produces the linkable long-form assets later channels and link-building depend on.",
@@ -2164,7 +2344,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "topical-authority-built",
-      "department": "Marketing"
+      "department": "Growth",
+      "criticality": "growth",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "long-form-blog-post",
@@ -2176,7 +2359,9 @@
           "*"
         ],
         "requires_traits": [],
-        "excluded_traits": []
+        "excluded_traits": [
+          "local_service_only"
+        ]
       },
       "relevance": "recommended",
       "selection_hint": "The primary organic acquisition unit. Run per keyword cluster once research exists; produces the linkable assets link-building later needs.",
@@ -2200,7 +2385,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "content-engine-live",
-      "department": "Marketing"
+      "department": "Growth",
+      "criticality": "growth",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "programmatic-seo",
@@ -2213,7 +2401,8 @@
         ],
         "requires_traits": [],
         "excluded_traits": [
-          "pre_pmf"
+          "pre_pmf",
+          "local_service_only"
         ]
       },
       "relevance": "conditional",
@@ -2237,7 +2426,10 @@
       "blocks_revenue": false,
       "recurring": false,
       "typical_milestone": "scaled-organic",
-      "department": "Marketing"
+      "department": "Growth",
+      "criticality": "growth",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "technical-seo-audit",
@@ -2249,7 +2441,9 @@
           "*"
         ],
         "requires_traits": [],
-        "excluded_traits": []
+        "excluded_traits": [
+          "local_service_only"
+        ]
       },
       "relevance": "recommended",
       "selection_hint": "Run quarterly, after migrations, after core updates, or on a traffic drop. Keeps the site crawlable and indexable so content and programmatic SEO can rank.",
@@ -2269,7 +2463,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "content-engine-live",
-      "department": "Marketing"
+      "department": "Growth",
+      "criticality": "growth",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "link-building",
@@ -2281,7 +2478,9 @@
           "*"
         ],
         "requires_traits": [],
-        "excluded_traits": []
+        "excluded_traits": [
+          "local_service_only"
+        ]
       },
       "relevance": "recommended",
       "selection_hint": "Run once long-form linkable assets exist and a domain is warmed. Safe earlier, but compounds best post-PMF. Never outreach without a linkable asset to point at.",
@@ -2305,7 +2504,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "scaled-organic",
-      "department": "Operations"
+      "department": "Growth",
+      "criticality": "growth",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "newsletter-growth",
@@ -2337,7 +2539,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "audience-channels-live",
-      "department": "Marketing"
+      "department": "Growth",
+      "criticality": "growth",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "youtube-strategy",
@@ -2349,7 +2554,9 @@
           "*"
         ],
         "requires_traits": [],
-        "excluded_traits": []
+        "excluded_traits": [
+          "local_service_only"
+        ]
       },
       "relevance": "optional",
       "selection_hint": "A compounding video channel where packaging and retention drive distribution. Run continuously if video fits the audience and the team can sustain production.",
@@ -2370,7 +2577,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "audience-channels-live",
-      "department": "Operations"
+      "department": "Growth",
+      "criticality": "optional",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "tiktok-growth",
@@ -2409,7 +2619,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "audience-channels-live",
-      "department": "Marketing"
+      "department": "Growth",
+      "criticality": "optional",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "twitter-x-playbook",
@@ -2421,7 +2634,9 @@
           "*"
         ],
         "requires_traits": [],
-        "excluded_traits": []
+        "excluded_traits": [
+          "local_service_only"
+        ]
       },
       "relevance": "optional",
       "selection_hint": "Real-time audience and reply-surface channel; strong for founder-led and tech audiences. Run continuously where the ICP is active on X.",
@@ -2442,7 +2657,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "audience-channels-live",
-      "department": "Marketing"
+      "department": "Growth",
+      "criticality": "optional",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "linkedin-organic",
@@ -2482,7 +2700,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "audience-channels-live",
-      "department": "Operations"
+      "department": "Growth",
+      "criticality": "optional",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "instagram-growth",
@@ -2521,7 +2742,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "audience-channels-live",
-      "department": "Marketing"
+      "department": "Growth",
+      "criticality": "optional",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "reddit-marketing",
@@ -2533,7 +2757,9 @@
           "*"
         ],
         "requires_traits": [],
-        "excluded_traits": []
+        "excluded_traits": [
+          "local_service_only"
+        ]
       },
       "relevance": "optional",
       "selection_hint": "Community-first channel with evergreen SEO and heavy AI-citation weight. Run continuously where the ICP has active subreddits. Requires a warmed account; never spam.",
@@ -2553,7 +2779,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "audience-channels-live",
-      "department": "Marketing"
+      "department": "Growth",
+      "criticality": "optional",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "google-ads",
@@ -2595,7 +2824,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "paid-channel-live",
-      "department": "Marketing"
+      "department": "Growth",
+      "criticality": "growth",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "meta-ads",
@@ -2638,7 +2870,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "paid-channel-live",
-      "department": "Marketing"
+      "department": "Growth",
+      "criticality": "growth",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "linkedin-ads",
@@ -2684,7 +2919,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "enterprise-pipeline-live",
-      "department": "Marketing"
+      "department": "Growth",
+      "criticality": "optional",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "retargeting",
@@ -2725,7 +2963,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "paid-channel-live",
-      "department": "Marketing"
+      "department": "Growth",
+      "criticality": "growth",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "creative-testing",
@@ -2762,7 +3003,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "creative-engine-live",
-      "department": "Marketing"
+      "department": "Growth",
+      "criticality": "growth",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "landing-page-cro",
@@ -2799,7 +3043,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "conversion-baseline",
-      "department": "Marketing"
+      "department": "Growth",
+      "criticality": "growth",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "affiliate-program-setup",
@@ -2839,7 +3086,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "partner-channel-live",
-      "department": "Marketing"
+      "department": "Growth",
+      "criticality": "optional",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "influencer-partnerships",
@@ -2883,7 +3133,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "partner-channel-live",
-      "department": "Marketing"
+      "department": "Growth",
+      "criticality": "optional",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "integration-co-marketing",
@@ -2921,7 +3174,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "partner-channel-live",
-      "department": "Marketing"
+      "department": "Growth",
+      "criticality": "growth",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "referral-program",
@@ -2958,7 +3214,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "referral-live",
-      "department": "Marketing"
+      "department": "Growth",
+      "criticality": "growth",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "welcome-email-sequence",
@@ -2997,7 +3256,10 @@
       "blocks_revenue": false,
       "recurring": false,
       "typical_milestone": "onboarding-live",
-      "department": "Marketing"
+      "department": "Growth",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "nurture-campaign",
@@ -3036,7 +3298,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "lifecycle-live",
-      "department": "Marketing"
+      "department": "Growth",
+      "criticality": "growth",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "win-back-campaign",
@@ -3076,7 +3341,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "lifecycle-live",
-      "department": "Marketing"
+      "department": "Growth",
+      "criticality": "growth",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "transactional-emails",
@@ -3113,7 +3381,10 @@
       "blocks_revenue": false,
       "recurring": false,
       "typical_milestone": "transactional-email-live",
-      "department": "Marketing"
+      "department": "Product",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "email-deliverability-setup",
@@ -3146,7 +3417,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "email-warmed",
-      "department": "Marketing"
+      "department": "Engineering",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "icp-target-account-listing",
@@ -3191,7 +3465,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "gtm-foundation",
-      "department": "Operations"
+      "department": "Sales",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "outbound-email-sequences",
@@ -3237,7 +3514,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "first-pipeline",
-      "department": "Sales"
+      "department": "Sales",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "discovery-call-framework",
@@ -3283,7 +3563,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "first-pipeline",
-      "department": "Sales"
+      "department": "Sales",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "demo-script",
@@ -3327,7 +3610,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "first-pipeline",
-      "department": "Operations"
+      "department": "Sales",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "objection-handling-library",
@@ -3370,7 +3656,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "first-pipeline",
-      "department": "Operations"
+      "department": "Sales",
+      "criticality": "growth",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "contract-close-playbook",
@@ -3418,7 +3707,10 @@
       "blocks_revenue": true,
       "recurring": true,
       "typical_milestone": "first-revenue",
-      "department": "Sales"
+      "department": "Sales",
+      "criticality": "existential",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "support-workflow",
@@ -3458,7 +3750,12 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "first-customers",
-      "department": "Support"
+      "department": "Success",
+      "criticality": "core",
+      "existential_at": [
+        "revenue"
+      ],
+      "model_fit": []
     },
     {
       "id": "churn-diagnosis-winback",
@@ -3501,7 +3798,15 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "retention",
-      "department": "Support"
+      "department": "Success",
+      "criticality": "core",
+      "existential_at": [
+        "revenue",
+        "scaling"
+      ],
+      "model_fit": [
+        "recurring"
+      ]
     },
     {
       "id": "nps-csat-program",
@@ -3539,7 +3844,12 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "retention",
-      "department": "Support"
+      "department": "Success",
+      "criticality": "growth",
+      "existential_at": [],
+      "model_fit": [
+        "recurring"
+      ]
     },
     {
       "id": "case-study-testimonial-pipeline",
@@ -3579,7 +3889,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "proof-and-evidence",
-      "department": "Sales"
+      "department": "Growth",
+      "criticality": "growth",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "ab-testing-protocol",
@@ -3619,7 +3932,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "launch-executed",
-      "department": "Operations"
+      "department": "Data",
+      "criticality": "growth",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "growth-loop-design",
@@ -3659,7 +3975,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "pmf-confirmed",
-      "department": "Design"
+      "department": "Growth",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "pricing-packaging-experimentation",
@@ -3706,7 +4025,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "pmf-confirmed",
-      "department": "Finance"
+      "department": "Finance",
+      "criticality": "growth",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "financial-model-forecast",
@@ -3745,7 +4067,12 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "round-closed",
-      "department": "Finance"
+      "department": "Finance",
+      "criticality": "core",
+      "existential_at": [
+        "scaling"
+      ],
+      "model_fit": []
     },
     {
       "id": "unit-economics",
@@ -3783,7 +4110,13 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "pmf-confirmed",
-      "department": "Finance"
+      "department": "Finance",
+      "criticality": "core",
+      "existential_at": [
+        "revenue",
+        "scaling"
+      ],
+      "model_fit": []
     },
     {
       "id": "fundraise-deck-investor-outreach",
@@ -3828,7 +4161,10 @@
       "blocks_revenue": false,
       "recurring": false,
       "typical_milestone": "round-closed",
-      "department": "Finance"
+      "department": "Finance",
+      "criticality": "optional",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "human-in-the-loop-approval-gates",
@@ -3859,7 +4195,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "foundations-installed",
-      "department": "Operations"
+      "department": "Operations",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "llm-cost-and-model-routing",
@@ -3894,7 +4233,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "foundations-installed",
-      "department": "Operations"
+      "department": "Engineering",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "marketplace-trust-and-safety",
@@ -3925,7 +4267,12 @@
       "blocks_revenue": true,
       "recurring": false,
       "typical_milestone": "trust-layer-live",
-      "department": "Operations"
+      "department": "Operations",
+      "criticality": "existential",
+      "existential_at": [],
+      "model_fit": [
+        "marketplace"
+      ]
     },
     {
       "id": "marketplace-liquidity-balancing",
@@ -3956,7 +4303,12 @@
       "blocks_revenue": true,
       "recurring": true,
       "typical_milestone": "liquidity-balanced",
-      "department": "Operations"
+      "department": "Operations",
+      "criticality": "existential",
+      "existential_at": [],
+      "model_fit": [
+        "marketplace"
+      ]
     },
     {
       "id": "local-google-business-profile",
@@ -3989,7 +4341,12 @@
       "blocks_revenue": true,
       "recurring": false,
       "typical_milestone": "local-presence-live",
-      "department": "Operations"
+      "department": "Growth",
+      "criticality": "existential",
+      "existential_at": [],
+      "model_fit": [
+        "local"
+      ]
     },
     {
       "id": "local-reviews-reputation",
@@ -4022,7 +4379,15 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "reviews-compounding",
-      "department": "Operations"
+      "department": "Growth",
+      "criticality": "core",
+      "existential_at": [
+        "revenue",
+        "scaling"
+      ],
+      "model_fit": [
+        "local"
+      ]
     },
     {
       "id": "b2b-soc2-readiness",
@@ -4056,7 +4421,10 @@
       "blocks_revenue": true,
       "recurring": false,
       "typical_milestone": "enterprise-security-ready",
-      "department": "Engineering"
+      "department": "Legal",
+      "criticality": "growth",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "app-store-optimization",
@@ -4091,7 +4459,10 @@
       "blocks_revenue": false,
       "recurring": true,
       "typical_milestone": "aso-optimized",
-      "department": "Marketing"
+      "department": "Growth",
+      "criticality": "growth",
+      "existential_at": [],
+      "model_fit": []
     },
     {
       "id": "pre-seed-fundraise",
@@ -4124,7 +4495,215 @@
       "blocks_revenue": false,
       "recurring": false,
       "typical_milestone": "preseed-ready",
-      "department": "Finance"
+      "department": "Finance",
+      "criticality": "growth",
+      "existential_at": [],
+      "model_fit": []
+    },
+    {
+      "id": "supplier-sourcing-and-cogs",
+      "title": "Supplier Sourcing & COGS",
+      "level": 2,
+      "file": "playbooks/level-2/108-supplier-sourcing-and-cogs.md",
+      "applies_to": {
+        "types": [
+          "ecommerce",
+          "hardware"
+        ],
+        "requires_traits": [],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "The first physical-goods gate. No price, packaging, or unit-economics number is trustworthy until landed COGS per SKU is modeled from real supplier quotes.",
+      "depends_on": [],
+      "soft_after": [],
+      "produces": [
+        "cogs_model",
+        "supplier_list"
+      ],
+      "consumes": [],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "medium",
+      "human_gate": false,
+      "blocks_revenue": true,
+      "recurring": false,
+      "typical_milestone": "cogs-modeled",
+      "department": "Finance",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": [
+        "physical_goods"
+      ]
+    },
+    {
+      "id": "inventory-and-fulfillment-setup",
+      "title": "Inventory & Fulfillment Setup",
+      "level": 3,
+      "file": "playbooks/level-3/109-inventory-and-fulfillment-setup.md",
+      "applies_to": {
+        "types": [
+          "ecommerce",
+          "hardware"
+        ],
+        "requires_traits": [],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "Run once suppliers and landed COGS exist. Operational backbone for delivering physical product; reorder points and SLAs prevent both stockouts and dead capital.",
+      "depends_on": [
+        "supplier-sourcing-and-cogs"
+      ],
+      "soft_after": [],
+      "produces": [
+        "fulfillment_ops",
+        "inventory_policy"
+      ],
+      "consumes": [
+        "supplier_list"
+      ],
+      "effort": "L",
+      "leverage": "high",
+      "reversibility": "medium",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "fulfillment-ready",
+      "department": "Operations",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": [
+        "physical_goods"
+      ]
+    },
+    {
+      "id": "shipping-returns-policy",
+      "title": "Shipping & Returns Policy",
+      "level": 3,
+      "file": "playbooks/level-3/110-shipping-returns-policy.md",
+      "applies_to": {
+        "types": [
+          "ecommerce",
+          "hardware"
+        ],
+        "requires_traits": [],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "Run once fulfillment can quote real shipping costs and lead times. The customer-facing promise on delivery and returns; it sets expectations and protects margin.",
+      "depends_on": [
+        "inventory-and-fulfillment-setup"
+      ],
+      "soft_after": [],
+      "produces": [
+        "shipping_policy",
+        "returns_policy"
+      ],
+      "consumes": [
+        "fulfillment_ops"
+      ],
+      "effort": "M",
+      "leverage": "med",
+      "reversibility": "medium",
+      "human_gate": true,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "shipping-returns-set",
+      "department": "Operations",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": [
+        "physical_goods"
+      ]
+    },
+    {
+      "id": "repeat-purchase-and-aov",
+      "title": "Repeat Purchase & AOV",
+      "level": 5,
+      "file": "playbooks/level-5/111-repeat-purchase-and-aov.md",
+      "applies_to": {
+        "types": [
+          "ecommerce",
+          "hardware"
+        ],
+        "requires_traits": [],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "The physical-goods retention loop. Run once orders and events are instrumented; repeat rate and AOV expansion decide whether paid acquisition is ever profitable.",
+      "depends_on": [],
+      "soft_after": [
+        "cohort-retention-analysis"
+      ],
+      "produces": [
+        "repeat_purchase_analysis"
+      ],
+      "consumes": [
+        "analytics_stack",
+        "event_taxonomy"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "repeat-purchase-baselined",
+      "department": "Data",
+      "criticality": "core",
+      "existential_at": [
+        "revenue",
+        "scaling"
+      ],
+      "model_fit": [
+        "transactional",
+        "physical_goods"
+      ]
+    },
+    {
+      "id": "merchandising-and-catalog",
+      "title": "Merchandising & Catalog",
+      "level": 3,
+      "file": "playbooks/level-3/112-merchandising-and-catalog.md",
+      "applies_to": {
+        "types": [
+          "ecommerce",
+          "hardware"
+        ],
+        "requires_traits": [],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "conditional",
+      "selection_hint": "Situational. Reach for it once enough SKUs exist that structure, bundling, and collection strategy change discovery and AOV; skip for a single-product catalog.",
+      "depends_on": [],
+      "soft_after": [],
+      "produces": [
+        "merchandising_plan"
+      ],
+      "consumes": [],
+      "effort": "M",
+      "leverage": "med",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "merchandising-planned",
+      "department": "Product",
+      "criticality": "optional",
+      "existential_at": [],
+      "model_fit": [
+        "physical_goods"
+      ]
     }
   ]
 }

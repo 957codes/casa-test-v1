@@ -14,6 +14,8 @@ applies_to:
   excluded_traits:
     - b2c
 relevance: conditional
+department: Growth
+criticality: optional
 selection_hint: B2B channel. Founder-led authority content into a high-intent professional audience; feeds the dark funnel. Skip for pure B2C. Gates LinkedIn Ads (070) later.
 depends_on: []
 soft_after:

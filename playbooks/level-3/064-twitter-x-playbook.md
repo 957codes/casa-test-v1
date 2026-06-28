@@ -7,8 +7,11 @@ applies_to:
   types:
     - "*"
   requires_traits: []
-  excluded_traits: []
+  excluded_traits:
+    - local_service_only
 relevance: optional
+department: Growth
+criticality: optional
 selection_hint: Real-time audience and reply-surface channel; strong for founder-led and tech audiences. Run continuously where the ICP is active on X.
 depends_on: []
 soft_after:

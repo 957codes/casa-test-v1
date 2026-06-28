@@ -10,6 +10,8 @@ applies_to:
     - builds_software
   excluded_traits: []
 relevance: core
+department: Product
+criticality: core
 selection_hint: Defines the smallest buildable product after the thesis survives red-teaming. Gates tech stack, positioning, and PRD.
 depends_on:
   - red-team-thesis

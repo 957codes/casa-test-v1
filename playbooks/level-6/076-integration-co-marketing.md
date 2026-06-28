@@ -12,6 +12,8 @@ applies_to:
     - b2b
   excluded_traits: []
 relevance: recommended
+department: Growth
+criticality: growth
 selection_hint: Run once you have 50+ closed-won accounts, engineering bandwidth, and CRM partner fields. Ecosystem-led growth compounds where paid cannot; B2B SaaS oriented.
 depends_on: []
 soft_after:

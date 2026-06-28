@@ -10,6 +10,8 @@ applies_to:
     - takes_payments
   excluded_traits: []
 relevance: recommended
+department: Growth
+criticality: growth
 selection_hint: Run post-PMF once analytics, event taxonomy, and attribution exist. Demand capture for categories where buyers already search; needs conversion data to optimize.
 depends_on:
   - analytics-stack-setup

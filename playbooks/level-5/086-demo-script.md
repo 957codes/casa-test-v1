@@ -16,6 +16,8 @@ applies_to:
     - b2c
     - self_serve_only
 relevance: core
+department: Sales
+criticality: core
 selection_hint: The persuasion event after discovery qualifies a B2B deal. Fires only when discovery is complete and a sandbox is ready. Skip for pure B2C or self-serve with no live demo.
 depends_on:
   - discovery-call-framework

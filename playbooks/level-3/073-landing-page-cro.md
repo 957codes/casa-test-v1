@@ -10,6 +10,8 @@ applies_to:
     - has_landing_page
   excluded_traits: []
 relevance: recommended
+department: Growth
+criticality: growth
 selection_hint: "Run on a live page with traffic or qualitative signal. The pre-flight gate for paid: scaling spend onto an unoptimized page wastes budget."
 depends_on: []
 soft_after:

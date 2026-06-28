@@ -16,6 +16,8 @@ applies_to:
     - has_user_accounts
   excluded_traits: []
 relevance: core
+department: Product
+criticality: core
 selection_hint: PMF-validation and relationship-building, not QA. Run once the core workflow is functional and instrumented, ahead of public launch.
 depends_on:
   - onboarding-flow-design

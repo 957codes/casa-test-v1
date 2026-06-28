@@ -9,6 +9,8 @@ applies_to:
   requires_traits: []
   excluded_traits: []
 relevance: recommended
+department: Growth
+criticality: growth
 selection_hint: Run for any public announcement with a real narrative. Owned media leads; earned media amplifies. Hold wire distribution until Series A.
 depends_on: []
 soft_after:

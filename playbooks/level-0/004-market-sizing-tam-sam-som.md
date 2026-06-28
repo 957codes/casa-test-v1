@@ -9,6 +9,8 @@ applies_to:
   requires_traits: []
   excluded_traits: []
 relevance: core
+department: Strategy
+criticality: core
 selection_hint: Run for every business to confirm the opportunity is large enough to justify the build. Kill if SOM is below threshold.
 depends_on: []
 soft_after:

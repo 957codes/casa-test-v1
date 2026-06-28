@@ -29,13 +29,31 @@ consumes: ["confirmed_business_idea"]
 
 # RECOMMENDER  (scoring and gates)
 effort: M                         # S | M | L | XL
-leverage: high                    # low | med | high | critical
+leverage: high                    # low | med | high | critical  (upside magnitude WHEN done)
 reversibility: hard               # easy | medium | hard
 human_gate: true                  # requires explicit founder approval to execute
 blocks_revenue: true              # money cannot legally or operationally flow until done
 recurring: false                  # true = a loop (scheduled cadence), not a one-time checkbox
 typical_milestone: company-exists # CPM milestone anchor for slack
+
+# ORG + FITNESS  (department is REQUIRED; the rest tune the model-aware fitness score)
+department: Legal                 # REQUIRED. one of: Strategy Brand Product Engineering Data
+                                  #   Growth Sales Finance Legal Success Operations
+criticality: existential          # existential | core | growth | optional  (survival CONSEQUENCE
+                                  #   of NOT doing it at its stage; default growth). Distinct from
+                                  #   leverage. Drives CRIT_W in the score.
+existential_at: [revenue]         # optional stage list; promotes this play to existential within
+                                  #   those stages only (idea|landing|building|launched|revenue|scaling)
+model_fit: [recurring]            # optional. recurring|transactional|self_serve|sales_led|
+                                  #   marketplace|physical_goods|local. Empty = model-agnostic.
+                                  #   A match tilts the score up for that business model.
 ```
+
+The fitness score (scripts/router.mjs) is `leverage * urgency(slack) * stageFit * fitFactor *
+revenue / effort * pulseWeight`, where `stageFit` discounts work far below the company's level
+and `fitFactor = clamp(CRIT_W[effective criticality] * modelFit, [0.7, 1.8])`. The north star
+(scripts/northstar.mjs) is DERIVED from the profile (not a playbook field) for display and to
+seed the initial pulse. See docs/DEEP-ENGINE-PLAN.md.
 
 ## Worked example: a Level 0 playbook
 

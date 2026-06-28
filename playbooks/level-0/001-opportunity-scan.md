@@ -9,6 +9,8 @@ applies_to:
   requires_traits: []
   excluded_traits: []
 relevance: core
+department: Strategy
+criticality: core
 selection_hint: First step of validation. Surfaces and scores real evidence of demand. Run for every business.
 depends_on: []
 soft_after: []

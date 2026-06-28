@@ -15,6 +15,8 @@ applies_to:
     - builds_software
   excluded_traits: []
 relevance: recommended
+department: Product
+criticality: growth
 selection_hint: Behavioral testing of whether users can accomplish goals. Run on a stable prototype or staging build, repeatedly through build. Not for attitudinal questions.
 depends_on: []
 soft_after:

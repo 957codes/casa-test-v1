@@ -9,6 +9,9 @@ applies_to:
   requires_traits: []
   excluded_traits: []
 relevance: core
+department: Operations
+criticality: existential
+model_fit: [marketplace]
 selection_hint: Run once the marketplace has live transactions and a measurable match rate. The single most important marketplace growth lever; balance the short side before spending on the long side.
 depends_on: []
 soft_after:

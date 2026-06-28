@@ -10,6 +10,8 @@ applies_to:
   excluded_traits:
     - pre_idea_only
 relevance: core
+department: Engineering
+criticality: core
 selection_hint: The sensory apparatus of the business. Every downstream metric, funnel, cohort, and dashboard depends on it. Set up in week one to avoid an 18-month rebuild.
 depends_on: []
 soft_after:

@@ -10,6 +10,8 @@ applies_to:
   excluded_traits:
     - pre_idea_only
 relevance: core
+department: Data
+criticality: core
 selection_hint: Build once the NSM is defined and data sources are connected. Gives the founder one health screen that alerts on exception rather than being checked.
 depends_on:
   - analytics-stack-setup

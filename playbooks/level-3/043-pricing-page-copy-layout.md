@@ -11,6 +11,8 @@ applies_to:
     - has_website
   excluded_traits: []
 relevance: core
+department: Growth
+criticality: core
 selection_hint: Run once positioning and tiers are locked, never before, or the page gets rewritten around placeholder prices. The highest-intent page on the site.
 depends_on:
   - pricing-research

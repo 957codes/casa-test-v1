@@ -11,6 +11,9 @@ applies_to:
   excluded_traits:
     - pre_idea_only
 relevance: core
+department: Finance
+criticality: core
+existential_at: [revenue, scaling]
 selection_hint: Baseline at L5 once customer-level billing and channel spend exist. The single answer to "do we make money on one customer?" Feeds the model and the raise.
 depends_on: []
 soft_after:

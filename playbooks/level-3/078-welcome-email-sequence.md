@@ -10,6 +10,8 @@ applies_to:
     - sends_email
   excluded_traits: []
 relevance: core
+department: Growth
+criticality: core
 selection_hint: Highest-leverage lifecycle asset. Run once deliverability is warmed and the aha event is instrumented; it escorts new users to activation.
 depends_on:
   - email-deliverability-setup

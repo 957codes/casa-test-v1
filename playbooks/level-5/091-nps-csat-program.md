@@ -11,6 +11,9 @@ applies_to:
   excluded_traits:
     - pre_launch_only
 relevance: recommended
+department: Success
+criticality: growth
+model_fit: [recurring]
 selection_hint: Install once there are active customers and a survey channel. Applies to any business, B2B or B2C. Operate on a fixed cadence; promoters feed the case-study pipeline.
 depends_on: []
 soft_after:

@@ -10,6 +10,8 @@ applies_to:
   excluded_traits:
     - pre_idea_only
 relevance: core
+department: Data
+criticality: core
 selection_hint: Run right after the analytics stack lands. A disciplined taxonomy is what makes funnels, cohorts, and reads trustworthy; without it tracking drifts into chaos.
 depends_on:
   - analytics-stack-setup

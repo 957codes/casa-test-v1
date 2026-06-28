@@ -167,7 +167,7 @@ function readinessCtx(playbooks, members, completedSet, flags, currentLevel) {
 function ready(pb, ctx) {
   if (ctx.completedSet.has(pb.id)) return false;
   // A founder actively running paid can reach the paid-acquisition playbooks one level early.
-  const lift = ctx.flags.has("runs_paid_media") && pb.department === "Marketing" ? 1 : 0;
+  const lift = ctx.flags.has("runs_paid_media") && pb.department === "Growth" ? 1 : 0;
   if (levelKey(pb.level) > ctx.currentLevel + lift) return false;
   // A dependency must be completed, unless it is a recurring loop the company has already
   // reached (which is running). A dependency that is not a member of this build does not block.
@@ -200,20 +200,87 @@ function priorityWeight(pb, w) {
   return w.default ?? 1;
 }
 
+// Stage ladder, duplicated from stage.mjs to avoid a router<-stage import cycle (a test
+// asserts the two stay in sync). stageOf maps a company level back to its stage tier, which
+// is what existential_at and stageFit are expressed in.
+const TIER_START_DESC = [["scaling", 6], ["revenue", 5], ["launched", 4], ["building", 2], ["landing", 1], ["idea", 0]];
+function stageOf(level) {
+  const k = levelKey(level);
+  for (const [tier, start] of TIER_START_DESC) if (k >= start) return tier;
+  return "idea";
+}
+
+// The business-model membership of a profile, used to tilt the score toward model-central
+// work (a recurring business toward retention, a marketplace toward liquidity). Pure derive
+// from static traits + type, so no new profile field is needed.
+function modelSet(profile) {
+  const t = new Set(arr(profile.traits));
+  const type = profile.primary_type || "";
+  const m = new Set();
+  if (t.has("recurring_revenue")) m.add("recurring");
+  if (t.has("takes_payments") && !t.has("recurring_revenue")) m.add("transactional");
+  if (t.has("self_serve_only")) m.add("self_serve");
+  if (t.has("high_acv") || (t.has("b2b") && !t.has("self_serve_only"))) m.add("sales_led");
+  if (type === "marketplace") m.add("marketplace");
+  if (type === "ecommerce" || type === "hardware") m.add("physical_goods");
+  if (t.has("local_service_only")) m.add("local");
+  return m;
+}
+
 // Slack at or above this gets the full low-urgency discount; below it, urgency ramps up.
 const SLACK_SPAN = 10;
-function score(pb, slack, flags, weights) {
+// Criticality multiplier (do-or-die consequence of NOT doing it at its stage). Default
+// "growth" (1.0) so an untagged play is neutral and the rollout is incremental.
+const CRIT_W = { existential: 1.5, core: 1.15, growth: 1.0, optional: 0.85 };
+const FIT_FLOOR = 0.7, FIT_CAP = 1.8, MODELFIT_HIT = 1.25, MODELFIT_MISS = 0.85;
+
+// A pure DISCOUNT (max 1.0): demotes work far below the current frontier so a stale low-level
+// loop cannot headline a company several stages past it. This is the load-bearing fix for the
+// "incident-response outranks unit-economics" band defect.
+function stageFit(level, currentLevel) {
+  if (level === "always-on") return 1;
+  const d = currentLevel - levelKey(level);
+  if (d <= 1) return 1;
+  if (d === 2) return 0.85;
+  if (d === 3) return 0.7;
+  return 0.55;
+}
+// Model fit: empty model_fit is model-agnostic (neutral); otherwise a hit boosts and a miss
+// gently demotes. This is what makes the DEFAULT (no-pulse) ranking business-model-aware.
+function modelFitW(pb, models) {
+  const mf = arr(pb.model_fit);
+  if (mf.length === 0) return 1;
+  return mf.some((x) => models.has(x)) ? MODELFIT_HIT : MODELFIT_MISS;
+}
+// criticality, promoted to existential within the stages listed in existential_at.
+function effectiveCriticality(pb, stage) {
+  const b = pb.criticality || "growth";
+  if (b === "existential") return "existential";
+  if (arr(pb.existential_at).includes(stage)) return "existential";
+  return b;
+}
+// The ONE bounded model-awareness tilt: criticality x model_fit, clamped to [0.7, 1.8] so it
+// can reorder within reason but never runs away. stageFit is a separate one-directional
+// discount; there are not three stacked multipliers.
+function fitFactor(pb, stage, models) {
+  const cw = CRIT_W[effectiveCriticality(pb, stage)] ?? 1;
+  return Math.min(FIT_CAP, Math.max(FIT_FLOOR, cw * modelFitW(pb, models)));
+}
+
+// The unified fitness score. fit = { currentLevel, stage, models } is OPTIONAL: when absent
+// the result is byte-identical to the pre-fit score (every existing score unit test passes).
+function score(pb, slack, flags, weights, fit) {
   const lev = LEVERAGE_W[pb.leverage] || 2;
   const eff = EFFORT_W[pb.effort] || 1.3;
   const rev = pb.blocks_revenue && !flags.has("has_revenue") ? 1.5 : 1;
   // Urgency from critical-path slack, but a GENTLE band so leverage leads. A zero-slack
-  // bottleneck gets ~1.3x, a very slack item ~0.7x. The old 1/(slack+1) was so steep that a
-  // low-slack infra loop (incident-response) buried a critical revenue play (north-star,
-  // unit-economics) and the pulse could not overcome the gap. Leverage and the founder's
-  // pulse now drive the ranking; slack only breaks ties and nudges true bottlenecks up.
+  // bottleneck gets ~1.3x, a very slack item ~0.7x. (The old 1/(slack+1) was so steep that a
+  // low-slack infra loop buried a critical revenue play and the pulse could not overcome it.)
   const urgency = 1.3 - 0.6 * Math.min(Math.max(slack, 0) / SLACK_SPAN, 1);
+  const sf = fit ? stageFit(pb.level, fit.currentLevel) : 1;
+  const ff = fit ? fitFactor(pb, fit.stage, fit.models) : 1;
   const pw = priorityWeight(pb, weights);
-  return Math.round((lev * urgency * rev / eff * pw) * 1000) / 1000;
+  return Math.round((lev * urgency * sf * ff * rev / eff * pw) * 1000) / 1000;
 }
 
 function buildMap(playbooks, profile, { completed = [], level = 0 } = {}) {
@@ -222,6 +289,7 @@ function buildMap(playbooks, profile, { completed = [], level = 0 } = {}) {
   const completedSet = new Set(completed);
   const flags = achievedFlags(profile, completed, level);
   const ctx = readinessCtx(playbooks, members, completedSet, flags, level);
+  const stage = stageOf(level);
   const byLevel = new Map();
   for (const pb of members) {
     const k = pb.level;
@@ -232,6 +300,8 @@ function buildMap(playbooks, profile, { completed = [], level = 0 } = {}) {
       on_critical_path: slack.get(pb.id) === 0, leverage: pb.leverage, effort: pb.effort,
       human_gate: pb.human_gate, blocks_revenue: pb.blocks_revenue, recurring: pb.recurring,
       department: pb.department || null, depends_on: pb.depends_on,
+      criticality: effectiveCriticality(pb, stage), model_fit: arr(pb.model_fit),
+      stale: stageFit(pb.level, level) < 1,
     });
   }
   const levels = [...byLevel.keys()].sort((a, b) => levelKey(a) - levelKey(b)).map((k) => ({
@@ -247,12 +317,14 @@ function nextActions(playbooks, profile, { completed = [], level = 0, weights = 
   const completedSet = new Set(completed);
   const flags = achievedFlags(profile, completed, level);
   const ctx = readinessCtx(playbooks, members, completedSet, flags, level);
+  const fit = { currentLevel: level, stage: stageOf(level), models: modelSet(profile) };
   const scored = members
     .filter((pb) => ready(pb, ctx))
     .map((pb) => ({ id: pb.id, title: pb.title, level: pb.level, department: pb.department || null,
-      score: score(pb, slack.get(pb.id), flags, weights),
+      score: score(pb, slack.get(pb.id), flags, weights, fit),
+      effective_criticality: effectiveCriticality(pb, fit.stage),
       human_gate: pb.human_gate, blocks_revenue: pb.blocks_revenue, leverage: pb.leverage, effort: pb.effort }))
-    .sort((a, b) => b.score - a.score || levelKey(a.level) - levelKey(b.level));
+    .sort((a, b) => b.score - a.score || levelKey(a.level) - levelKey(b.level) || (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
   return scored;
 }
 
@@ -322,4 +394,4 @@ function main() {
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) main();
-export { select, sequence, score, buildMap, nextActions, STATE_FLAGS };
+export { select, sequence, score, buildMap, nextActions, STATE_FLAGS, stageOf, modelSet, effectiveCriticality };

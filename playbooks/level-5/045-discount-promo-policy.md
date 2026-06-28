@@ -10,6 +10,8 @@ applies_to:
     - takes_payments
   excluded_traits: []
 relevance: recommended
+department: Finance
+criticality: growth
 selection_hint: Install once a list price and gross margin exist, before the sales motion starts giving discounts. A standing guardrail, not a one-off campaign.
 depends_on:
   - pricing-research

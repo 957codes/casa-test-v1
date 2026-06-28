@@ -19,6 +19,7 @@ import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { select, STATE_FLAGS } from "./router.mjs";
+import { matureNorthStar } from "./northstar.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const repo = dirname(here);
@@ -109,6 +110,8 @@ export function deriveStage(answers, playbooks) {
     monetization: answers.monetization || "",
     one_liner: answers.one_liner || "",
   };
+  // The mature north star this business steers by (display + initial-pulse seeding only).
+  profile.north_star = matureNorthStar(profile);
 
   const gaps = new Set(answers.gaps || []);
   const { members } = select(playbooks, profile);
@@ -131,6 +134,45 @@ export function deriveStage(answers, playbooks) {
     .map((m) => m.id);
 
   return { profile, start_level, completed_seed, gaps_not_applicable };
+}
+
+// The INITIAL pulse, derived from the Core-pass intake answers, so the very first build map
+// is business-aware (a retention-focused founder sees retention work lead) before any manual
+// pulse cascade. Pure and table-driven; byDepartment keys use the 11-department vocabulary so
+// the weights actually bite. With no archetype/constraint it returns a neutral pulse.
+const NS_DEPT = {
+  activation: { Product: 1.6, Data: 1.3, Growth: 1.1 },
+  engagement_retention: { Success: 1.7, Data: 1.5, Product: 1.2 },
+  revenue_mrr: { Finance: 1.5, Growth: 1.3, Success: 1.3 },
+  acquisition_growth: { Growth: 1.7, Data: 1.2 },
+  conversion: { Growth: 1.5, Product: 1.4, Data: 1.3 },
+  gmv_liquidity: { Growth: 1.5, Operations: 1.3, Data: 1.3 },
+  efficiency_unit_econ: { Finance: 1.7, Data: 1.4 },
+  local_reputation: { Growth: 1.5, Success: 1.4 },
+};
+const CONSTRAINT_DELTA = {
+  no_users: { Growth: 0.3, Strategy: 0.3 },
+  no_revenue: { Finance: 0.3, Sales: 0.2, Growth: 0.2 },
+  runway_burn: { Finance: 0.4 },
+  regulatory_legal: { Legal: 0.6 },
+  tech_scale: { Engineering: 0.5 },
+  hiring_capacity: { Operations: 0.4 },
+};
+const clamp = (x, lo, hi) => Math.min(hi, Math.max(lo, x));
+
+export function deriveInitialPulse(answers, playbooks) {
+  const byDepartment = {};
+  const nsa = answers.north_star_archetype;
+  if (nsa && NS_DEPT[nsa]) for (const [d, w] of Object.entries(NS_DEPT[nsa])) byDepartment[d] = w;
+  const con = answers.constraint_archetype;
+  if (con && CONSTRAINT_DELTA[con]) for (const [d, delta] of Object.entries(CONSTRAINT_DELTA[con])) byDepartment[d] = (byDepartment[d] ?? 1) + delta;
+  for (const d of Object.keys(byDepartment)) byDepartment[d] = clamp(byDepartment[d], 0.25, 2.0);
+  const ids = new Set(playbooks.map((p) => p.id));
+  const demote_ids = (answers.anti_priorities || []).filter((ap) => ids.has(ap));
+  const weights = { default: 1 };
+  if (Object.keys(byDepartment).length) weights.byDepartment = byDepartment;
+  if (demote_ids.length) weights.demote_ids = demote_ids;
+  return { weights, north_star_archetype: nsa || null, constraint: con || null, win: answers.win_definition || "" };
 }
 
 // ---- CLI ----
@@ -157,6 +199,9 @@ function main() {
     const prev = existsSync(statePath) ? JSON.parse(readFileSync(statePath, "utf8")) || {} : {};
     const state = { ...prev, completed: result.completed_seed, start_level: result.start_level };
     writeFileSync(statePath, JSON.stringify(state, null, 2));
+    // Seed the initial business-aware pulse, but never clobber a richer hand-authored one.
+    const pulsePath = join(brainDir, "pulse.json");
+    if (!existsSync(pulsePath)) writeFileSync(pulsePath, JSON.stringify(deriveInitialPulse(answers, playbooks), null, 2));
     console.log(
       `seeded ${brainDir}: tier ${answers.tier}, start level ${result.start_level}, ` +
         `${result.completed_seed.length} playbooks pre-completed. Run brain.mjs sync next.`,

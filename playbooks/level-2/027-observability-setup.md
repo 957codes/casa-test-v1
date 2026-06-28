@@ -12,6 +12,8 @@ applies_to:
   excluded_traits:
     - pre_idea_only
 relevance: core
+department: Engineering
+criticality: core
 selection_hint: Run once a deployed app exists. It is the sensory layer that arms incident response and tells you why something broke, not just that it broke.
 depends_on:
   - hosting-deployment-setup

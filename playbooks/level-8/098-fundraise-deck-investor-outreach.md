@@ -13,6 +13,8 @@ applies_to:
     - pre_idea_only
     - bootstrapped_only
 relevance: conditional
+department: Finance
+criticality: optional
 selection_hint: Only when raising. Needs PMF or a real milestone, a defensible model, and case studies. Skip entirely if staying unfunded.
 depends_on:
   - financial-model-forecast

@@ -10,6 +10,8 @@ applies_to:
   excluded_traits:
     - pre_idea_only
 relevance: core
+department: Operations
+criticality: core
 selection_hint: Install once data flows and metrics have owners, then it runs always-on every week. The primary mechanism against operational drift. Never cancelled.
 depends_on:
   - analytics-stack-setup

@@ -7,8 +7,11 @@ applies_to:
   types:
     - "*"
   requires_traits: []
-  excluded_traits: []
+  excluded_traits:
+    - local_service_only
 relevance: optional
+department: Growth
+criticality: optional
 selection_hint: Run when a speaker has 4+ hours a week for 8 weeks and conversion infrastructure exists. A high-trust, zero-media-spend channel; not a branded podcast.
 depends_on: []
 soft_after:

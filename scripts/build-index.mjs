@@ -18,32 +18,51 @@ const ALLOWED = {
   effort: ["S", "M", "L", "XL"],
   leverage: ["low", "med", "high", "critical"],
   reversibility: ["easy", "medium", "hard"],
+  department: ["Strategy", "Brand", "Product", "Engineering", "Data", "Growth", "Sales", "Finance", "Legal", "Success", "Operations"],
+  criticality: ["existential", "core", "growth", "optional"],
 };
+const STAGES = ["idea", "landing", "building", "launched", "revenue", "scaling"];
+const MODEL_FIT = ["recurring", "transactional", "self_serve", "sales_led", "marketplace", "physical_goods", "local"];
 const REQUIRED = [
   "id", "title", "level", "summary", "applies_to", "relevance",
   "selection_hint", "depends_on", "soft_after", "produces", "consumes",
   "effort", "leverage", "reversibility", "human_gate", "blocks_revenue",
-  "recurring", "typical_milestone",
+  "recurring", "typical_milestone", "department", "criticality",
 ];
 
-// Derive a department for each playbook (the org area it belongs to). Used by the
-// pulse priority weights and the Console node graph. A `department` field in the
-// frontmatter overrides this heuristic.
+// Fallback department heuristic over the 11-department vocabulary. A hand-authored
+// `department` field in the frontmatter overrides this (departments are authored, this is
+// only a safety net for an untagged new playbook). north-star/funnel/cohort/event-taxonomy
+// (metric READING) are Data; analytics/infra BUILD work is Engineering.
 const DEPARTMENT_RULES = [
+  [/(north-star|funnel|cohort|event-taxonomy|dashboard|experimentation|metric|attribution-model)/, "Data"],
   [/(brand|naming|positioning|category|visual-identity|tone|messaging|logo)/, "Brand"],
-  [/(entity|incorporat|tos|privacy|trademark|legal|founding-docs|compliance|terms-of)/, "Legal"],
-  [/(pricing|unit-econ|financ|fundrais|forecast|packaging|burn|runway|revenue-model|cohort|\bltv\b|\bcac\b)/, "Finance"],
-  [/(onboarding|usability|prd|feature-prioritization|product-spec|wireframe|\bux\b|design|prototype)/, "Design"],
-  [/(sales|discovery|contract|deal|pipeline|enterprise|outbound|quota|account-exec)/, "Sales"],
-  [/(support|nps|csat|churn|customer-success|helpdesk|winback|ticketing)/, "Support"],
-  [/(seo|ads|content|referral|affiliate|influencer|launch|product-hunt|newsletter|email|social|retarget|discount|promo|campaign|nurture|creative|blog|press|waitlist|community|funnel|conversion|\bcro\b|attribution|paid|webinar|podcast|partnership|distribution|growth|marketing)/, "Marketing"],
-  [/(hosting|repo|stack|security|observability|analytics|deploy|tech-stack|infra|database|event-taxonomy|\bapi\b|ci-cd|monitoring|incident|backup|scaling)/, "Engineering"],
-  [/(opportunity|problem-validation|market-sizing|jtbd|red-team|why-now|mvp|interview|research|hiring|process)/, "Operations"],
+  [/(entity|incorporat|tos|privacy|trademark|legal|founding-docs|compliance|terms-of|soc2)/, "Legal"],
+  [/(pricing|unit-econ|financ|fundrais|forecast|packaging|burn|runway|revenue-model|cogs|supplier-sourcing|\bltv\b|\bcac\b)/, "Finance"],
+  [/(onboarding|usability|prd|feature-prioritization|product-spec|wireframe|\bux\b|design|prototype|merchandising)/, "Product"],
+  [/(sales|discovery|contract|deal|pipeline|enterprise|outbound|quota|account-exec|demo-script|objection|icp-target)/, "Sales"],
+  [/(support|nps|csat|churn|customer-success|helpdesk|winback|ticketing|community)/, "Success"],
+  [/(seo|ads|content|referral|affiliate|influencer|launch|product-hunt|newsletter|email|social|retarget|discount|promo|campaign|nurture|creative|blog|press|waitlist|conversion|\bcro\b|paid|webinar|podcast|partnership|distribution|growth|marketing)/, "Growth"],
+  [/(hosting|repo|stack|security|observability|analytics|deploy|tech-stack|infra|database|\bapi\b|ci-cd|monitoring|incident|backup)/, "Engineering"],
+  [/(opportunity|problem-validation|market-sizing|jtbd|red-team|why-now|thesis|beachhead|competitive)/, "Strategy"],
+  [/(mvp|interview|research|hiring|process|inventory|fulfillment|shipping|returns|operations)/, "Operations"],
 ];
 function deriveDepartment(id, title) {
   const s = `${id} ${title}`.toLowerCase();
   for (const [re, dept] of DEPARTMENT_RULES) if (re.test(s)) return dept;
   return "Operations";
+}
+
+// Deterministic criticality SEED (the survival consequence of skipping the play at its
+// stage). A hand-authored `criticality` overrides this; the seed is the floor + a drift
+// guard. Order matters: existential is the strongest claim.
+const CRIT_ORDER = { existential: 3, core: 2, growth: 1, optional: 0 };
+function deriveCriticality(fm) {
+  const lev = fm.leverage, rel = fm.relevance;
+  if (fm.blocks_revenue && rel === "core" && (lev === "critical" || lev === "high")) return "existential";
+  if (rel === "core") return "core";
+  if (rel === "optional" || rel === "conditional") return "optional";
+  return "growth";
 }
 
 function walk(dir) {
@@ -93,10 +112,20 @@ for (const file of files) {
   if (fm.id && idToFile.has(fm.id)) errors.push(`duplicate id "${fm.id}" in ${rel} and ${idToFile.get(fm.id)}`);
   if (fm.id) idToFile.set(fm.id, rel);
 
-  for (const k of ["relevance", "effort", "leverage", "reversibility"]) {
+  for (const k of ["relevance", "effort", "leverage", "reversibility", "department", "criticality"]) {
     if (fm[k] != null && !ALLOWED[k].includes(fm[k])) errors.push(`${rel}: ${k}="${fm[k]}" not in ${ALLOWED[k].join("|")}`);
   }
+  for (const s of arr(fm.existential_at)) if (!STAGES.includes(s)) errors.push(`${rel}: existential_at "${s}" not a stage (${STAGES.join("|")})`);
+  for (const mf of arr(fm.model_fit)) if (!MODEL_FIT.includes(mf)) errors.push(`${rel}: model_fit "${mf}" not in ${MODEL_FIT.join("|")}`);
   if (fm.selection_hint == null || String(fm.selection_hint).trim() === "") errors.push(`${rel}: selection_hint is required`);
+
+  // Criticality: authored value wins; otherwise the deterministic seed. WARN (non-failing)
+  // if the author drifts more than one band from the seed, as a catalog-quality guard.
+  const critSeed = deriveCriticality(fm);
+  const criticality = fm.criticality || critSeed;
+  if (fm.criticality && Math.abs(CRIT_ORDER[fm.criticality] - CRIT_ORDER[critSeed]) > 1) {
+    warnings.push(`${rel}: criticality "${fm.criticality}" diverges >1 band from seed "${critSeed}"`);
+  }
 
   for (const a of arr(fm.produces)) {
     if (!producedBy.has(a)) producedBy.set(a, []);
@@ -115,6 +144,7 @@ for (const file of files) {
     human_gate: !!fm.human_gate, blocks_revenue: !!fm.blocks_revenue,
     recurring: !!fm.recurring, typical_milestone: fm.typical_milestone,
     department: fm.department || deriveDepartment(fm.id, fm.title || ""),
+    criticality, existential_at: arr(fm.existential_at), model_fit: arr(fm.model_fit),
   });
 }
 
@@ -152,6 +182,7 @@ console.log(`orphan consumes (no producer): ${orphans.length}`);
 for (const o of orphans) console.log(`  - ${o.id} consumes "${o.consumes}"  (${o.file})`);
 console.log(`dangling dep refs: ${dangling.length}`);
 for (const d of dangling) console.log(`  - ${d.id} -> "${d.ref}"  (${d.file})`);
+if (warnings.length) { console.log(`\nWARNINGS (${warnings.length}):`); for (const w of warnings) console.log(`  - ${w}`); }
 if (errors.length) { console.log(`\nERRORS (${errors.length}):`); for (const e of errors) console.log(`  - ${e}`); }
 console.log(`\ntrait vocabulary (count): ${[...traits.entries()].sort((a, b) => b[1] - a[1]).map(([t, n]) => `${t}:${n}`).join("  ")}`);
 

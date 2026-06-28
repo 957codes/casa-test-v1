@@ -15,6 +15,8 @@ applies_to:
     - builds_software
   excluded_traits: []
 relevance: core
+department: Engineering
+criticality: core
 selection_hint: Stands up the deploy foundation once the stack is chosen. Everything observability, security, backup, and release depends on this landing.
 depends_on:
   - tech-stack-selection

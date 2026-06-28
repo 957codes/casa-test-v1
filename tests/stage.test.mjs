@@ -8,7 +8,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
-import { deriveStage, validateAnswers } from "../scripts/stage.mjs";
+import { deriveStage, validateAnswers, deriveInitialPulse } from "../scripts/stage.mjs";
 import { INDEX, REPO, tmpBrain, cleanup, runScript, levelKey } from "./helpers.mjs";
 
 const BY_ID = new Map(INDEX.map((p) => [p.id, p]));
@@ -117,4 +117,22 @@ test("level floor: a backfilled lower-level gap surfaces as ready without regres
   } finally {
     cleanup(dir);
   }
+});
+
+test("deriveInitialPulse: a retention archetype seeds retention-favoring weights", () => {
+  const p = deriveInitialPulse({ north_star_archetype: "engagement_retention", constraint_archetype: "runway_burn" }, INDEX);
+  assert.ok(p.weights.byDepartment.Success >= 1.6, "Success (churn/retention ops) boosted");
+  assert.ok(p.weights.byDepartment.Data >= 1.4, "Data (cohort/retention analysis) boosted");
+  assert.ok(p.weights.byDepartment.Finance >= 1.0, "runway_burn constraint adds Finance");
+  assert.equal(p.north_star_archetype, "engagement_retention");
+});
+
+test("deriveInitialPulse: no archetype yields a neutral pulse (unchanged behavior)", () => {
+  const p = deriveInitialPulse({}, INDEX);
+  assert.deepEqual(p.weights, { default: 1 }, "no archetype => default-1 weights, no department tilt");
+});
+
+test("deriveInitialPulse: anti-priorities that name real playbooks become demotes", () => {
+  const p = deriveInitialPulse({ anti_priorities: ["podcast-tour", "not-a-real-id"] }, INDEX);
+  assert.deepEqual(p.weights.demote_ids, ["podcast-tour"], "only real playbook ids are demoted");
 });

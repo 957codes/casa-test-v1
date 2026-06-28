@@ -8,15 +8,16 @@ const levelKey = (l) => (l === "always-on" ? -1 : Number(l));
 // Casa playbooks are organized by level, not department, so we derive one from the id
 // and title. A `department` field on playbooks can replace this later.
 const DEPARTMENT_RULES = [
+  [/(north-star|funnel|cohort|event-taxonomy|dashboard|experimentation|metric)/, "Data"],
   [/(brand|naming|positioning|category|visual-identity|tone|messaging)/, "Brand"],
   [/(entity|incorporat|tos|privacy|trademark|legal|founding-docs|compliance)/, "Legal"],
-  [/(design|onboarding-flow|landing|wireframe|ux)/, "Design"],
-  [/(pricing|unit-econ|financ|fundrais|model|packaging|burn|runway|forecast)/, "Finance"],
+  [/(design|onboarding-flow|landing|wireframe|ux|prd|prototype|merchandising)/, "Product"],
+  [/(pricing|unit-econ|financ|fundrais|model|packaging|burn|runway|forecast|cogs|supplier)/, "Finance"],
   [/(sales|discovery|contract|deal|pipeline|enterprise|outbound)/, "Sales"],
-  [/(support|nps|csat|churn|customer-success|helpdesk|winback)/, "Support"],
-  [/(growth|seo|ads|content|referral|affiliate|influencer|launch|product-hunt|email|newsletter|social|retarget)/, "Marketing"],
-  [/(hosting|repo|stack|security|observability|analytics|deploy|tech|infra|database|event-taxonomy)/, "Engineering"],
-  [/(opportunity|problem-validation|market-sizing|jtbd|red-team|why-now|mvp|interview|research)/, "Operations"],
+  [/(support|nps|csat|churn|customer-success|helpdesk|winback|community)/, "Success"],
+  [/(growth|seo|ads|content|referral|affiliate|influencer|launch|product-hunt|email|newsletter|social|retarget)/, "Growth"],
+  [/(hosting|repo|stack|security|observability|analytics|deploy|tech|infra|database|incident|backup)/, "Engineering"],
+  [/(opportunity|problem-validation|market-sizing|jtbd|red-team|why-now|thesis|beachhead|competitive)/, "Strategy"],
 ];
 function departmentOf(id, title) {
   const s = `${id} ${title}`.toLowerCase();

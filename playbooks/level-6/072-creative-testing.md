@@ -10,6 +10,8 @@ applies_to:
     - takes_payments
   excluded_traits: []
 relevance: recommended
+department: Growth
+criticality: growth
 selection_hint: Run continuously alongside active paid social once CPA targets are set. Creative drives ~56% of paid ROI; volume and speed of iteration are the structural advantage.
 depends_on: []
 soft_after:

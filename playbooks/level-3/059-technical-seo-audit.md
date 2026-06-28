@@ -7,8 +7,11 @@ applies_to:
   types:
     - "*"
   requires_traits: []
-  excluded_traits: []
+  excluded_traits:
+    - local_service_only
 relevance: recommended
+department: Growth
+criticality: growth
 selection_hint: Run quarterly, after migrations, after core updates, or on a traffic drop. Keeps the site crawlable and indexable so content and programmatic SEO can rank.
 depends_on: []
 soft_after:

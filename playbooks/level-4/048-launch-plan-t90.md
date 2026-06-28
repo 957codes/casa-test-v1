@@ -9,6 +9,8 @@ applies_to:
   requires_traits: []
   excluded_traits: []
 relevance: core
+department: Growth
+criticality: core
 selection_hint: The conductor of the launch level. Run once product, positioning, and pricing are ready; it sequences PH, HN, PR, and podcast plays under one countdown.
 depends_on:
   - positioning-canvas

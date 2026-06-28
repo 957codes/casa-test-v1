@@ -10,6 +10,8 @@ applies_to:
   excluded_traits:
     - pre_product_pre_customer
 relevance: recommended
+department: Strategy
+criticality: growth
 selection_hint: Run after positioning when the market frame is genuinely in question. Skip if the category is obvious and the play is clearly to win share in it.
 depends_on:
   - positioning-canvas

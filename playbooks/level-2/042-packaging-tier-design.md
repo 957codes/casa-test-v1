@@ -10,6 +10,8 @@ applies_to:
     - takes_payments
   excluded_traits: []
 relevance: core
+department: Finance
+criticality: core
 selection_hint: Run after pricing research lands a price range and value metric. The structural decision that pricing-page copy and freemium choice both depend on.
 depends_on:
   - pricing-research

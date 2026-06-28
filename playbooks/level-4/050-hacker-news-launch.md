@@ -16,6 +16,8 @@ applies_to:
     - local_service_only
     - b2c
 relevance: optional
+department: Growth
+criticality: optional
 selection_hint: Run under the launch plan only when the product appeals to a technical audience and the submitting account is aged. Skip for non-technical B2C.
 depends_on:
   - launch-plan-t90

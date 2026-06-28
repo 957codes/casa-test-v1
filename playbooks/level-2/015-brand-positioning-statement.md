@@ -9,6 +9,8 @@ applies_to:
   requires_traits: []
   excluded_traits: []
 relevance: core
+department: Brand
+criticality: core
 selection_hint: Strategic positioning bet that every content, brand, and trademark step downstream consumes. Run once the MVP slice is scoped.
 depends_on:
   - mvp-scoping

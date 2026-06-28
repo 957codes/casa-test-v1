@@ -15,6 +15,8 @@ applies_to:
     - builds_software
   excluded_traits: []
 relevance: recommended
+department: Engineering
+criticality: growth
 selection_hint: Decouples deploy from release and turns the changelog into a marketing, retention, and recruiting asset. Stands up once CI/CD exists; then operates continuously.
 depends_on:
   - hosting-deployment-setup

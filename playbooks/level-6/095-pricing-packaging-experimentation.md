@@ -17,6 +17,8 @@ applies_to:
   excluded_traits:
     - pre_idea_only
 relevance: recommended
+department: Finance
+criticality: growth
 selection_hint: Run when there are live paying customers (about 100+ willingness-to-pay respondents reachable). Highest-leverage profit lever, but every change passes a founder gate.
 depends_on: []
 soft_after:

@@ -10,6 +10,8 @@ applies_to:
   excluded_traits:
     - pre_idea_only
 relevance: core
+department: Strategy
+criticality: core
 selection_hint: The strategic root of all GTM. Run once a beachhead is committed; every pricing, launch, and content decision derives from it.
 depends_on:
   - beachhead-selection

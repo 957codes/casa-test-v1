@@ -9,6 +9,8 @@ applies_to:
   requires_traits: []
   excluded_traits: []
 relevance: core
+department: Strategy
+criticality: core
 selection_hint: Run for every business to find defensible whitespace. Not a feature checklist; a strategy and moat diagnosis.
 depends_on: []
 soft_after:

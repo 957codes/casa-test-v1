@@ -12,6 +12,10 @@ applies_to:
   excluded_traits:
     - pre_launch_only
 relevance: core
+department: Success
+criticality: core
+existential_at: [revenue, scaling]
+model_fit: [recurring]
 selection_hint: Install once there is recurring revenue and billing webhooks. Highest-ROI lever is recovering involuntary (failed-payment) churn. Operate continuously.
 depends_on:
   - contract-close-playbook

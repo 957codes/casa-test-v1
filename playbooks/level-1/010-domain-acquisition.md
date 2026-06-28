@@ -9,6 +9,8 @@ applies_to:
   requires_traits: []
   excluded_traits: []
 relevance: core
+department: Operations
+criticality: core
 selection_hint: Run once the name is final. Secures the primary digital identity. Money and broker negotiation make this a human-gated spend.
 depends_on:
   - company-naming

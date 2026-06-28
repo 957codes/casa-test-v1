@@ -10,6 +10,8 @@ applies_to:
     - sends_email
   excluded_traits: []
 relevance: recommended
+department: Growth
+criticality: growth
 selection_hint: Run once a CRM, lead scoring, and a content library exist. Behavior-responsive education for prospects who have raised their hand but are not yet ready to buy.
 depends_on:
   - welcome-email-sequence

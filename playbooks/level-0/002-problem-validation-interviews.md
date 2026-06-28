@@ -9,6 +9,8 @@ applies_to:
   requires_traits: []
   excluded_traits: []
 relevance: core
+department: Strategy
+criticality: existential
 selection_hint: Run before building anything. Confirms the problem is real and urgent, not just plausible. Skip only if a strong review corpus already substitutes.
 depends_on: []
 soft_after:

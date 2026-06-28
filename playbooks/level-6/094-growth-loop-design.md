@@ -11,6 +11,8 @@ applies_to:
   excluded_traits:
     - pre_idea_only
 relevance: core
+department: Growth
+criticality: core
 selection_hint: Run first in scale acquisition, before scaling paid spend. Needs market-product fit and channel data already in hand.
 depends_on: []
 soft_after:

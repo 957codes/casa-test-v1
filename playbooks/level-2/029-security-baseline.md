@@ -12,6 +12,8 @@ applies_to:
   excluded_traits:
     - pre_idea_only
 relevance: core
+department: Engineering
+criticality: core
 selection_hint: Stand up day one alongside hosting. Prevents the cheap, predictable breaches (stolen credentials dominate) and avoids expensive SOC 2 retrofits.
 depends_on: []
 soft_after:

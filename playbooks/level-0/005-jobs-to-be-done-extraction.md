@@ -9,6 +9,8 @@ applies_to:
   requires_traits: []
   excluded_traits: []
 relevance: recommended
+department: Strategy
+criticality: core
 selection_hint: Run when interview data or a review corpus exists. Feeds positioning, roadmap, and the competitive teardown. Needs source material to be useful.
 depends_on: []
 soft_after:

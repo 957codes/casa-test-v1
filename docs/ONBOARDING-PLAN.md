@@ -55,14 +55,24 @@ one action) and more active than `/casa-map` (read-only plan).
 
 ## 4. The stage interview
 
-Adaptive, ~8 to 12 questions, three passes, then a branch. The model conducts it;
-`scripts/stage.mjs` maps answers to `{ traits, completed_seed, start_level }`.
+Adaptive, four passes, then a branch. The model conducts it; `scripts/stage.mjs`
+maps answers to `{ profile, start_level, completed_seed }` AND seeds the initial
+business-aware pulse (`pulse.json`). A greenfield run asks all four passes (about
+8 to 12 questions). An existing-project run lets `scan.mjs` + the project-scanner
+pre-fill Define and Locate (confirm-only, never asked cold) and spends its budget
+on the Core pass plus a gap confirmation, targeting about 4 to 6 interactions.
+
+Scan-awareness lives on each question in `questions.json`: `satisfied_by_signal`
+(a deterministic `scan.mjs` signal that proves the answer), `prefilled_by` (a
+project-scanner inferred field that proposes an answer to confirm), and
+`mode_when_scanned` (`confirm` to batch-confirm, `skip` to accept silently). When
+neither is present the question is asked normally.
 
 Pass A, Define the business (static traits, drive membership): type (saas /
 marketplace / ecommerce / b2b-service / crypto / consumer / content / hardware),
 b2b vs b2c, ACV band, self-serve vs sales-led, builds software, technical
 audience, takes payments, recurring revenue, sends email, collects user data,
-raising vs bootstrapped.
+local service, runs paid media, runs agents. (Funding moved to the Core pass.)
 
 Pass B, Locate the stage (state-flags, drive readiness; seed completed work):
 
@@ -75,12 +85,31 @@ Pass B, Locate the stage (state-flags, drive readiness; seed completed work):
 | Paying customers or revenue | 5 | L0-L4 | has_paying_customers, has_revenue |
 | PMF and scaling on paid | 6 | L0-L5 | pmf_achieved, runs_paid_media |
 
-Pass C, Backfill gaps (the honesty pass, advanced stages only): a short yes/no
+Pass C, Core (what matters to THIS founder; never scannable, always asked). Four
+founder-only inputs that make the first build map business-aware:
+- north star -> `north_star_archetype`, one of activation, engagement_retention,
+  revenue_mrr, acquisition_growth, conversion, gmv_liquidity, efficiency_unit_econ,
+  local_reputation. The question offers business-type chips (mirroring the
+  north-star families in `scripts/northstar.mjs` via `chips_by_type` +
+  `chip_overrides`); the model maps the free text to one canonical id.
+- do-or-die constraint -> `constraint_archetype`, one of no_users, no_revenue,
+  runway_burn, regulatory_legal, tech_scale, hiring_capacity.
+- win and horizon -> `win_definition` (free text) and `horizon` (this_week / 30d /
+  90d / quarter).
+- anti-priorities -> `anti_priorities` (playbook ids to demote; may be empty).
+- funding -> raising vs bootstrapped, asked only if not already known.
+`stage.mjs apply` reads these to seed `pulse.json`: the archetype sets department
+weights, the constraint adds a delta, anti-priorities become demote ids. So the
+first map already leans toward the founder's goal before any manual pulse cascade.
+
+Pass D, Backfill gaps (the honesty pass, advanced stages only): a short yes/no
 battery on high-leverage lower-level items (incorporated, ToS and privacy live,
 analytics wired, domain and brand secured). Anything answered "no" is excluded
 from the seed, so the router surfaces it as a ready catch-up item at the current
 level. This stops an advanced founder from getting a map that pretends they did
-work they skipped.
+work they skipped. On an existing-project run the project-scanner reconciles only
+the four high-value unblockers it can read (analytics, payments, legal/ToS,
+deploy); the heavy route/env/migration/reflog scan is deferred.
 
 Branch: the "idea" stage runs the existing `level-0-validate` (GO or KILL). Every
 other stage skips validation, seeds, and jumps to the build map at the real
@@ -149,3 +178,23 @@ Changed:
   due, docs/ONBOARDING.md is the full walkthrough, README has Getting started + the
   /casa-priority command row.
 - Suite at 36 tests, preflight 23 checks, all green. All four phases complete.
+
+### Intake deepening (2026-06-27)
+
+`questions.json` restructured from three passes to FOUR: Define, Locate, Core,
+Backfill (version bumped to 2). The new Core pass captures the founder-only inputs
+that make the first build map business-aware: `north_star_archetype` (with
+business-type chips mirroring `scripts/northstar.mjs`), `constraint_archetype`,
+`win_definition`, `horizon`, and `anti_priorities`; funding moved here from Define.
+Every question now carries scan-aware keys (`satisfied_by_signal`, `prefilled_by`,
+`mode_when_scanned`) so an existing-project run does not re-ask what `scan.mjs` and
+the project-scanner already proved, confirming Define/Locate in one batch and
+spending the budget on Core + a four-unblocker gap reconciliation (about 4 to 6
+interactions). `casa-start` assembles the extended answers object and runs
+`stage.mjs apply` (which now also writes `pulse.json` from the Core answers) then
+`brain.mjs sync`. The project-scanner's `ask_founder` was tightened to
+revenue-truth, funding, north star, do-or-die constraint, and done/gap
+reconciliation for analytics, payments, legal/ToS, and deploy only; the heavy
+route/env/migration/reflog scan stays deferred. Files changed:
+`skills/casa-start/questions.json`, `skills/casa-start/SKILL.md`,
+`agents/project-scanner.md`, this plan. Engine code (`scripts/`) unchanged.

@@ -7,8 +7,11 @@ applies_to:
   types:
     - "*"
   requires_traits: []
-  excluded_traits: []
+  excluded_traits:
+    - local_service_only
 relevance: recommended
+department: Growth
+criticality: growth
 selection_hint: Use to build topical authority on a target domain. Run after keywords exist; produces the linkable long-form assets later channels and link-building depend on.
 depends_on:
   - seo-keyword-research
