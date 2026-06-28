@@ -361,6 +361,23 @@ short, date entries, never delete the protocol).
   states across 9 levels with no console errors; the completed existential Problem-Validation node shows TLDR
   + 6 deliverable sections + Improve/Score; a refine queues, flips the node to Working, and ticks the topbar
   3 -> 4 queued. Suite 97 tests, preflight 50, adapter 5/5, all green; goldens held (b2b 106/150, b2c 102/150).
+- Console Phase 4 (2026-06-28): the three remaining dashboard surfaces, all reading real brain data.
+  HEALTH (the attention/health "game"): a single 0-100 score (console/adapter.mjs computeHealth, a pure
+  clock-free function) blending do-or-die coverage, momentum, graded quality, open-gate pressure, and loop
+  hygiene, exposed as dimension bars so the founder fixes the weakest one, plus per-department roll-ups and
+  a "make done work better" list (ungraded existential/core or below-bar work -> click to Score/Improve).
+  LOOPS view: every recurring cadence with DUE / ON CADENCE / LOCKED status, last-ran, what it runs, and a
+  deterministic "Mark ran" (brain.mjs loop-ran); the bridge computes status mirroring brain.mjs dueLoops
+  (engine owns the cadence rule, rule 4). SPEND: Capx Pay total + receipt log read from finance/receipts.jsonl,
+  labeled distinctly from any CAPX holding (rule 8); the Console never charges. Bridge gained readLoopManifest/
+  loopStatus/readReceipts feeding toFoundry via enrich; adapter gained company.health/loops/spend. New UI
+  (HealthPanel, SpendPanel, LoopsView); Sidebar adds a Loops nav (due badge), renames Attention -> Health.
+  Bridge now binds 127.0.0.1 only (loopback, not the LAN). Verified live against the Capx brain: health
+  42/needs-work; $16.35 across 3 receipts; all 8 loops correct; "Mark ran" reset a cadence over SSE.
+  Adapter 9 tests, suite 101, preflight 50, all green; tsc + vite build clean. Execution-model audit
+  confirmed: console deps are React only, every UI fetch is a relative /api/* path, the bridge makes no
+  outbound calls and only ever spawns node brain.mjs, and LLM work is the founder's own Claude Code via
+  casa-serve (no Supabase/OpenRouter/OpenAI/Stripe/API key anywhere).
 - Next: wire casa-serve into a real founder session (drain a live queue end to end); a real interactive
   /casa-start in a live session (the one test only the user can run); per-stage catalog depth for the few
   sub-90 companies (crypto compliance detail, ad-monetization, launched-stage activation); Pay v0 BYO-key
