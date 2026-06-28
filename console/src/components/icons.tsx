@@ -136,6 +136,37 @@ export const SpinnerIcon = (p: IconProps) => (
   </svg>
 );
 
+// A document / output-file glyph
+export const FileIcon = (p: IconProps) => (
+  <svg {...base(p)}>
+    <path d="M6 2.5h7l5 5V21a.5.5 0 0 1-.5.5h-11A.5.5 0 0 1 6 21V3a.5.5 0 0 1 .5-.5Z" />
+    <path d="M13 2.5V8h5" />
+  </svg>
+);
+
+// A folder with a document peeking out (the deliverable file browser)
+export const FilesIcon = (p: IconProps) => (
+  <svg {...base(p)}>
+    <path d="M3 7.5a2 2 0 0 1 2-2h3.2l1.6 2H19a2 2 0 0 1 2 2V17a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7.5Z" />
+    <path d="M8 11h8M8 14.5h5" />
+  </svg>
+);
+
+// Chevron, used for disclosure toggles
+export const ChevronIcon = (p: IconProps) => (
+  <svg {...base(p)}>
+    <path d="M9 6l6 6-6 6" />
+  </svg>
+);
+
+// Send / paper-plane glyph for the node chat input
+export const SendIcon = (p: IconProps) => (
+  <svg {...base(p)}>
+    <path d="M21 3 11 13" />
+    <path d="M21 3l-6.5 18-3.5-8-8-3.5L21 3Z" />
+  </svg>
+);
+
 // --- Department glyph (small letter token) ---
 
 export const deptInitial: Record<Department, string> = {

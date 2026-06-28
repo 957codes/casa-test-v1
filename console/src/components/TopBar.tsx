@@ -1,7 +1,7 @@
 // Persistent top bar: company name, overall progress, attention chip.
 
-import { company } from "../mockData";
-import { PersonIcon, ArrowRightIcon } from "./icons";
+import { company, pendingCount } from "../mockData";
+import { PersonIcon, ArrowRightIcon, SpinnerIcon } from "./icons";
 
 interface Props {
   onOpenAttention: () => void;
@@ -9,6 +9,7 @@ interface Props {
 
 export function TopBar({ onOpenAttention }: Props) {
   const pct = Math.round((company.tasksComplete / company.tasksTotal) * 100);
+  const queued = pendingCount();
   return (
     <header className="flex items-center justify-between gap-6 border-b border-line bg-surface/90 px-6 py-3 backdrop-blur">
       {/* Company identity */}
@@ -45,22 +46,36 @@ export function TopBar({ onOpenAttention }: Props) {
         </div>
       </div>
 
-      {/* Attention chip */}
-      <button
-        type="button"
-        onClick={onOpenAttention}
-        className="group flex shrink-0 items-center gap-2 rounded-lg border border-human-100 bg-human-50 px-3 py-1.5 transition-colors hover:bg-human-100"
-      >
-        <PersonIcon width={15} height={15} className="text-human-600" />
-        <span className="text-xs font-medium text-human-700">
-          {company.needsAttention} need your attention
-        </span>
-        <ArrowRightIcon
-          width={14}
-          height={14}
-          className="text-human-600 transition-transform group-hover:translate-x-0.5"
-        />
-      </button>
+      <div className="flex shrink-0 items-center gap-2">
+        {/* Queue indicator: how many work intents await /casa-serve */}
+        {queued > 0 && (
+          <span
+            className="inline-flex items-center gap-1.5 rounded-lg border border-agent-100 bg-agent-50 px-3 py-1.5 font-mono text-2xs text-agent-700"
+            title="Work intents queued for /casa-serve to execute"
+          >
+            <SpinnerIcon width={13} height={13} className="text-agent-500" />
+            {queued} queued
+            <span className="text-agent-600">to /casa-serve</span>
+          </span>
+        )}
+
+        {/* Attention chip */}
+        <button
+          type="button"
+          onClick={onOpenAttention}
+          className="group flex items-center gap-2 rounded-lg border border-human-100 bg-human-50 px-3 py-1.5 transition-colors hover:bg-human-100"
+        >
+          <PersonIcon width={15} height={15} className="text-human-600" />
+          <span className="text-xs font-medium text-human-700">
+            {company.needsAttention} need your attention
+          </span>
+          <ArrowRightIcon
+            width={14}
+            height={14}
+            className="text-human-600 transition-transform group-hover:translate-x-0.5"
+          />
+        </button>
+      </div>
     </header>
   );
 }

@@ -3,7 +3,7 @@
 // actionable node (input/approval) gets a subtle focal treatment.
 
 import type { Task } from "../mockData";
-import { stateIcon, deptInitial } from "./icons";
+import { stateIcon, deptInitial, SpinnerIcon } from "./icons";
 import { StateBadge, stateMeta } from "./StateBadge";
 
 interface Props {
@@ -88,7 +88,7 @@ export function TaskNode({ task, registerRef, onClick, isFocus, selected }: Prop
           </div>
         </div>
 
-        {/* In-progress meter for active agent tasks */}
+        {/* In-progress meter for active agent tasks (when a percentage is known) */}
         {task.inProgress && typeof task.progress === "number" && (
           <div className="mt-2.5">
             <div className="flex items-center justify-between font-mono text-[9px] text-agent-600">
@@ -100,6 +100,19 @@ export function TaskNode({ task, registerRef, onClick, isFocus, selected }: Prop
                 className="h-full rounded-full bg-agent-500"
                 style={{ width: `${task.progress}%` }}
               />
+            </div>
+          </div>
+        )}
+
+        {/* Indeterminate working indicator (the bridge reports no percentage) */}
+        {task.inProgress && typeof task.progress !== "number" && (
+          <div className="mt-2.5">
+            <div className="flex items-center gap-1.5 font-mono text-[9px] uppercase tracking-wide text-agent-600">
+              <SpinnerIcon width={10} height={10} className="text-agent-500" />
+              Working
+            </div>
+            <div className="mt-1 h-1 w-full overflow-hidden rounded-full bg-agent-50">
+              <div className="h-full w-1/3 rounded-full bg-agent-500 animate-working-slide" />
             </div>
           </div>
         )}

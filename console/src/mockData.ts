@@ -9,6 +9,21 @@ export type Department =
   | "You" | "Brand" | "Engineering" | "Legal" | "Design"
   | "Operations" | "Marketing" | "Finance" | "Sales" | "Support";
 
+// The reasoning layer the bridge surfaces per node.
+export type Criticality = "existential" | "core" | "growth" | "optional";
+
+export interface DeliverableSpec {
+  artifact: string;
+  sections: string[];
+  max_words?: number;
+}
+
+export interface TaskScore {
+  value: number;
+  pass: boolean;
+  gaps: string[];
+}
+
 export interface ActivityLine { time: string; text: string; }
 
 export interface Task {
@@ -28,6 +43,12 @@ export interface Task {
   onCriticalPath?: boolean;
   leverage?: string;
   recurring?: boolean;
+  // Reasoning layer (from the bridge: criticality, tldr, why, deliverable spec, quality score).
+  criticality?: Criticality | null;
+  tldr?: string | null;
+  why?: string | null;
+  deliverable?: DeliverableSpec | null;
+  score?: TaskScore | null;
 }
 
 export interface Stage { id: string; label: string; done: number; total: number; tasks: Task[]; }
@@ -37,12 +58,39 @@ export interface Company {
   oneLiner: string;
   founder: string;
   founderProfile: string;
+  northStar?: string | null;
+  headingToward?: string | null;
   tasksComplete: number;
   tasksTotal: number;
   needsAttention: number;
   currentLevel?: number;
   metrics: { level: number; done: number; spend: number; loopsDue: number };
 }
+
+// ---- Interactive layer: the request queue + per-node fetched data (read by the
+// panel components). These mirror the bridge endpoints; nothing here writes the brain. ----
+
+export interface QueueIntent {
+  id: string;
+  ts: string;
+  kind: string;
+  nodeId: string | null;
+  payload?: Record<string, unknown>;
+  status: "pending" | "running" | "done" | "error";
+  result?: string;
+}
+
+export interface NodeMessage {
+  id: string;
+  nodeId: string;
+  role: "user" | "assistant";
+  content: string;
+  ts: string;
+}
+
+export interface OutputFile { path: string; bytes: number; content: string }
+export interface NodeOutputData { node: string; files: OutputFile[] }
+export interface ActivityEvent { nodeId: string; ts: string; text: string }
 
 export interface Agent { name: string; role: string; }
 export interface DepartmentInfo { name: Department; agents: Agent[]; status: string; }
@@ -67,6 +115,17 @@ export let departments: DepartmentInfo[] = [];
 export let attentionQueue: AttentionItem[] = [];
 export let activityFeed: FeedItem[] = [];
 export const manager = { name: "Casa", role: "Coordinator" };
+
+// The interactive request queue (GET /api/queue). Populated by feed.ts on each SSE
+// event. WORK intents (build/chat/review/next/resolve-gate) sit here pending until
+// the founder drains them with /casa-serve; deterministic intents land already done.
+export let queue: QueueIntent[] = [];
+export function setQueue(q: QueueIntent[]) { queue = Array.isArray(q) ? q : []; }
+const isActive = (r: QueueIntent) => r.status === "pending" || r.status === "running";
+export function pendingCount(): number { return queue.filter(isActive).length; }
+export function activeIntentForNode(nodeId: string): QueueIntent | undefined {
+  return queue.find((r) => r.nodeId === nodeId && isActive(r));
+}
 
 export interface BrainPayload { company: Company; stages: Stage[]; tasks: Task[]; }
 
