@@ -313,7 +313,24 @@ short, date entries, never delete the protocol).
   briefing around the north star, lead with existential work, and suppress recently-run recurring loops
   (advisor-side, rule 4). 5 physical-goods playbooks added (cogs/inventory/shipping/repeat-purchase/
   merchandising); 10 national content loops excluded for local_service_only. Catalog 107 -> 112; goldens
-  b2b 96/112, b2c 79/112. Suite 96 tests, preflight 49, all green. Next: the 20-company validation to 90+.
-- Next: the 20-company quality test to 90+ (relevance + output_usefulness, pulse_effect held, 0 dead); a real
-  interactive /casa-start in a live session; Pay v0 BYO-key mode; publish prep (public repo + README).
+  b2b 96/112, b2c 79/112. Suite 96 tests, preflight 49, all green.
+- Deep-engine validation (2026-06-27..28): a 20-company / 8-type adversarial harness drove the engine
+  through iterative fix-and-retest rounds (78 -> 87 -> 89 -> 88 -> 87 -> 88 -> tier-fix). Each round the
+  panel named precise defects; each was fixed and re-measured. Landed fixes: idea-tier pre_idea_only never
+  dropped (37 dead -> 0; achievedFlags deletes it at level>=1); monetization -> trait derivation (subscription
+  implies takes_payments/recurring_revenue); landing-page-cro circular requirement; constraint-aware seed
+  (CONSTRAINT_SURFACE keeps the founder's do-or-die work visible, never seeded-done); a maintenance-loop
+  discount (recurring infra set up earlier does not headline); motion model_fit (inbound->self_serve,
+  outbound->sales_led so a sales-led B2B down-weights content); 17 new playbooks (physical-goods supply
+  chain, activation, crypto/compliance, hardware build+demand, dunning, hiring, expansion, services
+  utilization, ad-revenue); local + high_acv membership tightening. THE decisive change: a headline TIER in
+  nextActions (3 founder-focus/promote, 2 existential, 1 core, 0 growth) sorted before the pulse-weighted
+  score, so a do-or-die play reliably leads (the user's directive made structural) while the seeded
+  north-star promote and a byId override still reach #1. deriveInitialPulse promotes the archetype's
+  specific north-star plays (not whole departments). Verified stable: stage_accuracy ~95, selection_fit ~90,
+  pulse_effect ~92, 0 real dead-ends on every company; relevance/output_usefulness ~88. Catalog 112 -> 127;
+  goldens b2b 97/127, b2c 87/127. Suite 97 tests, preflight 49, all green.
+- Next: a real interactive /casa-start in a live session (the one test only the user can run); per-stage
+  catalog depth for the few sub-90 companies (crypto compliance detail, ad-monetization, launched-stage
+  activation); Pay v0 BYO-key mode; publish prep (public repo + README + disclaimer).
 <!-- /CASA:AUTO:repo-status -->
