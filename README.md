@@ -9,8 +9,10 @@ your specific business, puts them in the right order, runs what it can, and tell
 you what to do next, every time you open the terminal.
 
 Casa is an open-source (MIT) Claude Code plugin. It runs inside your own Claude
-Code, on your own plan. Terminal only. No dashboard, no SaaS login, no hosted
-inference.
+Code, on your own plan. No SaaS login, no hosted inference, nothing to deploy. The
+terminal is the source of truth. An optional local Console gives you a visual,
+interactive control surface on localhost when you want one, running on the same
+machine, against the same files, with no account and no cloud.
 
 ## What it gives you
 
@@ -22,6 +24,45 @@ inference.
 - Recurring loops for the work that never finishes (metrics, customers, growth).
 - A company brain: durable, versioned, plain-text memory that makes every run
   compound on the last.
+- An optional local Console: a visual, interactive view of the whole build map,
+  the company's health, and its loops, that can also start work for you.
+
+## The Console (optional, local, interactive)
+
+The Console is a visual control surface for the company, served on localhost from
+the same company brain the terminal reads. It is optional and everything in Casa
+works without it. Launch it with `/casa-console`.
+
+What you can do in it:
+
+- See the whole company at a glance. The build map renders as a node graph, grouped
+  by level, colored by one of five states (done, agent can do it, needs your input,
+  needs your approval, blocked by earlier work), with the items awaiting you flagged.
+- Open any node for its detail. Each node shows a plain-language TLDR and advisor
+  notes, the gradeable deliverable spec (what a good output contains), a quality
+  score for finished work with its gaps, the rendered output, recent activity, and a
+  chat to refine it.
+- Start work, not just watch it. Buttons run a ready play, mark it complete, approve
+  or request changes on a gate, or re-score and improve finished work. A per-node
+  chat lets you ask for a change in words.
+- Watch the company's health. A single health score breaks into the dimensions that
+  move it (do-or-die coverage, momentum, quality of finished work, open gates, loop
+  hygiene), with per-department roll-ups and a "make done work better" list of work
+  that is ungraded or below the bar.
+- Track loops and spend. The Loops view shows every recurring cadence with its due
+  or locked status; the Health view shows spend to date through Capx Pay, labeled
+  distinctly and never charged by the Console.
+
+How it stays safe and subscription-only:
+
+- Deterministic actions (mark complete, mark a loop ran) run the engine inline. The
+  engine remains the only writer of company state, so a click can never skip a gate
+  or invent a dependency.
+- Anything that needs an LLM (run a play, refine by chat, re-score) is queued, not
+  executed. You drain that queue yourself with `/casa-serve` in your own Claude Code
+  session. The Console never spawns an agent and never runs headless.
+- The Console binds to localhost only, adds no dependencies to the plugin runtime,
+  and reads the same plain-text brain you can read in the terminal.
 
 ## The level model
 
@@ -52,6 +93,8 @@ level for your business type.
 | `/casa-map` | Show and approve your personalized build map |
 | `/casa-loops` | Show and run recurring loops (pulse, retro, content, close) |
 | `/casa-pay` | Run paid actions (domains, hosting, media, research) through Capx Pay |
+| `/casa-console` | Launch the local visual Console (build map, health, loops) in your browser |
+| `/casa-serve` | Execute the work the Console queued, one intent at a time, in your session |
 
 ### Craft and review
 
@@ -103,7 +146,8 @@ See `docs/ONBOARDING.md` for the full walkthrough.
 ## How it works
 
 Read `docs/ARCHITECTURE.md` for the design, `docs/BUILD-PLAN.md` for the full
-plan, and `CLAUDE.md` for the operating contract this repo runs under.
+plan, `console/README.md` for the Console (how to build, run, and the two-way model
+behind it), and `CLAUDE.md` for the operating contract this repo runs under.
 
 ## License
 

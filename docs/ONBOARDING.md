@@ -49,6 +49,16 @@ Review the map with `/casa-map` and approve it.
 - `/casa-pay` runs real-world paid actions (domains, hosting, media, research)
   through the companion product Capx Pay.
 
+## Optional: see and drive it visually
+
+If you prefer a visual view, run `/casa-console` to open a local dashboard in your
+browser (localhost only, no account). It shows the build map as a node graph, a
+detail panel for each node (summary, the deliverable spec, a quality score, and a
+chat to refine it), a health view, and your loops and spend. It is interactive:
+deterministic actions run the engine inline, and anything that needs an LLM is queued
+for you to run with `/casa-serve` in this same session. The terminal stays the source
+of truth, and the Console is never required.
+
 ## 5. Come back
 
 Every time you reopen the project, the SessionStart advisor greets you with your
