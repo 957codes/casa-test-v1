@@ -7,6 +7,7 @@ applies_to:
   types:
     - "*"
   requires_traits:
+    - builds_software
     - has_deployed_app
   excluded_traits:
     - pre_idea_only

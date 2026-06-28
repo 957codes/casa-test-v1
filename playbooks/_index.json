@@ -782,7 +782,7 @@
           "crypto"
         ],
         "requires_traits": [
-          "has_user_accounts"
+          "builds_software"
         ],
         "excluded_traits": []
       },
@@ -864,6 +864,7 @@
           "crypto"
         ],
         "requires_traits": [
+          "builds_software",
           "has_user_accounts"
         ],
         "excluded_traits": []
@@ -990,6 +991,7 @@
           "*"
         ],
         "requires_traits": [
+          "builds_software",
           "has_deployed_app"
         ],
         "excluded_traits": [
@@ -1073,6 +1075,7 @@
           "*"
         ],
         "requires_traits": [
+          "builds_software",
           "has_repo"
         ],
         "excluded_traits": [
@@ -1110,6 +1113,7 @@
           "*"
         ],
         "requires_traits": [
+          "builds_software",
           "has_datastore"
         ],
         "excluded_traits": [
@@ -2965,8 +2969,7 @@
           "*"
         ],
         "requires_traits": [
-          "sends_email",
-          "has_user_accounts"
+          "sends_email"
         ],
         "excluded_traits": []
       },
@@ -3084,8 +3087,7 @@
           "*"
         ],
         "requires_traits": [
-          "sends_email",
-          "has_user_accounts"
+          "sends_email"
         ],
         "excluded_traits": []
       },

@@ -12,7 +12,7 @@ applies_to:
     - content
     - crypto
   requires_traits:
-    - has_user_accounts
+    - builds_software
   excluded_traits: []
 relevance: core
 selection_hint: The highest-leverage growth surface. Design it once the product core value and signup flow exist; it feeds the beta program.

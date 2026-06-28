@@ -12,6 +12,7 @@ applies_to:
     - content
     - crypto
   requires_traits:
+    - builds_software
     - has_user_accounts
   excluded_traits: []
 relevance: core

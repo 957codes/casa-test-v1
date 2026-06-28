@@ -8,7 +8,6 @@ applies_to:
     - "*"
   requires_traits:
     - sends_email
-    - has_user_accounts
   excluded_traits: []
 relevance: core
 selection_hint: Highest-leverage lifecycle asset. Run once deliverability is warmed and the aha event is instrumented; it escorts new users to activation.

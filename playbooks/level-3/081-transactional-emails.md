@@ -8,7 +8,6 @@ applies_to:
     - "*"
   requires_traits:
     - sends_email
-    - has_user_accounts
   excluded_traits: []
 relevance: core
 selection_hint: Run once the product has user accounts and deliverability is warmed. These are the highest-open emails you own; treat as product surface, not marketing.

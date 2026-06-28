@@ -7,6 +7,7 @@ applies_to:
   types:
     - "*"
   requires_traits:
+    - builds_software
     - has_datastore
   excluded_traits:
     - pre_idea_only

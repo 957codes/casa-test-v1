@@ -126,12 +126,29 @@ function sequence(members) {
 // Precompute the readiness context once per call: which members are recurring (loops
 // never "complete", so they do not block their dependents) and which artifacts already
 // exist (produced by a completed or a recurring member).
-function readinessCtx(members, completedSet, flags, currentLevel) {
+function readinessCtx(playbooks, members, completedSet, flags, currentLevel) {
+  const byId = new Map(members.map((m) => [m.id, m]));
   const recurringSet = new Set(members.filter((m) => m.recurring).map((m) => m.id));
+  // Each milestone flag is backed by the artifacts the playbook that grants it produces:
+  // a company that "has paying customers" already has the paying_customer artifact.
+  const flagArtifacts = {};
+  for (const m of playbooks) for (const g of COMPLETION_FLAGS[m.id] || []) (flagArtifacts[g] ||= []).push(...arr(m.produces));
   const producedSet = new Set();
-  for (const m of members)
-    if (completedSet.has(m.id) || m.recurring) for (const a of arr(m.produces)) producedSet.add(a);
-  return { completedSet, flags, currentLevel, recurringSet, producedSet };
+  for (const m of members) {
+    // completed work, plus at-stage recurring loops (a loop the company has reached is running)
+    if (completedSet.has(m.id) || (m.recurring && levelKey(m.level) <= currentLevel)) {
+      for (const a of arr(m.produces)) producedSet.add(a);
+    }
+  }
+  // mint the artifacts implied by the company's milestone state flags
+  for (const g of flags) for (const a of flagArtifacts[g] || []) producedSet.add(a);
+  // Every artifact some member could ever produce (any level). A consumed input is a
+  // real sequencing edge only if a member produces it; an input that nothing in THIS
+  // business's plan produces is ambient (the business has it by nature, or the catalog
+  // has no producer for this type), so it must not permanently block its consumers.
+  const producibleSet = new Set();
+  for (const m of members) for (const a of arr(m.produces)) producibleSet.add(a);
+  return { completedSet, flags, currentLevel, recurringSet, producedSet, producibleSet, byId };
 }
 
 function ready(pb, ctx) {
@@ -139,10 +156,18 @@ function ready(pb, ctx) {
   // A founder actively running paid can reach the paid-acquisition playbooks one level early.
   const lift = ctx.flags.has("runs_paid_media") && pb.department === "Marketing" ? 1 : 0;
   if (levelKey(pb.level) > ctx.currentLevel + lift) return false;
-  // Dependencies must be done; a recurring dependency (a loop) counts as satisfied.
-  if (!arr(pb.depends_on).every((d) => ctx.completedSet.has(d) || ctx.recurringSet.has(d))) return false;
-  // Inputs must exist: do not recommend a playbook before its consumed artifacts are produced.
-  if (!arr(pb.consumes).every((c) => ctx.producedSet.has(c))) return false;
+  // A dependency must be completed, unless it is a recurring loop the company has already
+  // reached (which is running). A dependency that is not a member of this build does not block.
+  const depOk = (d) => {
+    if (ctx.completedSet.has(d)) return true;
+    const dep = ctx.byId.get(d);
+    return !!dep && dep.recurring && levelKey(dep.level) <= ctx.currentLevel;
+  };
+  if (!arr(pb.depends_on).every((d) => !ctx.byId.has(d) || depOk(d))) return false;
+  // Inputs must exist before we recommend a playbook, BUT only gate on an input that
+  // some member can actually produce. An input no member produces is ambient (or has no
+  // producer for this business type) and must not dead-end its consumers permanently.
+  if (!arr(pb.consumes).every((c) => ctx.producedSet.has(c) || !ctx.producibleSet.has(c))) return false;
   if (!pb.applies_to.requires_traits.every((r) => !STATE_FLAGS.has(r) || ctx.flags.has(r))) return false;
   if (!pb.applies_to.excluded_traits.every((x) => !STATE_FLAGS.has(x) || !ctx.flags.has(x))) return false;
   return true;
@@ -175,7 +200,7 @@ function buildMap(playbooks, profile, { completed = [], level = 0 } = {}) {
   const { slack } = sequence(members);
   const completedSet = new Set(completed);
   const flags = achievedFlags(profile, completed, level);
-  const ctx = readinessCtx(members, completedSet, flags, level);
+  const ctx = readinessCtx(playbooks, members, completedSet, flags, level);
   const byLevel = new Map();
   for (const pb of members) {
     const k = pb.level;
@@ -200,7 +225,7 @@ function nextActions(playbooks, profile, { completed = [], level = 0, weights = 
   const { slack } = sequence(members);
   const completedSet = new Set(completed);
   const flags = achievedFlags(profile, completed, level);
-  const ctx = readinessCtx(members, completedSet, flags, level);
+  const ctx = readinessCtx(playbooks, members, completedSet, flags, level);
   const scored = members
     .filter((pb) => ready(pb, ctx))
     .map((pb) => ({ id: pb.id, title: pb.title, level: pb.level, department: pb.department || null,
