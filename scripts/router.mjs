@@ -363,6 +363,27 @@ function nextActions(playbooks, profile, { completed = [], level = 0, weights = 
       human_gate: pb.human_gate, blocks_revenue: pb.blocks_revenue, leverage: pb.leverage, effort: pb.effort }))
     // tier first (do-or-die and the founder's focus lead), then the pulse-weighted score within tier
     .sort((a, b) => b.tier - a.tier || b.score - a.score || levelKey(a.level) - levelKey(b.level) || (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
+  // The LADDER: what each action unblocks downstream (members that depend on it or consume what it
+  // produces), ranked by criticality then level so the most goal-relevant unlocks come first. The
+  // advisor uses this to connect today's action to the founder's future do-or-die work.
+  const byId = new Map(members.map((m) => [m.id, m]));
+  const consumersOf = new Map(), dependentsOf = new Map();
+  for (const m of members) {
+    for (const c of arr(m.consumes)) (consumersOf.get(c) || consumersOf.set(c, []).get(c)).push(m.id);
+    for (const d of arr(m.depends_on)) (dependentsOf.get(d) || dependentsOf.set(d, []).get(d)).push(m.id);
+  }
+  const critRank = { existential: 3, core: 2, growth: 1, optional: 0 };
+  for (const a of scored) {
+    const pb = byId.get(a.id);
+    const set = new Set(dependentsOf.get(a.id) || []);
+    for (const art of arr(pb.produces)) for (const cid of consumersOf.get(art) || []) set.add(cid);
+    a.unblocks = [...set]
+      .filter((id) => id !== a.id && !completedSet.has(id))
+      .map((id) => byId.get(id))
+      .sort((x, y) => (critRank[effectiveCriticality(y, fit.stage)] - critRank[effectiveCriticality(x, fit.stage)]) || (levelKey(y.level) - levelKey(x.level)))
+      .slice(0, 4)
+      .map((m) => m.id);
+  }
   return scored;
 }
 

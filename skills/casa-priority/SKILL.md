@@ -12,14 +12,15 @@ ranking and the reasoning are the advisor's.
 
 ## Steps
 
-1. Read state. Load `company-brain/NOW.md`, `profile.json`, `build-map.json`,
-   `state.json` (for `completed`, `last_priority`, and the `loops` run dates), `pulse.json`
-   (focus, anti-priorities, the do-or-die `constraint`, and weights), recent `decisions/`,
-   `learnings.jsonl`, and `finance/receipts.jsonl`. If there is no build map, tell the
-   founder to run `casa-start`. Read `active_north_star` from `build-map.json` (its `label`
-   and `band`; the same value is on the "North star now:" line of `NOW.md`) and the
-   `constraint` from `pulse.json`. These two, the north star and the do-or-die constraint,
-   are the frame for the whole briefing.
+1. Understand THIS business. Load `company-brain/NOW.md`, `profile.json` (incl. `one_liner`),
+   `company-brain/CLAUDE.md` (the company context blocks), `build-map.json`, `state.json` (for
+   `completed`, `last_priority`, and the `loops` run dates), `pulse.json` (focus,
+   anti-priorities, the do-or-die `constraint`, the `win_definition`, and weights), recent
+   `decisions/`, `learnings.jsonl`, and `finance/receipts.jsonl` and any real metrics the brain
+   records. If there is no build map, tell the founder to run `casa-start`. The founder's
+   `win_definition`, their north star (`active_north_star.label`), and their do-or-die
+   `constraint` -- in their own words -- are the frame for the whole briefing, and they are
+   what you reason from. If the brain holds real numbers, those are the situation.
 
 2. Refresh the pulse (the continuous part). State back the founder's current focus and the
    do-or-die constraint, one line each, and ask if they still hold or anything shifted this
@@ -45,20 +46,23 @@ ranking and the reasoning are the advisor's.
    ```
 
    Each returned action carries an `effective_criticality` (existential, core, growth, or
-   optional) and a `department`; treat both as given by the engine, do not recompute them.
+   optional), a `department`, and `unblocks` (the downstream do-or-die / goal work it gates).
+   Treat eligibility, gating, criticality, and order as given by the engine.
 
-5. Deliver the briefing, weighed against the pulse and framed by the north star:
-   - Open with the north star and the do-or-die constraint: "North star now:
-     <active_north_star.label>. The constraint in the way: <pulse.constraint>." Every
-     priority below is judged by whether it moves the north star now and clears that
-     constraint.
+5. Deliver the briefing, REASONED and framed by the founder's goal:
+   - Open with the goal and the do-or-die: "Your goal: <win_definition / north star>. The
+     constraint in the way: <pulse.constraint>." Every priority below is judged by whether it
+     moves that goal now and clears that constraint.
    - One line on the state of the company: level and name, progress, spend to date.
-   - The top three priorities now, ranked, each with a one-line why tied to the north star
-     and the founder's focus, win, or the one thing. Lead any existential
-     (`effective_criticality` is "existential") item first and name it as do-or-die for this
-     stage; never list it below optimization work even when a lower-criticality item scores
-     slightly higher. The deterministic order is the default; you may lift an existential
-     item and say why. Flag any human-gate, irreversible, money, or legal step.
+   - The top three priorities now, ranked, each with a REASONED why a sharp operator who knows
+     this business would give: specific to the company and grounded in their real situation,
+     tied to the win and constraint, and using the action's `unblocks` to show the ladder
+     ("this unblocks <X>, your path to <goal>"). Lead any existential item first and name it
+     as do-or-die. THE BRIDGE: if the founder's stated do-or-die is future work above the
+     current level, say so and connect today's top priority to it ("your <constraint> work
+     lands at level <n>; today's <action> is the rail it rides on"), so the briefing never
+     reads as deaf to the priority the founder named. Flag any human-gate, irreversible,
+     money, or legal step.
    - On track, not re-headlined: a recurring existential play (for example north-star-metric
      or unit-economics) run within its cadence window. Check `state.loops` for its last-run
      ISO date (the recorded key may be the play's own id or the loop id whose `runs` names
@@ -82,9 +86,12 @@ ranking and the reasoning are the advisor's.
   yours. Never recommend a blocked or out-of-level item.
 - A ranked briefing tied to the founder's pulse, not a wall of tasks and not a bare
   table. Always say what you are holding back and why.
-- Frame the briefing around the active north star and the do-or-die constraint from
-  `pulse.json`. Every ranked priority is judged by whether it moves that one number now and
-  clears the constraint.
+- Frame the briefing around the founder's win and the do-or-die constraint from `pulse.json`.
+  Every ranked priority is judged by whether it moves that goal now and clears the constraint,
+  and you always reason HOW it connects.
+- Be specific to this company. If a why would read identically for a different company, it is
+  too generic. When the founder's do-or-die is future work, build the bridge from today's
+  priority to it explicitly, so the plan never feels deaf to what they said kills them.
 - An existential item is do-or-die for the stage and is never buried below optimization
   work, even when a lower-criticality item scores slightly higher. A recurring existential
   play reviewed within its cadence is reported as on track, not re-headlined.
