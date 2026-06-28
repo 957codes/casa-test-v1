@@ -342,7 +342,27 @@ short, date entries, never delete the protocol).
   A headline TIER (3 hard-override, 2 existential or +1 promote bump, 1 core, 0 growth) sorts the ready
   set before the score so do-or-die leads and a promoted growth play cannot leapfrog an existential one.
   Catalog 112 -> 150; goldens b2b 106/150, b2c 102/150. Suite 97 tests, preflight 49, all green.
-- Next: a real interactive /casa-start in a live session (the one test only the user can run); per-stage
-  catalog depth for the few sub-90 companies (crypto compliance detail, ad-monetization, launched-stage
-  activation); Pay v0 BYO-key mode; publish prep (public repo + README + disclaimer).
+- Interactive Console (2026-06-28, plan in docs/DASHBOARD-PLAN.md): the Console is now a two-way
+  control surface, not view-only. console/bridge.mjs gained an intent mailbox: POST /api/intent routes
+  DETERMINISTIC kinds (complete/loop-ran/priority-ran/experiment) through brain.mjs inline (the sole brain
+  writer; a rule-4 guard refuses to complete a non-ready node) and queues WORK kinds (build/chat/review/
+  next/resolve-gate) to company-brain/console/queue.jsonl + messages.jsonl for the founder's interactive
+  casa-serve drain; the bridge never spawns an agent or claude -p (rule 1/5). New read endpoints /api/queue,
+  /api/messages, /api/activity, /api/output. The 30 highest-value playbooks carry an optional gradeable
+  deliverable + rubric (build-index validates them into _index.json); the bridge CATALOG + adapter enrich
+  each node with criticality/tldr/why/deliverable/rubric/score, and stateOf returns "agent" while an intent
+  is in flight. The Foundry UI (console/src, React+Vite) is now interactive: the node panel renders the
+  criticality badge, TLDR, deliverable sections, quality score, rendered output, activity, and a refine chat,
+  with wired action buttons (Run this/Mark complete/Approve/Request changes/Improve/Score) that post intents;
+  work intents show the "Queued. Run /casa-serve" notice and flip the node to Working over SSE. New skills
+  casa-serve (the queue drain: build->casa-build+grade+complete, chat->refine+regrade, review->grade) and
+  casa-review grade mode (deterministic section/word/copy-lint checks + LLM rubric judgment -> score/pass/gaps
+  appended to scores.jsonl). Verified end to end against the Capx brain via browser: board renders all five
+  states across 9 levels with no console errors; the completed existential Problem-Validation node shows TLDR
+  + 6 deliverable sections + Improve/Score; a refine queues, flips the node to Working, and ticks the topbar
+  3 -> 4 queued. Suite 97 tests, preflight 50, adapter 5/5, all green; goldens held (b2b 106/150, b2c 102/150).
+- Next: wire casa-serve into a real founder session (drain a live queue end to end); a real interactive
+  /casa-start in a live session (the one test only the user can run); per-stage catalog depth for the few
+  sub-90 companies (crypto compliance detail, ad-monetization, launched-stage activation); Pay v0 BYO-key
+  mode; publish prep (public repo + README + disclaimer).
 <!-- /CASA:AUTO:repo-status -->
