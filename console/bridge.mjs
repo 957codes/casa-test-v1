@@ -53,6 +53,50 @@ function readBrain(dir) {
   };
 }
 
+// ---- Loops (recurring cadences) and Capx Pay receipts, for the health/loops/spend surfaces ----
+// The loop manifest lives in the brain (or the template fallback), exactly like scripts/brain.mjs.
+function readLoopManifest(dir) {
+  const f = existsSync(join(dir, "loops.json")) ? join(dir, "loops.json") : join(repo, "templates", "company-brain", "loops.json");
+  return readJson(f, { loops: [] }).loops || [];
+}
+const daysSince = (d) => (d ? Math.floor((Date.now() - new Date(d).getTime()) / 86400000) : Infinity);
+// Loop status mirrors scripts/brain.mjs dueLoops (the engine owns the cadence rule, rule 4): a loop is
+// eligible when the company has reached its min_level and carries its required traits; due when the time
+// since its last run meets the cadence. The clock lives here (runtime), so the adapter stays pure/testable.
+function loopStatus(brain) {
+  const level = brain.buildMap.current_level ?? 0;
+  const traits = new Set(brain.profile.traits || []);
+  const ran = brain.state.loops || {};
+  return readLoopManifest(brainDir).map((l) => {
+    const eligible = level >= (l.min_level ?? 0) && (!l.applies_when || l.applies_when.every((t) => traits.has(t)));
+    const last = ran[l.id] || null;
+    const since = daysSince(last);
+    const cadence = l.cadence_days || 0;
+    const due = eligible && cadence > 0 && since >= cadence;
+    return {
+      id: l.id, title: l.title, why: l.why || "", runs: l.runs || null,
+      cadence_days: cadence, min_level: l.min_level ?? 0, brain_key: l.brain_key || null,
+      eligible, last_ran: last,
+      days_since: since === Infinity ? null : since,
+      due, never_run: eligible && last == null,
+      overdue_days: eligible && last != null && cadence > 0 ? Math.max(0, since - cadence) : 0,
+      next_due_in_days: eligible && last != null && cadence > 0 ? Math.max(0, cadence - since) : null,
+    };
+  });
+}
+// Capx Pay receipts (Pay writes finance/receipts.jsonl; Casa only reads, rule 8). Surface them labeled
+// distinctly from any CAPX holding. amountMicros is micro-USD (1 USD = 1e6).
+function readReceipts(dir) {
+  const f = join(dir, "finance", "receipts.jsonl");
+  return readJsonl(f).map((r) => ({
+    ts: r.ts || null,
+    descriptor: r.descriptor || r.capability || r.ref || "spend",
+    amount_usd: Math.round((Number(r.amountMicros || 0) / 1e6) * 100) / 100,
+    status: r.status || "settled",
+    ref: r.ref || null,
+  }));
+}
+
 // The catalog (the plugin's playbooks index) carries each node's TLDR (selection_hint), criticality,
 // and the gradeable deliverable/rubric. It is static, so load it once.
 const CATALOG = (() => {
@@ -83,7 +127,11 @@ function workingSet() {
   return w;
 }
 function enriched() {
-  return toFoundry(readBrain(brainDir), { catalog: CATALOG, scores: readScores(), working: workingSet(), notes: readNotes() });
+  const brain = readBrain(brainDir);
+  return toFoundry(brain, {
+    catalog: CATALOG, scores: readScores(), working: workingSet(), notes: readNotes(),
+    loops: loopStatus(brain), receipts: readReceipts(brainDir),
+  });
 }
 
 // ---- intent queue (append-only JSONL, OUTSIDE the brain state files) ----

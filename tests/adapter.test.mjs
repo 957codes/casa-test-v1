@@ -58,3 +58,72 @@ test("toFoundry: an empty brain does not throw", () => {
   assert.deepEqual(r.stages, []);
   assert.equal(r.company.tasksTotal, 0);
 });
+
+// ---- Phase 4: health "game", loops, spend ----
+
+const HEALTH_MAP = {
+  current_level: 1,
+  levels: [
+    { level: 0, name: "Validation", nodes: [
+      { id: "problem-validation-interviews", title: "Problem validation", status: "done", criticality: "existential", department: "Strategy", depends_on: [] },
+      { id: "red-team-thesis", title: "Red team", status: "done", criticality: "existential", department: "Strategy", depends_on: [] },
+      { id: "entity-formation", title: "Entity formation", status: "ready", criticality: "existential", department: "Legal", human_gate: true, depends_on: [] },
+      { id: "market-sizing-tam-sam-som", title: "Market sizing", status: "done", criticality: "core", department: "Strategy", depends_on: [] },
+    ] },
+  ],
+};
+const ENRICH = {
+  catalog: {},
+  scores: { "market-sizing-tam-sam-som": { score: 55, pass: false, gaps: ["thin sourcing"] } },
+  loops: [
+    { id: "weekly-retro", title: "Weekly retro", why: "meta", runs: "weekly-business-review", cadence_days: 7, min_level: 1, eligible: true, last_ran: null, days_since: null, due: true, never_run: true, overdue_days: 0, next_due_in_days: null },
+    { id: "metrics-pulse", title: "Metrics pulse", why: "numbers", runs: "wbr", cadence_days: 7, min_level: 5, eligible: false, last_ran: null, days_since: null, due: false, never_run: false, overdue_days: 0, next_due_in_days: null },
+  ],
+  receipts: [
+    { ts: "2026-06-20T00:00:00Z", descriptor: "Domain registration", amount_usd: 12.0, status: "settled", ref: "r1" },
+    { ts: "2026-06-26T00:00:00Z", descriptor: "KYC check", amount_usd: 3.5, status: "settled", ref: "r2" },
+  ],
+};
+
+test("toFoundry: health composite and existential coverage", () => {
+  const { company } = toFoundry({ buildMap: HEALTH_MAP, profile: PROFILE, spend: 15.5 }, ENRICH);
+  const h = company.health;
+  // 3 existential are actionable (none locked); 2 done -> 3 total, 2 done.
+  assert.equal(h.existentialTotal, 3);
+  assert.equal(h.existentialDone, 2);
+  assert.ok(h.overall >= 0 && h.overall <= 100);
+  // quality is measured (one scored node at 55) -> the quality component is non-null.
+  const q = h.components.find((c) => c.key === "quality");
+  assert.equal(q.value, 55);
+});
+
+test("toFoundry: improve list surfaces ungraded existential and below-bar work", () => {
+  const { company } = toFoundry({ buildMap: HEALTH_MAP, profile: PROFILE }, ENRICH);
+  const ids = company.health.improve.map((i) => i.id);
+  // red-team-thesis is existential + completed + ungraded -> improve.
+  assert.ok(ids.includes("red-team-thesis"));
+  // market-sizing scored 55 (< 70) -> improve.
+  assert.ok(ids.includes("market-sizing-tam-sam-som"));
+  // entity-formation is not completed -> not an improve candidate.
+  assert.ok(!ids.includes("entity-formation"));
+});
+
+test("toFoundry: loops sort due-first and spend is labeled Capx Pay", () => {
+  const { company } = toFoundry({ buildMap: HEALTH_MAP, profile: PROFILE, spend: 15.5 }, ENRICH);
+  assert.equal(company.loops[0].id, "weekly-retro"); // due, sorts first
+  assert.equal(company.loops[0].due, true);
+  assert.equal(company.metrics.loopsDue, 1);
+  assert.equal(company.spend.label, "Capx Pay");
+  assert.equal(company.spend.total, 15.5);
+  assert.equal(company.spend.receipts.length, 2);
+  assert.equal(company.spend.receipts[0].ref, "r2"); // newest first
+});
+
+test("toFoundry: department health rolls up done/ready/blocked", () => {
+  const { company } = toFoundry({ buildMap: HEALTH_MAP, profile: PROFILE }, ENRICH);
+  const strategy = company.health.departments.find((d) => d.name === "Strategy");
+  assert.equal(strategy.total, 3);  // problem-validation, red-team, market-sizing
+  assert.equal(strategy.done, 3);
+  const legal = company.health.departments.find((d) => d.name === "Legal");
+  assert.equal(legal.ready, 1);     // entity-formation (approval counts as ready/needs-you)
+});

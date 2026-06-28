@@ -1,9 +1,9 @@
-// Slim left rail nav. Switches between Build map, Attention, and Company.
+// Slim left rail nav. Switches between Build map, Health, Loops, and Company.
 
-import { MapIcon, InboxIcon, OrgIcon } from "./icons";
+import { MapIcon, InboxIcon, OrgIcon, LoopsIcon } from "./icons";
 import { company } from "../mockData";
 
-export type View = "map" | "dashboard" | "org";
+export type View = "map" | "dashboard" | "loops" | "org";
 
 interface Props {
   view: View;
@@ -11,9 +11,11 @@ interface Props {
 }
 
 export function Sidebar({ view, onChange }: Props) {
+  const loopsDue = (company.loops || []).filter((l) => l.due).length;
   const items: { id: View; label: string; Icon: typeof MapIcon; badge?: number }[] = [
     { id: "map", label: "Build map", Icon: MapIcon },
-    { id: "dashboard", label: "Attention", Icon: InboxIcon, badge: company.needsAttention },
+    { id: "dashboard", label: "Health", Icon: InboxIcon, badge: company.needsAttention },
+    { id: "loops", label: "Loops", Icon: LoopsIcon, badge: loopsDue },
     { id: "org", label: "Company", Icon: OrgIcon },
   ];
 

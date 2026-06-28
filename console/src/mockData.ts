@@ -53,6 +53,32 @@ export interface Task {
 
 export interface Stage { id: string; label: string; done: number; total: number; tasks: Task[]; }
 
+// ---- Phase 4: health "game", recurring loops, and Capx Pay spend (all derived by the adapter) ----
+
+export interface HealthComponent { key: string; label: string; value: number | null; hint: string }
+export interface DeptHealth { name: string; total: number; done: number; blocked: number; ready: number; working: number; pct: number }
+export interface LevelHealth { id: string; label: string; done: number; total: number; pct: number }
+export interface AttentionEntry { id: string; title: string; kind: "approval" | "input" | "loop"; owner: string; criticality: Criticality | null; why: string }
+export interface ImproveEntry { id: string; title: string; criticality: Criticality | null; score: number | null; gaps: string[]; why: string }
+export interface CompanyHealth {
+  overall: number;
+  components: HealthComponent[];
+  departments: DeptHealth[];
+  levels: LevelHealth[];
+  attention: AttentionEntry[];
+  improve: ImproveEntry[];
+  existentialDone: number;
+  existentialTotal: number;
+}
+export interface LoopStatus {
+  id: string; title: string; why: string; runs: string | null;
+  cadence_days: number; min_level: number; brain_key: string | null;
+  eligible: boolean; last_ran: string | null; days_since: number | null;
+  due: boolean; never_run: boolean; overdue_days: number; next_due_in_days: number | null;
+}
+export interface Receipt { ts: string | null; descriptor: string; amount_usd: number; status: string; ref: string | null }
+export interface SpendPanel { total: number; currency: string; label: string; receipts: Receipt[] }
+
 export interface Company {
   name: string;
   oneLiner: string;
@@ -64,7 +90,10 @@ export interface Company {
   tasksTotal: number;
   needsAttention: number;
   currentLevel?: number;
-  metrics: { level: number; done: number; spend: number; loopsDue: number };
+  health?: CompanyHealth;
+  loops?: LoopStatus[];
+  spend?: SpendPanel;
+  metrics: { level: number; done: number; spend: number; loopsDue: number; health?: number };
 }
 
 // ---- Interactive layer: the request queue + per-node fetched data (read by the

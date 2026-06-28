@@ -6,12 +6,38 @@ import {
   attentionQueue,
   activityFeed,
   type AttentionItem,
+  type ImproveEntry,
 } from "../mockData";
 import { stateIcon, deptInitial, ArrowRightIcon } from "./icons";
 import { stateMeta } from "./StateBadge";
+import { HealthPanel } from "./HealthPanel";
+import { SpendPanel } from "./SpendPanel";
 
 interface Props {
   onOpenTask: (taskId: string) => void;
+}
+
+// A completed node worth revisiting -- ungraded do-or-die work, or work that scored below
+// the bar. Clicking opens its panel where the founder can Score / re-check or Improve.
+function ImproveRow({ item, onOpen }: { item: ImproveEntry; onOpen: (id: string) => void }) {
+  return (
+    <button
+      type="button"
+      onClick={() => onOpen(item.id)}
+      className="group flex w-full items-center gap-3 px-5 py-3 text-left transition-colors hover:bg-canvas"
+    >
+      <span className="min-w-0 flex-1">
+        <span className="block truncate text-sm font-medium text-ink-900">{item.title}</span>
+        <span className="mt-0.5 block text-2xs text-ink-500">{item.why}</span>
+      </span>
+      {item.score != null ? (
+        <span className="shrink-0 font-mono text-2xs font-semibold tabular text-human-700">{item.score}</span>
+      ) : (
+        <span className="shrink-0 font-mono text-[10px] text-ink-400">ungraded</span>
+      )}
+      <ArrowRightIcon width={13} height={13} className="text-ink-300 group-hover:text-ink-500" />
+    </button>
+  );
 }
 
 function Metric({ label, value, sub }: { label: string; value: string; sub?: string }) {
@@ -63,6 +89,9 @@ function QueueRow({ item, index, onOpen }: { item: AttentionItem; index: number;
 
 export function Dashboard({ onOpenTask }: Props) {
   const pct = company.tasksTotal ? Math.round((company.tasksComplete / company.tasksTotal) * 100) : 0;
+  const health = company.health;
+  const spend = company.spend;
+  const improve = health?.improve ?? [];
   return (
     <div className="scroll-thin h-full overflow-y-auto bg-canvas">
       <div className="mx-auto max-w-5xl px-8 py-8">
@@ -72,6 +101,12 @@ export function Dashboard({ onOpenTask }: Props) {
             {company.needsAttention} {company.needsAttention === 1 ? "item needs" : "items need"} a decision from you.
           </p>
         </div>
+
+        {health && (
+          <div className="mb-6">
+            <HealthPanel health={health} />
+          </div>
+        )}
 
         <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
           <Metric label="Level" value={String(company.metrics.level)} sub="Current level" />
@@ -116,6 +151,27 @@ export function Dashboard({ onOpenTask }: Props) {
                 ))}
               </ol>
             </div>
+          </section>
+        </div>
+
+        <div className="mt-7 grid grid-cols-1 gap-6 lg:grid-cols-5">
+          <section className="lg:col-span-3">
+            <div className="mb-2.5 flex items-center justify-between">
+              <h2 className="text-sm font-semibold text-ink-900">Make done work better</h2>
+              <span className="font-mono text-2xs text-ink-400">Ungraded or below the bar</span>
+            </div>
+            <div className="overflow-hidden rounded-xl border border-line bg-surface shadow-card divide-y divide-line">
+              {improve.length === 0 && (
+                <p className="px-5 py-4 text-2xs text-ink-400">Every completed play is graded and passing.</p>
+              )}
+              {improve.slice(0, 8).map((item) => (
+                <ImproveRow key={item.id} item={item} onOpen={onOpenTask} />
+              ))}
+            </div>
+          </section>
+
+          <section className="lg:col-span-2">
+            {spend && <SpendPanel spend={spend} />}
           </section>
         </div>
       </div>

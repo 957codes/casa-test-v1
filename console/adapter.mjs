@@ -34,13 +34,101 @@ function stateOf(node, working) {
   return node.human_gate ? "approval" : "input"; // ready
 }
 
-// brain = { buildMap, profile, state, spend, loopsDue }
-// enrich = { catalog:{id->{selection_hint,criticality,deliverable}}, scores:{id->{score,pass,gaps}},
-//            working:Set<id>, notes:{id->{tldr,why}} } -- all optional; the console is read-only and
-// this is a pure transform, so an absent enrich just yields the plain build map.
+// Company health (the attention/health "game"): a pure function over the already-shaped tasks +
+// stages + loop status (the bridge dates the loops; this stays clock-free so it is unit-testable).
+// It blends do-or-die coverage, momentum, graded quality, open-gate pressure, and loop hygiene into a
+// single 0-100 score, and exposes the components so the founder can see and fix the weakest dimension.
+const CRIT_RANK = { existential: 0, core: 1, growth: 2, optional: 3 };
+function computeHealth(tasks, stages, loops) {
+  const byDept = {};
+  for (const t of tasks) {
+    const d = (byDept[t.owner] ||= { name: t.owner, total: 0, done: 0, blocked: 0, ready: 0, working: 0 });
+    d.total++;
+    if (t.state === "completed") d.done++;
+    else if (t.state === "locked") d.blocked++;
+    else if (t.state === "agent") d.working++;
+    else d.ready++; // approval | input
+  }
+  const departments = Object.values(byDept)
+    .map((d) => ({ ...d, pct: d.total ? Math.round((d.done / d.total) * 100) : 0 }))
+    .sort((a, b) => b.ready - a.ready || b.total - a.total);
+
+  const levels = stages.map((s) => ({ id: s.id, label: s.label, done: s.done, total: s.total, pct: s.total ? Math.round((s.done / s.total) * 100) : 0 }));
+
+  // Existential coverage: do-or-die plays that are actionable now (not locked) -- are they done?
+  const exNow = tasks.filter((t) => t.criticality === "existential" && t.state !== "locked");
+  const exDone = exNow.filter((t) => t.state === "completed").length;
+  const existentialHealth = exNow.length ? exDone / exNow.length : 1;
+
+  // Quality: average graded score of completed nodes (null when nothing graded yet).
+  const scored = tasks.filter((t) => t.state === "completed" && t.score && typeof t.score.value === "number");
+  const quality = scored.length ? scored.reduce((s, t) => s + t.score.value, 0) / scored.length / 100 : null;
+
+  const openExistential = exNow.filter((t) => t.state === "approval" || t.state === "input").length;
+  const attentionFlow = 1 - Math.min(1, openExistential / 5);
+
+  const eligibleLoops = (loops || []).filter((l) => l.eligible);
+  const overdueLoops = eligibleLoops.filter((l) => l.due);
+  const loopHygiene = eligibleLoops.length ? 1 - overdueLoops.length / eligibleLoops.length : 1;
+
+  const completeCount = tasks.filter((t) => t.state === "completed").length;
+  const momentum = tasks.length ? completeCount / tasks.length : 0;
+
+  // Composite. When nothing is graded, quality's weight redistributes to momentum so a company is
+  // scored on what it has shipped, not penalized for not having run a grader yet.
+  const qw = quality == null ? 0 : 0.2;
+  const mw = 0.25 + (quality == null ? 0.2 : 0);
+  const overall = Math.round(100 * (
+    0.30 * existentialHealth + mw * momentum + qw * (quality ?? 0) + 0.15 * attentionFlow + 0.10 * loopHygiene
+  ));
+
+  const components = [
+    { key: "existential", label: "Do-or-die coverage", value: Math.round(existentialHealth * 100),
+      hint: exNow.length - exDone > 0 ? `${exNow.length - exDone} existential play(s) not done` : "all actionable do-or-die work done" },
+    { key: "momentum", label: "Momentum", value: Math.round(momentum * 100),
+      hint: `${completeCount}/${tasks.length} plays complete` },
+    { key: "quality", label: "Quality of done work", value: quality == null ? null : Math.round(quality * 100),
+      hint: quality == null ? "no completed work graded yet" : `${scored.length} graded, avg ${Math.round(quality * 100)}` },
+    { key: "attention", label: "Open gates", value: Math.round(attentionFlow * 100),
+      hint: openExistential ? `${openExistential} existential gate(s) waiting on you` : "no existential work waiting" },
+    { key: "loops", label: "Loop hygiene", value: Math.round(loopHygiene * 100),
+      hint: overdueLoops.length ? `${overdueLoops.length} loop(s) due` : "loops up to date" },
+  ];
+
+  const gates = tasks
+    .filter((t) => t.state === "approval" || t.state === "input")
+    .sort((a, b) => (CRIT_RANK[a.criticality] ?? 4) - (CRIT_RANK[b.criticality] ?? 4))
+    .map((t) => ({ id: t.id, title: t.title, kind: t.state, owner: t.owner, criticality: t.criticality,
+      why: t.state === "approval" ? "Needs your approval" : "Ready to start" }));
+  const loopItems = overdueLoops.map((l) => ({ id: l.id, title: l.title, kind: "loop", owner: "Operations", criticality: null,
+    why: l.never_run ? "Recurring loop, never run" : `Recurring loop, ${l.overdue_days}d overdue` }));
+  const attention = [
+    ...gates.filter((g) => g.criticality === "existential"),
+    ...loopItems,
+    ...gates.filter((g) => g.criticality !== "existential"),
+  ];
+
+  // Improve: completed work that is ungraded (existential/core) or graded below the bar -- the
+  // "is there a way to make done things better" path the founder asked for.
+  const improve = tasks
+    .filter((t) => t.state === "completed")
+    .filter((t) => (t.score && t.score.value < 70) || (!t.score && (t.criticality === "existential" || t.criticality === "core")))
+    .map((t) => ({ id: t.id, title: t.title, criticality: t.criticality,
+      score: t.score ? t.score.value : null, gaps: t.score ? t.score.gaps : [],
+      why: t.score ? "Scored below the bar" : "Not yet quality-checked" }))
+    .sort((a, b) => (CRIT_RANK[a.criticality] ?? 4) - (CRIT_RANK[b.criticality] ?? 4));
+
+  return { overall, components, departments, levels, attention, improve, existentialDone: exDone, existentialTotal: exNow.length };
+}
+
+// brain = { buildMap, profile, state, spend }
+// enrich = { catalog:{id->{selection_hint,criticality,deliverable,rubric}}, scores:{id->{score,pass,gaps}},
+//            working:Set<id>, notes:{id->{tldr,why}}, loops:[loopStatus], receipts:[{ts,descriptor,amount_usd,status}] }
+// all optional; the console is read-only and this is a pure transform, so an absent enrich just yields
+// the plain build map.
 export function toFoundry(brain, enrich = {}) {
-  const { buildMap = { levels: [] }, profile = {}, spend = 0, loopsDue = [] } = brain;
-  const { catalog = {}, scores = {}, working = new Set(), notes = {} } = enrich;
+  const { buildMap = { levels: [] }, profile = {}, spend = 0 } = brain;
+  const { catalog = {}, scores = {}, working = new Set(), notes = {}, loops = [], receipts = [] } = enrich;
   const levels = (buildMap.levels || []).slice().sort((a, b) => levelKey(a.level) - levelKey(b.level));
 
   const tasks = [];
@@ -84,6 +172,16 @@ export function toFoundry(brain, enrich = {}) {
   const tasksComplete = tasks.filter((t) => t.state === "completed").length;
   const needsAttention = tasks.filter((t) => t.state === "approval" || t.state === "input").length;
 
+  const health = computeHealth(tasks, stages, loops);
+  // Loops sorted for the view: due first, then soonest-next, eligible above locked.
+  const loopsView = (loops || []).slice().sort((a, b) =>
+    (b.due - a.due) || (b.eligible - a.eligible) ||
+    ((a.next_due_in_days ?? 1e9) - (b.next_due_in_days ?? 1e9)));
+  const spendPanel = {
+    total: spend, currency: "USD", label: "Capx Pay",
+    receipts: (receipts || []).slice().sort((a, b) => String(b.ts || "").localeCompare(String(a.ts || ""))),
+  };
+
   const ns = buildMap.active_north_star || null;
   const company = {
     name: profile.company_name || "(unnamed)",
@@ -96,11 +194,15 @@ export function toFoundry(brain, enrich = {}) {
     tasksTotal: tasks.length,
     needsAttention,
     currentLevel: buildMap.current_level ?? 0,
+    health,
+    loops: loopsView,
+    spend: spendPanel,
     metrics: {
       level: buildMap.current_level ?? 0,
       done: tasksComplete,
       spend,
-      loopsDue: loopsDue.length,
+      health: health.overall,
+      loopsDue: loopsView.filter((l) => l.due).length,
     },
   };
 

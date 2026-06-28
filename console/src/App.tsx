@@ -5,6 +5,7 @@ import { Legend } from "./components/Legend";
 import { BuildMap } from "./components/BuildMap";
 import { TaskPanel } from "./components/TaskPanel";
 import { Dashboard } from "./components/Dashboard";
+import { LoopsView } from "./components/LoopsView";
 import { OrgView } from "./components/OrgView";
 import { taskById, attentionQueue, type Task } from "./mockData";
 import { subscribeBrain } from "./feed";
@@ -49,6 +50,8 @@ export default function App() {
         )}
 
         {view === "dashboard" && <Dashboard onOpenTask={openTaskById} />}
+
+        {view === "loops" && <LoopsView />}
 
         {view === "org" && <OrgView />}
       </div>
