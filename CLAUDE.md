@@ -378,8 +378,23 @@ short, date entries, never delete the protocol).
   confirmed: console deps are React only, every UI fetch is a relative /api/* path, the bridge makes no
   outbound calls and only ever spawns node brain.mjs, and LLM work is the founder's own Claude Code via
   casa-serve (no Supabase/OpenRouter/OpenAI/Stripe/API key anywhere).
-- Next: wire casa-serve into a real founder session (drain a live queue end to end); a real interactive
-  /casa-start in a live session (the one test only the user can run); per-stage catalog depth for the few
-  sub-90 companies (crypto compliance detail, ad-monetization, launched-stage activation); Pay v0 BYO-key
-  mode; publish prep (public repo + README + disclaimer).
+- Console rebuild: what's-next + completion honesty (2026-06-28, from real-world testing on an existing
+  company seeded at level 5). Two failures the test exposed: the homepage was a wall of 43 auto-marked-
+  "completed" generic playbooks, and a seeded node showed the playbook template (e.g. "Delaware C-Corp")
+  as if Casa had done it. Fixes: (1) NEW DEFAULT VIEW "Next" (console/src/components/NextView.tsx): the
+  bridge imports the engine's own nextActions (the same call /casa-next makes, weighted by pulse.json) so
+  the Console leads with identical do-or-die work and cannot diverge from the terminal; each action shows a
+  grounded deterministic reason (criticality at this stage, the real downstream work it unblocks with ids
+  resolved to titles, whether it gates revenue), framed by the founder's win + binding constraint + north
+  star read from pulse.json. The 100-node Build map is demoted to a reference. (2) COMPLETION HONESTY: a
+  completed node is "verified" only if Casa produced an artifact (outputs/<id>/) or graded it; otherwise it
+  is "assumed" (seeded from the stage tier). The bridge passes an outputs index; the adapter classifies each
+  task. Assumed nodes render dashed/faded with an "Assumed" tag (no confident green "Completed"); the panel
+  shows an honest banner ("Casa did not do this work and has no record of it"), relabels the deliverable spec
+  as "What a strong version contains" (a standard, not a result), drops the fake section check-marks, and
+  offers "Do this in Casa" to produce a real graded version. The adapter stays a pure transform (bridge
+  supplies the engine ranking + outputs + pulse via enrich). Adapter 12 tests, suite 104, preflight 50.
+- Next: wire casa-serve into a real founder session (drain a live queue end to end); revisit the engine's
+  stage-seeding model (whether to record a seeded set in state rather than infer assumed from missing output);
+  per-stage catalog depth for the few sub-90 companies; Pay v0 BYO-key mode; publish prep.
 <!-- /CASA:AUTO:repo-status -->

@@ -48,7 +48,7 @@ export function TaskNode({ task, registerRef, onClick, isFocus, selected }: Prop
           locked ? "cursor-default" : "cursor-pointer hover:-translate-y-px"
         }`}
         disabled={locked}
-        aria-label={`${task.title}, ${meta.label}`}
+        aria-label={`${task.title}, ${assumed ? "assumed done, not verified" : meta.label}`}
       >
         <div className="flex items-start gap-2.5">
           <span
