@@ -35,6 +35,15 @@ human_gate: false
 blocks_revenue: false
 recurring: false
 typical_milestone: activation-instrumented
+deliverable:
+  artifact: A deployed onboarding flow with recovery messaging and an instrumented activation event, written to the company brain.
+  sections:
+    - Defined aha moment and core action event
+    - Flow modeled as a state machine with triggers and recovery nudges
+    - Friction stripped to hold each step drop-off at or below 30 percent
+    - Instrumented activation event
+  max_words: 700
+rubric: Passes only when the flow is oriented around the user's desired outcome rather than the feature list, each single-step drop-off is held at or below 30 percent, and the activation event is instrumented against targets of activation at or above 30 percent within 7 days and week-1 retention at or above 40 percent.
 source: ../capx-ai/playbooks/playbooks-output/022-onboarding-flow-design.md
 ---
 # Onboarding Flow Design

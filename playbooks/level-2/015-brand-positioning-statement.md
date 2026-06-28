@@ -28,6 +28,15 @@ human_gate: false
 blocks_revenue: false
 recurring: false
 typical_milestone: positioning-locked
+deliverable:
+  artifact: A brand positioning statement with its five-component canvas and a messaging hierarchy, written to the company brain.
+  sections:
+    - Competitive alternatives named first
+    - Five components (target customer, need, category, key benefit, differentiation)
+    - Positioning statement in one to three sentences
+    - Messaging hierarchy
+  max_words: 600
+rubric: Passes only when positioning is anchored to the customer and the competitive alternative rather than the feature list, the statement is one to three sentences that deliberately excludes some audiences, and the copy carries no em-dashes or emojis.
 source: ../capx-ai/playbooks/playbooks-output/015-brand-positioning-statement.md
 ---
 # Brand Positioning Statement

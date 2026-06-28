@@ -29,6 +29,17 @@ human_gate: true
 blocks_revenue: true
 recurring: false
 typical_milestone: contracts-audited
+deliverable:
+  artifact: A mainnet deploy gate record with the third-party audit, the verified invariants, and a live bug bounty, written to the company brain.
+  sections:
+    - Frozen audit scope and pinned commit
+    - Third-party auditor and engagement inputs
+    - Formally verified critical invariants
+    - Findings triaged with remediation and re-audit evidence
+    - Live bug bounty with scope and payout tiers
+    - Founder sign-off on the deploy gate
+  max_words: 1200
+rubric: Passes only when no value-bearing contract reaches mainnet with an unresolved critical or high finding, the audited artifact is the exact deployed commit (re-audited after any post-audit change), critical invariants are formally verified rather than only tested, and the bounty complements rather than substitutes for the audit.
 ---
 # Smart Contract Audit
 

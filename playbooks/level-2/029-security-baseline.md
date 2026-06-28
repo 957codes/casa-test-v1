@@ -30,6 +30,17 @@ human_gate: false
 blocks_revenue: false
 recurring: false
 typical_milestone: security-baseline-set
+deliverable:
+  artifact: A security baseline documenting auth, secrets, abuse prevention, and agent-tool controls, written to the company brain.
+  sections:
+    - Auth architecture chosen by decision tree
+    - Secrets classified with storage, rotation, and access scope
+    - Rate limiting and abuse prevention on public endpoints
+    - Input validation and output encoding at boundaries
+    - Agent tool scopes and prompt-injection guards
+    - SOC 2-ready evidence
+  max_words: 1000
+rubric: Passes only when secret hygiene is treated as the top control with no human access to production Tier 0/1 secrets and immediate rotation on compromise, public endpoints are rate-limited and validate input, and agent tools are scoped to least privilege.
 source: ../capx-ai/playbooks/playbooks-output/029-security-baseline.md
 ---
 # Security Baseline

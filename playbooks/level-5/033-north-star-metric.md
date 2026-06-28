@@ -31,6 +31,16 @@ human_gate: false
 blocks_revenue: false
 recurring: false
 typical_milestone: nsm-defined
+deliverable:
+  artifact: A north star metric definition with its metric tree, guardrails, and instrumentation plan, written to the company brain.
+  sections:
+    - North star metric statement and the core value exchange
+    - NSM checklist pass
+    - Metric tree of 3-4 MECE input metrics
+    - One or two guardrail counter-metrics
+    - Instrumentation plan
+  max_words: 700
+rubric: Passes only when the metric is a single value-denominated number that passes all five checklist criteria, decomposes into 3-4 MECE input metrics via a metric tree, and is protected by guardrail counter-metrics; before PMF it must anchor on retention or core-action completion rather than growth.
 source: ../capx-ai/playbooks/playbooks-output/033-north-star-metric.md
 ---
 # North Star Metric Definition

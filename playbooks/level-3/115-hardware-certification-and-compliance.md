@@ -29,6 +29,17 @@ human_gate: true
 blocks_revenue: true
 recurring: false
 typical_milestone: certified-to-sell
+deliverable:
+  artifact: A hardware compliance file with passed test reports, certificates, marks, and a Declaration of Conformity proving the device is legal to sell, written to the company brain.
+  sections:
+    - Regulatory scope per target market
+    - Compliance plan with standards, labs, lead times, and costs
+    - Production-representative test results
+    - Technical file and Declaration of Conformity
+    - Applied marks and labels
+    - Renewal and surveillance obligations
+  max_words: 1200
+rubric: Passes only when certification is against the production-representative unit that will actually ship, every required regime per target market has a passed report, no compliance claim or mark is applied before its report passes, and the founder has approved the markets, lab spend, and published claims.
 ---
 # Hardware Certification & Compliance
 

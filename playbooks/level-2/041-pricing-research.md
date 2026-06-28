@@ -31,6 +31,17 @@ human_gate: false
 blocks_revenue: false
 recurring: false
 typical_milestone: pricing-direction-set
+deliverable:
+  artifact: A pricing research report with a defensible price range and a recommended value metric, written to the company brain.
+  sections:
+    - Inputs and competitor benchmark band
+    - Van Westendorp perceptual range
+    - Gabor-Granger elasticity and revenue point
+    - Conjoint trade-offs if sample allows
+    - Qualitative WTP findings
+    - Synthesized price range and value metric with confidence tags
+  max_words: 1200
+rubric: Passes only when the price range is triangulated across multiple complementary methods rather than a single survey, competitor benchmarking sets the band tested, and every number carries a confidence tag with any unavailable data source stated.
 source: ../capx-ai/playbooks/playbooks-output/041-pricing-research.md
 ---
 # Pricing Research

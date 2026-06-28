@@ -26,6 +26,16 @@ human_gate: false
 blocks_revenue: true
 recurring: true
 typical_milestone: liquidity-balanced
+deliverable:
+  artifact: A liquidity plan stating current match rate and time-to-fill, the short side, and the levers in flight, updated each cycle.
+  sections:
+    - Match rate, time-to-fill, and fill rate by segment
+    - Identified short side and shortest segments
+    - Saturation target segment
+    - Short-side levers in flight
+    - Long-side constraints if any
+  max_words: 900
+rubric: Passes only when the short side is identified from measured match rate and time-to-fill, the plan concentrates on one segment to saturation rather than spreading thin, and it never adds demand to a supply-starved market in a way that raises churn.
 ---
 
 # Marketplace Liquidity Balancing

@@ -33,7 +33,18 @@
       "department": "Strategy",
       "criticality": "core",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": {
+        "artifact": "An opportunity brief with ranked candidate niches and the evidence behind each, written to the company brain.",
+        "sections": [
+          "Aggregated signals from at least three channels",
+          "Candidate niches clustered by job and audience",
+          "Each candidate scored on urgency, frequency, willingness to pay, reachability, and crowding",
+          "Ranked niches with a confidence tag per claim"
+        ],
+        "max_words": 1000
+      },
+      "rubric": "Passes only when each surfaced opportunity is supported by at least three independent signals from at least two channels rather than a single anecdote, candidates are scored on urgency, willingness to pay, reachability, and crowding, and every claim carries a confidence tag with any unavailable source stated."
     },
     {
       "id": "problem-validation-interviews",
@@ -72,7 +83,20 @@
       "department": "Strategy",
       "criticality": "existential",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": {
+        "artifact": "A problem-validation report with a tagged quote bank and a Go/No-Go/Pivot decision, written to the company brain.",
+        "sections": [
+          "Falsifiable hypothesis and ranked assumptions",
+          "ICP and interviews completed",
+          "Tagged verbatim quotes and observed workarounds",
+          "Synthesis to saturation",
+          "Go/No-Go/Pivot decision with scored rationale",
+          "Refined ICP"
+        ],
+        "max_words": 1500
+      },
+      "rubric": "Passes only with at least 7 of 10 interviews confirming the problem unprompted and 5 or more participants showing active workarounds, every claim backed by tagged verbatim quotes rather than hypothetical intent answers, ending in a scored Go/No-Go/Pivot decision and a refined ICP."
     },
     {
       "id": "competitive-teardown",
@@ -107,7 +131,9 @@
       "department": "Strategy",
       "criticality": "core",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "market-sizing-tam-sam-som",
@@ -145,7 +171,19 @@
       "department": "Strategy",
       "criticality": "core",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": {
+        "artifact": "A market sizing model with TAM/SAM/SOM, sources, and a go/no-go recommendation, written to the company brain.",
+        "sections": [
+          "Inputs (ICP, pricing model, geographic scope, competitor revenues)",
+          "TAM, SAM, SOM by two independent methods",
+          "The TAM boundary (what the market is not)",
+          "VC-grade threshold and unit-economics sanity check",
+          "Go/no-go recommendation"
+        ],
+        "max_words": 800
+      },
+      "rubric": "Passes only when TAM, SAM, and SOM are computed by at least two independent methods (top-down and bottom-up) that agree within roughly 3x, every qualitative claim is replaced by a number with a source and a calculation, and a go/no-go is issued against VC-grade thresholds."
     },
     {
       "id": "jobs-to-be-done-extraction",
@@ -182,7 +220,9 @@
       "department": "Strategy",
       "criticality": "core",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "red-team-thesis",
@@ -224,7 +264,19 @@
       "department": "Strategy",
       "criticality": "existential",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": {
+        "artifact": "A red-teamed thesis document with a confidence-rated assumption stack and pre-committed numeric kill criteria, written to the company brain.",
+        "sections": [
+          "Assumption stack tagged load-bearing or convenient",
+          "Pre-mortem failure narratives",
+          "Disconfirming evidence and confidence per load-bearing assumption",
+          "Quantitative kill criteria",
+          "Go/No-Go/Pivot decision"
+        ],
+        "max_words": 1200
+      },
+      "rubric": "Passes only when every load-bearing assumption carries disconfirming evidence and a confidence rating, the kill criteria are numeric and pre-committed rather than vague, and the thesis survives its own pre-mortem to earn a defensible Go call."
     },
     {
       "id": "why-now-memo",
@@ -262,7 +314,9 @@
       "department": "Strategy",
       "criticality": "growth",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "beachhead-selection",
@@ -305,7 +359,9 @@
       "department": "Strategy",
       "criticality": "core",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "company-naming",
@@ -345,7 +401,9 @@
       "department": "Strategy",
       "criticality": "core",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "domain-acquisition",
@@ -383,7 +441,9 @@
       "department": "Operations",
       "criticality": "core",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "trademark-clearance",
@@ -422,7 +482,9 @@
       "department": "Legal",
       "criticality": "core",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "entity-formation",
@@ -458,7 +520,19 @@
       "department": "Legal",
       "criticality": "existential",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": {
+        "artifact": "An entity-formation record capturing the chosen structure, the filing, the EIN, and the bank account, written to the company brain.",
+        "sections": [
+          "Founder and raise inputs collected",
+          "Selected structure with rationale for any deviation from Delaware C-Corp",
+          "Incorporation filing and registered agent",
+          "EIN",
+          "Business bank account"
+        ],
+        "max_words": 800
+      },
+      "rubric": "Passes only when the entity structure is chosen against the documented inputs (defaulting to Delaware C-Corp, any deviation justified against a specific condition), the EIN and bank account are recorded, and the binding incorporation step is routed to the founder with any IP, licensing, or jurisdiction risk escalated."
     },
     {
       "id": "founding-docs",
@@ -496,7 +570,9 @@
       "department": "Legal",
       "criticality": "core",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "tos-and-privacy-policy",
@@ -538,7 +614,9 @@
       "department": "Legal",
       "criticality": "core",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "brand-positioning-statement",
@@ -577,7 +655,18 @@
       "department": "Brand",
       "criticality": "core",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": {
+        "artifact": "A brand positioning statement with its five-component canvas and a messaging hierarchy, written to the company brain.",
+        "sections": [
+          "Competitive alternatives named first",
+          "Five components (target customer, need, category, key benefit, differentiation)",
+          "Positioning statement in one to three sentences",
+          "Messaging hierarchy"
+        ],
+        "max_words": 600
+      },
+      "rubric": "Passes only when positioning is anchored to the customer and the competitive alternative rather than the feature list, the statement is one to three sentences that deliberately excludes some audiences, and the copy carries no em-dashes or emojis."
     },
     {
       "id": "visual-identity-brief",
@@ -617,7 +706,9 @@
       "department": "Brand",
       "criticality": "growth",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "tone-of-voice-guide",
@@ -654,7 +745,9 @@
       "department": "Brand",
       "criticality": "core",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "mvp-scoping",
@@ -695,7 +788,18 @@
       "department": "Product",
       "criticality": "core",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": {
+        "artifact": "An MVP scope defining the thin slice, the non-goals, and the activation event, written to the company brain.",
+        "sections": [
+          "Single core value the MVP delivers to the beachhead user",
+          "Minimum capabilities to deliver it end to end",
+          "Explicit non-goals",
+          "Activation event and how it is measured"
+        ],
+        "max_words": 600
+      },
+      "rubric": "Passes only when the slice is the smallest end-to-end path to the core value (buildable in a few weeks, else cut again), the non-goals are named explicitly so scope cannot creep back, and the activation event is defined with how it is measured, holding off full brand or visual identity."
     },
     {
       "id": "tech-stack-selection",
@@ -738,7 +842,18 @@
       "department": "Engineering",
       "criticality": "core",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": {
+        "artifact": "A tech stack specification with per-layer choices and rationale, written to the company brain.",
+        "sections": [
+          "Inputs (product type, scale, compliance, budget)",
+          "Foundational constraints (boring technology, monolith first, TCO)",
+          "Per-layer choice with rationale and rejected alternatives",
+          "Sign-off"
+        ],
+        "max_words": 800
+      },
+      "rubric": "Passes only when each layer is chosen by explicit rule with its rejected alternatives recorded, any non-standard choice is justified by a specific measurable problem a boring alternative cannot solve, and a competent open-market hire could be productive on the stack within two weeks."
     },
     {
       "id": "prd-drafting",
@@ -781,7 +896,19 @@
       "department": "Product",
       "criticality": "core",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": {
+        "artifact": "A validated, testable product requirements document, written to the company brain.",
+        "sections": [
+          "Verified prerequisite inputs with any assumption flagged",
+          "Problem, goals, target user, and success metric in narrative",
+          "Scope and explicit non-goals",
+          "Testable acceptance criteria",
+          "Change log with timestamped rationale"
+        ],
+        "max_words": 1000
+      },
+      "rubric": "Passes only when the PRD is built from validated inputs rather than a feature request or opinion, defines the why and the what without specifying the how, and gives acceptance criteria specific enough that an engineering agent needs no clarifying questions."
     },
     {
       "id": "feature-prioritization",
@@ -825,7 +952,9 @@
       "department": "Product",
       "criticality": "core",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "onboarding-flow-design",
@@ -872,7 +1001,18 @@
       "existential_at": [],
       "model_fit": [
         "self_serve"
-      ]
+      ],
+      "deliverable": {
+        "artifact": "A deployed onboarding flow with recovery messaging and an instrumented activation event, written to the company brain.",
+        "sections": [
+          "Defined aha moment and core action event",
+          "Flow modeled as a state machine with triggers and recovery nudges",
+          "Friction stripped to hold each step drop-off at or below 30 percent",
+          "Instrumented activation event"
+        ],
+        "max_words": 700
+      },
+      "rubric": "Passes only when the flow is oriented around the user's desired outcome rather than the feature list, each single-step drop-off is held at or below 30 percent, and the activation event is instrumented against targets of activation at or above 30 percent within 7 days and week-1 retention at or above 40 percent."
     },
     {
       "id": "usability-testing-protocol",
@@ -915,7 +1055,9 @@
       "department": "Product",
       "criticality": "growth",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "beta-program-management",
@@ -964,7 +1106,9 @@
       "department": "Product",
       "criticality": "core",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "release-changelog-cadence",
@@ -1010,7 +1154,9 @@
       "department": "Engineering",
       "criticality": "growth",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "hosting-deployment-setup",
@@ -1056,7 +1202,19 @@
       "department": "Engineering",
       "criticality": "core",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": {
+        "artifact": "A hosting and deployment record with the live URL, the CI/CD pipeline, and secrets management, written to the company brain.",
+        "sections": [
+          "Hosting choice justified against the decision tree",
+          "Provisioned compute and managed database with automated backups",
+          "CI/CD pipeline definition",
+          "Secrets manager with no hardcoded secrets",
+          "Health checks and logging"
+        ],
+        "max_words": 800
+      },
+      "rubric": "Passes only when the hosting choice is justified against traffic, budget, and cost-predictability as a first-class criterion, the CI/CD pipeline runs lint, test, build, and deploy with no secret hardcoded in the repo or pipeline, and any ongoing-spend provisioning is escalated to the founder."
     },
     {
       "id": "observability-setup",
@@ -1100,7 +1258,9 @@
       "department": "Engineering",
       "criticality": "core",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "incident-response",
@@ -1147,7 +1307,9 @@
       "department": "Engineering",
       "criticality": "core",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "security-baseline",
@@ -1188,7 +1350,20 @@
       "department": "Engineering",
       "criticality": "core",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": {
+        "artifact": "A security baseline documenting auth, secrets, abuse prevention, and agent-tool controls, written to the company brain.",
+        "sections": [
+          "Auth architecture chosen by decision tree",
+          "Secrets classified with storage, rotation, and access scope",
+          "Rate limiting and abuse prevention on public endpoints",
+          "Input validation and output encoding at boundaries",
+          "Agent tool scopes and prompt-injection guards",
+          "SOC 2-ready evidence"
+        ],
+        "max_words": 1000
+      },
+      "rubric": "Passes only when secret hygiene is treated as the top control with no human access to production Tier 0/1 secrets and immediate rotation on compromise, public endpoints are rate-limited and validate input, and agent tools are scoped to least privilege."
     },
     {
       "id": "data-backup-recovery",
@@ -1233,7 +1408,9 @@
       "department": "Engineering",
       "criticality": "core",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "analytics-stack-setup",
@@ -1269,7 +1446,19 @@
       "department": "Engineering",
       "criticality": "core",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": {
+        "artifact": "An analytics stack with instrumented capture, a single warehouse, and a version-controlled metrics layer, written to the company brain.",
+        "sections": [
+          "Business and technical context",
+          "Selected implementation path",
+          "Single event pipeline to the warehouse",
+          "Version-controlled metrics layer with one definition per metric",
+          "Privacy and consent built in"
+        ],
+        "max_words": 900
+      },
+      "rubric": "Passes only when every user action is captured once at the source and routed from a single canonical stream with no tool storing its own copy, every metric has exactly one authoritative definition in version control, and privacy and consent are built in from day one rather than retrofitted."
     },
     {
       "id": "event-taxonomy-design",
@@ -1308,7 +1497,9 @@
       "department": "Data",
       "criticality": "core",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "north-star-metric",
@@ -1351,7 +1542,19 @@
       "department": "Data",
       "criticality": "core",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": {
+        "artifact": "A north star metric definition with its metric tree, guardrails, and instrumentation plan, written to the company brain.",
+        "sections": [
+          "North star metric statement and the core value exchange",
+          "NSM checklist pass",
+          "Metric tree of 3-4 MECE input metrics",
+          "One or two guardrail counter-metrics",
+          "Instrumentation plan"
+        ],
+        "max_words": 700
+      },
+      "rubric": "Passes only when the metric is a single value-denominated number that passes all five checklist criteria, decomposes into 3-4 MECE input metrics via a metric tree, and is protected by guardrail counter-metrics; before PMF it must anchor on retention or core-action completion rather than growth."
     },
     {
       "id": "funnel-analysis",
@@ -1395,7 +1598,19 @@
       "department": "Data",
       "criticality": "core",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": {
+        "artifact": "A funnel analysis with the activation metric, the diagnosed drop-offs, and prioritized remediation hypotheses, written to the company brain.",
+        "sections": [
+          "Activation metric and the setup, aha, and habit moments",
+          "Funnel by stage segmented by channel, device, geo, and persona",
+          "Drop-offs cross-referenced against deploys and campaigns",
+          "Bottlenecks prioritized with RICE",
+          "Top two testable hypotheses with control/variant, MDE, and sample size"
+        ],
+        "max_words": 900
+      },
+      "rubric": "Passes only when drop-offs are statistically significant and cross-referenced against the deploy and campaign schedule before being called bottlenecks, bottlenecks are prioritized with RICE, and the top two are handed off as testable hypotheses with a defined MDE and sample size rather than peeked at early."
     },
     {
       "id": "cohort-retention-analysis",
@@ -1444,7 +1659,19 @@
       ],
       "model_fit": [
         "recurring"
-      ]
+      ],
+      "deliverable": {
+        "artifact": "A retention report with cohort tables and the identified critical event, written to the company brain.",
+        "sections": [
+          "Critical event and usage interval",
+          "Chosen retention metric type",
+          "D1/D7/D30/W12 cohort tables classified smile or declining",
+          "Cohorts segmented by channel and feature use",
+          "Shifts attributed to interventions"
+        ],
+        "max_words": 900
+      },
+      "rubric": "Passes only when the critical event is the value action chosen by retention-delta analysis rather than a generic login proxy, the retention metric type matches the usage pattern, and every curve shift is attributed to a specific intervention or external event via the intervention log."
     },
     {
       "id": "attribution-modeling",
@@ -1490,7 +1717,9 @@
       "department": "Data",
       "criticality": "growth",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "ceo-dashboard-build",
@@ -1533,7 +1762,9 @@
       "department": "Data",
       "criticality": "core",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "ga4-reading-playbook",
@@ -1576,7 +1807,9 @@
       "department": "Data",
       "criticality": "growth",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "mixpanel-reading-playbook",
@@ -1619,7 +1852,9 @@
       "department": "Data",
       "criticality": "optional",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "weekly-business-review",
@@ -1665,7 +1900,9 @@
       "department": "Operations",
       "criticality": "core",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "pricing-research",
@@ -1708,7 +1945,20 @@
       "department": "Finance",
       "criticality": "core",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": {
+        "artifact": "A pricing research report with a defensible price range and a recommended value metric, written to the company brain.",
+        "sections": [
+          "Inputs and competitor benchmark band",
+          "Van Westendorp perceptual range",
+          "Gabor-Granger elasticity and revenue point",
+          "Conjoint trade-offs if sample allows",
+          "Qualitative WTP findings",
+          "Synthesized price range and value metric with confidence tags"
+        ],
+        "max_words": 1200
+      },
+      "rubric": "Passes only when the price range is triangulated across multiple complementary methods rather than a single survey, competitor benchmarking sets the band tested, and every number carries a confidence tag with any unavailable data source stated."
     },
     {
       "id": "packaging-tier-design",
@@ -1747,7 +1997,9 @@
       "department": "Finance",
       "criticality": "core",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "pricing-page-copy-layout",
@@ -1791,7 +2043,9 @@
       "department": "Growth",
       "criticality": "core",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "freemium-trial-decision",
@@ -1839,7 +2093,9 @@
       "existential_at": [],
       "model_fit": [
         "self_serve"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "discount-promo-policy",
@@ -1881,7 +2137,9 @@
       "department": "Finance",
       "criticality": "growth",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "positioning-canvas",
@@ -1924,7 +2182,9 @@
       "department": "Strategy",
       "criticality": "core",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "category-design-decision",
@@ -1966,7 +2226,9 @@
       "department": "Strategy",
       "criticality": "growth",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "launch-plan-t90",
@@ -2012,7 +2274,19 @@
       "department": "Growth",
       "criticality": "core",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": {
+        "artifact": "A T-90 launch plan with a dated countdown, RACI, asset inventory, war-room runbook, and metrics dashboard, written to the company brain.",
+        "sections": [
+          "Launch tier classification",
+          "RACI of agent and human owners",
+          "Week-by-week countdown with real dates",
+          "Asset inventory",
+          "War-room runbook and metrics dashboard"
+        ],
+        "max_words": 1200
+      },
+      "rubric": "Passes only when the launch is tier-classified to set lead time, every step has a date, an owner, and an asset, the burst sequences Product Hunt then Hacker News then PR across separate days, and the public launch is founder-gated before T-0."
     },
     {
       "id": "product-hunt-launch",
@@ -2063,7 +2337,9 @@
       "existential_at": [],
       "model_fit": [
         "self_serve"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "hacker-news-launch",
@@ -2113,7 +2389,9 @@
       "existential_at": [],
       "model_fit": [
         "self_serve"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "pr-press-launch",
@@ -2151,7 +2429,9 @@
       "department": "Growth",
       "criticality": "growth",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "podcast-tour",
@@ -2192,7 +2472,9 @@
       "department": "Growth",
       "criticality": "optional",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "community-seeding",
@@ -2234,7 +2516,9 @@
       "department": "Success",
       "criticality": "growth",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "seo-keyword-research",
@@ -2270,7 +2554,9 @@
       "existential_at": [],
       "model_fit": [
         "self_serve"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "content-calendar",
@@ -2312,7 +2598,9 @@
       "existential_at": [],
       "model_fit": [
         "self_serve"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "pillar-cluster-content",
@@ -2355,7 +2643,9 @@
       "existential_at": [],
       "model_fit": [
         "self_serve"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "long-form-blog-post",
@@ -2398,7 +2688,9 @@
       "existential_at": [],
       "model_fit": [
         "self_serve"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "programmatic-seo",
@@ -2442,7 +2734,9 @@
       "existential_at": [],
       "model_fit": [
         "self_serve"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "technical-seo-audit",
@@ -2481,7 +2775,9 @@
       "existential_at": [],
       "model_fit": [
         "self_serve"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "link-building",
@@ -2524,7 +2820,9 @@
       "existential_at": [],
       "model_fit": [
         "self_serve"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "newsletter-growth",
@@ -2561,7 +2859,9 @@
       "existential_at": [],
       "model_fit": [
         "self_serve"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "youtube-strategy",
@@ -2602,7 +2902,9 @@
       "existential_at": [],
       "model_fit": [
         "self_serve"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "tiktok-growth",
@@ -2646,7 +2948,9 @@
       "existential_at": [],
       "model_fit": [
         "self_serve"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "twitter-x-playbook",
@@ -2686,7 +2990,9 @@
       "existential_at": [],
       "model_fit": [
         "self_serve"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "linkedin-organic",
@@ -2731,7 +3037,9 @@
       "existential_at": [],
       "model_fit": [
         "self_serve"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "instagram-growth",
@@ -2775,7 +3083,9 @@
       "existential_at": [],
       "model_fit": [
         "self_serve"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "reddit-marketing",
@@ -2815,7 +3125,9 @@
       "existential_at": [],
       "model_fit": [
         "self_serve"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "google-ads",
@@ -2860,7 +3172,9 @@
       "department": "Growth",
       "criticality": "growth",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "meta-ads",
@@ -2906,7 +3220,9 @@
       "department": "Growth",
       "criticality": "growth",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "linkedin-ads",
@@ -2957,7 +3273,9 @@
       "existential_at": [],
       "model_fit": [
         "sales_led"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "retargeting",
@@ -3001,7 +3319,9 @@
       "department": "Growth",
       "criticality": "growth",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "creative-testing",
@@ -3041,7 +3361,9 @@
       "department": "Growth",
       "criticality": "growth",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "landing-page-cro",
@@ -3083,7 +3405,9 @@
       "existential_at": [],
       "model_fit": [
         "self_serve"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "affiliate-program-setup",
@@ -3126,7 +3450,9 @@
       "department": "Growth",
       "criticality": "optional",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "influencer-partnerships",
@@ -3173,7 +3499,9 @@
       "department": "Growth",
       "criticality": "optional",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "integration-co-marketing",
@@ -3214,7 +3542,9 @@
       "department": "Growth",
       "criticality": "growth",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "referral-program",
@@ -3254,7 +3584,9 @@
       "department": "Growth",
       "criticality": "growth",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "welcome-email-sequence",
@@ -3296,7 +3628,9 @@
       "department": "Growth",
       "criticality": "core",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "nurture-campaign",
@@ -3338,7 +3672,9 @@
       "department": "Growth",
       "criticality": "growth",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "win-back-campaign",
@@ -3381,7 +3717,9 @@
       "department": "Growth",
       "criticality": "growth",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "transactional-emails",
@@ -3421,7 +3759,9 @@
       "department": "Product",
       "criticality": "core",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "email-deliverability-setup",
@@ -3457,7 +3797,9 @@
       "department": "Engineering",
       "criticality": "core",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "icp-target-account-listing",
@@ -3507,7 +3849,9 @@
       "existential_at": [],
       "model_fit": [
         "sales_led"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "outbound-email-sequences",
@@ -3558,7 +3902,9 @@
       "existential_at": [],
       "model_fit": [
         "sales_led"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "discovery-call-framework",
@@ -3609,7 +3955,9 @@
       "existential_at": [],
       "model_fit": [
         "sales_led"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "demo-script",
@@ -3658,7 +4006,9 @@
       "existential_at": [],
       "model_fit": [
         "sales_led"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "objection-handling-library",
@@ -3706,7 +4056,9 @@
       "existential_at": [],
       "model_fit": [
         "sales_led"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "contract-close-playbook",
@@ -3759,7 +4111,19 @@
       "existential_at": [],
       "model_fit": [
         "sales_led"
-      ]
+      ],
+      "deliverable": {
+        "artifact": "A deal-close record with a mutual action plan and the signed contract terms, written to the company brain.",
+        "sections": [
+          "Economic buyer and decision/paper process mapped",
+          "Mutual action plan with milestones and owners",
+          "Procurement, security, and legal redline status",
+          "Concessions traded with their return",
+          "Founder-approved binding agreement and signature"
+        ],
+        "max_words": 1000
+      },
+      "rubric": "Passes only when the economic buyer and paper process are mapped, procurement, security, and legal run in parallel rather than single-threaded, every concession is traded for a return rather than conceded, and the binding agreement is explicitly approved by the founder before signature."
     },
     {
       "id": "support-workflow",
@@ -3804,7 +4168,9 @@
       "existential_at": [
         "revenue"
       ],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "churn-diagnosis-winback",
@@ -3855,7 +4221,19 @@
       ],
       "model_fit": [
         "recurring"
-      ]
+      ],
+      "deliverable": {
+        "artifact": "A churn diagnosis with per-account root cause and tailored win-back campaigns, written to the company brain.",
+        "sections": [
+          "Churn classified on the avoidable/unavoidable by expected/unexpected matrix",
+          "Voluntary versus involuntary split",
+          "Involuntary recovery via dunning, card-updater, and retry",
+          "Voluntary churn branched by lifecycle timing",
+          "Win-back tailored to reason and timing"
+        ],
+        "max_words": 900
+      },
+      "rubric": "Passes only when every churn event is traced to a root cause before any intervention, involuntary failed-payment churn is recovered as the highest-ROI lever, and win-backs are tailored to the churn reason and timing rather than reusing one template across all churn."
     },
     {
       "id": "nps-csat-program",
@@ -3898,7 +4276,9 @@
       "existential_at": [],
       "model_fit": [
         "recurring"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "case-study-testimonial-pipeline",
@@ -3941,7 +4321,9 @@
       "department": "Growth",
       "criticality": "growth",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "ab-testing-protocol",
@@ -3984,7 +4366,9 @@
       "department": "Data",
       "criticality": "growth",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "growth-loop-design",
@@ -4027,7 +4411,9 @@
       "department": "Growth",
       "criticality": "core",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "pricing-packaging-experimentation",
@@ -4077,7 +4463,9 @@
       "department": "Finance",
       "criticality": "growth",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "financial-model-forecast",
@@ -4121,7 +4509,9 @@
       "existential_at": [
         "scaling"
       ],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "unit-economics",
@@ -4165,7 +4555,19 @@
         "revenue",
         "scaling"
       ],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": {
+        "artifact": "A unit-economics model with cohort CAC, gross margin, realized LTV, contribution margin, and payback by channel, written to the company brain.",
+        "sections": [
+          "Fully-loaded, paid-only, time-lagged CAC",
+          "Gross margin with honest COGS",
+          "Realized cohort LTV over a capped horizon",
+          "Contribution margin",
+          "Payback and LTV-to-CAC by cohort and channel"
+        ],
+        "max_words": 900
+      },
+      "rubric": "Passes only when CAC is paid-only, fully loaded, and time-lagged (never blended) for scaling decisions, LTV is realized over a capped horizon rather than an infinite-horizon projection, and every number is segmented by cohort and channel rather than blended into an average that hides failing channels."
     },
     {
       "id": "fundraise-deck-investor-outreach",
@@ -4213,7 +4615,9 @@
       "department": "Finance",
       "criticality": "optional",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "human-in-the-loop-approval-gates",
@@ -4247,7 +4651,9 @@
       "department": "Operations",
       "criticality": "core",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "llm-cost-and-model-routing",
@@ -4285,7 +4691,9 @@
       "department": "Engineering",
       "criticality": "core",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "marketplace-trust-and-safety",
@@ -4321,7 +4729,20 @@
       "existential_at": [],
       "model_fit": [
         "marketplace"
-      ]
+      ],
+      "deliverable": {
+        "artifact": "A trust and safety policy covering identity, fraud screening, disputes, and enforcement for both marketplace sides, written to the company brain.",
+        "sections": [
+          "Per-side trust risk map",
+          "Identity and onboarding requirements per side",
+          "Fraud screening signals, thresholds, and review queue",
+          "Dispute-resolution process and decision rule",
+          "Published policy and enforcement ladder",
+          "Escrow and payout terms routed to Capx Pay"
+        ],
+        "max_words": 1200
+      },
+      "rubric": "Passes only when a dispute path exists before any transaction opens, identity and screening are proportional to transaction risk on each side, the enforcement ladder is explicit, and all funds movement is routed to Capx Pay rather than handled in the policy."
     },
     {
       "id": "marketplace-liquidity-balancing",
@@ -4357,7 +4778,19 @@
       "existential_at": [],
       "model_fit": [
         "marketplace"
-      ]
+      ],
+      "deliverable": {
+        "artifact": "A liquidity plan stating current match rate and time-to-fill, the short side, and the levers in flight, updated each cycle.",
+        "sections": [
+          "Match rate, time-to-fill, and fill rate by segment",
+          "Identified short side and shortest segments",
+          "Saturation target segment",
+          "Short-side levers in flight",
+          "Long-side constraints if any"
+        ],
+        "max_words": 900
+      },
+      "rubric": "Passes only when the short side is identified from measured match rate and time-to-fill, the plan concentrates on one segment to saturation rather than spreading thin, and it never adds demand to a supply-starved market in a way that raises churn."
     },
     {
       "id": "local-google-business-profile",
@@ -4395,7 +4828,19 @@
       "existential_at": [],
       "model_fit": [
         "local"
-      ]
+      ],
+      "deliverable": {
+        "artifact": "A local presence record covering the verified Google Business Profile, the booking path, and NAP-consistent directories, written to the company brain.",
+        "sections": [
+          "Verified Google Business Profile",
+          "Categories, service area, hours, and photos",
+          "Booking or call-to-action path",
+          "NAP-consistent directory list",
+          "Review-request flow"
+        ],
+        "max_words": 600
+      },
+      "rubric": "Passes only when the profile is verified with every field completed, the same name, address, and phone are mirrored identically across directories, a map view has a working path to a booking or call, and a review-request flow fires on job completion."
     },
     {
       "id": "local-reviews-reputation",
@@ -4436,7 +4881,9 @@
       ],
       "model_fit": [
         "local"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "b2b-soc2-readiness",
@@ -4473,7 +4920,9 @@
       "department": "Legal",
       "criticality": "growth",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "app-store-optimization",
@@ -4513,7 +4962,9 @@
       "existential_at": [],
       "model_fit": [
         "self_serve"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "pre-seed-fundraise",
@@ -4553,7 +5004,9 @@
         "building",
         "launched"
       ],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "supplier-sourcing-and-cogs",
@@ -4593,7 +5046,9 @@
       "existential_at": [],
       "model_fit": [
         "physical_goods"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "inventory-and-fulfillment-setup",
@@ -4635,7 +5090,9 @@
       "existential_at": [],
       "model_fit": [
         "physical_goods"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "shipping-returns-policy",
@@ -4677,7 +5134,9 @@
       "existential_at": [],
       "model_fit": [
         "physical_goods"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "repeat-purchase-and-aov",
@@ -4723,7 +5182,9 @@
       "model_fit": [
         "transactional",
         "physical_goods"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "merchandising-and-catalog",
@@ -4760,7 +5221,9 @@
       "existential_at": [],
       "model_fit": [
         "physical_goods"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "activation-rate-optimization",
@@ -4810,7 +5273,9 @@
       ],
       "model_fit": [
         "self_serve"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "first-run-aha-experience",
@@ -4855,7 +5320,9 @@
       "existential_at": [],
       "model_fit": [
         "self_serve"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "hardware-certification-and-compliance",
@@ -4898,7 +5365,20 @@
       ],
       "model_fit": [
         "physical_goods"
-      ]
+      ],
+      "deliverable": {
+        "artifact": "A hardware compliance file with passed test reports, certificates, marks, and a Declaration of Conformity proving the device is legal to sell, written to the company brain.",
+        "sections": [
+          "Regulatory scope per target market",
+          "Compliance plan with standards, labs, lead times, and costs",
+          "Production-representative test results",
+          "Technical file and Declaration of Conformity",
+          "Applied marks and labels",
+          "Renewal and surveillance obligations"
+        ],
+        "max_words": 1200
+      },
+      "rubric": "Passes only when certification is against the production-representative unit that will actually ship, every required regime per target market has a passed report, no compliance claim or mark is applied before its report passes, and the founder has approved the markets, lab spend, and published claims."
     },
     {
       "id": "kyc-aml-program",
@@ -4940,7 +5420,20 @@
       ],
       "model_fit": [
         "transactional"
-      ]
+      ],
+      "deliverable": {
+        "artifact": "A documented KYC/AML compliance program covering identity, screening, monitoring, the travel rule, and named ownership, written to the company brain.",
+        "sections": [
+          "Regulatory perimeter and obligations per activity",
+          "KYC/CIP identity and verification policy by tier",
+          "Sanctions and PEP screening procedure",
+          "Transaction-monitoring rules and SAR path",
+          "Travel-rule handling",
+          "Named compliance owner and governance cadence"
+        ],
+        "max_words": 1500
+      },
+      "rubric": "Passes only when no customer value can move before identity verification, sanctions screening, and transaction monitoring are live, screening is continuous rather than one-time, and a named human owns and signs off on the program."
     },
     {
       "id": "smart-contract-audit",
@@ -4982,7 +5475,20 @@
         "launched",
         "revenue"
       ],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": {
+        "artifact": "A mainnet deploy gate record with the third-party audit, the verified invariants, and a live bug bounty, written to the company brain.",
+        "sections": [
+          "Frozen audit scope and pinned commit",
+          "Third-party auditor and engagement inputs",
+          "Formally verified critical invariants",
+          "Findings triaged with remediation and re-audit evidence",
+          "Live bug bounty with scope and payout tiers",
+          "Founder sign-off on the deploy gate"
+        ],
+        "max_words": 1200
+      },
+      "rubric": "Passes only when no value-bearing contract reaches mainnet with an unresolved critical or high finding, the audited artifact is the exact deployed commit (re-audited after any post-audit change), critical invariants are formally verified rather than only tested, and the bounty complements rather than substitutes for the audit."
     },
     {
       "id": "token-and-licensing-strategy",
@@ -5026,7 +5532,9 @@
       ],
       "model_fit": [
         "transactional"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "hardware-prototyping-and-dfm",
@@ -5063,7 +5571,9 @@
       "existential_at": [],
       "model_fit": [
         "physical_goods"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "contract-manufacturing-setup",
@@ -5105,7 +5615,9 @@
       "existential_at": [],
       "model_fit": [
         "physical_goods"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "dunning-and-involuntary-churn",
@@ -5157,7 +5669,9 @@
       ],
       "model_fit": [
         "recurring"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "marketplace-supply-acquisition",
@@ -5195,7 +5709,9 @@
       "existential_at": [],
       "model_fit": [
         "marketplace"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "ad-revenue-and-yield",
@@ -5240,7 +5756,9 @@
         "revenue",
         "scaling"
       ],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "hardware-preorder-demand-validation",
@@ -5282,7 +5800,9 @@
       ],
       "model_fit": [
         "physical_goods"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "hiring-and-org-scaling",
@@ -5318,7 +5838,9 @@
       "existential_at": [
         "scaling"
       ],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "account-expansion-and-upsell",
@@ -5364,7 +5886,9 @@
       "model_fit": [
         "recurring",
         "sales_led"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "services-delivery-and-utilization",
@@ -5401,7 +5925,9 @@
         "revenue",
         "scaling"
       ],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "onchain-payment-and-stablecoin-integration",
@@ -5446,7 +5972,20 @@
       ],
       "model_fit": [
         "transactional"
-      ]
+      ],
+      "deliverable": {
+        "artifact": "An on-chain payment rail spec covering chain, settlement asset, wallet model, fees, ramps, and reconciliation, written to the company brain.",
+        "sections": [
+          "Selected settlement chain with rationale",
+          "Settlement stablecoin and pinned token addresses",
+          "Wallet-connect and custody model",
+          "Gas and fee handling design",
+          "On/off-ramp with region and KYC coverage",
+          "Confirmation depth and reconciliation rules"
+        ],
+        "max_words": 1500
+      },
+      "rubric": "Passes only when the rail is non-custodial by default, no unconfirmed transaction is ever treated as settled, token addresses and ramp keys are configuration with named owners rather than literals in source, and ramp access is gated on the KYC/AML screening."
     },
     {
       "id": "wallet-onboarding-ux",
@@ -5493,7 +6032,9 @@
       ],
       "model_fit": [
         "self_serve"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "tokenomics-design",
@@ -5534,7 +6075,9 @@
         "launched",
         "scaling"
       ],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "onchain-community-and-incentive-growth",
@@ -5574,7 +6117,9 @@
       "department": "Growth",
       "criticality": "growth",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "onchain-analytics-and-attribution",
@@ -5620,7 +6165,9 @@
       ],
       "model_fit": [
         "recurring"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "protocol-security-monitoring",
@@ -5667,7 +6214,19 @@
         "revenue",
         "scaling"
       ],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": {
+        "artifact": "A live protocol monitoring and incident-response setup with invariant monitors, a guardian pause, and a rehearsed hack runbook, written to the company brain.",
+        "sections": [
+          "Live invariant and exploit-pattern monitors",
+          "Alerting thresholds tuned against normal activity",
+          "Guardian pause capability with quorum and conditions",
+          "Hack incident runbook with named on-call owners",
+          "Drill and post-mortem record"
+        ],
+        "max_words": 1200
+      },
+      "rubric": "Passes only when the pause capability is rehearsed before it is needed, monitors track the deployed artifact and are re-baselined after every change, and the hack response is decided in advance with a named on-call owner rather than improvised during a live drain."
     },
     {
       "id": "treasury-and-stablecoin-runway",
@@ -5707,7 +6266,20 @@
         "revenue",
         "scaling"
       ],
-      "model_fit": []
+      "model_fit": [],
+      "deliverable": {
+        "artifact": "A treasury policy covering balance buckets, stablecoin runway, multisig custody, and runway alerts, written to the company brain.",
+        "sections": [
+          "Labeled treasury buckets",
+          "Stablecoin runway policy with issuer and chain diversification limits",
+          "Multisig custody setup with quorum and signer procedures",
+          "Hot/cold and spend movement controls",
+          "Runway calculation and alert thresholds",
+          "Review and rebalance cadence"
+        ],
+        "max_words": 1200
+      },
+      "rubric": "Passes only when runway is measured in stablecoins rather than a volatile native token, no single key or single person can move treasury funds, issuer, chain, and custody are diversified so one failure cannot end the company, and custody or concentration changes are founder-gated."
     },
     {
       "id": "open-source-strategy",
@@ -5754,7 +6326,9 @@
       ],
       "model_fit": [
         "self_serve"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "api-and-sdk-design",
@@ -5803,7 +6377,9 @@
       ],
       "model_fit": [
         "self_serve"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "developer-docs-and-dx",
@@ -5850,7 +6426,9 @@
       ],
       "model_fit": [
         "self_serve"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "developer-relations-and-devrel",
@@ -5895,7 +6473,9 @@
       "existential_at": [],
       "model_fit": [
         "self_serve"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "developer-community-and-contributors",
@@ -5939,7 +6519,9 @@
       "existential_at": [],
       "model_fit": [
         "self_serve"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "bottom-up-plg-to-sales-handoff",
@@ -5987,7 +6569,9 @@
       ],
       "model_fit": [
         "self_serve"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "firmware-and-ota-updates",
@@ -6032,7 +6616,9 @@
       ],
       "model_fit": [
         "physical_goods"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "hardware-qa-and-reliability",
@@ -6077,7 +6663,9 @@
       ],
       "model_fit": [
         "physical_goods"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "retail-and-channel-distribution",
@@ -6119,7 +6707,9 @@
       "existential_at": [],
       "model_fit": [
         "physical_goods"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "warranty-and-rma-operations",
@@ -6164,7 +6754,9 @@
       ],
       "model_fit": [
         "physical_goods"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "spare-parts-and-aftermarket",
@@ -6206,7 +6798,9 @@
       "existential_at": [],
       "model_fit": [
         "physical_goods"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "plg-instrumentation-and-pqls",
@@ -6256,7 +6850,9 @@
       ],
       "model_fit": [
         "self_serve"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "in-app-purchase-and-store-economics",
@@ -6301,7 +6897,9 @@
       ],
       "model_fit": [
         "self_serve"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "paywall-and-pricing-experiments",
@@ -6348,7 +6946,9 @@
       ],
       "model_fit": [
         "self_serve"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "referral-and-virality-loops",
@@ -6389,7 +6989,9 @@
       "existential_at": [],
       "model_fit": [
         "self_serve"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     },
     {
       "id": "mobile-lifecycle-and-push",
@@ -6435,7 +7037,9 @@
       ],
       "model_fit": [
         "self_serve"
-      ]
+      ],
+      "deliverable": null,
+      "rubric": null
     }
   ]
 }

@@ -27,6 +27,16 @@ human_gate: false
 blocks_revenue: true
 recurring: false
 typical_milestone: local-presence-live
+deliverable:
+  artifact: A local presence record covering the verified Google Business Profile, the booking path, and NAP-consistent directories, written to the company brain.
+  sections:
+    - Verified Google Business Profile
+    - Categories, service area, hours, and photos
+    - Booking or call-to-action path
+    - NAP-consistent directory list
+    - Review-request flow
+  max_words: 600
+rubric: Passes only when the profile is verified with every field completed, the same name, address, and phone are mirrored identically across directories, a map view has a working path to a booking or call, and a review-request flow fires on job completion.
 ---
 
 # Local Google Business Profile and Maps

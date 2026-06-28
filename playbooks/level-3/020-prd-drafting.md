@@ -32,6 +32,16 @@ human_gate: false
 blocks_revenue: false
 recurring: false
 typical_milestone: prd-ready
+deliverable:
+  artifact: A validated, testable product requirements document, written to the company brain.
+  sections:
+    - Verified prerequisite inputs with any assumption flagged
+    - Problem, goals, target user, and success metric in narrative
+    - Scope and explicit non-goals
+    - Testable acceptance criteria
+    - Change log with timestamped rationale
+  max_words: 1000
+rubric: Passes only when the PRD is built from validated inputs rather than a feature request or opinion, defines the why and the what without specifying the how, and gives acceptance criteria specific enough that an engineering agent needs no clarifying questions.
 source: ../capx-ai/playbooks/playbooks-output/020-prd-drafting.md
 ---
 # PRD Drafting

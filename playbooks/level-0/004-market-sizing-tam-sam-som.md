@@ -28,6 +28,16 @@ human_gate: false
 blocks_revenue: false
 recurring: false
 typical_milestone: validated-opportunity
+deliverable:
+  artifact: A market sizing model with TAM/SAM/SOM, sources, and a go/no-go recommendation, written to the company brain.
+  sections:
+    - Inputs (ICP, pricing model, geographic scope, competitor revenues)
+    - TAM, SAM, SOM by two independent methods
+    - The TAM boundary (what the market is not)
+    - VC-grade threshold and unit-economics sanity check
+    - Go/no-go recommendation
+  max_words: 800
+rubric: Passes only when TAM, SAM, and SOM are computed by at least two independent methods (top-down and bottom-up) that agree within roughly 3x, every qualitative claim is replaced by a number with a source and a calculation, and a go/no-go is issued against VC-grade thresholds.
 source: ../capx-ai/playbooks/playbooks-output/004-market-sizing-tam-sam-som.md
 ---
 # Market Sizing (TAM/SAM/SOM)

@@ -31,6 +31,16 @@ human_gate: false
 blocks_revenue: false
 recurring: false
 typical_milestone: validated-opportunity
+deliverable:
+  artifact: A red-teamed thesis document with a confidence-rated assumption stack and pre-committed numeric kill criteria, written to the company brain.
+  sections:
+    - Assumption stack tagged load-bearing or convenient
+    - Pre-mortem failure narratives
+    - Disconfirming evidence and confidence per load-bearing assumption
+    - Quantitative kill criteria
+    - Go/No-Go/Pivot decision
+  max_words: 1200
+rubric: Passes only when every load-bearing assumption carries disconfirming evidence and a confidence rating, the kill criteria are numeric and pre-committed rather than vague, and the thesis survives its own pre-mortem to earn a defensible Go call.
 source: ../capx-ai/playbooks/playbooks-output/006-red-team-thesis.md
 ---
 # Red-Team the Thesis

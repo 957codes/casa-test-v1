@@ -29,6 +29,17 @@ human_gate: false
 blocks_revenue: false
 recurring: false
 typical_milestone: validated-opportunity
+deliverable:
+  artifact: A problem-validation report with a tagged quote bank and a Go/No-Go/Pivot decision, written to the company brain.
+  sections:
+    - Falsifiable hypothesis and ranked assumptions
+    - ICP and interviews completed
+    - Tagged verbatim quotes and observed workarounds
+    - Synthesis to saturation
+    - Go/No-Go/Pivot decision with scored rationale
+    - Refined ICP
+  max_words: 1500
+rubric: Passes only with at least 7 of 10 interviews confirming the problem unprompted and 5 or more participants showing active workarounds, every claim backed by tagged verbatim quotes rather than hypothetical intent answers, ending in a scored Go/No-Go/Pivot decision and a refined ICP.
 source: ../capx-ai/playbooks/playbooks-output/002-problem-validation-interviews.md
 ---
 # Problem Validation Interviews

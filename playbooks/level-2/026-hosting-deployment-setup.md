@@ -34,6 +34,16 @@ human_gate: true
 blocks_revenue: false
 recurring: false
 typical_milestone: hosting-live
+deliverable:
+  artifact: A hosting and deployment record with the live URL, the CI/CD pipeline, and secrets management, written to the company brain.
+  sections:
+    - Hosting choice justified against the decision tree
+    - Provisioned compute and managed database with automated backups
+    - CI/CD pipeline definition
+    - Secrets manager with no hardcoded secrets
+    - Health checks and logging
+  max_words: 800
+rubric: Passes only when the hosting choice is justified against traffic, budget, and cost-predictability as a first-class criterion, the CI/CD pipeline runs lint, test, build, and deploy with no secret hardcoded in the repo or pipeline, and any ongoing-spend provisioning is escalated to the founder.
 source: ../capx-ai/playbooks/playbooks-output/026-hosting-deployment-setup.md
 ---
 # Hosting & Deployment Setup

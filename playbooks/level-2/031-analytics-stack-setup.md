@@ -26,6 +26,16 @@ human_gate: false
 blocks_revenue: false
 recurring: false
 typical_milestone: analytics-instrumented
+deliverable:
+  artifact: An analytics stack with instrumented capture, a single warehouse, and a version-controlled metrics layer, written to the company brain.
+  sections:
+    - Business and technical context
+    - Selected implementation path
+    - Single event pipeline to the warehouse
+    - Version-controlled metrics layer with one definition per metric
+    - Privacy and consent built in
+  max_words: 900
+rubric: Passes only when every user action is captured once at the source and routed from a single canonical stream with no tool storing its own copy, every metric has exactly one authoritative definition in version control, and privacy and consent are built in from day one rather than retrofitted.
 source: ../capx-ai/playbooks/playbooks-output/031-analytics-stack-setup.md
 ---
 # Analytics Stack Setup

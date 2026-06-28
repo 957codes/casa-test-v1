@@ -29,6 +29,15 @@ human_gate: false
 blocks_revenue: false
 recurring: false
 typical_milestone: mvp-scoped
+deliverable:
+  artifact: An MVP scope defining the thin slice, the non-goals, and the activation event, written to the company brain.
+  sections:
+    - Single core value the MVP delivers to the beachhead user
+    - Minimum capabilities to deliver it end to end
+    - Explicit non-goals
+    - Activation event and how it is measured
+  max_words: 600
+rubric: Passes only when the slice is the smallest end-to-end path to the core value (buildable in a few weeks, else cut again), the non-goals are named explicitly so scope cannot creep back, and the activation event is defined with how it is measured, holding off full brand or visual identity.
 source: ../capx-ai/playbooks/playbooks-output/018-mvp-scoping.md
 ---
 # MVP Scoping

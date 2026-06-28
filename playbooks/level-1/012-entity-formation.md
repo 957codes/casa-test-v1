@@ -27,6 +27,16 @@ human_gate: true
 blocks_revenue: true
 recurring: false
 typical_milestone: company-exists
+deliverable:
+  artifact: An entity-formation record capturing the chosen structure, the filing, the EIN, and the bank account, written to the company brain.
+  sections:
+    - Founder and raise inputs collected
+    - Selected structure with rationale for any deviation from Delaware C-Corp
+    - Incorporation filing and registered agent
+    - EIN
+    - Business bank account
+  max_words: 800
+rubric: Passes only when the entity structure is chosen against the documented inputs (defaulting to Delaware C-Corp, any deviation justified against a specific condition), the EIN and bank account are recorded, and the binding incorporation step is routed to the founder with any IP, licensing, or jurisdiction risk escalated.
 source: ../capx-ai/playbooks/playbooks-output/012-entity-formation.md
 ---
 # Entity Formation

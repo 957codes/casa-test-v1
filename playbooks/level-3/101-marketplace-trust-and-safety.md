@@ -26,6 +26,17 @@ human_gate: true
 blocks_revenue: true
 recurring: false
 typical_milestone: trust-layer-live
+deliverable:
+  artifact: A trust and safety policy covering identity, fraud screening, disputes, and enforcement for both marketplace sides, written to the company brain.
+  sections:
+    - Per-side trust risk map
+    - Identity and onboarding requirements per side
+    - Fraud screening signals, thresholds, and review queue
+    - Dispute-resolution process and decision rule
+    - Published policy and enforcement ladder
+    - Escrow and payout terms routed to Capx Pay
+  max_words: 1200
+rubric: Passes only when a dispute path exists before any transaction opens, identity and screening are proportional to transaction risk on each side, the enforcement ladder is explicit, and all funds movement is routed to Capx Pay rather than handled in the policy.
 ---
 
 # Marketplace Trust and Safety

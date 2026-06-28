@@ -29,6 +29,17 @@ human_gate: true
 blocks_revenue: false
 recurring: true
 typical_milestone: treasury-policy-live
+deliverable:
+  artifact: A treasury policy covering balance buckets, stablecoin runway, multisig custody, and runway alerts, written to the company brain.
+  sections:
+    - Labeled treasury buckets
+    - Stablecoin runway policy with issuer and chain diversification limits
+    - Multisig custody setup with quorum and signer procedures
+    - Hot/cold and spend movement controls
+    - Runway calculation and alert thresholds
+    - Review and rebalance cadence
+  max_words: 1200
+rubric: Passes only when runway is measured in stablecoins rather than a volatile native token, no single key or single person can move treasury funds, issuer, chain, and custody are diversified so one failure cannot end the company, and custody or concentration changes are founder-gated.
 ---
 # Treasury & Stablecoin Runway
 

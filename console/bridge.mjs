@@ -58,7 +58,7 @@ function readBrain(dir) {
 const CATALOG = (() => {
   const idx = readJson(join(repo, "playbooks", "_index.json"), { playbooks: [] });
   const m = {};
-  for (const p of idx.playbooks || []) m[p.id] = { selection_hint: p.selection_hint, criticality: p.criticality, deliverable: p.deliverable || null };
+  for (const p of idx.playbooks || []) m[p.id] = { selection_hint: p.selection_hint, criticality: p.criticality, deliverable: p.deliverable || null, rubric: p.rubric || null };
   return m;
 })();
 function readJsonl(file) {

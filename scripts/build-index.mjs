@@ -145,7 +145,19 @@ for (const file of files) {
     recurring: !!fm.recurring, typical_milestone: fm.typical_milestone,
     department: fm.department || deriveDepartment(fm.id, fm.title || ""),
     criticality, existential_at: arr(fm.existential_at), model_fit: arr(fm.model_fit),
+    // Optional gradeable output spec (the dashboard scores a completed deliverable against these).
+    deliverable: fm.deliverable || null, rubric: fm.rubric || null,
   });
+  // Light validation of the optional deliverable spec, so a malformed one is caught at build time.
+  if (fm.deliverable != null) {
+    if (typeof fm.deliverable !== "object" || !Array.isArray(fm.deliverable.sections) || !fm.deliverable.sections.length) {
+      errors.push(`${rel}: deliverable must be an object with a non-empty sections list`);
+    }
+    if (fm.deliverable.max_words != null && typeof fm.deliverable.max_words !== "number") {
+      errors.push(`${rel}: deliverable.max_words must be a number`);
+    }
+  }
+  if (fm.rubric != null && String(fm.rubric).trim() === "") errors.push(`${rel}: rubric, if present, must be non-empty`);
 }
 
 const ids = new Set(records.map((r) => r.id));

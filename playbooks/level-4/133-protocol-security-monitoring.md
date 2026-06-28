@@ -32,6 +32,16 @@ human_gate: false
 blocks_revenue: false
 recurring: true
 typical_milestone: protocol-monitoring-live
+deliverable:
+  artifact: A live protocol monitoring and incident-response setup with invariant monitors, a guardian pause, and a rehearsed hack runbook, written to the company brain.
+  sections:
+    - Live invariant and exploit-pattern monitors
+    - Alerting thresholds tuned against normal activity
+    - Guardian pause capability with quorum and conditions
+    - Hack incident runbook with named on-call owners
+    - Drill and post-mortem record
+  max_words: 1200
+rubric: Passes only when the pause capability is rehearsed before it is needed, monitors track the deployed artifact and are re-baselined after every change, and the hack response is decided in advance with a named on-call owner rather than improvised during a live drain.
 ---
 # Protocol Security Monitoring
 

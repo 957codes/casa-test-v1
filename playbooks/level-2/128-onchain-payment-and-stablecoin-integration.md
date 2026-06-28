@@ -30,6 +30,17 @@ human_gate: true
 blocks_revenue: true
 recurring: false
 typical_milestone: onchain-rail-live
+deliverable:
+  artifact: An on-chain payment rail spec covering chain, settlement asset, wallet model, fees, ramps, and reconciliation, written to the company brain.
+  sections:
+    - Selected settlement chain with rationale
+    - Settlement stablecoin and pinned token addresses
+    - Wallet-connect and custody model
+    - Gas and fee handling design
+    - On/off-ramp with region and KYC coverage
+    - Confirmation depth and reconciliation rules
+  max_words: 1500
+rubric: Passes only when the rail is non-custodial by default, no unconfirmed transaction is ever treated as settled, token addresses and ramp keys are configuration with named owners rather than literals in source, and ramp access is gated on the KYC/AML screening.
 ---
 # On-chain Payment & Stablecoin Integration
 

@@ -78,6 +78,38 @@ recurring: false
 typical_milestone: validated-opportunity
 ```
 
+## Gradeable output spec (optional): `deliverable` + `rubric`
+
+The highest-value playbooks (every `criticality: existential` one plus the most
+important `criticality: core` ones) carry an optional, machine-gradeable spec of
+what a good deliverable IS. The dashboard uses it to score a completed deliverable
+against a checkable bar and offer a make-it-better path. Both fields are OPTIONAL;
+a playbook without them is still valid. They are derived from the playbook's own
+Procedure / Output / Rules body, not invented.
+
+- `deliverable`: an object describing the artifact the playbook produces.
+  - `artifact` (string, required within the block): a one-line description of the
+    file or output the playbook produces.
+  - `sections` (list, required within the block): the 3-7 concrete, checkable
+    sections a complete deliverable must contain.
+  - `max_words` (number, optional): a hard ceiling so a grader can flag
+    over-production.
+- `rubric` (string): one to three sentences describing what a PASSING deliverable
+  must demonstrate, specific to this playbook (the bar a grader checks against).
+
+```yaml
+deliverable:
+  artifact: A unit-economics model with cohort CAC, gross margin, realized LTV, contribution margin, and payback by channel, written to the company brain.
+  sections:
+    - Fully-loaded, paid-only, time-lagged CAC
+    - Gross margin with honest COGS
+    - Realized cohort LTV over a capped horizon
+    - Contribution margin
+    - Payback and LTV-to-CAC by cohort and channel
+  max_words: 900
+rubric: Passes only when CAC is paid-only, fully loaded, and time-lagged (never blended) for scaling decisions, LTV is realized over a capped horizon rather than an infinite-horizon projection, and every number is segmented by cohort and channel rather than blended into an average that hides failing channels.
+```
+
 ## CI lint rules (enforced on `playbooks/_index.json`)
 
 1. Every `id` is unique and matches its file slug.

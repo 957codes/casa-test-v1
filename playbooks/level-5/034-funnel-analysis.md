@@ -32,6 +32,16 @@ human_gate: false
 blocks_revenue: false
 recurring: true
 typical_milestone: funnel-instrumented
+deliverable:
+  artifact: A funnel analysis with the activation metric, the diagnosed drop-offs, and prioritized remediation hypotheses, written to the company brain.
+  sections:
+    - Activation metric and the setup, aha, and habit moments
+    - Funnel by stage segmented by channel, device, geo, and persona
+    - Drop-offs cross-referenced against deploys and campaigns
+    - Bottlenecks prioritized with RICE
+    - Top two testable hypotheses with control/variant, MDE, and sample size
+  max_words: 900
+rubric: Passes only when drop-offs are statistically significant and cross-referenced against the deploy and campaign schedule before being called bottlenecks, bottlenecks are prioritized with RICE, and the top two are handed off as testable hypotheses with a defined MDE and sample size rather than peeked at early.
 source: ../capx-ai/playbooks/playbooks-output/034-funnel-analysis.md
 ---
 # Funnel Analysis

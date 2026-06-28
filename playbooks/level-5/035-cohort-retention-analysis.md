@@ -34,6 +34,16 @@ human_gate: false
 blocks_revenue: false
 recurring: true
 typical_milestone: retention-baselined
+deliverable:
+  artifact: A retention report with cohort tables and the identified critical event, written to the company brain.
+  sections:
+    - Critical event and usage interval
+    - Chosen retention metric type
+    - D1/D7/D30/W12 cohort tables classified smile or declining
+    - Cohorts segmented by channel and feature use
+    - Shifts attributed to interventions
+  max_words: 900
+rubric: Passes only when the critical event is the value action chosen by retention-delta analysis rather than a generic login proxy, the retention metric type matches the usage pattern, and every curve shift is attributed to a specific intervention or external event via the intervention log.
 source: ../capx-ai/playbooks/playbooks-output/035-cohort-retention-analysis.md
 ---
 # Cohort & Retention Analysis

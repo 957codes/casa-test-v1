@@ -39,6 +39,16 @@ human_gate: true
 blocks_revenue: true
 recurring: true
 typical_milestone: first-revenue
+deliverable:
+  artifact: A deal-close record with a mutual action plan and the signed contract terms, written to the company brain.
+  sections:
+    - Economic buyer and decision/paper process mapped
+    - Mutual action plan with milestones and owners
+    - Procurement, security, and legal redline status
+    - Concessions traded with their return
+    - Founder-approved binding agreement and signature
+  max_words: 1000
+rubric: Passes only when the economic buyer and paper process are mapped, procurement, security, and legal run in parallel rather than single-threaded, every concession is traded for a return rather than conceded, and the binding agreement is explicitly approved by the founder before signature.
 source: ../capx-ai/playbooks/playbooks-output/088-contract-close-playbook.md
 ---
 # Contract & Close

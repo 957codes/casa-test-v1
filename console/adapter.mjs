@@ -69,6 +69,7 @@ export function toFoundry(brain, enrich = {}) {
         tldr: note.tldr || cat.selection_hint || null,
         why: note.why || null,
         deliverable: cat.deliverable || null,
+        rubric: cat.rubric || null,
         score: sc ? { value: sc.score, pass: sc.pass, gaps: sc.gaps || [] } : null,
         inProgress: st === "agent",
       };

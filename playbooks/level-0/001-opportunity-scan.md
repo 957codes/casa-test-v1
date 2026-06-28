@@ -25,6 +25,15 @@ human_gate: false
 blocks_revenue: false
 recurring: false
 typical_milestone: validated-opportunity
+deliverable:
+  artifact: An opportunity brief with ranked candidate niches and the evidence behind each, written to the company brain.
+  sections:
+    - Aggregated signals from at least three channels
+    - Candidate niches clustered by job and audience
+    - Each candidate scored on urgency, frequency, willingness to pay, reachability, and crowding
+    - Ranked niches with a confidence tag per claim
+  max_words: 1000
+rubric: Passes only when each surfaced opportunity is supported by at least three independent signals from at least two channels rather than a single anecdote, candidates are scored on urgency, willingness to pay, reachability, and crowding, and every claim carries a confidence tag with any unavailable source stated.
 source: ../capx-ai/playbooks/playbooks-output/001-opportunity-scan.md
 ---
 # Opportunity Scan

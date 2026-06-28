@@ -28,6 +28,17 @@ human_gate: true
 blocks_revenue: true
 recurring: false
 typical_milestone: compliance-program-live
+deliverable:
+  artifact: A documented KYC/AML compliance program covering identity, screening, monitoring, the travel rule, and named ownership, written to the company brain.
+  sections:
+    - Regulatory perimeter and obligations per activity
+    - KYC/CIP identity and verification policy by tier
+    - Sanctions and PEP screening procedure
+    - Transaction-monitoring rules and SAR path
+    - Travel-rule handling
+    - Named compliance owner and governance cadence
+  max_words: 1500
+rubric: Passes only when no customer value can move before identity verification, sanctions screening, and transaction monitoring are live, screening is continuous rather than one-time, and a named human owns and signs off on the program.
 ---
 # KYC/AML Program
 

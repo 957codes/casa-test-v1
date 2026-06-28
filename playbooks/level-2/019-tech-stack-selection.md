@@ -32,6 +32,15 @@ human_gate: false
 blocks_revenue: false
 recurring: false
 typical_milestone: stack-chosen
+deliverable:
+  artifact: A tech stack specification with per-layer choices and rationale, written to the company brain.
+  sections:
+    - Inputs (product type, scale, compliance, budget)
+    - Foundational constraints (boring technology, monolith first, TCO)
+    - Per-layer choice with rationale and rejected alternatives
+    - Sign-off
+  max_words: 800
+rubric: Passes only when each layer is chosen by explicit rule with its rejected alternatives recorded, any non-standard choice is justified by a specific measurable problem a boring alternative cannot solve, and a competent open-market hire could be productive on the stack within two weeks.
 source: ../capx-ai/playbooks/playbooks-output/019-tech-stack-selection.md
 ---
 # Tech Stack Selection

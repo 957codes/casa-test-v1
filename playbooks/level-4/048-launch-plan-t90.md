@@ -35,6 +35,16 @@ human_gate: true
 blocks_revenue: false
 recurring: false
 typical_milestone: launched
+deliverable:
+  artifact: A T-90 launch plan with a dated countdown, RACI, asset inventory, war-room runbook, and metrics dashboard, written to the company brain.
+  sections:
+    - Launch tier classification
+    - RACI of agent and human owners
+    - Week-by-week countdown with real dates
+    - Asset inventory
+    - War-room runbook and metrics dashboard
+  max_words: 1200
+rubric: Passes only when the launch is tier-classified to set lead time, every step has a date, an owner, and an asset, the burst sequences Product Hunt then Hacker News then PR across separate days, and the public launch is founder-gated before T-0.
 source: ../capx-ai/playbooks/playbooks-output/048-launch-plan-t90.md
 ---
 # Launch Plan (T-90)

@@ -35,6 +35,16 @@ human_gate: false
 blocks_revenue: false
 recurring: true
 typical_milestone: retention
+deliverable:
+  artifact: A churn diagnosis with per-account root cause and tailored win-back campaigns, written to the company brain.
+  sections:
+    - Churn classified on the avoidable/unavoidable by expected/unexpected matrix
+    - Voluntary versus involuntary split
+    - Involuntary recovery via dunning, card-updater, and retry
+    - Voluntary churn branched by lifecycle timing
+    - Win-back tailored to reason and timing
+  max_words: 900
+rubric: Passes only when every churn event is traced to a root cause before any intervention, involuntary failed-payment churn is recovered as the highest-ROI lever, and win-backs are tailored to the churn reason and timing rather than reusing one template across all churn.
 source: ../capx-ai/playbooks/playbooks-output/090-churn-diagnosis-winback.md
 ---
 # Churn Diagnosis & Win-back
