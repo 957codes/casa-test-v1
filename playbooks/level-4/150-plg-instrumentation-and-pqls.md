@@ -17,6 +17,7 @@ criticality: core
 existential_at: [scaling]
 model_fit: [self_serve]
 selection_hint: Run once events flow and an activation moment is definable. In a self-serve motion the product is the top of the funnel, so the PQL score is the routing signal for in-product prompts, lifecycle, and any human follow-up. Skip if the motion is purely sales-led with no free or trial usage.
+action: "Define the activation moment in event terms, then ship a simple weighted 0-to-100 PQL score validated against who converted."
 depends_on:
   - analytics-stack-setup
   - event-taxonomy-design

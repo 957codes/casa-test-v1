@@ -16,6 +16,7 @@ criticality: core
 existential_at: [revenue, scaling]
 model_fit: [transactional, physical_goods]
 selection_hint: The physical-goods retention loop. Run once orders and events are instrumented; repeat rate and AOV expansion decide whether paid acquisition is ever profitable.
+action: "Build the cohort repeat-purchase rate and time-to-second-order distribution, then time one post-purchase reorder nudge to the replenishment interval."
 depends_on: []
 soft_after:
   - cohort-retention-analysis

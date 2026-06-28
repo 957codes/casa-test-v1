@@ -13,6 +13,7 @@ relevance: core
 department: Data
 criticality: core
 selection_hint: Run right after the analytics stack lands. A disciplined taxonomy is what makes funnels, cohorts, and reads trustworthy; without it tracking drifts into chaos.
+action: "Set an Object-Action naming convention and write a tracking plan for your ten most important events this week."
 depends_on:
   - analytics-stack-setup
 soft_after: []

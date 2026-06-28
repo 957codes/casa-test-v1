@@ -13,6 +13,7 @@ department: Growth
 criticality: growth
 model_fit: [self_serve]
 selection_hint: The operating engine for content. Install once keywords and personas exist; then run continuously to plan, brief, publish, and refresh.
+action: "Build a four-week editorial calendar from your keyword research, giving each item a brief and a distribution plan before creation."
 depends_on:
   - seo-keyword-research
 soft_after:

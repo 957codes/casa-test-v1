@@ -15,6 +15,7 @@ department: Finance
 criticality: core
 existential_at: [scaling]
 selection_hint: Run when 12 to 24 months of actuals exist and a raise or board cadence is near. Consumes unit economics; produces the model the fundraise leans on.
+action: "Build a bottom-up ARR waterfall by cohort from 12 months of actuals, splitting new, expansion, contraction, and churn."
 depends_on:
   - unit-economics
 soft_after:

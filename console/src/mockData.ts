@@ -93,6 +93,8 @@ export interface NextAction {
   criticality: Criticality | null;
   criticalityLabel: string;
   tier: number;
+  primary: boolean;
+  action: string | null; // the concrete first move (verb + target)
   state: "approval" | "input";
   humanGate: boolean;
   blocksRevenue: boolean;

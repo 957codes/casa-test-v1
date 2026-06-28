@@ -15,6 +15,7 @@ criticality: core
 existential_at: [revenue, scaling]
 model_fit: [recurring]
 selection_hint: Run once a critical event and a usage interval are definable. Retention is the most leveraged metric; a 10% lift beats a 10% acquisition lift many times over.
+action: "Identify the single action most correlated with D30 retention, then build your first D1/D7/D30 cohort table this week."
 depends_on:
   - analytics-stack-setup
   - event-taxonomy-design

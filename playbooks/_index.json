@@ -1,6 +1,6 @@
 {
   "schema": "docs/PLAYBOOK-SCHEMA.md",
-  "count": 150,
+  "count": 152,
   "playbooks": [
     {
       "id": "opportunity-scan",
@@ -44,7 +44,8 @@
         ],
         "max_words": 1000
       },
-      "rubric": "Passes only when each surfaced opportunity is supported by at least three independent signals from at least two channels rather than a single anecdote, candidates are scored on urgency, willingness to pay, reachability, and crowding, and every claim carries a confidence tag with any unavailable source stated."
+      "rubric": "Passes only when each surfaced opportunity is supported by at least three independent signals from at least two channels rather than a single anecdote, candidates are scored on urgency, willingness to pay, reachability, and crowding, and every claim carries a confidence tag with any unavailable source stated.",
+      "action": "Pull a few hundred demand signals from at least three channels, then cluster them into candidate niches and score each."
     },
     {
       "id": "problem-validation-interviews",
@@ -96,7 +97,8 @@
         ],
         "max_words": 1500
       },
-      "rubric": "Passes only with at least 7 of 10 interviews confirming the problem unprompted and 5 or more participants showing active workarounds, every claim backed by tagged verbatim quotes rather than hypothetical intent answers, ending in a scored Go/No-Go/Pivot decision and a refined ICP."
+      "rubric": "Passes only with at least 7 of 10 interviews confirming the problem unprompted and 5 or more participants showing active workarounds, every claim backed by tagged verbatim quotes rather than hypothetical intent answers, ending in a scored Go/No-Go/Pivot decision and a refined ICP.",
+      "action": "Recruit and run 10 Mom-Test interviews, asking about past behavior, until 7 confirm the problem unprompted with active workarounds."
     },
     {
       "id": "competitive-teardown",
@@ -133,7 +135,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": "Map the true competitive set including spreadsheets and doing nothing, then diagnose each rival's moat against the 7 Powers."
     },
     {
       "id": "market-sizing-tam-sam-som",
@@ -183,7 +186,8 @@
         ],
         "max_words": 800
       },
-      "rubric": "Passes only when TAM, SAM, and SOM are computed by at least two independent methods (top-down and bottom-up) that agree within roughly 3x, every qualitative claim is replaced by a number with a source and a calculation, and a go/no-go is issued against VC-grade thresholds."
+      "rubric": "Passes only when TAM, SAM, and SOM are computed by at least two independent methods (top-down and bottom-up) that agree within roughly 3x, every qualitative claim is replaced by a number with a source and a calculation, and a go/no-go is issued against VC-grade thresholds.",
+      "action": "Compute SOM both top-down and bottom-up, and if they agree within 3x issue a go/no-go against a VC threshold."
     },
     {
       "id": "jobs-to-be-done-extraction",
@@ -222,7 +226,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "red-team-thesis",
@@ -276,7 +281,8 @@
         ],
         "max_words": 1200
       },
-      "rubric": "Passes only when every load-bearing assumption carries disconfirming evidence and a confidence rating, the kill criteria are numeric and pre-committed rather than vague, and the thesis survives its own pre-mortem to earn a defensible Go call."
+      "rubric": "Passes only when every load-bearing assumption carries disconfirming evidence and a confidence rating, the kill criteria are numeric and pre-committed rather than vague, and the thesis survives its own pre-mortem to earn a defensible Go call.",
+      "action": null
     },
     {
       "id": "why-now-memo",
@@ -316,7 +322,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "beachhead-selection",
@@ -361,7 +368,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": "List 10 to 20 candidate segments, score each on urgency and reachability, then commit to one wedge and name the rest out."
     },
     {
       "id": "company-naming",
@@ -403,7 +411,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "domain-acquisition",
@@ -443,7 +452,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "trademark-clearance",
@@ -484,7 +494,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "entity-formation",
@@ -532,7 +543,8 @@
         ],
         "max_words": 800
       },
-      "rubric": "Passes only when the entity structure is chosen against the documented inputs (defaulting to Delaware C-Corp, any deviation justified against a specific condition), the EIN and bank account are recorded, and the binding incorporation step is routed to the founder with any IP, licensing, or jurisdiction risk escalated."
+      "rubric": "Passes only when the entity structure is chosen against the documented inputs (defaulting to Delaware C-Corp, any deviation justified against a specific condition), the EIN and bank account are recorded, and the binding incorporation step is routed to the founder with any IP, licensing, or jurisdiction risk escalated.",
+      "action": null
     },
     {
       "id": "founding-docs",
@@ -572,7 +584,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "tos-and-privacy-policy",
@@ -616,7 +629,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "brand-positioning-statement",
@@ -666,7 +680,8 @@
         ],
         "max_words": 600
       },
-      "rubric": "Passes only when positioning is anchored to the customer and the competitive alternative rather than the feature list, the statement is one to three sentences that deliberately excludes some audiences, and the copy carries no em-dashes or emojis."
+      "rubric": "Passes only when positioning is anchored to the customer and the competitive alternative rather than the feature list, the statement is one to three sentences that deliberately excludes some audiences, and the copy carries no em-dashes or emojis.",
+      "action": "Name the competitive alternatives first, then write a one-to-three sentence positioning statement that deliberately excludes some audiences."
     },
     {
       "id": "visual-identity-brief",
@@ -708,7 +723,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "tone-of-voice-guide",
@@ -747,7 +763,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "mvp-scoping",
@@ -799,7 +816,8 @@
         ],
         "max_words": 600
       },
-      "rubric": "Passes only when the slice is the smallest end-to-end path to the core value (buildable in a few weeks, else cut again), the non-goals are named explicitly so scope cannot creep back, and the activation event is defined with how it is measured, holding off full brand or visual identity."
+      "rubric": "Passes only when the slice is the smallest end-to-end path to the core value (buildable in a few weeks, else cut again), the non-goals are named explicitly so scope cannot creep back, and the activation event is defined with how it is measured, holding off full brand or visual identity.",
+      "action": "Write the thinnest end-to-end slice that delivers core value plus its explicit non-goals, buildable in a few weeks."
     },
     {
       "id": "tech-stack-selection",
@@ -853,7 +871,8 @@
         ],
         "max_words": 800
       },
-      "rubric": "Passes only when each layer is chosen by explicit rule with its rejected alternatives recorded, any non-standard choice is justified by a specific measurable problem a boring alternative cannot solve, and a competent open-market hire could be productive on the stack within two weeks."
+      "rubric": "Passes only when each layer is chosen by explicit rule with its rejected alternatives recorded, any non-standard choice is justified by a specific measurable problem a boring alternative cannot solve, and a competent open-market hire could be productive on the stack within two weeks.",
+      "action": "Choose a boring default for each stack layer, recording the rationale and rejected alternatives, then route the spec for sign-off."
     },
     {
       "id": "prd-drafting",
@@ -908,7 +927,8 @@
         ],
         "max_words": 1000
       },
-      "rubric": "Passes only when the PRD is built from validated inputs rather than a feature request or opinion, defines the why and the what without specifying the how, and gives acceptance criteria specific enough that an engineering agent needs no clarifying questions."
+      "rubric": "Passes only when the PRD is built from validated inputs rather than a feature request or opinion, defines the why and the what without specifying the how, and gives acceptance criteria specific enough that an engineering agent needs no clarifying questions.",
+      "action": null
     },
     {
       "id": "feature-prioritization",
@@ -954,7 +974,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": "Score the current backlog with RICE, add a Kano tag, and emit a ranked sprint-commitment list for approval."
     },
     {
       "id": "onboarding-flow-design",
@@ -1012,7 +1033,8 @@
         ],
         "max_words": 700
       },
-      "rubric": "Passes only when the flow is oriented around the user's desired outcome rather than the feature list, each single-step drop-off is held at or below 30 percent, and the activation event is instrumented against targets of activation at or above 30 percent within 7 days and week-1 retention at or above 40 percent."
+      "rubric": "Passes only when the flow is oriented around the user's desired outcome rather than the feature list, each single-step drop-off is held at or below 30 percent, and the activation event is instrumented against targets of activation at or above 30 percent within 7 days and week-1 retention at or above 40 percent.",
+      "action": "Map the signup-to-aha flow as states and cut every step until each single-step drop-off stays under 30 percent."
     },
     {
       "id": "usability-testing-protocol",
@@ -1057,7 +1079,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "beta-program-management",
@@ -1108,7 +1131,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "release-changelog-cadence",
@@ -1156,7 +1180,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "hosting-deployment-setup",
@@ -1214,7 +1239,8 @@
         ],
         "max_words": 800
       },
-      "rubric": "Passes only when the hosting choice is justified against traffic, budget, and cost-predictability as a first-class criterion, the CI/CD pipeline runs lint, test, build, and deploy with no secret hardcoded in the repo or pipeline, and any ongoing-spend provisioning is escalated to the founder."
+      "rubric": "Passes only when the hosting choice is justified against traffic, budget, and cost-predictability as a first-class criterion, the CI/CD pipeline runs lint, test, build, and deploy with no secret hardcoded in the repo or pipeline, and any ongoing-spend provisioning is escalated to the founder.",
+      "action": null
     },
     {
       "id": "observability-setup",
@@ -1260,7 +1286,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": "Instrument the four golden signals, wire error tracking and uptime checks into one place, and prove one alert fires in staging."
     },
     {
       "id": "incident-response",
@@ -1309,7 +1336,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": "Write the SEV-0-to-4 severity matrix and command roles, then run one tabletop drill of a SEV-1 outage this week."
     },
     {
       "id": "security-baseline",
@@ -1363,7 +1391,8 @@
         ],
         "max_words": 1000
       },
-      "rubric": "Passes only when secret hygiene is treated as the top control with no human access to production Tier 0/1 secrets and immediate rotation on compromise, public endpoints are rate-limited and validate input, and agent tools are scoped to least privilege."
+      "rubric": "Passes only when secret hygiene is treated as the top control with no human access to production Tier 0/1 secrets and immediate rotation on compromise, public endpoints are rate-limited and validate input, and agent tools are scoped to least privilege.",
+      "action": "Select the auth architecture, move every secret into a manager with rotation and no human access, and rate-limit public endpoints."
     },
     {
       "id": "data-backup-recovery",
@@ -1410,7 +1439,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": "Set RPO and RTO for your Tier 1 data store, then run one full restore drill and log the actual RTO."
     },
     {
       "id": "analytics-stack-setup",
@@ -1458,7 +1488,8 @@
         ],
         "max_words": 900
       },
-      "rubric": "Passes only when every user action is captured once at the source and routed from a single canonical stream with no tool storing its own copy, every metric has exactly one authoritative definition in version control, and privacy and consent are built in from day one rather than retrofitted."
+      "rubric": "Passes only when every user action is captured once at the source and routed from a single canonical stream with no tool storing its own copy, every metric has exactly one authoritative definition in version control, and privacy and consent are built in from day one rather than retrofitted.",
+      "action": "Stand up a single event pipeline to one warehouse and a version-controlled metrics layer with exactly one definition per metric."
     },
     {
       "id": "event-taxonomy-design",
@@ -1499,7 +1530,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": "Set an Object-Action naming convention and write a tracking plan for your ten most important events this week."
     },
     {
       "id": "north-star-metric",
@@ -1554,7 +1586,8 @@
         ],
         "max_words": 700
       },
-      "rubric": "Passes only when the metric is a single value-denominated number that passes all five checklist criteria, decomposes into 3-4 MECE input metrics via a metric tree, and is protected by guardrail counter-metrics; before PMF it must anchor on retention or core-action completion rather than growth."
+      "rubric": "Passes only when the metric is a single value-denominated number that passes all five checklist criteria, decomposes into 3-4 MECE input metrics via a metric tree, and is protected by guardrail counter-metrics; before PMF it must anchor on retention or core-action completion rather than growth.",
+      "action": "Name one value-denominated north star, decompose it into three or four input metrics, and add a guardrail counter-metric."
     },
     {
       "id": "funnel-analysis",
@@ -1610,7 +1643,8 @@
         ],
         "max_words": 900
       },
-      "rubric": "Passes only when drop-offs are statistically significant and cross-referenced against the deploy and campaign schedule before being called bottlenecks, bottlenecks are prioritized with RICE, and the top two are handed off as testable hypotheses with a defined MDE and sample size rather than peeked at early."
+      "rubric": "Passes only when drop-offs are statistically significant and cross-referenced against the deploy and campaign schedule before being called bottlenecks, bottlenecks are prioritized with RICE, and the top two are handed off as testable hypotheses with a defined MDE and sample size rather than peeked at early.",
+      "action": "Build the signup-to-revenue funnel by stage, then find the single largest statistically significant drop-off to hand off as a hypothesis."
     },
     {
       "id": "cohort-retention-analysis",
@@ -1671,7 +1705,8 @@
         ],
         "max_words": 900
       },
-      "rubric": "Passes only when the critical event is the value action chosen by retention-delta analysis rather than a generic login proxy, the retention metric type matches the usage pattern, and every curve shift is attributed to a specific intervention or external event via the intervention log."
+      "rubric": "Passes only when the critical event is the value action chosen by retention-delta analysis rather than a generic login proxy, the retention metric type matches the usage pattern, and every curve shift is attributed to a specific intervention or external event via the intervention log.",
+      "action": "Identify the single action most correlated with D30 retention, then build your first D1/D7/D30 cohort table this week."
     },
     {
       "id": "attribution-modeling",
@@ -1719,7 +1754,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "ceo-dashboard-build",
@@ -1764,7 +1800,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "ga4-reading-playbook",
@@ -1809,7 +1846,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": "Reconcile GA4 revenue against Stripe and stand up a weekly Monday read that triages each finding to a decision."
     },
     {
       "id": "mixpanel-reading-playbook",
@@ -1854,7 +1892,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "weekly-business-review",
@@ -1902,7 +1941,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "pricing-research",
@@ -1958,7 +1998,8 @@
         ],
         "max_words": 1200
       },
-      "rubric": "Passes only when the price range is triangulated across multiple complementary methods rather than a single survey, competitor benchmarking sets the band tested, and every number carries a confidence tag with any unavailable data source stated."
+      "rubric": "Passes only when the price range is triangulated across multiple complementary methods rather than a single survey, competitor benchmarking sets the band tested, and every number carries a confidence tag with any unavailable data source stated.",
+      "action": "Pull pricing pages for your top 5 competitors to set the price band, then run one Van Westendorp survey."
     },
     {
       "id": "packaging-tier-design",
@@ -1999,7 +2040,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": "Pick the single value metric customers pay by, then draft Good, Better, Best tiers around it this week."
     },
     {
       "id": "pricing-page-copy-layout",
@@ -2045,7 +2087,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "freemium-trial-decision",
@@ -2095,7 +2138,8 @@
         "self_serve"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": "Model the cost to serve one free user against gross margin, then pick free-trial, freemium, or paid-only with rationale."
     },
     {
       "id": "discount-promo-policy",
@@ -2139,7 +2183,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "positioning-canvas",
@@ -2184,7 +2229,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": "List the alternatives a best-fit customer would use without you, then map your unique attributes to the value they create."
     },
     {
       "id": "category-design-decision",
@@ -2228,7 +2274,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "launch-plan-t90",
@@ -2286,7 +2333,8 @@
         ],
         "max_words": 1200
       },
-      "rubric": "Passes only when the launch is tier-classified to set lead time, every step has a date, an owner, and an asset, the burst sequences Product Hunt then Hacker News then PR across separate days, and the public launch is founder-gated before T-0."
+      "rubric": "Passes only when the launch is tier-classified to set lead time, every step has a date, an owner, and an asset, the burst sequences Product Hunt then Hacker News then PR across separate days, and the public launch is founder-gated before T-0.",
+      "action": null
     },
     {
       "id": "product-hunt-launch",
@@ -2339,7 +2387,8 @@
         "self_serve"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "hacker-news-launch",
@@ -2391,7 +2440,8 @@
         "self_serve"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "pr-press-launch",
@@ -2431,7 +2481,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "podcast-tour",
@@ -2474,7 +2525,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "community-seeding",
@@ -2518,7 +2570,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "seo-keyword-research",
@@ -2556,7 +2609,8 @@
         "self_serve"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": "Mine customer tickets and reviews for seed keywords, then cluster and prioritize a roadmap of 50 topics by ROI."
     },
     {
       "id": "content-calendar",
@@ -2600,7 +2654,8 @@
         "self_serve"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": "Build a four-week editorial calendar from your keyword research, giving each item a brief and a distribution plan before creation."
     },
     {
       "id": "pillar-cluster-content",
@@ -2645,7 +2700,8 @@
         "self_serve"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "long-form-blog-post",
@@ -2690,7 +2746,8 @@
         "self_serve"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": "Pick one keyword cluster and draft a single long-form post that beats the top-ranking result on at least three dimensions."
     },
     {
       "id": "programmatic-seo",
@@ -2736,7 +2793,8 @@
         "self_serve"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "technical-seo-audit",
@@ -2777,7 +2835,8 @@
         "self_serve"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "link-building",
@@ -2822,7 +2881,8 @@
         "self_serve"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "newsletter-growth",
@@ -2861,7 +2921,8 @@
         "self_serve"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": "Set up an authenticated sending domain and a lead-magnet opt-in, then publish your first three issues on a fixed cadence."
     },
     {
       "id": "youtube-strategy",
@@ -2904,7 +2965,8 @@
         "self_serve"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "tiktok-growth",
@@ -2950,7 +3012,8 @@
         "self_serve"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "twitter-x-playbook",
@@ -2992,7 +3055,8 @@
         "self_serve"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "linkedin-organic",
@@ -3039,7 +3103,8 @@
         "self_serve"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "instagram-growth",
@@ -3085,7 +3150,8 @@
         "self_serve"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "reddit-marketing",
@@ -3127,7 +3193,8 @@
         "self_serve"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "google-ads",
@@ -3174,7 +3241,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "meta-ads",
@@ -3222,7 +3290,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "linkedin-ads",
@@ -3275,7 +3344,8 @@
         "sales_led"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "retargeting",
@@ -3321,7 +3391,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "creative-testing",
@@ -3363,7 +3434,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "landing-page-cro",
@@ -3407,7 +3479,8 @@
         "self_serve"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": "Run conversion research on the live page with heatmaps and session replays, then queue one hypothesis-driven A/B test."
     },
     {
       "id": "affiliate-program-setup",
@@ -3452,7 +3525,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "influencer-partnerships",
@@ -3501,7 +3575,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "integration-co-marketing",
@@ -3544,7 +3619,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "referral-program",
@@ -3586,7 +3662,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "welcome-email-sequence",
@@ -3630,7 +3707,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "nurture-campaign",
@@ -3674,7 +3752,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "win-back-campaign",
@@ -3719,7 +3798,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "transactional-emails",
@@ -3761,7 +3841,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "email-deliverability-setup",
@@ -3799,7 +3880,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "icp-target-account-listing",
@@ -3851,7 +3933,8 @@
         "sales_led"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": "Write the ICP from your differentiated value, then build and tier a scored list of target accounts for outbound."
     },
     {
       "id": "outbound-email-sequences",
@@ -3904,7 +3987,8 @@
         "sales_led"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "discovery-call-framework",
@@ -3957,7 +4041,8 @@
         "sales_led"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": "Pick a qualification framework, run SPIN questions on your next prospect, and log a scored next step within 60 minutes."
     },
     {
       "id": "demo-script",
@@ -4008,7 +4093,8 @@
         "sales_led"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": "Script a demo that opens with the prospect's quantified pain and shows only the capabilities that resolve it."
     },
     {
       "id": "objection-handling-library",
@@ -4058,7 +4144,8 @@
         "sales_led"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "contract-close-playbook",
@@ -4123,7 +4210,8 @@
         ],
         "max_words": 1000
       },
-      "rubric": "Passes only when the economic buyer and paper process are mapped, procurement, security, and legal run in parallel rather than single-threaded, every concession is traded for a return rather than conceded, and the binding agreement is explicitly approved by the founder before signature."
+      "rubric": "Passes only when the economic buyer and paper process are mapped, procurement, security, and legal run in parallel rather than single-threaded, every concession is traded for a return rather than conceded, and the binding agreement is explicitly approved by the founder before signature.",
+      "action": "Map the economic buyer and paper process, then co-create a mutual action plan with milestones and a target go-live date."
     },
     {
       "id": "support-workflow",
@@ -4170,7 +4258,8 @@
       ],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": "Stand up ticket intake with severity triage and SLA tiers, and draft a knowledge-base article on every resolution."
     },
     {
       "id": "churn-diagnosis-winback",
@@ -4233,7 +4322,8 @@
         ],
         "max_words": 900
       },
-      "rubric": "Passes only when every churn event is traced to a root cause before any intervention, involuntary failed-payment churn is recovered as the highest-ROI lever, and win-backs are tailored to the churn reason and timing rather than reusing one template across all churn."
+      "rubric": "Passes only when every churn event is traced to a root cause before any intervention, involuntary failed-payment churn is recovered as the highest-ROI lever, and win-backs are tailored to the churn reason and timing rather than reusing one template across all churn.",
+      "action": "Pull the last 90 days of churn, split voluntary from involuntary, and recover every failed-payment account first."
     },
     {
       "id": "nps-csat-program",
@@ -4278,7 +4368,8 @@
         "recurring"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": "Launch the two-question NPS survey to active customers and contact every detractor within 48 hours to rescue them."
     },
     {
       "id": "case-study-testimonial-pipeline",
@@ -4323,7 +4414,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "ab-testing-protocol",
@@ -4368,7 +4460,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": "Pick one conversion surface, write the hypothesis and MDE, compute the sample size, and launch one test to completion."
     },
     {
       "id": "growth-loop-design",
@@ -4413,7 +4506,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "pricing-packaging-experimentation",
@@ -4465,7 +4559,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "financial-model-forecast",
@@ -4511,7 +4606,8 @@
       ],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": "Build a bottom-up ARR waterfall by cohort from 12 months of actuals, splitting new, expansion, contraction, and churn."
     },
     {
       "id": "unit-economics",
@@ -4567,7 +4663,8 @@
         ],
         "max_words": 900
       },
-      "rubric": "Passes only when CAC is paid-only, fully loaded, and time-lagged (never blended) for scaling decisions, LTV is realized over a capped horizon rather than an infinite-horizon projection, and every number is segmented by cohort and channel rather than blended into an average that hides failing channels."
+      "rubric": "Passes only when CAC is paid-only, fully loaded, and time-lagged (never blended) for scaling decisions, LTV is realized over a capped horizon rather than an infinite-horizon projection, and every number is segmented by cohort and channel rather than blended into an average that hides failing channels.",
+      "action": "Compute fully-loaded paid-only CAC and realized LTV for your top acquisition channel, then flag any payback over target."
     },
     {
       "id": "fundraise-deck-investor-outreach",
@@ -4617,7 +4714,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "human-in-the-loop-approval-gates",
@@ -4653,7 +4751,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "llm-cost-and-model-routing",
@@ -4693,7 +4792,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "marketplace-trust-and-safety",
@@ -4742,7 +4842,8 @@
         ],
         "max_words": 1200
       },
-      "rubric": "Passes only when a dispute path exists before any transaction opens, identity and screening are proportional to transaction risk on each side, the enforcement ladder is explicit, and all funds movement is routed to Capx Pay rather than handled in the policy."
+      "rubric": "Passes only when a dispute path exists before any transaction opens, identity and screening are proportional to transaction risk on each side, the enforcement ladder is explicit, and all funds movement is routed to Capx Pay rather than handled in the policy.",
+      "action": "Write the dispute-resolution process and per-side identity requirements, and stand up a fraud-screening queue before opening any transaction."
     },
     {
       "id": "marketplace-liquidity-balancing",
@@ -4790,7 +4891,8 @@
         ],
         "max_words": 900
       },
-      "rubric": "Passes only when the short side is identified from measured match rate and time-to-fill, the plan concentrates on one segment to saturation rather than spreading thin, and it never adds demand to a supply-starved market in a way that raises churn."
+      "rubric": "Passes only when the short side is identified from measured match rate and time-to-fill, the plan concentrates on one segment to saturation rather than spreading thin, and it never adds demand to a supply-starved market in a way that raises churn.",
+      "action": "Measure match rate and time-to-fill by segment, identify the short side, and concentrate on saturating one narrow segment first."
     },
     {
       "id": "local-google-business-profile",
@@ -4840,7 +4942,8 @@
         ],
         "max_words": 600
       },
-      "rubric": "Passes only when the profile is verified with every field completed, the same name, address, and phone are mirrored identically across directories, a map view has a working path to a booking or call, and a review-request flow fires on job completion."
+      "rubric": "Passes only when the profile is verified with every field completed, the same name, address, and phone are mirrored identically across directories, a map view has a working path to a booking or call, and a review-request flow fires on job completion.",
+      "action": "Claim and verify your Google Business Profile, complete every field including categories, hours, and photos, and add a booking path."
     },
     {
       "id": "local-reviews-reputation",
@@ -4883,7 +4986,8 @@
         "local"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": "Set a one-tap review request to fire at job completion, and respond to every existing review this week."
     },
     {
       "id": "b2b-soc2-readiness",
@@ -4922,7 +5026,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "app-store-optimization",
@@ -4964,7 +5069,8 @@
         "self_serve"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "pre-seed-fundraise",
@@ -5006,7 +5112,8 @@
       ],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "supplier-sourcing-and-cogs",
@@ -5048,7 +5155,8 @@
         "physical_goods"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": "Shortlist two suppliers per SKU, request quotes and samples, then model fully landed COGS and a target margin per SKU."
     },
     {
       "id": "inventory-and-fulfillment-setup",
@@ -5092,7 +5200,8 @@
         "physical_goods"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "shipping-returns-policy",
@@ -5136,7 +5245,8 @@
         "physical_goods"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "repeat-purchase-and-aov",
@@ -5184,7 +5294,8 @@
         "physical_goods"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": "Build the cohort repeat-purchase rate and time-to-second-order distribution, then time one post-purchase reorder nudge to the replenishment interval."
     },
     {
       "id": "merchandising-and-catalog",
@@ -5223,7 +5334,8 @@
         "physical_goods"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "activation-rate-optimization",
@@ -5275,7 +5387,8 @@
         "self_serve"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": "Define the activation rate from your aha milestone, then isolate the single largest signup-to-aha drop-off step to fix."
     },
     {
       "id": "first-run-aha-experience",
@@ -5322,7 +5435,8 @@
         "self_serve"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": "Name the aha as one observable action with a time-to-value target, then validate it with 5 to 8 first-run sessions."
     },
     {
       "id": "hardware-certification-and-compliance",
@@ -5378,7 +5492,8 @@
         ],
         "max_words": 1200
       },
-      "rubric": "Passes only when certification is against the production-representative unit that will actually ship, every required regime per target market has a passed report, no compliance claim or mark is applied before its report passes, and the founder has approved the markets, lab spend, and published claims."
+      "rubric": "Passes only when certification is against the production-representative unit that will actually ship, every required regime per target market has a passed report, no compliance claim or mark is applied before its report passes, and the founder has approved the markets, lab spend, and published claims.",
+      "action": "Determine the required certification regimes per target market, then book accredited lab slots for the long-lead tests now."
     },
     {
       "id": "kyc-aml-program",
@@ -5433,7 +5548,8 @@
         ],
         "max_words": 1500
       },
-      "rubric": "Passes only when no customer value can move before identity verification, sanctions screening, and transaction monitoring are live, screening is continuous rather than one-time, and a named human owns and signs off on the program."
+      "rubric": "Passes only when no customer value can move before identity verification, sanctions screening, and transaction monitoring are live, screening is continuous rather than one-time, and a named human owns and signs off on the program.",
+      "action": "Scope which of your activities trigger money-services or VASP obligations per jurisdiction, and name the accountable compliance owner."
     },
     {
       "id": "smart-contract-audit",
@@ -5488,7 +5604,8 @@
         ],
         "max_words": 1200
       },
-      "rubric": "Passes only when no value-bearing contract reaches mainnet with an unresolved critical or high finding, the audited artifact is the exact deployed commit (re-audited after any post-audit change), critical invariants are formally verified rather than only tested, and the bounty complements rather than substitutes for the audit."
+      "rubric": "Passes only when no value-bearing contract reaches mainnet with an unresolved critical or high finding, the audited artifact is the exact deployed commit (re-audited after any post-audit change), critical invariants are formally verified rather than only tested, and the bounty complements rather than substitutes for the audit.",
+      "action": "Freeze the audit scope, pin the deploy commit, and engage a reputable third-party auditor before any value-bearing mainnet deploy."
     },
     {
       "id": "token-and-licensing-strategy",
@@ -5534,7 +5651,8 @@
         "transactional"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": "Map where your activities trigger money-transmitter or VASP licensing, then classify the token against securities tests with outside counsel."
     },
     {
       "id": "hardware-prototyping-and-dfm",
@@ -5573,7 +5691,8 @@
         "physical_goods"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": "Build a functional prototype of the riskiest unknown first, then apply DFM and author a costed bill of materials."
     },
     {
       "id": "contract-manufacturing-setup",
@@ -5617,7 +5736,8 @@
         "physical_goods"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "dunning-and-involuntary-churn",
@@ -5671,7 +5791,8 @@
         "recurring"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": "Capture every failed recurring charge with its decline code, then turn on decline-aware retries and an automatic card updater."
     },
     {
       "id": "marketplace-supply-acquisition",
@@ -5711,7 +5832,8 @@
         "marketplace"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": "Pick one narrow category and geography, then concierge-onboard your first ten vetted suppliers to live listings before opening demand."
     },
     {
       "id": "ad-revenue-and-yield",
@@ -5758,7 +5880,8 @@
       ],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": "Integrate one demand source, instrument fill rate and eCPM against analytics, and close the fill-rate gap before optimizing price."
     },
     {
       "id": "hardware-preorder-demand-validation",
@@ -5802,7 +5925,8 @@
         "physical_goods"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": "Stand up a preorder page that captures real payment, and set the go/no-go unit threshold before you launch it."
     },
     {
       "id": "hiring-and-org-scaling",
@@ -5840,7 +5964,8 @@
       ],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": "Name the two or three roles capping output now, then write a scorecard with first-year outcomes for the top one."
     },
     {
       "id": "account-expansion-and-upsell",
@@ -5888,7 +6013,8 @@
         "sales_led"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": "Segment healthy accounts by headroom, then run a QBR on your top five to surface and agree the next expansion."
     },
     {
       "id": "services-delivery-and-utilization",
@@ -5927,7 +6053,8 @@
       ],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": "Standardize a statement-of-work template, then instrument billable utilization per person against a 70-to-85-percent target band this week."
     },
     {
       "id": "onchain-payment-and-stablecoin-integration",
@@ -5985,7 +6112,8 @@
         ],
         "max_words": 1500
       },
-      "rubric": "Passes only when the rail is non-custodial by default, no unconfirmed transaction is ever treated as settled, token addresses and ramp keys are configuration with named owners rather than literals in source, and ramp access is gated on the KYC/AML screening."
+      "rubric": "Passes only when the rail is non-custodial by default, no unconfirmed transaction is ever treated as settled, token addresses and ramp keys are configuration with named owners rather than literals in source, and ramp access is gated on the KYC/AML screening.",
+      "action": "Select the settlement chain and stablecoin, pin token addresses as named config, and test the full rail on testnet first."
     },
     {
       "id": "wallet-onboarding-ux",
@@ -6034,7 +6162,8 @@
         "self_serve"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "tokenomics-design",
@@ -6077,7 +6206,8 @@
       ],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "onchain-community-and-incentive-growth",
@@ -6119,7 +6249,8 @@
       "existential_at": [],
       "model_fit": [],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "onchain-analytics-and-attribution",
@@ -6167,7 +6298,8 @@
         "recurring"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "protocol-security-monitoring",
@@ -6226,7 +6358,8 @@
         ],
         "max_words": 1200
       },
-      "rubric": "Passes only when the pause capability is rehearsed before it is needed, monitors track the deployed artifact and are re-baselined after every change, and the hack response is decided in advance with a named on-call owner rather than improvised during a live drain."
+      "rubric": "Passes only when the pause capability is rehearsed before it is needed, monitors track the deployed artifact and are re-baselined after every change, and the hack response is decided in advance with a named on-call owner rather than improvised during a live drain.",
+      "action": "Stand up live invariant monitors from the audited properties, wire a guardian pause, and rehearse the hack runbook once."
     },
     {
       "id": "treasury-and-stablecoin-runway",
@@ -6279,7 +6412,8 @@
         ],
         "max_words": 1200
       },
-      "rubric": "Passes only when runway is measured in stablecoins rather than a volatile native token, no single key or single person can move treasury funds, issuer, chain, and custody are diversified so one failure cannot end the company, and custody or concentration changes are founder-gated."
+      "rubric": "Passes only when runway is measured in stablecoins rather than a volatile native token, no single key or single person can move treasury funds, issuer, chain, and custody are diversified so one failure cannot end the company, and custody or concentration changes are founder-gated.",
+      "action": "Move operating runway into diversified stablecoins behind a 3-of-5 multisig, then compute months of runway and set alert thresholds."
     },
     {
       "id": "open-source-strategy",
@@ -6328,7 +6462,8 @@
         "self_serve"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "api-and-sdk-design",
@@ -6379,7 +6514,8 @@
         "self_serve"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "developer-docs-and-dx",
@@ -6428,7 +6564,8 @@
         "self_serve"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "developer-relations-and-devrel",
@@ -6475,7 +6612,8 @@
         "self_serve"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "developer-community-and-contributors",
@@ -6521,7 +6659,8 @@
         "self_serve"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "bottom-up-plg-to-sales-handoff",
@@ -6571,7 +6710,8 @@
         "self_serve"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "firmware-and-ota-updates",
@@ -6618,7 +6758,8 @@
         "physical_goods"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "hardware-qa-and-reliability",
@@ -6665,7 +6806,8 @@
         "physical_goods"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": "Define the target service life and field-failure rate, then run HALT on early units to break them and widen margin."
     },
     {
       "id": "retail-and-channel-distribution",
@@ -6709,7 +6851,8 @@
         "physical_goods"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "warranty-and-rma-operations",
@@ -6756,7 +6899,8 @@
         "physical_goods"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": "Write warranty terms you can honor at the predicted failure rate, set a per-unit reserve, and stand up the RMA pipeline."
     },
     {
       "id": "spare-parts-and-aftermarket",
@@ -6800,7 +6944,8 @@
         "physical_goods"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "plg-instrumentation-and-pqls",
@@ -6852,7 +6997,8 @@
         "self_serve"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": "Define the activation moment in event terms, then ship a simple weighted 0-to-100 PQL score validated against who converted."
     },
     {
       "id": "in-app-purchase-and-store-economics",
@@ -6899,7 +7045,8 @@
         "self_serve"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "paywall-and-pricing-experiments",
@@ -6948,7 +7095,8 @@
         "self_serve"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": "Instrument trial-to-paid and net revenue per user with refund and retention guardrails, then run one paywall-placement A/B test."
     },
     {
       "id": "referral-and-virality-loops",
@@ -6991,7 +7139,8 @@
         "self_serve"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
     },
     {
       "id": "mobile-lifecycle-and-push",
@@ -7039,7 +7188,113 @@
         "self_serve"
       ],
       "deliverable": null,
-      "rubric": null
+      "rubric": null,
+      "action": null
+    },
+    {
+      "id": "design-partner-recruitment",
+      "title": "Design Partner Recruitment",
+      "level": 2,
+      "file": "playbooks/level-2/155-design-partner-recruitment.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [
+          "b2b"
+        ],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "The first-users move for a B2B company with no users. Three to five committed design partners beat a hundred cold signups; they validate, pull the roadmap, and become your first references.",
+      "depends_on": [],
+      "soft_after": [
+        "beachhead-selection",
+        "icp-target-account-listing"
+      ],
+      "produces": [
+        "design_partners",
+        "early_user_feedback"
+      ],
+      "consumes": [],
+      "effort": "M",
+      "leverage": "critical",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "first-users",
+      "department": "Sales",
+      "criticality": "existential",
+      "existential_at": [],
+      "model_fit": [],
+      "deliverable": {
+        "artifact": "A design-partner roster with named accounts, the commitment each made, and a weekly feedback loop, written to the company brain.",
+        "sections": [
+          "Target list (5-10 accounts from the ICP)",
+          "The offer (what the partner gets, what they commit to)",
+          "Signed or verbal commitments from 3-5 partners",
+          "The weekly feedback and usage loop",
+          "What the roadmap changed because of them"
+        ],
+        "max_words": 700
+      },
+      "rubric": "Passes only when at least three named design partners have committed to use the product on a real workflow and a weekly feedback loop is running, not when a generic outreach list has been drafted.",
+      "action": "Line up 5 target accounts and book design-partner calls with 3 of them this week, each committing to use it weekly."
+    },
+    {
+      "id": "first-users-traction",
+      "title": "First Users by Hand",
+      "level": 1,
+      "file": "playbooks/level-1/156-first-users-traction.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": [
+          "pre_idea_only",
+          "b2b"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "The first-users move for a consumer product with no users. Do things that do not scale, hand-recruiting the first cohort from the communities they already live in, before spending a dollar on paid.",
+      "depends_on": [],
+      "soft_after": [
+        "beachhead-selection",
+        "positioning-canvas"
+      ],
+      "produces": [
+        "first_users",
+        "early_user_feedback"
+      ],
+      "consumes": [],
+      "effort": "M",
+      "leverage": "critical",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "first-users",
+      "department": "Growth",
+      "criticality": "existential",
+      "existential_at": [],
+      "model_fit": [],
+      "deliverable": {
+        "artifact": "A first-users plan and log, naming the communities, the hand-to-hand tactic, and the first cohort recruited, written to the company brain.",
+        "sections": [
+          "The 3 to 5 communities or channels where the audience already gathers",
+          "The hand-to-hand tactic per channel (post, DM, waitlist, in-person)",
+          "The first cohort recruited (count and how)",
+          "What they did in the product and where they dropped",
+          "The next-cohort plan"
+        ],
+        "max_words": 700
+      },
+      "rubric": "Passes only when a real first cohort has been recruited by hand from named communities and their early behaviour is recorded, not when a generic \"post on social and run ads\" plan is written.",
+      "action": "Pick the 3 communities your users already live in and personally recruit 20 of them into the product this week."
     }
   ]
 }

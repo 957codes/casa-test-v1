@@ -13,6 +13,7 @@ relevance: core
 department: Strategy
 criticality: core
 selection_hint: The strategic root of all GTM. Run once a beachhead is committed; every pricing, launch, and content decision derives from it.
+action: "List the alternatives a best-fit customer would use without you, then map your unique attributes to the value they create."
 depends_on:
   - beachhead-selection
 soft_after:

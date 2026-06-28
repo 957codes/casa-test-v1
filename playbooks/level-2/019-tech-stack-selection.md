@@ -18,6 +18,7 @@ relevance: core
 department: Engineering
 criticality: core
 selection_hint: The infra gate. Pick the stack before hosting, observability, or any build can start. Skip only for businesses that ship no software.
+action: "Choose a boring default for each stack layer, recording the rationale and rejected alternatives, then route the spec for sign-off."
 depends_on:
   - mvp-scoping
 soft_after: []

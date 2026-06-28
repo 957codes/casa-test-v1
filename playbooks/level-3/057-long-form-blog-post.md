@@ -14,6 +14,7 @@ department: Growth
 criticality: growth
 model_fit: [self_serve]
 selection_hint: The primary organic acquisition unit. Run per keyword cluster once research exists; produces the linkable assets link-building later needs.
+action: "Pick one keyword cluster and draft a single long-form post that beats the top-ranking result on at least three dimensions."
 depends_on:
   - seo-keyword-research
 soft_after:

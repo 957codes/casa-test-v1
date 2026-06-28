@@ -13,6 +13,7 @@ relevance: core
 department: Finance
 criticality: core
 selection_hint: Run before any packaging or pricing-page decision, once positioning and an ICP exist. Skip only for permanently-free products.
+action: "Pull pricing pages for your top 5 competitors to set the price band, then run one Van Westendorp survey."
 depends_on:
   - positioning-canvas
 soft_after:

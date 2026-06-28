@@ -15,6 +15,7 @@ relevance: core
 department: Engineering
 criticality: core
 selection_hint: Install once observability is live, then it runs always-on. Triggered by any alert, outage, or security event. Never a one-time checkbox.
+action: "Write the SEV-0-to-4 severity matrix and command roles, then run one tabletop drill of a SEV-1 outage this week."
 depends_on:
   - observability-setup
 soft_after:

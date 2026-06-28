@@ -15,6 +15,7 @@ relevance: core
 department: Engineering
 criticality: core
 selection_hint: Stand up day one alongside hosting. Prevents the cheap, predictable breaches (stolen credentials dominate) and avoids expensive SOC 2 retrofits.
+action: "Select the auth architecture, move every secret into a manager with rotation and no human access, and rate-limit public endpoints."
 depends_on: []
 soft_after:
   - hosting-deployment-setup

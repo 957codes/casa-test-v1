@@ -13,6 +13,7 @@ department: Operations
 criticality: existential
 model_fit: [marketplace]
 selection_hint: Run before opening a marketplace to real transactions. Liquidity without trust is churn; the first bad transaction without a dispute path is a dead marketplace.
+action: "Write the dispute-resolution process and per-side identity requirements, and stand up a fraud-screening queue before opening any transaction."
 depends_on: []
 soft_after:
   - beachhead-selection

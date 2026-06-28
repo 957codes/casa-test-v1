@@ -14,6 +14,7 @@ department: Growth
 criticality: core
 model_fit: [marketplace]
 selection_hint: The hard side of a marketplace. Supply (sellers, providers, hosts, creators) is usually the binding constraint; concentrate it in one beachhead so early demand always finds a fillable match.
+action: "Pick one narrow category and geography, then concierge-onboard your first ten vetted suppliers to live listings before opening demand."
 depends_on: []
 soft_after:
   - marketplace-trust-and-safety

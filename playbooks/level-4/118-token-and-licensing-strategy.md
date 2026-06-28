@@ -15,6 +15,7 @@ criticality: core
 existential_at: [scaling]
 model_fit: [transactional]
 selection_hint: Decide the regulatory shape of the business, which licenses to hold or avoid, how the token is classified, and which jurisdictions to serve. Operating unlicensed where a license is required becomes existential at scale.
+action: "Map where your activities trigger money-transmitter or VASP licensing, then classify the token against securities tests with outside counsel."
 depends_on:
   - kyc-aml-program
 soft_after:

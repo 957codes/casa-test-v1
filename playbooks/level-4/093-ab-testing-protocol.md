@@ -14,6 +14,7 @@ relevance: recommended
 department: Data
 criticality: growth
 selection_hint: Activate once a surface has live traffic (about 100+ users/day). Below that, use qualitative learning instead, not A/B tests.
+action: "Pick one conversion surface, write the hypothesis and MDE, compute the sample size, and launch one test to completion."
 depends_on: []
 soft_after:
   - analytics-stack-setup

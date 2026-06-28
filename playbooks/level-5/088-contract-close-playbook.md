@@ -20,6 +20,7 @@ department: Sales
 criticality: existential
 model_fit: [sales_led]
 selection_hint: The commercial/legal close for a B2B deal, triggered by a verbal yes. Skip for pure B2C or self-serve checkout. The binding contract is a human gate.
+action: "Map the economic buyer and paper process, then co-create a mutual action plan with milestones and a target go-live date."
 depends_on:
   - discovery-call-framework
   - demo-script

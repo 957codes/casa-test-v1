@@ -21,6 +21,7 @@ criticality: core
 existential_at: [revenue, scaling]
 model_fit: [recurring]
 selection_hint: Run once recurring charges are live. Involuntary churn (failed cards, not cancellations) is commonly 20 to 40 percent of total churn and the cheapest to recover, because the customer never chose to leave.
+action: "Capture every failed recurring charge with its decline code, then turn on decline-aware retries and an automatic card updater."
 depends_on:
   - analytics-stack-setup
 soft_after:

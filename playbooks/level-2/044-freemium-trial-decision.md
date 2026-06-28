@@ -19,6 +19,7 @@ department: Finance
 criticality: core
 model_fit: [self_serve]
 selection_hint: Run after pricing research, before launch. Decides the shape of the acquisition funnel. Most relevant to self-serve software; less so to high-touch services.
+action: "Model the cost to serve one free user against gross margin, then pick free-trial, freemium, or paid-only with rationale."
 depends_on:
   - pricing-research
 soft_after:

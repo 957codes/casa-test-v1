@@ -20,6 +20,7 @@ department: Sales
 criticality: core
 model_fit: [sales_led]
 selection_hint: The first substantive sales conversation in a B2B sales-led motion. Fires when a prospect accepts a meeting. Skip for pure B2C or self-serve with no human sales call.
+action: "Pick a qualification framework, run SPIN questions on your next prospect, and log a scored next step within 60 minutes."
 depends_on:
   - icp-target-account-listing
 soft_after:

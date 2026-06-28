@@ -15,6 +15,7 @@ department: Finance
 criticality: core
 existential_at: [revenue, scaling]
 selection_hint: Baseline at L5 once customer-level billing and channel spend exist. The single answer to "do we make money on one customer?" Feeds the model and the raise.
+action: "Compute fully-loaded paid-only CAC and realized LTV for your top acquisition channel, then flag any payback over target."
 depends_on: []
 soft_after:
   - analytics-stack-setup

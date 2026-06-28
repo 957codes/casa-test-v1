@@ -15,6 +15,7 @@ criticality: core
 existential_at: [scaling]
 model_fit: []
 selection_hint: The ready target the moment the founder's do-or-die constraint is hiring capacity. Run when product and demand work but headcount caps output; skip while the team is still finding the product.
+action: "Name the two or three roles capping output now, then write a scorecard with first-year outcomes for the top one."
 depends_on: []
 soft_after: []
 produces:

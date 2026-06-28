@@ -12,6 +12,7 @@ relevance: core
 department: Strategy
 criticality: existential
 selection_hint: Run before building anything. Confirms the problem is real and urgent, not just plausible. Skip only if a strong review corpus already substitutes.
+action: "Recruit and run 10 Mom-Test interviews, asking about past behavior, until 7 confirm the problem unprompted with active workarounds."
 depends_on: []
 soft_after:
   - opportunity-scan

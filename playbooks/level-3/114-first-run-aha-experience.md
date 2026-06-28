@@ -18,6 +18,7 @@ department: Product
 criticality: core
 model_fit: [self_serve]
 selection_hint: Define the destination before building or measuring the path. Run once the PRD and core value are set, so onboarding design, activation optimization, and retention all measure against one aha.
+action: "Name the aha as one observable action with a time-to-value target, then validate it with 5 to 8 first-run sessions."
 depends_on:
   - prd-drafting
 soft_after: []

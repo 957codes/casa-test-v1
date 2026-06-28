@@ -15,6 +15,7 @@ criticality: core
 existential_at: [launched, revenue]
 model_fit: [physical_goods]
 selection_hint: Run once a production line exists. Reliability is what turns a unit that works on the bench into one that survives years in the field. Unmeasured defect rates surface as a flood of returns and a destroyed reputation after launch, when fixing them is most expensive.
+action: "Define the target service life and field-failure rate, then run HALT on early units to break them and widen margin."
 depends_on:
   - contract-manufacturing-setup
 soft_after:

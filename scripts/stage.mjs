@@ -55,7 +55,7 @@ const CONSTRAINT_SURFACE = {
   // Forward-looking acquisition work, not backward L0 validation: an early company already has the
   // validation plays ready (they are not seeded), and a revenue company should not be told to re-run
   // problem-validation just because it declared a user shortage.
-  no_users: ["landing-page-cro", "funnel-analysis", "marketplace-supply-acquisition", "hardware-preorder-demand-validation", "referral-and-virality-loops", "beachhead-selection", "positioning-canvas"],
+  no_users: ["design-partner-recruitment", "first-users-traction", "marketplace-supply-acquisition", "hardware-preorder-demand-validation", "landing-page-cro", "funnel-analysis", "referral-and-virality-loops"],
   hiring_capacity: ["hiring-and-org-scaling", "services-delivery-and-utilization"],
 };
 

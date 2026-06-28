@@ -16,6 +16,7 @@ criticality: existential
 existential_at: [launched, revenue, scaling]
 model_fit: []
 selection_hint: The live-defense counterpart to the one-time audit. Continuous monitoring, exploit detection, a guardian pause, and a rehearsed hack runbook for any value-bearing contract that is live. Run from mainnet onward, as a standing capability.
+action: "Stand up live invariant monitors from the audited properties, wire a guardian pause, and rehearse the hack runbook once."
 depends_on:
   - smart-contract-audit
 soft_after:

@@ -321,8 +321,14 @@ function score(pb, slack, flags, weights, fit) {
   // email-deliverability) is background maintenance, not the frontier: it keeps running but must not
   // headline a launched company over its activation/retention work. Demote it out of the top cluster.
   const maint = fit && pb.recurring && levelKey(pb.level) < fit.currentLevel && effectiveCriticality(pb, fit.stage) !== "existential" ? 0.6 : 1;
+  // Premature infra: reliability/ops plumbing (observability, backups, incident response, email
+  // deliverability, a security baseline) only earns its keep once there are users to protect. Before
+  // any live traffic it is busywork that buried the first-users work for pre-launch companies in the
+  // 40-company eval. Demote it hard until the company has traffic. The constraint tier still overrides
+  // (a tech_scale company keeps it on top), and a company with traffic is unaffected.
+  const premature = fit && PRE_TRAFFIC_DEFER.has(pb.id) && !flags.has("has_live_traffic") ? 0.3 : 1;
   const pw = priorityWeight(pb, weights);
-  return Math.round((lev * urgency * sf * ff * maint * rev / eff * pw) * 1000) / 1000;
+  return Math.round((lev * urgency * sf * ff * maint * premature * rev / eff * pw) * 1000) / 1000;
 }
 
 function buildMap(playbooks, profile, { completed = [], level = 0 } = {}) {
@@ -375,6 +381,8 @@ function enforceDeps(items, byId) {
 }
 const NS_TODO = new Set(["north-star-metric", "ceo-dashboard-build"]);
 const EXISTENTIAL_DISPLAY_CAP = 2;
+// Reliability/ops infra that is premature before a company has live traffic (see score()).
+const PRE_TRAFFIC_DEFER = new Set(["observability-setup", "data-backup-recovery", "incident-response", "email-deliverability-setup", "security-baseline"]);
 
 function nextActions(playbooks, profile, { completed = [], level = 0, weights = null } = {}) {
   const { members } = select(playbooks, profile);

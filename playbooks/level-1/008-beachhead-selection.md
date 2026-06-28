@@ -12,6 +12,7 @@ relevance: core
 department: Strategy
 criticality: core
 selection_hint: The first L1 commit. Choose one wedge so all force concentrates on a single point. Unlocks positioning and naming.
+action: "List 10 to 20 candidate segments, score each on urgency and reachability, then commit to one wedge and name the rest out."
 depends_on:
   - problem-validation-interviews
   - market-sizing-tam-sam-som

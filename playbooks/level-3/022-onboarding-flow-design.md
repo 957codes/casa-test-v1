@@ -19,6 +19,7 @@ department: Product
 criticality: core
 model_fit: [self_serve]
 selection_hint: The highest-leverage growth surface. Design it once the product core value and signup flow exist; it feeds the beta program.
+action: "Map the signup-to-aha flow as states and cut every step until each single-step drop-off stays under 30 percent."
 depends_on: []
 soft_after:
   - prd-drafting

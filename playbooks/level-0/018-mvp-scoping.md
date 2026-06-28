@@ -13,6 +13,7 @@ relevance: core
 department: Product
 criticality: core
 selection_hint: Defines the smallest buildable product after the thesis survives red-teaming. Gates tech stack, positioning, and PRD.
+action: "Write the thinnest end-to-end slice that delivers core value plus its explicit non-goals, buildable in a few weeks."
 depends_on:
   - red-team-thesis
 soft_after:

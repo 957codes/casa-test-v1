@@ -13,6 +13,7 @@ department: Operations
 criticality: existential
 model_fit: [marketplace]
 selection_hint: Run once the marketplace has live transactions and a measurable match rate. The single most important marketplace growth lever; balance the short side before spending on the long side.
+action: "Measure match rate and time-to-fill by segment, identify the short side, and concentrate on saturating one narrow segment first."
 depends_on: []
 soft_after:
   - marketplace-trust-and-safety

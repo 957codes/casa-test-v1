@@ -13,6 +13,7 @@ relevance: core
 department: Finance
 criticality: core
 selection_hint: Run after pricing research lands a price range and value metric. The structural decision that pricing-page copy and freemium choice both depend on.
+action: "Pick the single value metric customers pay by, then draft Good, Better, Best tiers around it this week."
 depends_on:
   - pricing-research
 soft_after: []

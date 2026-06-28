@@ -13,6 +13,7 @@ relevance: core
 department: Engineering
 criticality: core
 selection_hint: The sensory apparatus of the business. Every downstream metric, funnel, cohort, and dashboard depends on it. Set up in week one to avoid an 18-month rebuild.
+action: "Stand up a single event pipeline to one warehouse and a version-controlled metrics layer with exactly one definition per metric."
 depends_on: []
 soft_after:
   - hosting-deployment-setup

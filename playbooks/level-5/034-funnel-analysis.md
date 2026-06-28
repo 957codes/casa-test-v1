@@ -13,6 +13,7 @@ relevance: core
 department: Data
 criticality: core
 selection_hint: Run once events flow and there are users moving through the funnel. Diagnoses where the funnel leaks and produces testable remediation hypotheses.
+action: "Build the signup-to-revenue funnel by stage, then find the single largest statistically significant drop-off to hand off as a hypothesis."
 depends_on:
   - analytics-stack-setup
   - event-taxonomy-design

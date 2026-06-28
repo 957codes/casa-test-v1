@@ -18,6 +18,7 @@ relevance: core
 department: Product
 criticality: core
 selection_hint: The standing decision of what to build next. Runs continuously through build and beyond, not once. Full scoring every two weeks; triage daily.
+action: "Score the current backlog with RICE, add a Kano tag, and emit a ranked sprint-commitment list for approval."
 depends_on: []
 soft_after:
   - prd-drafting

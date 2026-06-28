@@ -14,6 +14,7 @@ relevance: recommended
 department: Data
 criticality: growth
 selection_hint: Run once GA4 (ideally with a BigQuery export) is live and there is traffic to read, typically from launch. Skip products that do not use GA4.
+action: "Reconcile GA4 revenue against Stripe and stand up a weekly Monday read that triages each finding to a decision."
 depends_on:
   - analytics-stack-setup
 soft_after:

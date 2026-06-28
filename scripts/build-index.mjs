@@ -147,7 +147,11 @@ for (const file of files) {
     criticality, existential_at: arr(fm.existential_at), model_fit: arr(fm.model_fit),
     // Optional gradeable output spec (the dashboard scores a completed deliverable against these).
     deliverable: fm.deliverable || null, rubric: fm.rubric || null,
+    // Optional one-line concrete first move (the advisor/Console show this so a lead reads as a
+    // Monday-morning action, not a topic noun).
+    action: fm.action || null,
   });
+  if (fm.action != null && String(fm.action).trim() === "") errors.push(`${rel}: action, if present, must be non-empty`);
   // Light validation of the optional deliverable spec, so a malformed one is caught at build time.
   if (fm.deliverable != null) {
     if (typeof fm.deliverable !== "object" || !Array.isArray(fm.deliverable.sections) || !fm.deliverable.sections.length) {

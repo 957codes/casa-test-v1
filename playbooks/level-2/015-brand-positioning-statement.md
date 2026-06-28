@@ -12,6 +12,7 @@ relevance: core
 department: Brand
 criticality: core
 selection_hint: Strategic positioning bet that every content, brand, and trademark step downstream consumes. Run once the MVP slice is scoped.
+action: "Name the competitive alternatives first, then write a one-to-three sentence positioning statement that deliberately excludes some audiences."
 depends_on:
   - mvp-scoping
 soft_after:

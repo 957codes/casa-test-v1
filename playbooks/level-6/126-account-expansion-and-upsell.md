@@ -19,6 +19,7 @@ criticality: core
 existential_at: [scaling]
 model_fit: [recurring, sales_led]
 selection_hint: The offense side of net revenue retention. Run once there is recurring revenue and a retained base; the cheapest revenue is expansion inside accounts the company already serves. Distinct from churn defense.
+action: "Segment healthy accounts by headroom, then run a QBR on your top five to surface and agree the next expansion."
 depends_on: []
 soft_after: []
 produces:

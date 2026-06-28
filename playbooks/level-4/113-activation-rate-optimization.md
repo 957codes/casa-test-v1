@@ -19,6 +19,7 @@ criticality: core
 existential_at: [launched]
 model_fit: [self_serve]
 selection_hint: The first compounding gate after launch. A launched product lives or dies on whether new users reach value, so this is the metric to watch once signups exist, not top-of-funnel acquisition.
+action: "Define the activation rate from your aha milestone, then isolate the single largest signup-to-aha drop-off step to fix."
 depends_on:
   - event-taxonomy-design
   - first-run-aha-experience

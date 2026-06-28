@@ -13,6 +13,7 @@ department: Growth
 criticality: growth
 model_fit: [self_serve]
 selection_hint: Run before any content or SEO work. Foundation that every content and programmatic-SEO playbook consumes. Skip only if SEO is not a planned channel.
+action: "Mine customer tickets and reviews for seed keywords, then cluster and prioritize a roadmap of 50 topics by ROI."
 depends_on: []
 soft_after:
   - positioning-canvas

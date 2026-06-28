@@ -16,6 +16,7 @@ criticality: existential
 existential_at: [building, launched, revenue]
 model_fit: []
 selection_hint: The do-or-die gate before mainnet. A contract that holds user funds is unforgiving and immutable once deployed; an unaudited deploy is an unbounded loss waiting to happen. Run before any value-bearing contract ships.
+action: "Freeze the audit scope, pin the deploy commit, and engage a reputable third-party auditor before any value-bearing mainnet deploy."
 depends_on: []
 soft_after:
   - tech-stack-selection

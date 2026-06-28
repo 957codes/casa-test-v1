@@ -17,6 +17,7 @@ criticality: core
 existential_at: [revenue, scaling]
 model_fit: [recurring]
 selection_hint: Install once there is recurring revenue and billing webhooks. Highest-ROI lever is recovering involuntary (failed-payment) churn. Operate continuously.
+action: "Pull the last 90 days of churn, split voluntary from involuntary, and recover every failed-payment account first."
 depends_on:
   - contract-close-playbook
   - support-workflow

@@ -15,6 +15,7 @@ criticality: existential
 existential_at: [revenue, scaling]
 model_fit: []
 selection_hint: The survival discipline for a crypto business holding its own funds on-chain. Hold runway in stablecoins, secure it behind a multisig, and diversify custody and issuer exposure. Run once the treasury holds meaningful value.
+action: "Move operating runway into diversified stablecoins behind a 3-of-5 multisig, then compute months of runway and set alert thresholds."
 depends_on: []
 soft_after:
   - onchain-payment-and-stablecoin-integration

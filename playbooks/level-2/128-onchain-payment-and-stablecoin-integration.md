@@ -16,6 +16,7 @@ criticality: existential
 existential_at: [building, launched, revenue]
 model_fit: [transactional]
 selection_hint: The payment rail itself for a crypto product. No deposit, settlement, or payout can flow until wallet-connect, a stablecoin rail, gas handling, and an on/off-ramp are live. Build before any value moves.
+action: "Select the settlement chain and stablecoin, pin token addresses as named config, and test the full rail on testnet first."
 depends_on: []
 soft_after:
   - tech-stack-selection

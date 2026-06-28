@@ -187,11 +187,15 @@ export function toFoundry(brain, enrich = {}) {
   const CRIT_LABEL = { existential: "Do-or-die right now", core: "Core work", growth: "Growth", optional: "Optional" };
   const nextActionsView = (next || []).map((a) => {
     const unblocks = (a.unblocks || []).map((id) => titleById.get(id)).filter(Boolean);
+    const crit = a.display_criticality || a.effective_criticality || null;
     return {
       id: a.id, title: a.title, owner: a.department || departmentOf(a.id, a.title),
-      criticality: a.effective_criticality || null,
-      criticalityLabel: CRIT_LABEL[a.effective_criticality] || "Recommended",
+      criticality: crit,
+      criticalityLabel: CRIT_LABEL[crit] || "Recommended",
       tier: a.tier ?? 0,
+      primary: !!a.primary,
+      // The concrete first move (verb + target) so the card reads as a Monday-morning action.
+      action: (catalog[a.id] || {}).action || null,
       state: a.human_gate ? "approval" : "input",
       humanGate: !!a.human_gate,
       blocksRevenue: !!a.blocks_revenue,

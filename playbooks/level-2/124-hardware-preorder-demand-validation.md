@@ -15,6 +15,7 @@ criticality: core
 existential_at: [landing, building]
 model_fit: [physical_goods]
 selection_hint: The gate before capital-intensive hardware spend. Tooling and a first production run are largely irreversible, so prove paid demand with preorders or crowdfunding before sinking money into supply, not after.
+action: "Stand up a preorder page that captures real payment, and set the go/no-go unit threshold before you launch it."
 depends_on: []
 soft_after:
   - market-sizing-tam-sam-som

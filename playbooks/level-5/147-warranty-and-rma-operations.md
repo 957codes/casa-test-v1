@@ -15,6 +15,7 @@ criticality: core
 existential_at: [revenue, scaling]
 model_fit: [physical_goods]
 selection_hint: Run once units are in customers' hands. A hardware company without an RMA pipeline turns every defect into a refund and a lost customer. Warranty is both a customer-trust promise and a financial liability that must be reserved for and managed.
+action: "Write warranty terms you can honor at the predicted failure rate, set a per-unit reserve, and stand up the RMA pipeline."
 depends_on:
   - hardware-qa-and-reliability
 soft_after:

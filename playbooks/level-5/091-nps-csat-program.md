@@ -15,6 +15,7 @@ department: Success
 criticality: growth
 model_fit: [recurring]
 selection_hint: Install once there are active customers and a survey channel. Applies to any business, B2B or B2C. Operate on a fixed cadence; promoters feed the case-study pipeline.
+action: "Launch the two-question NPS survey to active customers and contact every detractor within 48 hours to rescue them."
 depends_on: []
 soft_after:
   - support-workflow

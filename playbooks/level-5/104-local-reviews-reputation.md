@@ -15,6 +15,7 @@ criticality: core
 existential_at: [revenue, scaling]
 model_fit: [local]
 selection_hint: Run once a local service has repeat customers. Reviews are the compounding local-ranking and trust lever; start the loop as early as you have happy customers.
+action: "Set a one-tap review request to fire at job completion, and respond to every existing review this week."
 depends_on: []
 soft_after:
   - local-google-business-profile

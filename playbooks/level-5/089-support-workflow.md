@@ -15,6 +15,7 @@ department: Success
 criticality: core
 existential_at: [revenue]
 selection_hint: Install the moment the first paying customer exists. Applies to any business with customers, B2B or B2C. Operate continuously, not a one-time checkbox.
+action: "Stand up ticket intake with severity triage and SLA tiers, and draft a knowledge-base article on every resolution."
 depends_on: []
 soft_after:
   - contract-close-playbook

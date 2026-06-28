@@ -14,6 +14,7 @@ department: Engineering
 criticality: core
 model_fit: [physical_goods]
 selection_hint: The first hardware build gate. No contract manufacturer, certification, or production quote is real until a working prototype and a costed, manufacturable BOM exist.
+action: "Build a functional prototype of the riskiest unknown first, then apply DFM and author a costed bill of materials."
 depends_on: []
 soft_after: []
 produces:

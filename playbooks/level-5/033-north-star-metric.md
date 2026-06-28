@@ -13,6 +13,7 @@ relevance: core
 department: Data
 criticality: core
 selection_hint: Define once early PMF signal exists so every agent optimizes one number. Before PMF, anchor it on retention or core-action completion, not growth.
+action: "Name one value-denominated north star, decompose it into three or four input metrics, and add a guardrail counter-metric."
 depends_on:
   - analytics-stack-setup
 soft_after:

@@ -12,6 +12,7 @@ relevance: core
 department: Strategy
 criticality: core
 selection_hint: First step of validation. Surfaces and scores real evidence of demand. Run for every business.
+action: "Pull a few hundred demand signals from at least three channels, then cluster them into candidate niches and score each."
 depends_on: []
 soft_after: []
 produces:

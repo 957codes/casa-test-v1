@@ -14,6 +14,7 @@ department: Growth
 criticality: existential
 model_fit: [local]
 selection_hint: Run early for any local service. For a local business this is the primary discovery channel, ahead of a website or paid ads.
+action: "Claim and verify your Google Business Profile, complete every field including categories, hours, and photos, and add a booking path."
 depends_on: []
 soft_after:
   - company-naming

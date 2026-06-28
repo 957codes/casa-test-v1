@@ -105,7 +105,7 @@ function readReceipts(dir) {
 const PLAYBOOKS = readJson(join(repo, "playbooks", "_index.json"), { playbooks: [] }).playbooks || [];
 const CATALOG = (() => {
   const m = {};
-  for (const p of PLAYBOOKS) m[p.id] = { selection_hint: p.selection_hint, criticality: p.criticality, deliverable: p.deliverable || null, rubric: p.rubric || null };
+  for (const p of PLAYBOOKS) m[p.id] = { selection_hint: p.selection_hint, criticality: p.criticality, deliverable: p.deliverable || null, rubric: p.rubric || null, action: p.action || null };
   return m;
 })();
 // Pulse (the founder's focus + the engine's weights) and the set of nodes that have real output.

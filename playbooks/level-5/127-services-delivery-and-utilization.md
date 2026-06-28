@@ -15,6 +15,7 @@ criticality: core
 existential_at: [revenue, scaling]
 model_fit: []
 selection_hint: The operating core of a services firm. Run once the business delivers paid engagements; billable utilization is the metric the whole business turns on, so this is monitored, not a one-time setup.
+action: "Standardize a statement-of-work template, then instrument billable utilization per person against a 70-to-85-percent target band this week."
 depends_on: []
 soft_after: []
 produces:

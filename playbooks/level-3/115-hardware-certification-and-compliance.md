@@ -15,6 +15,7 @@ criticality: existential
 existential_at: [launched, revenue]
 model_fit: [physical_goods]
 selection_hint: A hard legal gate for selling physical product. An uncertified device cannot lawfully ship in its target markets, and shipping one risks seizure, recall, and liability. Start the testing early because lab queues and retests are slow.
+action: "Determine the required certification regimes per target market, then book accredited lab slots for the long-lead tests now."
 depends_on:
   - hardware-prototyping-and-dfm
 soft_after: []

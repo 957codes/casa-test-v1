@@ -15,6 +15,7 @@ criticality: existential
 existential_at: [launched, revenue, scaling]
 model_fit: [transactional]
 selection_hint: The do-or-die gate for any crypto business that custodies or transmits customer value. No onboarding, deposit, or transfer can go live until identity verification, sanctions screening, and transaction monitoring are operating.
+action: "Scope which of your activities trigger money-services or VASP obligations per jurisdiction, and name the accountable compliance owner."
 depends_on: []
 soft_after:
   - entity-formation

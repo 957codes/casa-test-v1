@@ -13,6 +13,7 @@ department: Growth
 criticality: growth
 model_fit: [self_serve]
 selection_hint: The owned, algorithm-independent audience channel. Stand up once an ESP and authenticated domain exist; then run continuously. Other channels feed it.
+action: "Set up an authenticated sending domain and a lead-magnet opt-in, then publish your first three issues on a fixed cadence."
 depends_on: []
 soft_after:
   - email-deliverability-setup

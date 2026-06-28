@@ -15,6 +15,7 @@ relevance: core
 department: Engineering
 criticality: core
 selection_hint: Run once any data store exists. Turns an outage, ransomware event, or bad migration into a 30-minute problem instead of an existential one.
+action: "Set RPO and RTO for your Tier 1 data store, then run one full restore drill and log the actual RTO."
 depends_on:
   - hosting-deployment-setup
 soft_after:

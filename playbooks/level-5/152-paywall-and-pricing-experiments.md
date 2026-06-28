@@ -17,6 +17,7 @@ criticality: core
 existential_at: [revenue]
 model_fit: [self_serve]
 selection_hint: Run once a paywall is live and conversion volume supports a test. The paywall is the single highest-leverage revenue surface in a self-serve app, and small placement, gating, and trial changes move trial-to-paid more than most acquisition work. Skip if monetization is sales-led with no in-product purchase moment.
+action: "Instrument trial-to-paid and net revenue per user with refund and retention guardrails, then run one paywall-placement A/B test."
 depends_on: []
 soft_after:
   - in-app-purchase-and-store-economics
