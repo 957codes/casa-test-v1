@@ -25,24 +25,33 @@ function departmentOf(id, title) {
   return "Operations";
 }
 
-// build-map status (+ human_gate) -> Foundry task state.
-function stateOf(node) {
+// build-map status (+ human_gate, + live work) -> Foundry task state. A node with a pending or
+// running intent in the queue renders as "agent" (working) so the founder sees live progress.
+function stateOf(node, working) {
+  if (working && working.has(node.id)) return "agent";
   if (node.status === "done") return "completed";
   if (node.status === "blocked") return "locked";
   return node.human_gate ? "approval" : "input"; // ready
 }
 
 // brain = { buildMap, profile, state, spend, loopsDue }
-export function toFoundry(brain) {
+// enrich = { catalog:{id->{selection_hint,criticality,deliverable}}, scores:{id->{score,pass,gaps}},
+//            working:Set<id>, notes:{id->{tldr,why}} } -- all optional; the console is read-only and
+// this is a pure transform, so an absent enrich just yields the plain build map.
+export function toFoundry(brain, enrich = {}) {
   const { buildMap = { levels: [] }, profile = {}, spend = 0, loopsDue = [] } = brain;
+  const { catalog = {}, scores = {}, working = new Set(), notes = {} } = enrich;
   const levels = (buildMap.levels || []).slice().sort((a, b) => levelKey(a.level) - levelKey(b.level));
 
   const tasks = [];
   const stages = levels.map((lvl) => {
     let done = 0;
     const stageTasks = (lvl.nodes || []).map((n) => {
-      const st = stateOf(n);
+      const st = stateOf(n, working);
       if (st === "completed") done++;
+      const cat = catalog[n.id] || {};
+      const note = notes[n.id] || {};
+      const sc = scores[n.id];
       const task = {
         id: n.id,
         title: n.title,
@@ -54,6 +63,14 @@ export function toFoundry(brain) {
         onCriticalPath: !!n.on_critical_path,
         leverage: n.leverage || "med",
         recurring: !!n.recurring,
+        criticality: n.criticality || cat.criticality || null,
+        // TLDR + advisor notes (the reasoning layer surfaced per node). tldr falls back to the
+        // playbook's selection_hint; richer per-node notes come from console/notes.jsonl when present.
+        tldr: note.tldr || cat.selection_hint || null,
+        why: note.why || null,
+        deliverable: cat.deliverable || null,
+        score: sc ? { value: sc.score, pass: sc.pass, gaps: sc.gaps || [] } : null,
+        inProgress: st === "agent",
       };
       if (st === "approval") task.ask = "Needs your approval to proceed.";
       else if (st === "input") task.ask = "Ready to start.";
@@ -66,11 +83,14 @@ export function toFoundry(brain) {
   const tasksComplete = tasks.filter((t) => t.state === "completed").length;
   const needsAttention = tasks.filter((t) => t.state === "approval" || t.state === "input").length;
 
+  const ns = buildMap.active_north_star || null;
   const company = {
     name: profile.company_name || "(unnamed)",
     oneLiner: profile.one_liner || "",
     founder: profile.founder || "",
     founderProfile: [profile.primary_type, ...(profile.traits || []).slice(0, 3)].filter(Boolean).join(" · "),
+    northStar: ns ? ns.label : null,
+    headingToward: ns && ns.band !== "scale" ? ns.mature_growth_label : null,
     tasksComplete,
     tasksTotal: tasks.length,
     needsAttention,

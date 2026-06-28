@@ -1,7 +1,7 @@
 ---
 name: casa-review
 description: Critique a company artifact (a decision, a plan, copy, a price, a positioning line, a deck, a metrics readout) with a panel of specialist persona agents, then merge and confidence-gate their findings into one ranked verdict. Interactive mode applies safe fixes on request; mode:agent returns JSON and changes nothing. Use after building or drafting something, before a launch, a price, or a commitment.
-argument-hint: "[mode:agent] [path to the artifact, or blank for the most recent decision]"
+argument-hint: "[mode:agent] [grade <nodeId>] [path to the artifact, or blank for the most recent decision]"
 ---
 
 # casa-review
@@ -12,6 +12,9 @@ decisions. It is the review half of the build then review loop.
 
 ## Argument parsing
 
+- `grade <nodeId>`: run the GRADE MODE below instead of the persona critique. It scores
+  a completed node's deliverable 0-100 against the playbook's `deliverable` spec and
+  `rubric`, combining deterministic checks with an LLM judgment, and persists the score.
 - `mode:agent` (or `mode:headless`): return only the merged JSON verdict, apply no
   fixes, mutate nothing. Default mode is interactive (render a briefing, offer to
   apply safe fixes).

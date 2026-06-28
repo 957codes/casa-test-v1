@@ -15,7 +15,7 @@
 //   node console/bridge.mjs [brainDir] [--port 4317]
 
 import { createServer } from "node:http";
-import { readFileSync, writeFileSync, appendFileSync, existsSync, mkdirSync, watch, statSync } from "node:fs";
+import { readFileSync, writeFileSync, appendFileSync, existsSync, mkdirSync, readdirSync, watch, statSync } from "node:fs";
 import { join, extname, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { execFileSync } from "node:child_process";
@@ -51,6 +51,39 @@ function readBrain(dir) {
     state: readJson(join(dir, "state.json"), {}),
     spend: readSpend(dir),
   };
+}
+
+// The catalog (the plugin's playbooks index) carries each node's TLDR (selection_hint), criticality,
+// and the gradeable deliverable/rubric. It is static, so load it once.
+const CATALOG = (() => {
+  const idx = readJson(join(repo, "playbooks", "_index.json"), { playbooks: [] });
+  const m = {};
+  for (const p of idx.playbooks || []) m[p.id] = { selection_hint: p.selection_hint, criticality: p.criticality, deliverable: p.deliverable || null };
+  return m;
+})();
+function readJsonl(file) {
+  if (!existsSync(file)) return [];
+  return readFileSync(file, "utf8").split("\n").filter(Boolean).map((l) => { try { return JSON.parse(l); } catch { return null; } }).filter(Boolean);
+}
+// latest score per node (casa-review appends to scores.jsonl)
+function readScores() {
+  const m = {};
+  for (const s of readJsonl(join(CONSOLE_DIR, "scores.jsonl"))) m[s.nodeId] = s;
+  return m;
+}
+function readNotes() {
+  const m = {};
+  for (const n of readJsonl(join(CONSOLE_DIR, "notes.jsonl"))) m[n.nodeId] = n;
+  return m;
+}
+// nodes with a pending or running intent are "working"
+function workingSet() {
+  const w = new Set();
+  for (const r of readQueue()) if (r.nodeId && (r.status === "pending" || r.status === "running")) w.add(r.nodeId);
+  return w;
+}
+function enriched() {
+  return toFoundry(readBrain(brainDir), { catalog: CATALOG, scores: readScores(), working: workingSet(), notes: readNotes() });
 }
 
 // ---- intent queue (append-only JSONL, OUTSIDE the brain state files) ----
@@ -153,7 +186,33 @@ const server = createServer(async (req, res) => {
 
   if (path === "/api/brain") {
     res.writeHead(200, { "Content-Type": "application/json", ...cors });
-    res.end(JSON.stringify(toFoundry(readBrain(brainDir))));
+    res.end(JSON.stringify(enriched()));
+    return;
+  }
+  if (path === "/api/output") {
+    // the deliverable files a node produced (written under company-brain/outputs/<node>/)
+    const node = url.searchParams.get("node") || "";
+    const dir = join(brainDir, "outputs", node);
+    const files = [];
+    if (node && existsSync(dir) && statSync(dir).isDirectory()) {
+      const walk = (d, base = "") => {
+        for (const name of readdirSync(d)) {
+          const p = join(d, name), rel = base ? `${base}/${name}` : name;
+          if (statSync(p).isDirectory()) walk(p, rel);
+          else { const c = readFileSync(p, "utf8"); files.push({ path: `${node}/${rel}`, bytes: Buffer.byteLength(c), content: c.length > 50000 ? c.slice(0, 50000) + "\n...(truncated)" : c }); }
+        }
+      };
+      try { walk(dir); } catch { /* skip */ }
+    }
+    res.writeHead(200, { "Content-Type": "application/json", ...cors });
+    res.end(JSON.stringify({ node, files }));
+    return;
+  }
+  if (path === "/api/activity") {
+    const node = url.searchParams.get("node");
+    const all = readJsonl(join(CONSOLE_DIR, "activity.jsonl"));
+    res.writeHead(200, { "Content-Type": "application/json", ...cors });
+    res.end(JSON.stringify(node ? all.filter((a) => a.nodeId === node) : all.slice(-60)));
     return;
   }
   if (path === "/api/queue") {
