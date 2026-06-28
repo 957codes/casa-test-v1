@@ -11,7 +11,8 @@ applies_to:
     - content
     - marketplace
     - crypto
-  requires_traits: []
+  requires_traits:
+    - recurring_revenue
   excluded_traits:
     - pre_idea_only
 relevance: core

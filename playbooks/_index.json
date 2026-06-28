@@ -96,9 +96,7 @@
         "competitive_landscape",
         "whitespace_map"
       ],
-      "consumes": [
-        "opportunity_brief"
-      ],
+      "consumes": [],
       "effort": "M",
       "leverage": "high",
       "reversibility": "easy",
@@ -127,15 +125,15 @@
       "selection_hint": "Run for every business to confirm the opportunity is large enough to justify the build. Kill if SOM is below threshold.",
       "depends_on": [],
       "soft_after": [
-        "opportunity-scan"
+        "opportunity-scan",
+        "problem-validation-interviews"
       ],
       "produces": [
         "market_sizing_model",
         "market_go_no_go"
       ],
       "consumes": [
-        "opportunity_brief",
-        "refined_icp"
+        "opportunity_brief"
       ],
       "effort": "M",
       "leverage": "high",
@@ -245,14 +243,14 @@
       "depends_on": [],
       "soft_after": [
         "opportunity-scan",
-        "red-team-thesis"
+        "red-team-thesis",
+        "market-sizing-tam-sam-som"
       ],
       "produces": [
         "why_now_memo"
       ],
       "consumes": [
-        "opportunity_brief",
-        "market_sizing_model"
+        "opportunity_brief"
       ],
       "effort": "S",
       "leverage": "high",
@@ -442,15 +440,14 @@
       "selection_hint": "Run once the venture is committed and you need to bank, contract, hire, or raise. Default Delaware C-Corp; deviations need a documented reason.",
       "depends_on": [],
       "soft_after": [
-        "company-naming"
+        "company-naming",
+        "beachhead-selection"
       ],
       "produces": [
         "legal_entity",
         "ein"
       ],
-      "consumes": [
-        "committed_wedge"
-      ],
+      "consumes": [],
       "effort": "M",
       "leverage": "high",
       "reversibility": "hard",
@@ -5064,7 +5061,9 @@
           "marketplace",
           "crypto"
         ],
-        "requires_traits": [],
+        "requires_traits": [
+          "recurring_revenue"
+        ],
         "excluded_traits": [
           "pre_idea_only"
         ]

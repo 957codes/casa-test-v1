@@ -16,11 +16,11 @@ depends_on: []
 soft_after:
   - opportunity-scan
   - red-team-thesis
+  - market-sizing-tam-sam-som
 produces:
   - why_now_memo
 consumes:
   - opportunity_brief
-  - market_sizing_model
 effort: S
 leverage: high
 reversibility: easy

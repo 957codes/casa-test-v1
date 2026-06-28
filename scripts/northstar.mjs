@@ -84,7 +84,10 @@ export function matureNorthStar(profile) {
       else { growth = "dau"; retention = "dau_mau"; guardrails = ["arpu", "repeat_engagement"]; }
       break;
     case "crypto":
-      if (subscription) { growth = "mrr"; retention = "wallet_retention"; guardrails = ["ltv_cac", "active_wallets"]; }
+      // A subscription crypto business (e.g. B2B infra/SaaS) steers by recurring revenue, not
+      // wallet metrics; only a transactional/consumer protocol steers by wallets/protocol revenue.
+      if (subscription && audience === "b2b") { growth = "arr"; retention = "nrr"; guardrails = ["logo_churn", "ltv_cac"]; }
+      else if (subscription) { growth = "mrr"; retention = "sub_retention"; guardrails = ["ltv_cac", "active_wallets"]; }
       else if (mon === "transaction-fee") { growth = "protocol_revenue"; retention = "wallet_retention"; guardrails = ["tvl", "active_wallets"]; }
       else { growth = "active_wallets"; retention = "wallet_retention"; guardrails = ["tvl", "repeat_engagement"]; }
       break;

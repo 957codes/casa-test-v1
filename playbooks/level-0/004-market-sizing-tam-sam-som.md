@@ -15,12 +15,12 @@ selection_hint: Run for every business to confirm the opportunity is large enoug
 depends_on: []
 soft_after:
   - opportunity-scan
+  - problem-validation-interviews
 produces:
   - market_sizing_model
   - market_go_no_go
 consumes:
   - opportunity_brief
-  - refined_icp
 effort: M
 leverage: high
 reversibility: easy

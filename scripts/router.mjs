@@ -236,8 +236,12 @@ function modelSet(profile) {
 const SLACK_SPAN = 10;
 // Criticality multiplier (do-or-die consequence of NOT doing it at its stage). Default
 // "growth" (1.0) so an untagged play is neutral and the rollout is incremental.
-const CRIT_W = { existential: 1.5, core: 1.15, growth: 1.0, optional: 0.85 };
-const FIT_FLOOR = 0.7, FIT_CAP = 1.8, MODELFIT_HIT = 1.25, MODELFIT_MISS = 0.85;
+// Spread widened (was 1.5/1.15/1.0/0.85) so a do-or-die play decisively leads: a gentle
+// department tilt (<= ~1.4) on a lower-criticality play can no longer leapfrog an existential
+// one (existential 1.8 vs growth 0.95 * 1.4 = 1.33). A founder's EXPLICIT promote (2.5+) still
+// crosses it, so the pulse keeps its steering power.
+const CRIT_W = { existential: 1.8, core: 1.25, growth: 0.95, optional: 0.8 };
+const FIT_FLOOR = 0.7, FIT_CAP = 1.9, MODELFIT_HIT = 1.25, MODELFIT_MISS = 0.85;
 
 // A pure DISCOUNT (max 1.0): demotes work far below the current frontier so a stale low-level
 // loop cannot headline a company several stages past it. This is the load-bearing fix for the

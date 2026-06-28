@@ -15,11 +15,11 @@ selection_hint: Run once the venture is committed and you need to bank, contract
 depends_on: []
 soft_after:
   - company-naming
+  - beachhead-selection
 produces:
   - legal_entity
   - ein
-consumes:
-  - committed_wedge
+consumes: []
 effort: M
 leverage: high
 reversibility: hard

@@ -18,8 +18,7 @@ soft_after:
 produces:
   - competitive_landscape
   - whitespace_map
-consumes:
-  - opportunity_brief
+consumes: []
 effort: M
 leverage: high
 reversibility: easy
