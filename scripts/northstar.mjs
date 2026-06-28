@@ -39,6 +39,7 @@ const METRIC_LABELS = {
   bookings: "bookings",
   local_rebooking: "rebooking rate",
   reviews_rating: "reviews rating",
+  conversion_rate: "conversion rate",
 };
 const METRIC_IDS = new Set(Object.keys(METRIC_LABELS));
 const metricLabel = (id) => METRIC_LABELS[id] || id;
@@ -114,14 +115,27 @@ export function band(level) {
   return "scale";                    // scale acquisition / growth
 }
 
+// The "activation" band metric is type-aware: "activation rate" is a software term and is wrong
+// for a marketplace (getting to first matches), a store (first-purchase conversion), or a services
+// firm (utilization). Only software businesses steer by activation rate; the rest get the early
+// proxy for their own model so the north star never reads as a generic SaaS metric.
+const ACTIVATION_BY_TYPE = {
+  marketplace: "match_rate",
+  "b2b-service": "utilization",
+  ecommerce: "conversion_rate",
+  hardware: "conversion_rate",
+  content: "repeat_engagement",
+};
+
 // The stage-resolved north star: which one number the founder should watch right now,
 // plus the mature destination it is heading toward.
 export function northStar(profile, level) {
   const mature = matureNorthStar(profile);
   const b = band(level);
+  const activationMetric = ACTIVATION_BY_TYPE[profile.primary_type] || "activation_rate";
   const metric =
     b === "validation" ? "validated_demand" :
-    b === "activation" ? "activation_rate" :
+    b === "activation" ? activationMetric :
     b === "retention" ? mature.retention :
     mature.growth;
   return {
