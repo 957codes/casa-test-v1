@@ -18,6 +18,8 @@ const METRIC_LABELS = {
   sub_retention: "subscription retention",
   gmv: "GMV",
   match_rate: "match rate",
+  conversion: "conversion rate",
+  tpv: "total payment volume",
   net_revenue: "net revenue",
   repeat_purchase_rate: "repeat-purchase rate",
   dau: "daily active users",
@@ -125,11 +127,18 @@ export function northStar(profile, level) {
   // marketplace watches matched transactions, a services firm utilization, a content/ads business
   // engagement, a local business bookings. Default (saas/consumer/ecommerce/hardware) activates to
   // first value. This is the fix for "a marketplace at building stage is told its metric is activation".
+  const mon = profile.monetization || "";
   const activationMetric =
     traits.has("local_service_only") ? "bookings" :
     type === "marketplace" ? "match_rate" :
     type === "b2b-service" ? "utilization" :
-    (type === "content" && profile.monetization !== "subscription") ? "dau_mau" :
+    (type === "content" && mon !== "subscription") ? "dau_mau" :
+    // A store activates on first purchase (conversion), not SaaS "activation".
+    (type === "ecommerce" && mon !== "subscription") ? "conversion" :
+    // A payments/fintech business (transaction-fee SaaS) leads on volume flowing through it.
+    (type === "saas" && mon === "transaction-fee") ? "tpv" :
+    // A transactional protocol leads on assets/usage on-chain, not SaaS activation.
+    (type === "crypto" && mon !== "subscription") ? "tvl" :
     "activation_rate";
   const metric =
     b === "validation" ? "validated_demand" :
