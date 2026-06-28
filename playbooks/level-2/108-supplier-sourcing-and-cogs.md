@@ -20,7 +20,8 @@ soft_after: []
 produces:
   - cogs_model
   - supplier_list
-consumes: []
+consumes:
+  - preorder_demand_signal
 effort: M
 leverage: high
 reversibility: medium

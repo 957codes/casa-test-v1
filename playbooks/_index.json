@@ -1,6 +1,6 @@
 {
   "schema": "docs/PLAYBOOK-SCHEMA.md",
-  "count": 122,
+  "count": 124,
   "playbooks": [
     {
       "id": "opportunity-scan",
@@ -4520,7 +4520,9 @@
         "cogs_model",
         "supplier_list"
       ],
-      "consumes": [],
+      "consumes": [
+        "preorder_demand_signal"
+      ],
       "effort": "M",
       "leverage": "high",
       "reversibility": "medium",
@@ -5135,6 +5137,93 @@
       "existential_at": [],
       "model_fit": [
         "marketplace"
+      ]
+    },
+    {
+      "id": "ad-revenue-and-yield",
+      "title": "Ad Revenue and Yield",
+      "level": 4,
+      "file": "playbooks/level-4/123-ad-revenue-and-yield.md",
+      "applies_to": {
+        "types": [
+          "consumer",
+          "content"
+        ],
+        "requires_traits": [
+          "ad_supported"
+        ],
+        "excluded_traits": []
+      },
+      "relevance": "core",
+      "selection_hint": "The money mechanism for an ad-supported product. Once there is engagement to monetize, fill rate and eCPM are the levers between DAU and revenue, so this is the revenue work for an ad model, not a side task.",
+      "depends_on": [
+        "analytics-stack-setup"
+      ],
+      "soft_after": [
+        "north-star-metric"
+      ],
+      "produces": [
+        "ad_revenue_model"
+      ],
+      "consumes": [
+        "analytics_stack"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "medium",
+      "human_gate": false,
+      "blocks_revenue": true,
+      "recurring": true,
+      "typical_milestone": "ads-monetized",
+      "department": "Growth",
+      "criticality": "core",
+      "existential_at": [
+        "launched",
+        "revenue",
+        "scaling"
+      ],
+      "model_fit": []
+    },
+    {
+      "id": "hardware-preorder-demand-validation",
+      "title": "Hardware Preorder and Demand Validation",
+      "level": 2,
+      "file": "playbooks/level-2/124-hardware-preorder-demand-validation.md",
+      "applies_to": {
+        "types": [
+          "hardware"
+        ],
+        "requires_traits": [],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "The gate before capital-intensive hardware spend. Tooling and a first production run are largely irreversible, so prove paid demand with preorders or crowdfunding before sinking money into supply, not after.",
+      "depends_on": [],
+      "soft_after": [
+        "market-sizing-tam-sam-som",
+        "competitive-teardown"
+      ],
+      "produces": [
+        "preorder_demand_signal"
+      ],
+      "consumes": [],
+      "effort": "M",
+      "leverage": "critical",
+      "reversibility": "medium",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "demand-proven",
+      "department": "Growth",
+      "criticality": "core",
+      "existential_at": [
+        "landing",
+        "building"
+      ],
+      "model_fit": [
+        "physical_goods"
       ]
     }
   ]

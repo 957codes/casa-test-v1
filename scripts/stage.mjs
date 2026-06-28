@@ -43,6 +43,19 @@ function loadIndex() {
   return JSON.parse(readFileSync(join(repo, "playbooks", "_index.json"), "utf8")).playbooks;
 }
 
+// The do-or-die constraint a founder names maps to the key playbooks that address it. These are
+// kept OUT of the seed (surfaced as ready catch-up) so the engine never hides the exact risk the
+// founder flagged, and the constraint's pulse weight has a live target. Unknown/absent ids are
+// simply ignored (a business that does not select that playbook is unaffected).
+const CONSTRAINT_SURFACE = {
+  regulatory_legal: ["kyc-aml-program", "tos-and-privacy-policy", "token-and-licensing-strategy", "security-baseline", "hardware-certification-and-compliance"],
+  no_revenue: ["pricing-research", "packaging-tier-design", "unit-economics", "pricing-page-copy-layout", "freemium-trial-decision"],
+  runway_burn: ["unit-economics", "financial-model-forecast", "pricing-research"],
+  tech_scale: ["observability-setup", "incident-response", "data-backup-recovery", "security-baseline"],
+  no_users: ["problem-validation-interviews", "beachhead-selection", "landing-page-cro"],
+  hiring_capacity: [],
+};
+
 // Cumulative milestone flags for a tier. "idea" is exclusive (nothing shipped yet);
 // every other tier inherits the flags of the tiers beneath it.
 function milestoneFlags(tier) {
@@ -98,7 +111,8 @@ export function deriveStage(answers, playbooks) {
   // entire pricing / unit-economics / churn track (all gated on takes_payments).
   const mon = answers.monetization;
   const monTraits = mon === "subscription" ? ["takes_payments", "recurring_revenue"]
-    : (mon === "one-time" || mon === "transaction-fee") ? ["takes_payments"] : [];
+    : (mon === "one-time" || mon === "transaction-fee") ? ["takes_payments"]
+    : mon === "ads" ? ["ad_supported"] : [];
   const traitSet = new Set([...(answers.traits || []), ...monTraits, ...milestoneFlags(answers.tier)]);
   // Only the flags that imply an actual codebase are software-exclusive. has_user_accounts
   // and has_live_traffic are NOT: a launched store or local business genuinely has customer
@@ -121,6 +135,12 @@ export function deriveStage(answers, playbooks) {
   profile.north_star = matureNorthStar(profile);
 
   const gaps = new Set(answers.gaps || []);
+  // The founder's do-or-die constraint surfaces its key work: never silently pre-complete the
+  // exact risk the founder named (e.g. a crypto company that flagged regulatory_legal must SEE its
+  // KYC/licensing work, not have the seed mark it done). These ids are excluded from the seed like
+  // a named gap, so they surface as ready catch-up items and the constraint's pulse weight has a
+  // live target to lift instead of scaling nothing.
+  const surface = new Set(CONSTRAINT_SURFACE[answers.constraint_archetype] || []);
   const { members } = select(playbooks, profile);
   const memberIds = new Set(members.map((m) => m.id));
   // Gaps the founder named that do not apply to this business (wrong type or trait): they
@@ -133,6 +153,7 @@ export function deriveStage(answers, playbooks) {
         !m.recurring && // loops are never "done", they come due
         levelKey(m.level) < start_level &&
         !gaps.has(m.id) && // a named gap stays open as a catch-up item
+        !surface.has(m.id) && // the founder's do-or-die constraint work stays visible
         // only mark done what the business could actually have done: its state-flag
         // requirements must be met (do not seed security work for a company with no
         // repo, or onboarding for one with no user accounts).

@@ -1,7 +1,7 @@
 // Unit tests for the deterministic router engine (scripts/router.mjs).
 // These assert the graph math directly through the library exports, against the
-// real catalog (122 playbooks) and the two shipped example profiles. The numbers
-// here (99/122, 85/122) are the golden build maps; they are a tripwire for any
+// real catalog (124 playbooks) and the two shipped example profiles. The numbers
+// here (99/124, 85/124) are the golden build maps; they are a tripwire for any
 // unintended membership change.
 
 import { test } from "node:test";
@@ -14,17 +14,17 @@ const MEME = loadJson("examples/profile-solana-analytics.json"); // b2c, self_se
 
 // ---- select ----
 
-test("select: b2b high-acv profile selects 99/122", () => {
+test("select: b2b high-acv profile selects 99/124", () => {
   const { members, skipped } = select(INDEX, PROBE);
   assert.equal(members.length, 99);
-  assert.equal(skipped.length, 23);
+  assert.equal(skipped.length, 25);
   assert.equal(members.length + skipped.length, INDEX.length);
 });
 
-test("select: b2c self-serve profile selects 85/122", () => {
+test("select: b2c self-serve profile selects 85/124", () => {
   const { members, skipped } = select(INDEX, MEME);
   assert.equal(members.length, 85);
-  assert.equal(skipped.length, 37);
+  assert.equal(skipped.length, 39);
 });
 
 test("select: every skipped playbook carries a non-empty reason", () => {

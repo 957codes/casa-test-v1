@@ -288,8 +288,12 @@ function score(pb, slack, flags, weights, fit) {
   const urgency = 1.3 - 0.6 * Math.min(Math.max(slack, 0) / SLACK_SPAN, 1);
   const sf = fit ? stageFit(pb.level, fit.currentLevel) : 1;
   const ff = fit ? fitFactor(pb, fit.stage, fit.models) : 1;
+  // A recurring, non-existential loop set up in an earlier stage (incident-response, data-backup,
+  // email-deliverability) is background maintenance, not the frontier: it keeps running but must not
+  // headline a launched company over its activation/retention work. Demote it out of the top cluster.
+  const maint = fit && pb.recurring && levelKey(pb.level) < fit.currentLevel && effectiveCriticality(pb, fit.stage) !== "existential" ? 0.6 : 1;
   const pw = priorityWeight(pb, weights);
-  return Math.round((lev * urgency * sf * ff * rev / eff * pw) * 1000) / 1000;
+  return Math.round((lev * urgency * sf * ff * maint * rev / eff * pw) * 1000) / 1000;
 }
 
 function buildMap(playbooks, profile, { completed = [], level = 0 } = {}) {

@@ -936,5 +936,28 @@
     "model_fit": [
       "marketplace"
     ]
+  },
+  {
+    "id": "ad-revenue-and-yield",
+    "department": "Growth",
+    "criticality": "core",
+    "existential_at": [
+      "launched",
+      "revenue",
+      "scaling"
+    ],
+    "model_fit": []
+  },
+  {
+    "id": "hardware-preorder-demand-validation",
+    "department": "Growth",
+    "criticality": "core",
+    "existential_at": [
+      "landing",
+      "building"
+    ],
+    "model_fit": [
+      "physical_goods"
+    ]
   }
 ]
