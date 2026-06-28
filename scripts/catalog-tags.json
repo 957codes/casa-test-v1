@@ -1044,5 +1044,252 @@
       "scaling"
     ],
     "model_fit": []
+  },
+  {
+    "id": "onchain-payment-and-stablecoin-integration",
+    "department": "Engineering",
+    "criticality": "existential",
+    "existential_at": [
+      "building",
+      "launched",
+      "revenue"
+    ],
+    "model_fit": [
+      "transactional"
+    ]
+  },
+  {
+    "id": "wallet-onboarding-ux",
+    "department": "Product",
+    "criticality": "core",
+    "existential_at": [
+      "launched",
+      "revenue"
+    ],
+    "model_fit": [
+      "self_serve"
+    ]
+  },
+  {
+    "id": "tokenomics-design",
+    "department": "Strategy",
+    "criticality": "core",
+    "existential_at": [
+      "launched",
+      "scaling"
+    ],
+    "model_fit": []
+  },
+  {
+    "id": "onchain-community-and-incentive-growth",
+    "department": "Growth",
+    "criticality": "growth",
+    "existential_at": [],
+    "model_fit": []
+  },
+  {
+    "id": "onchain-analytics-and-attribution",
+    "department": "Data",
+    "criticality": "core",
+    "existential_at": [
+      "revenue",
+      "scaling"
+    ],
+    "model_fit": [
+      "recurring"
+    ]
+  },
+  {
+    "id": "protocol-security-monitoring",
+    "department": "Engineering",
+    "criticality": "existential",
+    "existential_at": [
+      "launched",
+      "revenue",
+      "scaling"
+    ],
+    "model_fit": []
+  },
+  {
+    "id": "treasury-and-stablecoin-runway",
+    "department": "Finance",
+    "criticality": "existential",
+    "existential_at": [
+      "revenue",
+      "scaling"
+    ],
+    "model_fit": []
+  },
+  {
+    "id": "open-source-strategy",
+    "department": "Strategy",
+    "criticality": "core",
+    "existential_at": [
+      "building",
+      "launched"
+    ],
+    "model_fit": [
+      "self_serve"
+    ]
+  },
+  {
+    "id": "api-and-sdk-design",
+    "department": "Engineering",
+    "criticality": "core",
+    "existential_at": [
+      "building",
+      "launched"
+    ],
+    "model_fit": [
+      "self_serve"
+    ]
+  },
+  {
+    "id": "developer-docs-and-dx",
+    "department": "Product",
+    "criticality": "core",
+    "existential_at": [
+      "launched",
+      "revenue"
+    ],
+    "model_fit": [
+      "self_serve"
+    ]
+  },
+  {
+    "id": "developer-relations-and-devrel",
+    "department": "Growth",
+    "criticality": "growth",
+    "existential_at": [],
+    "model_fit": [
+      "self_serve"
+    ]
+  },
+  {
+    "id": "developer-community-and-contributors",
+    "department": "Success",
+    "criticality": "growth",
+    "existential_at": [],
+    "model_fit": [
+      "self_serve"
+    ]
+  },
+  {
+    "id": "bottom-up-plg-to-sales-handoff",
+    "department": "Sales",
+    "criticality": "core",
+    "existential_at": [
+      "revenue"
+    ],
+    "model_fit": [
+      "self_serve"
+    ]
+  },
+  {
+    "id": "firmware-and-ota-updates",
+    "department": "Engineering",
+    "criticality": "core",
+    "existential_at": [
+      "launched",
+      "revenue"
+    ],
+    "model_fit": [
+      "physical_goods"
+    ]
+  },
+  {
+    "id": "hardware-qa-and-reliability",
+    "department": "Operations",
+    "criticality": "core",
+    "existential_at": [
+      "launched",
+      "revenue"
+    ],
+    "model_fit": [
+      "physical_goods"
+    ]
+  },
+  {
+    "id": "retail-and-channel-distribution",
+    "department": "Growth",
+    "criticality": "growth",
+    "existential_at": [],
+    "model_fit": [
+      "physical_goods"
+    ]
+  },
+  {
+    "id": "warranty-and-rma-operations",
+    "department": "Success",
+    "criticality": "core",
+    "existential_at": [
+      "revenue",
+      "scaling"
+    ],
+    "model_fit": [
+      "physical_goods"
+    ]
+  },
+  {
+    "id": "spare-parts-and-aftermarket",
+    "department": "Operations",
+    "criticality": "optional",
+    "existential_at": [],
+    "model_fit": [
+      "physical_goods"
+    ]
+  },
+  {
+    "id": "plg-instrumentation-and-pqls",
+    "department": "Data",
+    "criticality": "core",
+    "existential_at": [
+      "scaling"
+    ],
+    "model_fit": [
+      "self_serve"
+    ]
+  },
+  {
+    "id": "in-app-purchase-and-store-economics",
+    "department": "Finance",
+    "criticality": "core",
+    "existential_at": [
+      "revenue"
+    ],
+    "model_fit": [
+      "self_serve"
+    ]
+  },
+  {
+    "id": "paywall-and-pricing-experiments",
+    "department": "Growth",
+    "criticality": "core",
+    "existential_at": [
+      "revenue"
+    ],
+    "model_fit": [
+      "self_serve"
+    ]
+  },
+  {
+    "id": "referral-and-virality-loops",
+    "department": "Growth",
+    "criticality": "growth",
+    "existential_at": [],
+    "model_fit": [
+      "self_serve"
+    ]
+  },
+  {
+    "id": "mobile-lifecycle-and-push",
+    "department": "Growth",
+    "criticality": "core",
+    "existential_at": [
+      "revenue"
+    ],
+    "model_fit": [
+      "self_serve"
+    ]
   }
 ]

@@ -1,6 +1,6 @@
 {
   "schema": "docs/PLAYBOOK-SCHEMA.md",
-  "count": 127,
+  "count": 150,
   "playbooks": [
     {
       "id": "opportunity-scan",
@@ -5402,6 +5402,1040 @@
         "scaling"
       ],
       "model_fit": []
+    },
+    {
+      "id": "onchain-payment-and-stablecoin-integration",
+      "title": "On-chain Payment & Stablecoin Integration",
+      "level": 2,
+      "file": "playbooks/level-2/128-onchain-payment-and-stablecoin-integration.md",
+      "applies_to": {
+        "types": [
+          "crypto"
+        ],
+        "requires_traits": [
+          "builds_software"
+        ],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "The payment rail itself for a crypto product. No deposit, settlement, or payout can flow until wallet-connect, a stablecoin rail, gas handling, and an on/off-ramp are live. Build before any value moves.",
+      "depends_on": [],
+      "soft_after": [
+        "tech-stack-selection",
+        "kyc-aml-program"
+      ],
+      "produces": [
+        "onchain_payments"
+      ],
+      "consumes": [],
+      "effort": "L",
+      "leverage": "critical",
+      "reversibility": "hard",
+      "human_gate": true,
+      "blocks_revenue": true,
+      "recurring": false,
+      "typical_milestone": "onchain-rail-live",
+      "department": "Engineering",
+      "criticality": "existential",
+      "existential_at": [
+        "building",
+        "launched",
+        "revenue"
+      ],
+      "model_fit": [
+        "transactional"
+      ]
+    },
+    {
+      "id": "wallet-onboarding-ux",
+      "title": "Wallet Onboarding UX",
+      "level": 3,
+      "file": "playbooks/level-3/129-wallet-onboarding-ux.md",
+      "applies_to": {
+        "types": [
+          "crypto"
+        ],
+        "requires_traits": [
+          "builds_software"
+        ],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "The make-or-break funnel for any self-serve crypto product. Wallet creation, key recovery, and the first signed transaction are where most users drop; design this once the payment rail exists.",
+      "depends_on": [
+        "onchain-payment-and-stablecoin-integration"
+      ],
+      "soft_after": [
+        "onboarding-flow-design"
+      ],
+      "produces": [
+        "wallet_onboarding"
+      ],
+      "consumes": [
+        "onchain_payments"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "medium",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "wallet-onboarding-live",
+      "department": "Product",
+      "criticality": "core",
+      "existential_at": [
+        "launched",
+        "revenue"
+      ],
+      "model_fit": [
+        "self_serve"
+      ]
+    },
+    {
+      "id": "tokenomics-design",
+      "title": "Tokenomics Design",
+      "level": 2,
+      "file": "playbooks/level-2/130-tokenomics-design.md",
+      "applies_to": {
+        "types": [
+          "crypto"
+        ],
+        "requires_traits": [
+          "has_token"
+        ],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "conditional",
+      "selection_hint": "Only for a business that actually issues its own token. Sets utility, supply, emissions, and vesting before allocations are locked. Skip entirely if there is no token; the design is irreversible once distribution begins.",
+      "depends_on": [],
+      "soft_after": [
+        "token-and-licensing-strategy"
+      ],
+      "produces": [
+        "token_design"
+      ],
+      "consumes": [],
+      "effort": "L",
+      "leverage": "high",
+      "reversibility": "hard",
+      "human_gate": true,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "tokenomics-set",
+      "department": "Strategy",
+      "criticality": "core",
+      "existential_at": [
+        "launched",
+        "scaling"
+      ],
+      "model_fit": []
+    },
+    {
+      "id": "onchain-community-and-incentive-growth",
+      "title": "On-chain Community & Incentive Growth",
+      "level": 5,
+      "file": "playbooks/level-5/131-onchain-community-and-incentive-growth.md",
+      "applies_to": {
+        "types": [
+          "crypto"
+        ],
+        "requires_traits": [],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "recommended",
+      "selection_hint": "The crypto-native acquisition loop once a product and wallet onboarding exist. Points, airdrops, quests, and on-chain referral, with sybil resistance so the budget reaches real users. Run as a recurring campaign cadence.",
+      "depends_on": [
+        "wallet-onboarding-ux"
+      ],
+      "soft_after": [
+        "onchain-analytics-and-attribution"
+      ],
+      "produces": [
+        "incentive_program"
+      ],
+      "consumes": [
+        "wallet_onboarding"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "medium",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "incentive-program-live",
+      "department": "Growth",
+      "criticality": "growth",
+      "existential_at": [],
+      "model_fit": []
+    },
+    {
+      "id": "onchain-analytics-and-attribution",
+      "title": "On-chain Analytics & Attribution",
+      "level": 5,
+      "file": "playbooks/level-5/132-onchain-analytics-and-attribution.md",
+      "applies_to": {
+        "types": [
+          "crypto"
+        ],
+        "requires_traits": [],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "The measurement layer for a crypto product, where the source of truth is the chain, not a server log. Wallet cohorts, on-chain funnels, retention by wallet, and source attribution. Run once an analytics stack and on-chain activity exist.",
+      "depends_on": [
+        "analytics-stack-setup"
+      ],
+      "soft_after": [
+        "event-taxonomy-design",
+        "wallet-onboarding-ux"
+      ],
+      "produces": [
+        "onchain_analytics"
+      ],
+      "consumes": [
+        "analytics_stack"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "onchain-analytics-live",
+      "department": "Data",
+      "criticality": "core",
+      "existential_at": [
+        "revenue",
+        "scaling"
+      ],
+      "model_fit": [
+        "recurring"
+      ]
+    },
+    {
+      "id": "protocol-security-monitoring",
+      "title": "Protocol Security Monitoring",
+      "level": 4,
+      "file": "playbooks/level-4/133-protocol-security-monitoring.md",
+      "applies_to": {
+        "types": [
+          "crypto"
+        ],
+        "requires_traits": [
+          "builds_software"
+        ],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "The live-defense counterpart to the one-time audit. Continuous monitoring, exploit detection, a guardian pause, and a rehearsed hack runbook for any value-bearing contract that is live. Run from mainnet onward, as a standing capability.",
+      "depends_on": [
+        "smart-contract-audit"
+      ],
+      "soft_after": [
+        "onchain-payment-and-stablecoin-integration",
+        "incident-response"
+      ],
+      "produces": [
+        "protocol_monitoring"
+      ],
+      "consumes": [
+        "audit_report"
+      ],
+      "effort": "M",
+      "leverage": "critical",
+      "reversibility": "medium",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "protocol-monitoring-live",
+      "department": "Engineering",
+      "criticality": "existential",
+      "existential_at": [
+        "launched",
+        "revenue",
+        "scaling"
+      ],
+      "model_fit": []
+    },
+    {
+      "id": "treasury-and-stablecoin-runway",
+      "title": "Treasury & Stablecoin Runway",
+      "level": 5,
+      "file": "playbooks/level-5/134-treasury-and-stablecoin-runway.md",
+      "applies_to": {
+        "types": [
+          "crypto"
+        ],
+        "requires_traits": [],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "The survival discipline for a crypto business holding its own funds on-chain. Hold runway in stablecoins, secure it behind a multisig, and diversify custody and issuer exposure. Run once the treasury holds meaningful value.",
+      "depends_on": [],
+      "soft_after": [
+        "onchain-payment-and-stablecoin-integration",
+        "unit-economics"
+      ],
+      "produces": [
+        "treasury_policy"
+      ],
+      "consumes": [],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "medium",
+      "human_gate": true,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "treasury-policy-live",
+      "department": "Finance",
+      "criticality": "existential",
+      "existential_at": [
+        "revenue",
+        "scaling"
+      ],
+      "model_fit": []
+    },
+    {
+      "id": "open-source-strategy",
+      "title": "Open Source Strategy",
+      "level": 2,
+      "file": "playbooks/level-2/136-open-source-strategy.md",
+      "applies_to": {
+        "types": [
+          "saas"
+        ],
+        "requires_traits": [
+          "technical_audience"
+        ],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "The defining strategic choice for a developer tool with a bottom-up motion. License and open-core boundary are nearly irreversible once a public repo and a contributor base exist, so settle them before the first public commit.",
+      "depends_on": [
+        "positioning-canvas"
+      ],
+      "soft_after": [
+        "tech-stack-selection"
+      ],
+      "produces": [
+        "oss_strategy"
+      ],
+      "consumes": [
+        "positioning"
+      ],
+      "effort": "M",
+      "leverage": "critical",
+      "reversibility": "hard",
+      "human_gate": true,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "oss-strategy-locked",
+      "department": "Strategy",
+      "criticality": "core",
+      "existential_at": [
+        "building",
+        "launched"
+      ],
+      "model_fit": [
+        "self_serve"
+      ]
+    },
+    {
+      "id": "api-and-sdk-design",
+      "title": "API and SDK Design",
+      "level": 3,
+      "file": "playbooks/level-3/137-api-and-sdk-design.md",
+      "applies_to": {
+        "types": [
+          "saas"
+        ],
+        "requires_traits": [
+          "technical_audience"
+        ],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "The product surface for any developer tool. Run once the open/commercial boundary and stack are set, because the public API contract is the hardest thing in the company to change after adoption.",
+      "depends_on": [
+        "tech-stack-selection",
+        "open-source-strategy"
+      ],
+      "soft_after": [
+        "prd-drafting"
+      ],
+      "produces": [
+        "api_design"
+      ],
+      "consumes": [
+        "tech_stack",
+        "oss_strategy"
+      ],
+      "effort": "L",
+      "leverage": "critical",
+      "reversibility": "hard",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "api-contract-frozen",
+      "department": "Engineering",
+      "criticality": "core",
+      "existential_at": [
+        "building",
+        "launched"
+      ],
+      "model_fit": [
+        "self_serve"
+      ]
+    },
+    {
+      "id": "developer-docs-and-dx",
+      "title": "Developer Docs and DX",
+      "level": 3,
+      "file": "playbooks/level-3/138-developer-docs-and-dx.md",
+      "applies_to": {
+        "types": [
+          "saas"
+        ],
+        "requires_traits": [
+          "technical_audience"
+        ],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "For a developer tool, docs are the product surface where adoption is won or lost. Run once the API contract exists; treat docs as a living funnel, not a one-time deliverable.",
+      "depends_on": [
+        "api-and-sdk-design"
+      ],
+      "soft_after": [
+        "tech-stack-selection"
+      ],
+      "produces": [
+        "dev_docs"
+      ],
+      "consumes": [
+        "api_design"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "quickstart-live",
+      "department": "Product",
+      "criticality": "core",
+      "existential_at": [
+        "launched",
+        "revenue"
+      ],
+      "model_fit": [
+        "self_serve"
+      ]
+    },
+    {
+      "id": "developer-relations-and-devrel",
+      "title": "Developer Relations and DevRel",
+      "level": 4,
+      "file": "playbooks/level-4/139-developer-relations-and-devrel.md",
+      "applies_to": {
+        "types": [
+          "saas"
+        ],
+        "requires_traits": [
+          "technical_audience"
+        ],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "recommended",
+      "selection_hint": "The primary acquisition engine for a developer tool, where engineers trust other engineers over ads. Run once docs and a real quickstart exist; measure devrel by activated developers, not vanity reach.",
+      "depends_on": [
+        "developer-docs-and-dx"
+      ],
+      "soft_after": [
+        "positioning-canvas"
+      ],
+      "produces": [
+        "devrel_motion"
+      ],
+      "consumes": [
+        "dev_docs",
+        "positioning"
+      ],
+      "effort": "L",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "devrel-engine-running",
+      "department": "Growth",
+      "criticality": "growth",
+      "existential_at": [],
+      "model_fit": [
+        "self_serve"
+      ]
+    },
+    {
+      "id": "developer-community-and-contributors",
+      "title": "Developer Community and Contributors",
+      "level": 4,
+      "file": "playbooks/level-4/140-developer-community-and-contributors.md",
+      "applies_to": {
+        "types": [
+          "saas"
+        ],
+        "requires_traits": [
+          "technical_audience"
+        ],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "recommended",
+      "selection_hint": "For an OSS or developer tool, the community is both the support layer and the contribution engine. Run once the open-source posture is set; governance and a contributor path are what turn users into maintainers.",
+      "depends_on": [
+        "open-source-strategy"
+      ],
+      "soft_after": [
+        "developer-relations-and-devrel"
+      ],
+      "produces": [
+        "dev_community"
+      ],
+      "consumes": [
+        "oss_strategy"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "community-self-sustaining",
+      "department": "Success",
+      "criticality": "growth",
+      "existential_at": [],
+      "model_fit": [
+        "self_serve"
+      ]
+    },
+    {
+      "id": "bottom-up-plg-to-sales-handoff",
+      "title": "Bottom-Up PLG to Sales Handoff",
+      "level": 5,
+      "file": "playbooks/level-5/141-bottom-up-plg-to-sales-handoff.md",
+      "applies_to": {
+        "types": [
+          "saas"
+        ],
+        "requires_traits": [
+          "technical_audience"
+        ],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "recommended",
+      "selection_hint": "The revenue bridge for a bottom-up developer tool. Run once self-serve activation and a community exist; the point is catching the moment a self-serve account becomes a sales-worthy deal without smothering the self-serve motion.",
+      "depends_on": [
+        "onboarding-flow-design",
+        "developer-community-and-contributors"
+      ],
+      "soft_after": [
+        "developer-relations-and-devrel"
+      ],
+      "produces": [
+        "plg_sales_motion"
+      ],
+      "consumes": [
+        "activation_event",
+        "dev_community"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "medium",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "plg-sales-bridge-live",
+      "department": "Sales",
+      "criticality": "core",
+      "existential_at": [
+        "revenue"
+      ],
+      "model_fit": [
+        "self_serve"
+      ]
+    },
+    {
+      "id": "firmware-and-ota-updates",
+      "title": "Firmware & OTA Updates",
+      "level": 3,
+      "file": "playbooks/level-3/144-firmware-and-ota-updates.md",
+      "applies_to": {
+        "types": [
+          "hardware"
+        ],
+        "requires_traits": [],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "Run for any connected device that ships firmware. A device with no secure update path cannot be patched for a security flaw or a field bug, and a bad push with no rollback bricks the installed base. Build the update channel before the device ships, not after the first recall.",
+      "depends_on": [
+        "hardware-prototyping-and-dfm"
+      ],
+      "soft_after": [
+        "contract-manufacturing-setup"
+      ],
+      "produces": [
+        "firmware_ota"
+      ],
+      "consumes": [
+        "hardware_prototype"
+      ],
+      "effort": "L",
+      "leverage": "high",
+      "reversibility": "medium",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "firmware-ota-ready",
+      "department": "Engineering",
+      "criticality": "core",
+      "existential_at": [
+        "launched",
+        "revenue"
+      ],
+      "model_fit": [
+        "physical_goods"
+      ]
+    },
+    {
+      "id": "hardware-qa-and-reliability",
+      "title": "Hardware QA & Reliability",
+      "level": 3,
+      "file": "playbooks/level-3/145-hardware-qa-and-reliability.md",
+      "applies_to": {
+        "types": [
+          "hardware"
+        ],
+        "requires_traits": [],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "Run once a production line exists. Reliability is what turns a unit that works on the bench into one that survives years in the field. Unmeasured defect rates surface as a flood of returns and a destroyed reputation after launch, when fixing them is most expensive.",
+      "depends_on": [
+        "contract-manufacturing-setup"
+      ],
+      "soft_after": [
+        "hardware-prototyping-and-dfm"
+      ],
+      "produces": [
+        "hardware_qa"
+      ],
+      "consumes": [
+        "manufacturing_line"
+      ],
+      "effort": "L",
+      "leverage": "high",
+      "reversibility": "medium",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "reliability-baselined",
+      "department": "Operations",
+      "criticality": "core",
+      "existential_at": [
+        "launched",
+        "revenue"
+      ],
+      "model_fit": [
+        "physical_goods"
+      ]
+    },
+    {
+      "id": "retail-and-channel-distribution",
+      "title": "Retail & Channel Distribution",
+      "level": 6,
+      "file": "playbooks/level-6/146-retail-and-channel-distribution.md",
+      "applies_to": {
+        "types": [
+          "hardware"
+        ],
+        "requires_traits": [],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "recommended",
+      "selection_hint": "Run once the device is certified and producible at volume and direct demand is proven. Retail and distribution multiply reach but take a margin and impose terms; enter deliberately with priced channel economics and a MAP policy, not by accepting the first distributor that calls.",
+      "depends_on": [
+        "hardware-certification-and-compliance"
+      ],
+      "soft_after": [
+        "contract-manufacturing-setup"
+      ],
+      "produces": [
+        "channel_distribution"
+      ],
+      "consumes": [
+        "certifications"
+      ],
+      "effort": "L",
+      "leverage": "high",
+      "reversibility": "medium",
+      "human_gate": true,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "channels-open",
+      "department": "Growth",
+      "criticality": "growth",
+      "existential_at": [],
+      "model_fit": [
+        "physical_goods"
+      ]
+    },
+    {
+      "id": "warranty-and-rma-operations",
+      "title": "Warranty & RMA Operations",
+      "level": 5,
+      "file": "playbooks/level-5/147-warranty-and-rma-operations.md",
+      "applies_to": {
+        "types": [
+          "hardware"
+        ],
+        "requires_traits": [],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "Run once units are in customers' hands. A hardware company without an RMA pipeline turns every defect into a refund and a lost customer. Warranty is both a customer-trust promise and a financial liability that must be reserved for and managed.",
+      "depends_on": [
+        "hardware-qa-and-reliability"
+      ],
+      "soft_after": [
+        "retail-and-channel-distribution"
+      ],
+      "produces": [
+        "rma_ops"
+      ],
+      "consumes": [
+        "hardware_qa"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "medium",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "rma-pipeline-live",
+      "department": "Success",
+      "criticality": "core",
+      "existential_at": [
+        "revenue",
+        "scaling"
+      ],
+      "model_fit": [
+        "physical_goods"
+      ]
+    },
+    {
+      "id": "spare-parts-and-aftermarket",
+      "title": "Spare Parts & Aftermarket",
+      "level": 6,
+      "file": "playbooks/level-6/148-spare-parts-and-aftermarket.md",
+      "applies_to": {
+        "types": [
+          "hardware"
+        ],
+        "requires_traits": [],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "optional",
+      "selection_hint": "Run once a model has an installed base and an RMA pipeline. The aftermarket (spares, consumables, accessories, refurbished units) is a high-margin revenue stream and a service obligation; it also governs how a model is retired without stranding the customers who own it.",
+      "depends_on": [
+        "warranty-and-rma-operations"
+      ],
+      "soft_after": [
+        "retail-and-channel-distribution"
+      ],
+      "produces": [
+        "aftermarket_plan"
+      ],
+      "consumes": [
+        "rma_ops"
+      ],
+      "effort": "M",
+      "leverage": "med",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "aftermarket-live",
+      "department": "Operations",
+      "criticality": "optional",
+      "existential_at": [],
+      "model_fit": [
+        "physical_goods"
+      ]
+    },
+    {
+      "id": "plg-instrumentation-and-pqls",
+      "title": "PLG Instrumentation and PQL Scoring",
+      "level": 4,
+      "file": "playbooks/level-4/150-plg-instrumentation-and-pqls.md",
+      "applies_to": {
+        "types": [
+          "saas",
+          "consumer"
+        ],
+        "requires_traits": [
+          "builds_software"
+        ],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "Run once events flow and an activation moment is definable. In a self-serve motion the product is the top of the funnel, so the PQL score is the routing signal for in-product prompts, lifecycle, and any human follow-up. Skip if the motion is purely sales-led with no free or trial usage.",
+      "depends_on": [
+        "analytics-stack-setup",
+        "event-taxonomy-design"
+      ],
+      "soft_after": [
+        "first-run-aha-experience",
+        "activation-rate-optimization"
+      ],
+      "produces": [
+        "pql_model"
+      ],
+      "consumes": [
+        "analytics_stack",
+        "event_taxonomy"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "pql-model-live",
+      "department": "Data",
+      "criticality": "core",
+      "existential_at": [
+        "scaling"
+      ],
+      "model_fit": [
+        "self_serve"
+      ]
+    },
+    {
+      "id": "in-app-purchase-and-store-economics",
+      "title": "In-App Purchase and Store Economics",
+      "level": 4,
+      "file": "playbooks/level-4/151-in-app-purchase-and-store-economics.md",
+      "applies_to": {
+        "types": [
+          "consumer"
+        ],
+        "requires_traits": [
+          "builds_software"
+        ],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "Run for any consumer app that monetizes through the mobile stores. The store fee and the subscription-vs-consumable mix decide whether the unit economics close, so this gates how the paywall is priced and packaged. Skip if monetization is web-only outside the stores.",
+      "depends_on": [],
+      "soft_after": [
+        "freemium-trial-decision",
+        "packaging-tier-design"
+      ],
+      "produces": [
+        "iap_model"
+      ],
+      "consumes": [
+        "pricing_model"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "medium",
+      "human_gate": false,
+      "blocks_revenue": true,
+      "recurring": false,
+      "typical_milestone": "iap-live",
+      "department": "Finance",
+      "criticality": "core",
+      "existential_at": [
+        "revenue"
+      ],
+      "model_fit": [
+        "self_serve"
+      ]
+    },
+    {
+      "id": "paywall-and-pricing-experiments",
+      "title": "Paywall and Pricing Experiments",
+      "level": 5,
+      "file": "playbooks/level-5/152-paywall-and-pricing-experiments.md",
+      "applies_to": {
+        "types": [
+          "consumer",
+          "saas"
+        ],
+        "requires_traits": [
+          "takes_payments"
+        ],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "Run once a paywall is live and conversion volume supports a test. The paywall is the single highest-leverage revenue surface in a self-serve app, and small placement, gating, and trial changes move trial-to-paid more than most acquisition work. Skip if monetization is sales-led with no in-product purchase moment.",
+      "depends_on": [],
+      "soft_after": [
+        "in-app-purchase-and-store-economics",
+        "freemium-trial-decision",
+        "ab-testing-protocol"
+      ],
+      "produces": [
+        "paywall_experiments"
+      ],
+      "consumes": [
+        "pricing_model"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "paywall-tested",
+      "department": "Growth",
+      "criticality": "core",
+      "existential_at": [
+        "revenue"
+      ],
+      "model_fit": [
+        "self_serve"
+      ]
+    },
+    {
+      "id": "referral-and-virality-loops",
+      "title": "Referral and Virality Loops",
+      "level": 5,
+      "file": "playbooks/level-5/153-referral-and-virality-loops.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "recommended",
+      "selection_hint": "Run once activation is solid and users reach value, because a referral loop amplifies a working product and a broken one alike. A self-serve product with a sharable output or a multiplayer reason to invite gets the most leverage. Skip until activation is fixed.",
+      "depends_on": [],
+      "soft_after": [
+        "referral-program",
+        "activation-rate-optimization"
+      ],
+      "produces": [
+        "virality_loop"
+      ],
+      "consumes": [
+        "activation_event"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "virality-instrumented",
+      "department": "Growth",
+      "criticality": "growth",
+      "existential_at": [],
+      "model_fit": [
+        "self_serve"
+      ]
+    },
+    {
+      "id": "mobile-lifecycle-and-push",
+      "title": "Mobile Lifecycle and Push Re-engagement",
+      "level": 5,
+      "file": "playbooks/level-5/154-mobile-lifecycle-and-push.md",
+      "applies_to": {
+        "types": [
+          "consumer"
+        ],
+        "requires_traits": [
+          "builds_software"
+        ],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "Run once the app is live and retention is being measured. For a consumer app the D1/D7/D30 curve is the business, and lifecycle messaging is the main lever that bends it short of changing the product. Skip if there is no retained-use loop to reinforce.",
+      "depends_on": [],
+      "soft_after": [
+        "cohort-retention-analysis",
+        "first-run-aha-experience"
+      ],
+      "produces": [
+        "lifecycle_messaging"
+      ],
+      "consumes": [
+        "retention_report",
+        "activation_event"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "lifecycle-live",
+      "department": "Growth",
+      "criticality": "core",
+      "existential_at": [
+        "revenue"
+      ],
+      "model_fit": [
+        "self_serve"
+      ]
     }
   ]
 }
