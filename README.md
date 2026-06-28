@@ -143,6 +143,28 @@ These do the work and check it.
 
 See `docs/ONBOARDING.md` for the full walkthrough.
 
+## Updating Casa
+
+When a new version is pushed, refresh the marketplace, update the plugin, and reload
+it into your current session:
+
+```
+/plugin marketplace update capx-casa
+/plugin update capx-casa@capx-casa
+/reload-plugins
+```
+
+`/reload-plugins` activates the new skills and commands without restarting Claude Code.
+Notes:
+
+- The marketplace and the plugin are both named `capx-casa`. If `/plugin marketplace list`
+  shows it under a different alias, use that name in steps 1 and 2.
+- Casa is versioned by git commit, so every push counts as an update. If `/plugin update`
+  reports "already up to date" when you know there are new commits, run the marketplace
+  update first (it re-fetches the repo).
+- The visual Console rebuilds itself on first use after an update: the next `/casa-console`
+  runs `npm install && npm run build` once (about a minute) and serves the new UI.
+
 ## How it works
 
 Read `docs/ARCHITECTURE.md` for the design, `docs/BUILD-PLAN.md` for the full
