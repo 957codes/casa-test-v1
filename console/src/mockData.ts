@@ -49,6 +49,10 @@ export interface Task {
   why?: string | null;
   deliverable?: DeliverableSpec | null;
   score?: TaskScore | null;
+  // Completion honesty: a completed node is `verified` only if Casa produced an artifact or graded it;
+  // `assumed` means it was seeded as done from the founder's stage tier (Casa did not do it).
+  verified?: boolean;
+  assumed?: boolean;
 }
 
 export interface Stage { id: string; label: string; done: number; total: number; tasks: Task[]; }
@@ -79,6 +83,28 @@ export interface LoopStatus {
 export interface Receipt { ts: string | null; descriptor: string; amount_usd: number; status: string; ref: string | null }
 export interface SpendPanel { total: number; currency: string; label: string; receipts: Receipt[] }
 
+// The homepage: the engine's ranked next-actions (identical to /casa-next), each with a grounded
+// reason, plus the founder's focus (win, binding constraint, north star) so the work is framed by
+// what THIS company is actually trying to do.
+export interface NextAction {
+  id: string;
+  title: string;
+  owner: Department;
+  criticality: Criticality | null;
+  criticalityLabel: string;
+  tier: number;
+  state: "approval" | "input";
+  humanGate: boolean;
+  blocksRevenue: boolean;
+  unblocks: string[]; // titles of the real downstream work this gates
+}
+export interface Focus {
+  win: string | null;
+  constraint: string | null;
+  northStar: string | null;
+  northStarMature: string | null;
+}
+
 export interface Company {
   name: string;
   oneLiner: string;
@@ -90,6 +116,8 @@ export interface Company {
   tasksTotal: number;
   needsAttention: number;
   currentLevel?: number;
+  nextActions?: NextAction[];
+  focus?: Focus;
   health?: CompanyHealth;
   loops?: LoopStatus[];
   spend?: SpendPanel;

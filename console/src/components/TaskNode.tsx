@@ -18,10 +18,13 @@ export function TaskNode({ task, registerRef, onClick, isFocus, selected }: Prop
   const Icon = stateIcon[task.state];
   const meta = stateMeta[task.state];
   const locked = task.state === "locked";
+  // Seeded-as-done from the stage tier, not verified by Casa. Render it as presumed, not confidently done.
+  const assumed = task.state === "completed" && !!task.assumed;
 
   // Border + ambient treatment per state, kept restrained.
   let frame = "border-line bg-surface shadow-card hover:shadow-card-hover";
   if (locked) frame = "border-line/70 bg-surface/60 shadow-none";
+  if (assumed) frame = "border-dashed border-line bg-surface/70 shadow-none hover:shadow-card";
   if (task.state === "approval")
     frame = "border-approve-100 bg-surface shadow-card hover:shadow-card-hover";
   if (selected) frame = "border-agent-500 bg-surface shadow-card-hover ring-1 ring-agent-100";
@@ -52,6 +55,8 @@ export function TaskNode({ task, registerRef, onClick, isFocus, selected }: Prop
             className={`mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border ${
               locked
                 ? "border-line bg-canvas text-ink-300"
+                : assumed
+                ? "border-line bg-canvas text-ink-400"
                 : task.state === "agent"
                 ? "border-agent-100 bg-agent-50 text-agent-600"
                 : task.state === "completed"
@@ -66,7 +71,7 @@ export function TaskNode({ task, registerRef, onClick, isFocus, selected }: Prop
           <div className="min-w-0 flex-1">
             <div
               className={`truncate text-sm font-medium leading-snug ${
-                locked ? "text-ink-400" : "text-ink-900"
+                locked || assumed ? "text-ink-500" : "text-ink-900"
               }`}
             >
               {task.title}
@@ -118,7 +123,13 @@ export function TaskNode({ task, registerRef, onClick, isFocus, selected }: Prop
         )}
 
         <div className="mt-2.5">
-          <StateBadge state={task.state} />
+          {assumed ? (
+            <span className="inline-flex items-center gap-1 rounded-md border border-line bg-canvas px-1.5 py-0.5 font-mono text-[9px] font-medium uppercase tracking-wide text-ink-400">
+              Assumed
+            </span>
+          ) : (
+            <StateBadge state={task.state} />
+          )}
         </div>
       </button>
     </div>

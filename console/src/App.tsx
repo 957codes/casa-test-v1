@@ -5,18 +5,25 @@ import { Legend } from "./components/Legend";
 import { BuildMap } from "./components/BuildMap";
 import { TaskPanel } from "./components/TaskPanel";
 import { Dashboard } from "./components/Dashboard";
+import { NextView } from "./components/NextView";
 import { LoopsView } from "./components/LoopsView";
 import { OrgView } from "./components/OrgView";
 import { taskById, attentionQueue, type Task } from "./mockData";
 import { subscribeBrain } from "./feed";
 
 export default function App() {
-  const [view, setView] = useState<View>("map");
+  const [view, setView] = useState<View>("next");
   const [selected, setSelected] = useState<Task | null>(null);
   // Bump on every live brain update so the components re-read the refreshed data.
   const [, setTick] = useState(0);
 
   useEffect(() => subscribeBrain(() => setTick((t) => t + 1)), []);
+
+  // Open a node's detail panel in place (the panel is always mounted on the right).
+  const selectTaskById = (id: string) => {
+    const t = taskById[id];
+    if (t) setSelected(t);
+  };
 
   const openTaskById = (id: string) => {
     const t = taskById[id];
@@ -37,6 +44,8 @@ export default function App() {
 
       <div className="flex min-w-0 flex-1 flex-col">
         <TopBar onOpenAttention={() => setView("dashboard")} />
+
+        {view === "next" && <NextView onOpenTask={selectTaskById} />}
 
         {view === "map" && (
           <>

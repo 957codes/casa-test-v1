@@ -66,6 +66,10 @@ export function TaskPanel({ task, onClose }: Props) {
   const isInput = task.state === "input";
   const isLocked = task.state === "locked";
   const isCompleted = task.state === "completed";
+  // A completed node is only "verified" if Casa produced or graded it. "Assumed" means it was seeded
+  // as done from the founder's stage tier, so the panel must not present the template as a real result.
+  const isAssumed = isCompleted && !!task.assumed;
+  const isVerified = isCompleted && !task.assumed;
   const intent = activeIntentForNode(task.id);
   const working = isAgent || !!intent;
   const blockers = (task.dependsOn ?? [])
@@ -116,7 +120,13 @@ export function TaskPanel({ task, onClose }: Props) {
             </div>
             <h2 className="mt-1.5 text-lg font-semibold leading-tight text-ink-900">{task.title}</h2>
             <div className="mt-2.5 flex flex-wrap items-center gap-2">
-              <StateBadge state={task.state} size="md" />
+              {isAssumed ? (
+                <span className="inline-flex items-center rounded-md border border-human-100 bg-human-50 px-2 py-0.5 font-mono text-2xs font-medium uppercase tracking-wide text-human-700">
+                  Assumed, not verified
+                </span>
+              ) : (
+                <StateBadge state={task.state} size="md" />
+              )}
               {task.criticality && <CriticalityBadge value={task.criticality} />}
               {task.recurring && (
                 <span className="inline-flex items-center rounded-md border border-line bg-canvas px-2 py-0.5 font-mono text-2xs text-ink-500">
@@ -139,6 +149,19 @@ export function TaskPanel({ task, onClose }: Props) {
         <div className="scroll-thin flex-1 overflow-y-auto px-6 py-5">
           {/* Working banner */}
           {working && <LiveStatusPanel task={task} />}
+
+          {/* Assumed-done banner: honesty about seeded work Casa did not actually do */}
+          {isAssumed && (
+            <div className="mt-5 rounded-lg border border-human-100 bg-human-50 px-4 py-3.5">
+              <div className="text-xs font-semibold text-human-700">Assumed done, not verified</div>
+              <p className="mt-1 text-2xs leading-relaxed text-human-700/90">
+                You told Casa your company is past this stage, so it assumed this is already handled.
+                Casa did not do this work and has no record of it. The checklist below is the standard a
+                strong version meets, not something Casa produced. Run it in Casa to create and grade a
+                real version, or use it to check what you already have.
+              </p>
+            </div>
+          )}
 
           {/* TLDR */}
           {tldrText && (
@@ -163,7 +186,7 @@ export function TaskPanel({ task, onClose }: Props) {
             <div className="mt-5 rounded-lg border border-line bg-canvas px-4 py-3.5">
               <div className="flex items-center justify-between">
                 <div className="font-mono text-2xs uppercase tracking-wider text-ink-400">
-                  Deliverable
+                  {isVerified ? "Deliverable" : "What a strong version contains"}
                 </div>
                 {task.deliverable.max_words && (
                   <span className="font-mono text-2xs text-ink-400">
@@ -177,7 +200,7 @@ export function TaskPanel({ task, onClose }: Props) {
               <ul className="mt-2.5 space-y-1.5">
                 {task.deliverable.sections.map((s) => (
                   <li key={s} className="flex items-start gap-2 text-xs text-ink-700">
-                    {isCompleted ? (
+                    {isVerified ? (
                       <CheckCircleIcon width={14} height={14} className="mt-px shrink-0 text-approve-500" />
                     ) : (
                       <span className="mt-0.5 h-3.5 w-3.5 shrink-0 rounded-[4px] border border-line-strong bg-surface" />
@@ -292,8 +315,8 @@ export function TaskPanel({ task, onClose }: Props) {
                 </div>
               )}
 
-              {/* Completed node */}
-              {isCompleted && (
+              {/* Verified completed node: improve or re-score the real artifact */}
+              {isVerified && (
                 <div className="flex gap-2">
                   <button
                     type="button"
@@ -313,6 +336,19 @@ export function TaskPanel({ task, onClose }: Props) {
                     Score / re-check
                   </button>
                 </div>
+              )}
+
+              {/* Assumed completed node: produce a real, graded version in Casa */}
+              {isAssumed && (
+                <button
+                  type="button"
+                  disabled={!!busy}
+                  onClick={() => void run("build", {}, true)}
+                  className="flex w-full items-center justify-center gap-2 rounded-lg bg-agent-500 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-agent-600 disabled:opacity-50"
+                >
+                  {busy === "build" ? <SpinnerIcon width={15} height={15} /> : <PlayIcon width={15} height={15} />}
+                  Do this in Casa
+                </button>
               )}
 
               {/* Queued / error notice */}

@@ -20,6 +20,8 @@ import { join, extname, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { execFileSync } from "node:child_process";
 import { toFoundry } from "./adapter.mjs";
+// The engine's own ranking, so the Console's "what's next" is identical to /casa-next (no divergence).
+import { nextActions } from "../scripts/router.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const repo = dirname(here);
@@ -98,13 +100,32 @@ function readReceipts(dir) {
 }
 
 // The catalog (the plugin's playbooks index) carries each node's TLDR (selection_hint), criticality,
-// and the gradeable deliverable/rubric. It is static, so load it once.
+// and the gradeable deliverable/rubric. It is static, so load it once. PLAYBOOKS is the full array,
+// fed to the engine's nextActions so the Console ranks "what's next" exactly as /casa-next does.
+const PLAYBOOKS = readJson(join(repo, "playbooks", "_index.json"), { playbooks: [] }).playbooks || [];
 const CATALOG = (() => {
-  const idx = readJson(join(repo, "playbooks", "_index.json"), { playbooks: [] });
   const m = {};
-  for (const p of idx.playbooks || []) m[p.id] = { selection_hint: p.selection_hint, criticality: p.criticality, deliverable: p.deliverable || null, rubric: p.rubric || null };
+  for (const p of PLAYBOOKS) m[p.id] = { selection_hint: p.selection_hint, criticality: p.criticality, deliverable: p.deliverable || null, rubric: p.rubric || null };
   return m;
 })();
+// Pulse (the founder's focus + the engine's weights) and the set of nodes that have real output.
+// A completed node is "verified" only if it produced an artifact or was graded; otherwise it was
+// seeded as assumed-done from the stage tier, and the UI must say so rather than claim Casa did it.
+function readPulse(dir) {
+  return readJson(join(dir, "pulse.json"), {});
+}
+function outputsIndex(dir) {
+  const root = join(dir, "outputs");
+  const set = new Set();
+  if (!existsSync(root)) return set;
+  for (const name of readdirSync(root)) {
+    try {
+      const p = join(root, name);
+      if (statSync(p).isDirectory() && readdirSync(p).length > 0) set.add(name);
+    } catch { /* skip */ }
+  }
+  return set;
+}
 function readJsonl(file) {
   if (!existsSync(file)) return [];
   return readFileSync(file, "utf8").split("\n").filter(Boolean).map((l) => { try { return JSON.parse(l); } catch { return null; } }).filter(Boolean);
@@ -128,9 +149,21 @@ function workingSet() {
 }
 function enriched() {
   const brain = readBrain(brainDir);
+  const pulse = readPulse(brainDir);
+  // The engine's authoritative ranking of what to do next (same call /casa-next makes), so the
+  // Console leads with the same do-or-die work the terminal would, weighted by the founder's pulse.
+  let next = [];
+  try {
+    next = nextActions(PLAYBOOKS, brain.profile, {
+      completed: brain.state.completed || [],
+      level: brain.buildMap.current_level ?? 0,
+      weights: pulse.weights || null,
+    });
+  } catch { /* a malformed brain just yields no next list */ }
   return toFoundry(brain, {
     catalog: CATALOG, scores: readScores(), working: workingSet(), notes: readNotes(),
     loops: loopStatus(brain), receipts: readReceipts(brainDir),
+    next, pulse, outputs: outputsIndex(brainDir),
   });
 }
 

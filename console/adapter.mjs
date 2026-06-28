@@ -128,7 +128,8 @@ function computeHealth(tasks, stages, loops) {
 // the plain build map.
 export function toFoundry(brain, enrich = {}) {
   const { buildMap = { levels: [] }, profile = {}, spend = 0 } = brain;
-  const { catalog = {}, scores = {}, working = new Set(), notes = {}, loops = [], receipts = [] } = enrich;
+  const { catalog = {}, scores = {}, working = new Set(), notes = {}, loops = [], receipts = [],
+    next = [], pulse = {}, outputs = new Set() } = enrich;
   const levels = (buildMap.levels || []).slice().sort((a, b) => levelKey(a.level) - levelKey(b.level));
 
   const tasks = [];
@@ -140,6 +141,11 @@ export function toFoundry(brain, enrich = {}) {
       const cat = catalog[n.id] || {};
       const note = notes[n.id] || {};
       const sc = scores[n.id];
+      // A completed node is VERIFIED only if Casa has a record of the work (an output artifact or a
+      // grade). Otherwise it was seeded as assumed-done from the founder's stage tier, and the UI must
+      // not claim Casa did it or show the playbook template as if it were the real deliverable.
+      const verified = st === "completed" && (outputs.has(n.id) || !!sc);
+      const assumed = st === "completed" && !verified;
       const task = {
         id: n.id,
         title: n.title,
@@ -159,6 +165,8 @@ export function toFoundry(brain, enrich = {}) {
         deliverable: cat.deliverable || null,
         rubric: cat.rubric || null,
         score: sc ? { value: sc.score, pass: sc.pass, gaps: sc.gaps || [] } : null,
+        verified,
+        assumed,
         inProgress: st === "agent",
       };
       if (st === "approval") task.ask = "Needs your approval to proceed.";
@@ -172,6 +180,40 @@ export function toFoundry(brain, enrich = {}) {
   const tasksComplete = tasks.filter((t) => t.state === "completed").length;
   const needsAttention = tasks.filter((t) => t.state === "approval" || t.state === "input").length;
 
+  // "What's next": the engine's ranked next-actions, each with a grounded, deterministic reason
+  // (its criticality at this stage, what real downstream work it unblocks, whether it gates revenue).
+  // This is the homepage; it leads with do-or-die work instead of a wall of presumed-done basics.
+  const titleById = new Map(tasks.map((t) => [t.id, t.title]));
+  const CRIT_LABEL = { existential: "Do-or-die right now", core: "Core work", growth: "Growth", optional: "Optional" };
+  const nextActionsView = (next || []).map((a) => {
+    const unblocks = (a.unblocks || []).map((id) => titleById.get(id)).filter(Boolean);
+    return {
+      id: a.id, title: a.title, owner: a.department || departmentOf(a.id, a.title),
+      criticality: a.effective_criticality || null,
+      criticalityLabel: CRIT_LABEL[a.effective_criticality] || "Recommended",
+      tier: a.tier ?? 0,
+      state: a.human_gate ? "approval" : "input",
+      humanGate: !!a.human_gate,
+      blocksRevenue: !!a.blocks_revenue,
+      unblocks, // titles of the real downstream work this gates
+    };
+  });
+
+  // Focus: the founder's win and binding constraint (from the pulse) plus the north star, so the
+  // next-actions are framed by what THIS company is actually trying to do, not a generic curriculum.
+  const CONSTRAINT_LABEL = {
+    no_users: "No users yet (cold start)", no_distribution: "No distribution channel yet",
+    no_revenue: "No revenue yet", no_product: "No shipped product yet", no_pmf: "No product-market fit yet",
+    no_capital: "Runway is the constraint", no_team: "Solo, no team yet", no_liquidity: "No marketplace liquidity yet",
+  };
+  const ns = buildMap.active_north_star || null;
+  const focus = {
+    win: pulse.win || null,
+    constraint: pulse.constraint ? (CONSTRAINT_LABEL[pulse.constraint] || String(pulse.constraint).replace(/_/g, " ")) : null,
+    northStar: ns ? ns.label : null,
+    northStarMature: ns && ns.band !== "scale" ? ns.mature_growth_label : null,
+  };
+
   const health = computeHealth(tasks, stages, loops);
   // Loops sorted for the view: due first, then soonest-next, eligible above locked.
   const loopsView = (loops || []).slice().sort((a, b) =>
@@ -182,7 +224,6 @@ export function toFoundry(brain, enrich = {}) {
     receipts: (receipts || []).slice().sort((a, b) => String(b.ts || "").localeCompare(String(a.ts || ""))),
   };
 
-  const ns = buildMap.active_north_star || null;
   const company = {
     name: profile.company_name || "(unnamed)",
     oneLiner: profile.one_liner || "",
@@ -194,6 +235,8 @@ export function toFoundry(brain, enrich = {}) {
     tasksTotal: tasks.length,
     needsAttention,
     currentLevel: buildMap.current_level ?? 0,
+    nextActions: nextActionsView,
+    focus,
     health,
     loops: loopsView,
     spend: spendPanel,

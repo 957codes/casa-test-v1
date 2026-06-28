@@ -123,6 +123,14 @@ export const LoopsIcon = (p: IconProps) => (
   </svg>
 );
 
+export const NextIcon = (p: IconProps) => (
+  <svg {...base(p)}>
+    <circle cx="12" cy="12" r="9" />
+    <circle cx="12" cy="12" r="3.5" />
+    <path d="M12 3v3M12 18v3M3 12h3M18 12h3" />
+  </svg>
+);
+
 export const CheckCircleIcon = (p: IconProps) => (
   <svg {...base(p)}>
     <circle cx="12" cy="12" r="9" />

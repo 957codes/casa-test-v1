@@ -127,3 +127,44 @@ test("toFoundry: department health rolls up done/ready/blocked", () => {
   const legal = company.health.departments.find((d) => d.name === "Legal");
   assert.equal(legal.ready, 1);     // entity-formation (approval counts as ready/needs-you)
 });
+
+// ---- Rebuild: verified-vs-assumed completion, next-actions, focus ----
+
+test("toFoundry: a completed node is verified only with an output or a grade, else assumed", () => {
+  const enrich = {
+    ...ENRICH,
+    outputs: new Set(["problem-validation-interviews"]), // produced an artifact
+    // market-sizing has a score in ENRICH; red-team has neither output nor score
+  };
+  const byId = new Map(toFoundry({ buildMap: HEALTH_MAP, profile: PROFILE }, enrich).tasks.map((t) => [t.id, t]));
+  assert.equal(byId.get("problem-validation-interviews").verified, true);  // has output
+  assert.equal(byId.get("problem-validation-interviews").assumed, false);
+  assert.equal(byId.get("market-sizing-tam-sam-som").verified, true);      // has a score
+  assert.equal(byId.get("red-team-thesis").assumed, true);                 // seeded, no proof
+  assert.equal(byId.get("red-team-thesis").verified, false);
+});
+
+test("toFoundry: nextActions carries the engine ranking and resolves unblocks to titles", () => {
+  const next = [
+    { id: "entity-formation", title: "Entity formation", department: "Legal", effective_criticality: "existential",
+      tier: 2, human_gate: true, blocks_revenue: true, unblocks: ["market-sizing-tam-sam-som"] },
+  ];
+  const { company } = toFoundry({ buildMap: HEALTH_MAP, profile: PROFILE }, { ...ENRICH, next });
+  const a = company.nextActions[0];
+  assert.equal(a.id, "entity-formation");
+  assert.equal(a.criticality, "existential");
+  assert.equal(a.criticalityLabel, "Do-or-die right now");
+  assert.equal(a.humanGate, true);
+  assert.equal(a.blocksRevenue, true);
+  assert.deepEqual(a.unblocks, ["Market sizing"]); // id resolved to the downstream node's title
+});
+
+test("toFoundry: focus reads the founder's win and constraint and humanizes the constraint", () => {
+  const brain = { buildMap: { ...HEALTH_MAP, active_north_star: { label: "match rate", band: "retention", mature_growth_label: "GMV" } }, profile: PROFILE };
+  const enrich = { ...ENRICH, pulse: { win: "Tokenise agent-run companies", constraint: "no_users" } };
+  const { company } = toFoundry(brain, enrich);
+  assert.equal(company.focus.win, "Tokenise agent-run companies");
+  assert.equal(company.focus.constraint, "No users yet (cold start)"); // humanized
+  assert.equal(company.focus.northStar, "match rate");
+  assert.equal(company.focus.northStarMature, "GMV");
+});
