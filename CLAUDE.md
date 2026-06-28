@@ -27,6 +27,14 @@ Prime directives, in priority order:
    the brain on localhost. It never writes to the brain, ships nothing hosted, needs no
    login, and is never required. Its dependencies are exempt from the zero-dependency
    guarantee, which still binds the plugin runtime in scripts/.)
+   (2026-06-28 amendment: the Console may be INTERACTIVE. The bridge (console/bridge.mjs)
+   may accept founder intents over localhost and append them to a request queue under
+   company-brain/console/ (queue.jsonl, messages.jsonl) -- request state OUTSIDE the brain
+   state files. It still never mutates build-map.json/state.json/profile.json: a click
+   either shells the deterministic scripts/brain.mjs (which remains the SOLE writer of brain
+   state) or queues a WORK intent that the founder's interactive Claude Code session drains
+   via the casa-serve skill. The bridge never spawns an agent or `claude -p` -- the executor
+   is always the present founder's interactive session (rule 5). The bridge stays zero-dep.)
 2. The founder runs inside their own Claude Code on their own plan. Casa adds no
    hosted inference. Interactive use only on a subscription (see rule 5).
 3. MIT and open. Never paywall a skill, agent, prompt, or playbook. Casa earns no

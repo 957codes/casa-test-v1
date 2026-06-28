@@ -1,23 +1,37 @@
 #!/usr/bin/env node
-// Casa Console bridge. Zero-dependency. Reads the company-brain, serves it in the
-// Foundry shape over localhost, and pushes a Server-Sent Event whenever the brain
-// changes so the UI live-updates. READ-ONLY: it never writes to the brain.
+// Casa Console bridge. Zero-dependency (node: builtins only). Reads the company-brain, serves
+// it in the Foundry shape over localhost, and pushes a Server-Sent Event whenever the brain or
+// the intent queue changes so the UI live-updates.
+//
+// It is a two-way MAILBOX, not an agent:
+//   - DETERMINISTIC intents (complete, loop-ran, priority-ran, experiment) shell out to the
+//     deterministic engine `scripts/brain.mjs` inline. brain.mjs stays the SOLE writer of brain
+//     state (rule 4); running deterministic code is not automated agent use (rule 5).
+//   - WORK intents (build, chat, review, next) are appended to an append-only queue OUTSIDE the
+//     brain state files; the founder's interactive Claude Code session drains them via casa-serve.
+//     The bridge NEVER spawns an agent or `claude -p` (rule 5: interactive only). It only ever
+//     writes company-brain/console/* (the request queue), never build-map.json/state.json/profile.json.
 //
 //   node console/bridge.mjs [brainDir] [--port 4317]
 
 import { createServer } from "node:http";
-import { readFileSync, existsSync, watch, statSync } from "node:fs";
-import { join, extname } from "node:path";
+import { readFileSync, writeFileSync, appendFileSync, existsSync, mkdirSync, watch, statSync } from "node:fs";
+import { join, extname, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { dirname } from "node:path";
+import { execFileSync } from "node:child_process";
 import { toFoundry } from "./adapter.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
+const repo = dirname(here);
+const BRAIN_SCRIPT = join(repo, "scripts", "brain.mjs");
 const args = process.argv.slice(2);
 const brainDir = args.find((a) => !a.startsWith("--")) || "company-brain";
 const portFlag = args.indexOf("--port");
 const PORT = portFlag !== -1 ? Number(args[portFlag + 1]) : 4317;
 const DIST = join(here, "dist");
+const CONSOLE_DIR = join(brainDir, "console");
+const QUEUE = join(CONSOLE_DIR, "queue.jsonl");
+const MESSAGES = join(CONSOLE_DIR, "messages.jsonl");
 
 function readJson(p, fallback) { try { return JSON.parse(readFileSync(p, "utf8")); } catch { return fallback; } }
 function readSpend(dir) {
@@ -39,16 +53,127 @@ function readBrain(dir) {
   };
 }
 
+// ---- intent queue (append-only JSONL, OUTSIDE the brain state files) ----
+function readQueue() {
+  if (!existsSync(QUEUE)) return [];
+  const out = [];
+  for (const line of readFileSync(QUEUE, "utf8").split("\n")) {
+    const s = line.trim(); if (!s) continue;
+    try { out.push(JSON.parse(s)); } catch { /* skip a bad line */ }
+  }
+  // collapse to the latest record per intent id (the executor rewrites status by appending)
+  const byId = new Map();
+  for (const r of out) byId.set(r.id, { ...(byId.get(r.id) || {}), ...r });
+  return [...byId.values()];
+}
+function appendQueue(rec) {
+  if (!existsSync(CONSOLE_DIR)) mkdirSync(CONSOLE_DIR, { recursive: true });
+  appendFileSync(QUEUE, JSON.stringify(rec) + "\n");
+}
+function appendMessage(rec) {
+  if (!existsSync(CONSOLE_DIR)) mkdirSync(CONSOLE_DIR, { recursive: true });
+  appendFileSync(MESSAGES, JSON.stringify(rec) + "\n");
+}
+let counter = 0;
+const genId = () => `${Date.now().toString(36)}${(counter++).toString(36)}`;
+
+// Intents that map 1:1 to a deterministic brain.mjs subcommand: run inline, no LLM, no agent.
+// brain.mjs is the only writer of brain state.
+const DETERMINISTIC = {
+  complete: (i) => ["complete", brainDir, i.nodeId],
+  "loop-ran": (i) => ["loop-ran", brainDir, i.nodeId],
+  "priority-ran": () => ["priority-ran", brainDir],
+  experiment: (i) => ["experiment", brainDir, JSON.stringify(i.payload || {})],
+};
+// Intents that need real LLM work: queued for the founder's interactive casa-serve drain.
+const WORK = new Set(["build", "chat", "review", "next", "resolve-gate"]);
+
+function runBrain(argv) {
+  return execFileSync("node", [BRAIN_SCRIPT, ...argv], { encoding: "utf8", timeout: 30000 });
+}
+
+// Guard: never complete a node that is not currently `ready` (rule 4 -- a click cannot bypass gating).
+function nodeStatus(nodeId) {
+  const bm = readBrain(brainDir).buildMap;
+  for (const lvl of bm.levels || []) for (const n of lvl.nodes || []) if (n.id === nodeId) return n.status;
+  return null;
+}
+
+function handleIntent(body) {
+  const kind = String(body.kind || "");
+  const rec = { id: genId(), ts: new Date().toISOString(), kind, nodeId: body.nodeId || null, payload: body.payload || {}, status: "pending" };
+
+  if (DETERMINISTIC[kind]) {
+    if (kind === "complete") {
+      const st = nodeStatus(rec.nodeId);
+      if (st !== "ready") { rec.status = "error"; rec.result = `node "${rec.nodeId}" is ${st || "unknown"}, not ready to complete`; appendQueue(rec); return rec; }
+    }
+    try {
+      const out = runBrain(DETERMINISTIC[kind](rec));
+      // re-render the brain after a deterministic mutation
+      try { runBrain(["sync", brainDir]); } catch { /* sync best-effort */ }
+      rec.status = "done"; rec.result = out.trim().slice(0, 2000);
+    } catch (e) {
+      rec.status = "error"; rec.result = String(e.stderr || e.message || e).slice(0, 2000);
+    }
+    appendQueue(rec);
+    return rec;
+  }
+
+  if (WORK.has(kind)) {
+    if (kind === "chat" && body.payload?.message) {
+      appendMessage({ id: genId(), nodeId: rec.nodeId, role: "user", content: String(body.payload.message), intentId: rec.id, ts: rec.ts });
+    }
+    appendQueue(rec); // a present founder drains this via /casa-serve; the bridge never executes it
+    return rec;
+  }
+
+  rec.status = "error"; rec.result = `unknown intent kind "${kind}"`;
+  appendQueue(rec);
+  return rec;
+}
+
 const MIME = { ".html": "text/html", ".js": "text/javascript", ".css": "text/css", ".json": "application/json", ".svg": "image/svg+xml", ".ico": "image/x-icon", ".woff2": "font/woff2", ".png": "image/png", ".webp": "image/webp" };
 const clients = new Set();
+function notify() { for (const res of clients) res.write("data: changed\n\n"); }
 
-const server = createServer((req, res) => {
-  const cors = { "Access-Control-Allow-Origin": "*" };
+function readBody(req) {
+  return new Promise((resolve) => {
+    let data = ""; req.on("data", (c) => { data += c; if (data.length > 1e6) req.destroy(); });
+    req.on("end", () => { try { resolve(JSON.parse(data || "{}")); } catch { resolve({}); } });
+  });
+}
+
+const server = createServer(async (req, res) => {
+  const cors = { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Methods": "GET,POST,OPTIONS", "Access-Control-Allow-Headers": "Content-Type" };
   const path = (req.url || "/").split("?")[0];
+  const url = new URL(req.url || "/", "http://localhost");
+
+  if (req.method === "OPTIONS") { res.writeHead(204, cors); res.end(); return; }
 
   if (path === "/api/brain") {
     res.writeHead(200, { "Content-Type": "application/json", ...cors });
     res.end(JSON.stringify(toFoundry(readBrain(brainDir))));
+    return;
+  }
+  if (path === "/api/queue") {
+    res.writeHead(200, { "Content-Type": "application/json", ...cors });
+    res.end(JSON.stringify(readQueue()));
+    return;
+  }
+  if (path === "/api/messages") {
+    const node = url.searchParams.get("node");
+    const all = existsSync(MESSAGES) ? readFileSync(MESSAGES, "utf8").split("\n").filter(Boolean).map((l) => { try { return JSON.parse(l); } catch { return null; } }).filter(Boolean) : [];
+    res.writeHead(200, { "Content-Type": "application/json", ...cors });
+    res.end(JSON.stringify(node ? all.filter((m) => m.nodeId === node) : all));
+    return;
+  }
+  if (path === "/api/intent" && req.method === "POST") {
+    const body = await readBody(req);
+    const rec = handleIntent(body);
+    setTimeout(notify, 50); // SSE so a queued click shows progress even before brain.mjs writes
+    res.writeHead(rec.status === "error" ? 400 : 200, { "Content-Type": "application/json", ...cors });
+    res.end(JSON.stringify(rec));
     return;
   }
   if (path === "/api/events") {
@@ -73,14 +198,11 @@ const server = createServer((req, res) => {
   res.end("Casa Console bridge is running. The UI is not built yet.\nRun:  cd console && npm install && npm run build\nOr for the dev server:  npm run dev\n");
 });
 
-// Watch the brain and notify connected clients on any change (debounced).
+// Watch the brain (and the console queue under it) and notify clients on any change (debounced).
 if (existsSync(brainDir)) {
   let timer;
   try {
-    watch(brainDir, { recursive: true }, () => {
-      clearTimeout(timer);
-      timer = setTimeout(() => { for (const res of clients) res.write("data: changed\n\n"); }, 150);
-    });
+    watch(brainDir, { recursive: true }, () => { clearTimeout(timer); timer = setTimeout(notify, 150); });
   } catch { /* recursive watch unsupported here; live refresh degrades to manual reload */ }
 }
 
