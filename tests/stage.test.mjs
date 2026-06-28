@@ -119,12 +119,14 @@ test("level floor: a backfilled lower-level gap surfaces as ready without regres
   }
 });
 
-test("deriveInitialPulse: a retention archetype seeds retention-favoring weights", () => {
+test("deriveInitialPulse: a retention archetype promotes the retention plays and gently tilts Success", () => {
   const p = deriveInitialPulse({ north_star_archetype: "engagement_retention", constraint_archetype: "runway_burn" }, INDEX);
-  assert.ok(p.weights.byDepartment.Success >= 1.35, "Success (churn/retention ops) boosted");
-  assert.ok(p.weights.byDepartment.Data >= 1.3, "Data (cohort/retention analysis) boosted");
+  // the headline-mover: the specific north-star plays are promoted so retention actually leads
+  assert.ok(p.weights.promote_ids.includes("cohort-retention-analysis"), "retention play promoted");
+  assert.ok(p.weights.promote_ids.includes("churn-diagnosis-winback"), "churn play promoted");
+  // the department tilt is mild now (the promotes carry the headline) and stays below the leapfrog line
+  assert.ok(p.weights.byDepartment.Success > 1.0 && p.weights.byDepartment.Success <= 1.4, "gentle Success tilt");
   assert.ok(p.weights.byDepartment.Finance > 1.0, "runway_burn constraint adds Finance");
-  assert.ok(p.weights.byDepartment.Success <= 1.5, "but the tilt stays gentle so it cannot leapfrog existential work");
   assert.equal(p.north_star_archetype, "engagement_retention");
 });
 

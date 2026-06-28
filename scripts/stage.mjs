@@ -172,19 +172,31 @@ export function deriveStage(answers, playbooks) {
 // leapfrog a do-or-die (existential) play in another department. The criticality fitFactor
 // (existential 1.5) plus a gentle tilt keeps the do-or-die work on top while still steering
 // toward the founder's north-star department. A founder's EXPLICIT pulse can go stronger.
-// Primary (north-star-central) department sits at 1.4 so the onboarding pulse can reorder WITHIN
-// the existential tier and bend which do-or-die play headlines (1.8 * 1.4 = 2.52). The cap is 1.4
-// by design: a higher tilt would let a core play (1.25) cross the existential floor (1.4 * 1.25 =
-// 1.75 < 1.8), which would bury do-or-die work. So existential always leads; the pulse picks which.
+// The specific plays that MOVE each north star. These are promoted (the strong promote weight) so
+// the founder's declared focus actually headlines, instead of a blunt whole-department boost that
+// floods the queue with every content loop. A promoted existential play clearly leads; a promoted
+// non-existential one rises near the top without burying do-or-die work.
+const NS_PROMOTE = {
+  activation: ["activation-rate-optimization", "first-run-aha-experience", "onboarding-flow-design"],
+  engagement_retention: ["cohort-retention-analysis", "churn-diagnosis-winback", "nps-csat-program"],
+  revenue_mrr: ["unit-economics", "account-expansion-and-upsell", "pricing-research"],
+  acquisition_growth: ["funnel-analysis", "landing-page-cro", "creative-testing"],
+  conversion: ["landing-page-cro", "activation-rate-optimization", "pricing-page-copy-layout"],
+  gmv_liquidity: ["marketplace-liquidity-balancing", "marketplace-supply-acquisition", "marketplace-trust-and-safety"],
+  efficiency_unit_econ: ["unit-economics", "financial-model-forecast", "pricing-research"],
+  local_reputation: ["local-reviews-reputation", "local-google-business-profile"],
+};
+// A MILD department tilt now (the promotes carry the headline), so related work gets texture without
+// the whole department flooding the top.
 const NS_DEPT = {
-  activation: { Product: 1.4, Data: 1.25, Growth: 1.15 },
-  engagement_retention: { Success: 1.4, Data: 1.4, Product: 1.2 },
-  revenue_mrr: { Finance: 1.4, Growth: 1.25, Success: 1.25 },
-  acquisition_growth: { Growth: 1.4, Data: 1.2 },
-  conversion: { Growth: 1.4, Product: 1.35, Data: 1.25 },
-  gmv_liquidity: { Operations: 1.4, Growth: 1.4, Data: 1.25 },
-  efficiency_unit_econ: { Finance: 1.4, Data: 1.3 },
-  local_reputation: { Growth: 1.4, Success: 1.35 },
+  activation: { Product: 1.2, Data: 1.15 },
+  engagement_retention: { Success: 1.2, Data: 1.2 },
+  revenue_mrr: { Finance: 1.2, Success: 1.15 },
+  acquisition_growth: { Growth: 1.2, Data: 1.1 },
+  conversion: { Growth: 1.15, Product: 1.2 },
+  gmv_liquidity: { Operations: 1.2, Growth: 1.15 },
+  efficiency_unit_econ: { Finance: 1.2, Data: 1.15 },
+  local_reputation: { Success: 1.2, Growth: 1.15 },
 };
 const CONSTRAINT_DELTA = {
   no_users: { Growth: 0.2, Strategy: 0.2 },
@@ -202,13 +214,18 @@ export function deriveInitialPulse(answers, playbooks) {
   if (nsa && NS_DEPT[nsa]) for (const [d, w] of Object.entries(NS_DEPT[nsa])) byDepartment[d] = w;
   const con = answers.constraint_archetype;
   if (con && CONSTRAINT_DELTA[con]) for (const [d, delta] of Object.entries(CONSTRAINT_DELTA[con])) byDepartment[d] = (byDepartment[d] ?? 1) + delta;
-  // Clamp the AUTO pulse to 1.4 so a constraint delta can never push a department high enough for a
-  // core play to leapfrog an existential one. A founder's EXPLICIT pulse (pulse.json) is not bound here.
+  // Clamp the AUTO department tilt to 1.4 so a constraint delta can never push a department high
+  // enough for a core play to leapfrog an existential one. A founder's EXPLICIT pulse is not bound.
   for (const d of Object.keys(byDepartment)) byDepartment[d] = clamp(byDepartment[d], 0.25, 1.4);
   const ids = new Set(playbooks.map((p) => p.id));
+  // The archetype's specific north-star plays are PROMOTED so the founder's declared focus actually
+  // headlines (the department tilt alone could not cross the existential floor and the headline never
+  // moved). Only real, member-eligible ids are kept.
+  const promote_ids = (nsa && NS_PROMOTE[nsa] ? NS_PROMOTE[nsa] : []).filter((id) => ids.has(id));
   const demote_ids = (answers.anti_priorities || []).filter((ap) => ids.has(ap));
   const weights = { default: 1 };
   if (Object.keys(byDepartment).length) weights.byDepartment = byDepartment;
+  if (promote_ids.length) weights.promote_ids = promote_ids;
   if (demote_ids.length) weights.demote_ids = demote_ids;
   return { weights, north_star_archetype: nsa || null, constraint: con || null, win: answers.win_definition || "" };
 }
