@@ -3,10 +3,40 @@
 // and momentum are the connected "game" (the real company moving toward the win), and THE MOVE is
 // the one thing to do now. The rest queue below. Clicking opens the node panel, where work happens.
 
-import { company, type NextAction } from "../mockData";
+import { company, type NextAction, type Win } from "../mockData";
 import { CriticalityBadge } from "./CriticalityBadge";
 import { JourneyBar } from "./JourneyBar";
-import { ArrowRightIcon, PlayIcon } from "./icons";
+import { ArrowRightIcon, PlayIcon, CheckCircleIcon } from "./icons";
+
+// The closed-loop payoff: completed work, graded, newest first. Seeing wins accumulate (and the
+// move advance) is the reason to come back and do the next one.
+function WinsStrip({ wins, onOpen }: { wins: Win[]; onOpen: (id: string) => void }) {
+  return (
+    <div className="rounded-xl border border-line bg-surface px-5 py-3.5 shadow-card">
+      <div className="mb-2 flex items-center gap-2">
+        <CheckCircleIcon width={14} height={14} className="text-approve-500" />
+        <span className="text-2xs font-semibold text-ink-700">Recently shipped</span>
+        <span className="font-mono text-[10px] text-ink-400">{wins.length} graded</span>
+      </div>
+      <div className="flex flex-wrap gap-1.5">
+        {wins.slice(0, 6).map((w) => (
+          <button
+            key={w.id}
+            type="button"
+            onClick={() => onOpen(w.id)}
+            className={`inline-flex items-center gap-1.5 rounded-md border px-2 py-1 text-2xs transition-colors hover:bg-canvas ${
+              w.pass ? "border-approve-100 bg-approve-50 text-approve-700" : "border-human-100 bg-human-50 text-human-700"
+            }`}
+            title={w.pass ? "Passed the bar" : "Below the bar -- worth improving"}
+          >
+            <span className="max-w-[160px] truncate font-medium">{w.title}</span>
+            <span className="font-mono tabular opacity-80">{w.score}</span>
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 function reasonLine(a: NextAction): string {
   const parts: string[] = [];
@@ -76,6 +106,7 @@ function QueueCard({ action, index, onOpen }: { action: NextAction; index: numbe
 export function NextView({ onOpenTask }: { onOpenTask: (id: string) => void }) {
   const actions = company.nextActions || [];
   const journey = company.journey;
+  const wins = company.wins || [];
   const constraint = company.focus?.constraint ?? null;
   const move = actions[0] || null;
   const rest = actions.slice(1, 9);
@@ -94,6 +125,12 @@ export function NextView({ onOpenTask }: { onOpenTask: (id: string) => void }) {
         {journey && (
           <div className="mb-6">
             <JourneyBar journey={journey} health={company.health?.overall} />
+          </div>
+        )}
+
+        {wins.length > 0 && (
+          <div className="mb-6">
+            <WinsStrip wins={wins} onOpen={onOpenTask} />
           </div>
         )}
 

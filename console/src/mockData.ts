@@ -108,6 +108,10 @@ export interface Focus {
 // The connected "game": a band ladder toward the founder's win with the current rung lit, the
 // metric to move now, and honest momentum (real plays shipped). Every cue is tied to the real
 // company, never generic XP.
+// A closed-loop win: a graded completion. The "you shipped this" payoff that makes the loop
+// rewarding -- completing a move visibly advances the game.
+export interface Win { id: string; title: string; score: number; pass: boolean; ts: string | null }
+
 export interface JourneyRung { key: string; label: string; blurb: string; reached: boolean; current: boolean }
 export interface Journey {
   band: string;
@@ -136,6 +140,7 @@ export interface Company {
   nextActions?: NextAction[];
   focus?: Focus;
   journey?: Journey;
+  wins?: Win[];
   health?: CompanyHealth;
   loops?: LoopStatus[];
   spend?: SpendPanel;

@@ -241,6 +241,14 @@ export function toFoundry(brain, enrich = {}) {
     momentumPct: tasks.length ? Math.round((100 * (shipped + assumedCount)) / tasks.length) : 0,
   };
 
+  // Wins: the closed-loop payoff. Each graded completion is a "you shipped this" with its score,
+  // newest first. This is the dopamine the loop was missing -- completing a move visibly advances
+  // the game (momentum ticks, the next move unlocks) instead of the next item silently appearing.
+  const wins = tasks
+    .filter((t) => t.state === "completed" && t.verified && t.score)
+    .map((t) => ({ id: t.id, title: t.title, score: t.score.value, pass: t.score.pass, ts: (scores[t.id] || {}).ts || null }))
+    .sort((a, b) => String(b.ts || "").localeCompare(String(a.ts || "")));
+
   const health = computeHealth(tasks, stages, loops);
   // Loops sorted for the view: due first, then soonest-next, eligible above locked.
   const loopsView = (loops || []).slice().sort((a, b) =>
@@ -265,6 +273,7 @@ export function toFoundry(brain, enrich = {}) {
     nextActions: nextActionsView,
     focus,
     journey,
+    wins,
     health,
     loops: loopsView,
     spend: spendPanel,

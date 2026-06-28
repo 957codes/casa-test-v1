@@ -109,12 +109,18 @@ merges over the original.
    If anything failed (a missing input, a blocked node, a non-ready node), set
    `error` with the reason instead of forcing the work. Do not invent a deliverable.
 
-7. Remind and loop. After a build, chat, or approved resolve-gate that ran
+7. Deliver the payoff, then loop. After a build, chat, or approved resolve-gate that ran
    `brain.mjs complete`, the deterministic engine already re-rendered build-map.json,
-   NOW.md, and the company CLAUDE.md AUTO blocks, and the bridge fired an SSE; tell the
-   founder the dashboard will update on its own. Then OFFER to drain the next pending
-   intent. Wait for the founder to say go. Never auto-spawn the next run; the founder
-   stays in the loop.
+   NOW.md, and the company CLAUDE.md AUTO blocks, and the bridge fired an SSE. Close the
+   loop OUT LOUD so the founder feels the forward motion (this is what earns the next
+   session). Print, in one tight block:
+   - SHIPPED: the node title and its grade (e.g. "Marketplace Liquidity Balancing -- 82, passed").
+   - UNLOCKED: read the re-rendered NOW.md / build-map.json and name what this just made
+     ready (the downstream nodes that flipped from blocked to ready).
+   - NEXT MOVE: the new top of NOW.md -- the single highest-leverage thing to do now.
+   Tell the founder the dashboard already reflects all of this (the move advanced, momentum
+   ticked, the win is in Recently shipped). Then OFFER to drain the next pending intent.
+   Wait for the founder to say go. Never auto-spawn the next run; the founder stays in the loop.
 
 ## The JSONL you write (so the bridge and UI can read them)
 

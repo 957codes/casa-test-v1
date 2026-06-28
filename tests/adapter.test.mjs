@@ -177,6 +177,25 @@ test("toFoundry: journey is a band ladder with the current rung lit and honest m
   assert.ok(j.momentumPct >= 0 && j.momentumPct <= 100);
 });
 
+test("toFoundry: wins are the graded completions, newest first (the closed-loop payoff)", () => {
+  const enrich = {
+    ...ENRICH,
+    outputs: new Set(["problem-validation-interviews"]),
+    scores: {
+      "market-sizing-tam-sam-som": { score: 82, pass: true, gaps: [], ts: "2026-06-28T10:00:00Z" },
+      "red-team-thesis": { score: 64, pass: false, gaps: ["thin"], ts: "2026-06-28T12:00:00Z" },
+    },
+  };
+  const { company } = toFoundry({ buildMap: HEALTH_MAP, profile: PROFILE }, enrich);
+  const ids = company.wins.map((w) => w.id);
+  // only graded completions are wins (problem-validation has an output but no score -> not a win)
+  assert.ok(ids.includes("market-sizing-tam-sam-som"));
+  assert.ok(ids.includes("red-team-thesis"));
+  assert.ok(!ids.includes("problem-validation-interviews"));
+  assert.equal(company.wins[0].id, "red-team-thesis"); // newest ts first
+  assert.equal(company.wins.find((w) => w.id === "market-sizing-tam-sam-som").score, 82);
+});
+
 test("toFoundry: focus reads the founder's win and constraint and humanizes the constraint", () => {
   const brain = { buildMap: { ...HEALTH_MAP, active_north_star: { label: "match rate", band: "retention", mature_growth_label: "GMV" } }, profile: PROFILE };
   const enrich = { ...ENRICH, pulse: { win: "Tokenise agent-run companies", constraint: "no_users" } };
