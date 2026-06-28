@@ -265,6 +265,8 @@ if (existsSync(brainDir)) {
   } catch { /* recursive watch unsupported here; live refresh degrades to manual reload */ }
 }
 
-server.listen(PORT, () => {
+// Bind to loopback only. The Console runs on the founder's own machine (rule 1: on
+// localhost) and exposes state-mutating POSTs, so it must never be reachable from the LAN.
+server.listen(PORT, "127.0.0.1", () => {
   console.log(`Casa Console bridge on http://localhost:${PORT}  (brain: ${brainDir})`);
 });
