@@ -38,7 +38,8 @@ test("matureNorthStar: a local service overrides to bookings / rebooking", () =>
 
 test("band: validation through scale cutoffs", () => {
   assert.equal(band(0), "validation");
-  assert.equal(band(3), "validation");
+  assert.equal(band(1), "validation");
+  assert.equal(band(2), "activation"); // building: past validation, building toward first value
   assert.equal(band(4), "activation");
   assert.equal(band(5), "retention");
   assert.equal(band(6), "scale");
@@ -49,7 +50,7 @@ test("band: validation through scale cutoffs", () => {
 test("northStar: the active metric tracks the band up the ladder", () => {
   const p = { primary_type: "saas", monetization: "subscription", traits: ["b2b"] };
   assert.equal(northStar(p, 0).metric, "validated_demand");
-  assert.equal(northStar(p, 4).metric, "activation_rate");
+  assert.equal(northStar(p, 2).metric, "activation_rate"); // building -> activation band
   assert.equal(northStar(p, 5).metric, "nrr"); // mature retention at first customers
   assert.equal(northStar(p, 6).metric, "arr"); // mature growth at scale
 });

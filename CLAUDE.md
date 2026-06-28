@@ -328,8 +328,12 @@ short, date entries, never delete the protocol).
   score, so a do-or-die play reliably leads (the user's directive made structural) while the seeded
   north-star promote and a byId override still reach #1. deriveInitialPulse promotes the archetype's
   specific north-star plays (not whole departments). Verified stable: stage_accuracy ~95, selection_fit ~90,
-  pulse_effect ~92, 0 real dead-ends on every company; relevance/output_usefulness ~88. Catalog 112 -> 127;
-  goldens b2b 97/127, b2c 87/127. Suite 97 tests, preflight 49, all green.
+  pulse_effect ~91 (held), 0 real dead-ends on every company; relevance ~88, output_usefulness ~89. A
+  vertical catalog-depth pass then added 23 archetype-specific playbooks (crypto/on-chain, dev-tool/OSS,
+  hardware lifecycle, PLG/in-app) with domain-specific bodies, dropping companies-below-85 from 8 to 2.
+  A headline TIER (3 hard-override, 2 existential or +1 promote bump, 1 core, 0 growth) sorts the ready
+  set before the score so do-or-die leads and a promoted growth play cannot leapfrog an existential one.
+  Catalog 112 -> 150; goldens b2b 106/150, b2c 102/150. Suite 97 tests, preflight 49, all green.
 - Next: a real interactive /casa-start in a live session (the one test only the user can run); per-stage
   catalog depth for the few sub-90 companies (crypto compliance detail, ad-monetization, launched-stage
   activation); Pay v0 BYO-key mode; publish prep (public repo + README + disclaimer).

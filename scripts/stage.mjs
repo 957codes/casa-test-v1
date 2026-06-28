@@ -52,7 +52,10 @@ const CONSTRAINT_SURFACE = {
   no_revenue: ["pricing-research", "packaging-tier-design", "unit-economics", "pricing-page-copy-layout", "freemium-trial-decision", "ad-revenue-and-yield"],
   runway_burn: ["unit-economics", "financial-model-forecast", "pricing-research", "ad-revenue-and-yield"],
   tech_scale: ["observability-setup", "incident-response", "data-backup-recovery", "security-baseline"],
-  no_users: ["problem-validation-interviews", "beachhead-selection", "landing-page-cro", "marketplace-supply-acquisition", "hardware-preorder-demand-validation"],
+  // Forward-looking acquisition work, not backward L0 validation: an early company already has the
+  // validation plays ready (they are not seeded), and a revenue company should not be told to re-run
+  // problem-validation just because it declared a user shortage.
+  no_users: ["landing-page-cro", "funnel-analysis", "marketplace-supply-acquisition", "hardware-preorder-demand-validation", "referral-and-virality-loops"],
   hiring_capacity: ["hiring-and-org-scaling"],
 };
 
@@ -176,11 +179,15 @@ export function deriveStage(answers, playbooks) {
 // the founder's declared focus actually headlines, instead of a blunt whole-department boost that
 // floods the queue with every content loop. A promoted existential play clearly leads; a promoted
 // non-existential one rises near the top without burying do-or-die work.
+// Each archetype lists the mature plays that move its metric AND a couple of early-stage precursors,
+// so a pre-launch founder who declares the focus still sees a promoted, reachable proxy (the mature
+// metric play is stage-gated above them). A promoted play that is seeded-done or above level simply
+// does not surface, so the extra precursors are harmless at mature stages.
 const NS_PROMOTE = {
-  activation: ["activation-rate-optimization", "first-run-aha-experience", "onboarding-flow-design"],
+  activation: ["activation-rate-optimization", "first-run-aha-experience", "onboarding-flow-design", "prd-drafting", "mvp-scoping"],
   engagement_retention: ["cohort-retention-analysis", "churn-diagnosis-winback", "nps-csat-program"],
   revenue_mrr: ["unit-economics", "account-expansion-and-upsell", "pricing-research"],
-  acquisition_growth: ["funnel-analysis", "landing-page-cro", "creative-testing"],
+  acquisition_growth: ["funnel-analysis", "landing-page-cro", "creative-testing", "beachhead-selection", "positioning-canvas"],
   conversion: ["landing-page-cro", "activation-rate-optimization", "pricing-page-copy-layout"],
   gmv_liquidity: ["marketplace-liquidity-balancing", "marketplace-supply-acquisition", "marketplace-trust-and-safety"],
   efficiency_unit_econ: ["unit-economics", "financial-model-forecast", "pricing-research"],

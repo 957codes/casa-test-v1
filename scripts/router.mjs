@@ -282,14 +282,21 @@ function fitFactor(pb, stage, models) {
 //   2  existential (do-or-die at this stage)
 //   1  core (foundational)
 //   0  growth / optional (optimization)
-// So the founder's pulse and a hard override still reach #1 (tier 3), existential always leads the
-// rest, and the score personalizes the order inside each tier. PROMOTE_TIER_MIN matches the
-// promote_ids weight (2.5) and byId overrides, but not the gentle department tilt (<= 1.4).
-const PROMOTE_TIER_MIN = 2.0;
-function headlineTier(pb, stage, weights) {
-  if (priorityWeight(pb, weights) >= PROMOTE_TIER_MIN) return 3;
+// A HARD override (a big byId weight) goes to the absolute top -- the founder explicitly demands it.
+// A seeded north-star promote (the 2.5 promote weight) only BUMPS the play one tier: it leads other
+// plays of its own criticality and the tier below, but a promoted growth play (an nps survey) still
+// cannot leapfrog an unpromoted existential one (the cash/margin play). So do-or-die always leads
+// unless the founder hard-overrides, and the seeded pulse picks the leader within reason.
+const HARD_OVERRIDE_MIN = 50, PROMOTE_BUMP_MIN = 2.0;
+function critTier(pb, stage) {
   const c = effectiveCriticality(pb, stage);
   return c === "existential" ? 2 : c === "core" ? 1 : 0;
+}
+function headlineTier(pb, stage, weights) {
+  const pw = priorityWeight(pb, weights);
+  if (pw >= HARD_OVERRIDE_MIN) return 3;
+  const tier = critTier(pb, stage);
+  return pw >= PROMOTE_BUMP_MIN ? Math.min(tier + 1, 3) : tier;
 }
 
 // The unified fitness score. fit = { currentLevel, stage, models } is OPTIONAL: when absent

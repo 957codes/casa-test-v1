@@ -108,10 +108,10 @@ export function matureNorthStar(profile) {
 // the mature growth metric. Aligned to the achievedFlags milestone grants.
 export function band(level) {
   const k = levelKey(level);
-  if (k <= 3) return "validation";
-  if (k === 4) return "activation";
-  if (k === 5) return "retention";
-  return "scale";
+  if (k <= 1) return "validation";   // idea / landing: prove demand exists
+  if (k <= 4) return "activation";   // building -> launch: get users to first value
+  if (k === 5) return "retention";   // first customers: keep them
+  return "scale";                    // scale acquisition / growth
 }
 
 // The stage-resolved north star: which one number the founder should watch right now,
