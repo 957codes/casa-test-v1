@@ -66,31 +66,23 @@ const CALMLY = deriveStage({ type: "consumer", traits: ["b2c", "builds_software"
 const CALMLY_STATE = { completed: CALMLY.completed_seed, level: CALMLY.start_level };
 
 test("score: leverage leads slack - a critical play outranks a high-leverage low-slack infra loop", () => {
-  // unit-economics (existential at revenue) must rank above incident-response (a low-slack infra loop)
-  // by default for a revenue business, even though incident-response sits on a lower-slack path. The old
-  // 1/(slack+1) inverted this and made the infra loop the headline. (north-star-metric, the prior
-  // example, is now intentionally sunk as an NS-todo contradiction, so it is no longer a valid probe.)
+  // north-star-metric (critical) must rank above incident-response (high) by default for a
+  // revenue business, even though incident-response sits on a lower-slack path. The old
+  // 1/(slack+1) inverted this and made the infra loop the headline.
   const acts = nextActions(INDEX, CALMLY.profile, CALMLY_STATE);
   const rank = (id) => acts.findIndex((a) => a.id === id);
-  const ue = rank("unit-economics"), ir = rank("incident-response");
-  assert.ok(ue >= 0 && ir >= 0, "both unit-economics and incident-response are ready");
-  assert.ok(ue < ir, `existential unit-economics (#${ue}) should outrank low-slack incident-response (#${ir})`);
+  const ns = rank("north-star-metric"), ir = rank("incident-response");
+  assert.ok(ns >= 0 && ir >= 0, "both north-star-metric and incident-response are ready");
+  assert.ok(ns < ir, `critical north-star-metric (#${ns}) should outrank high incident-response (#${ir})`);
 });
 
 test("nextActions: a realistic pulse (promote_ids + department demote) steers the headline", () => {
-  // A promote_ids entry plus a department demote moves the founder's focus to the top of the list.
-  // It leads, except that dependency-order enforcement may legitimately surface its own prerequisite
-  // one slot above it (you cannot run cohort-retention before its event taxonomy exists) -- that is the
-  // correct, more honest behaviour the 40-company eval asked for, not a regression.
-  const def = nextActions(INDEX, CALMLY.profile, CALMLY_STATE);
-  const defRank = def.findIndex((a) => a.id === "cohort-retention-analysis");
+  // The synthesis found a 2x promote could not overcome the old steep slack term. With the
+  // gentle slack band a promote_ids entry plus a department demote moves the founder's focus
+  // to #1 - the pulse can finally steer NOW.md, not just reorder the tail.
+  const top0 = nextActions(INDEX, CALMLY.profile, CALMLY_STATE)[0].id;
   const weights = { promote_ids: ["cohort-retention-analysis"], byDepartment: { Engineering: 0.4, Operations: 0.6 } };
-  const prom = nextActions(INDEX, CALMLY.profile, { ...CALMLY_STATE, weights });
-  const promRank = prom.findIndex((a) => a.id === "cohort-retention-analysis");
-  assert.ok(promRank <= 1, `promoted focus leads (behind at most its own prerequisite), got #${promRank}`);
-  assert.ok(promRank < defRank, `the pulse moved the focus up (from #${defRank} to #${promRank})`);
-  if (promRank === 1) {
-    const deps = INDEX.find((p) => p.id === "cohort-retention-analysis").depends_on || [];
-    assert.ok(deps.includes(prom[0].id), `the only item above the promoted focus is its prerequisite, got ${prom[0].id}`);
-  }
+  const top1 = nextActions(INDEX, CALMLY.profile, { ...CALMLY_STATE, weights })[0].id;
+  assert.equal(top1, "cohort-retention-analysis", "the founder's promoted focus becomes the headline");
+  assert.notEqual(top1, top0, "the pulse changed the headline from the default");
 });

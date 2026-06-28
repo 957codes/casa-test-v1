@@ -14,7 +14,6 @@ department: Growth
 criticality: growth
 model_fit: [self_serve]
 selection_hint: "Run on a live page with traffic or qualitative signal. The pre-flight gate for paid: scaling spend onto an unoptimized page wastes budget."
-action: "Run conversion research on the live page with heatmaps and session replays, then queue one hypothesis-driven A/B test."
 depends_on: []
 soft_after:
   - analytics-stack-setup

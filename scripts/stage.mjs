@@ -48,25 +48,16 @@ function loadIndex() {
 // founder flagged, and the constraint's pulse weight has a live target. Unknown/absent ids are
 // simply ignored (a business that does not select that playbook is unaffected).
 const CONSTRAINT_SURFACE = {
-  regulatory_legal: ["kyc-aml-program", "tos-and-privacy-policy", "token-and-licensing-strategy", "security-baseline", "hardware-certification-and-compliance", "smart-contract-audit"],
+  regulatory_legal: ["kyc-aml-program", "tos-and-privacy-policy", "token-and-licensing-strategy", "security-baseline", "hardware-certification-and-compliance"],
   no_revenue: ["pricing-research", "packaging-tier-design", "unit-economics", "pricing-page-copy-layout", "freemium-trial-decision", "ad-revenue-and-yield"],
   runway_burn: ["unit-economics", "financial-model-forecast", "pricing-research", "ad-revenue-and-yield"],
   tech_scale: ["observability-setup", "incident-response", "data-backup-recovery", "security-baseline"],
   // Forward-looking acquisition work, not backward L0 validation: an early company already has the
   // validation plays ready (they are not seeded), and a revenue company should not be told to re-run
   // problem-validation just because it declared a user shortage.
-  no_users: ["design-partner-recruitment", "first-users-traction", "marketplace-supply-acquisition", "hardware-preorder-demand-validation", "landing-page-cro", "funnel-analysis", "referral-and-virality-loops"],
-  hiring_capacity: ["hiring-and-org-scaling", "services-delivery-and-utilization"],
+  no_users: ["landing-page-cro", "funnel-analysis", "marketplace-supply-acquisition", "hardware-preorder-demand-validation", "referral-and-virality-loops"],
+  hiring_capacity: ["hiring-and-org-scaling"],
 };
-
-// Work that is DONE by virtue of having reached a stage, so it must not surface as a recommendation
-// (the eval caught a "building" company told to select its tech stack, and "launched" companies told
-// to write a T-90 launch plan). These are seeded as assumed-done at or above the listed start level,
-// in addition to the below-level seed. Constraint-surfaced and founder-named-gap ids are never seeded.
-const STAGE_DONE = [
-  [2, ["tech-stack-selection", "hosting-deployment-setup"]],          // building+: stack chosen, app deployed
-  [4, ["launch-plan-t90", "product-hunt-launch", "pr-press-launch", "beta-program-management"]], // launched+: you have launched
-];
 
 // Cumulative milestone flags for a tier. "idea" is exclusive (nothing shipped yet);
 // every other tier inherits the flags of the tiers beneath it.
@@ -173,18 +164,7 @@ export function deriveStage(answers, playbooks) {
     )
     .map((m) => m.id);
 
-  // Stage-respect: seed work that is logically done by having reached this stage (you cannot still be
-  // "selecting your tech stack" once you are building), unless the founder named it as a gap or it is
-  // the constraint work we keep visible.
-  const stageDone = [];
-  for (const [minLevel, ids2] of STAGE_DONE) {
-    if (start_level >= minLevel) for (const id of ids2) {
-      if (memberIds.has(id) && !gaps.has(id) && !surface.has(id)) stageDone.push(id);
-    }
-  }
-  const seed = [...new Set([...completed_seed, ...stageDone])];
-
-  return { profile, start_level, completed_seed: seed, gaps_not_applicable };
+  return { profile, start_level, completed_seed, gaps_not_applicable };
 }
 
 // The INITIAL pulse, derived from the Core-pass intake answers, so the very first build map
@@ -250,14 +230,10 @@ export function deriveInitialPulse(answers, playbooks) {
   // moved). Only real, member-eligible ids are kept.
   const promote_ids = (nsa && NS_PROMOTE[nsa] ? NS_PROMOTE[nsa] : []).filter((id) => ids.has(id));
   const demote_ids = (answers.anti_priorities || []).filter((ap) => ids.has(ap));
-  // The plays that address the founder's BINDING CONSTRAINT. The router pins these to the top tier so
-  // the do-or-die survival work leads the ranking (the 40-company eval's single biggest lever).
-  const constraint_ids = (con && CONSTRAINT_SURFACE[con] ? CONSTRAINT_SURFACE[con] : []).filter((id) => ids.has(id));
   const weights = { default: 1 };
   if (Object.keys(byDepartment).length) weights.byDepartment = byDepartment;
   if (promote_ids.length) weights.promote_ids = promote_ids;
   if (demote_ids.length) weights.demote_ids = demote_ids;
-  if (constraint_ids.length) weights.constraint_ids = constraint_ids;
   return { weights, north_star_archetype: nsa || null, constraint: con || null, win: answers.win_definition || "" };
 }
 

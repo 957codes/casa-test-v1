@@ -12,7 +12,6 @@ relevance: core
 department: Strategy
 criticality: core
 selection_hint: Run for every business to confirm the opportunity is large enough to justify the build. Kill if SOM is below threshold.
-action: "Compute SOM both top-down and bottom-up, and if they agree within 3x issue a go/no-go against a VC threshold."
 depends_on: []
 soft_after:
   - opportunity-scan

@@ -15,7 +15,6 @@ department: Finance
 criticality: core
 model_fit: [physical_goods]
 selection_hint: The first physical-goods gate. No price, packaging, or unit-economics number is trustworthy until landed COGS per SKU is modeled from real supplier quotes.
-action: "Shortlist two suppliers per SKU, request quotes and samples, then model fully landed COGS and a target margin per SKU."
 depends_on: []
 soft_after: []
 produces:

@@ -32,12 +32,9 @@ function ActionCard({ action, index, onOpen }: { action: NextAction; index: numb
           {action.criticality && <CriticalityBadge value={action.criticality} />}
           <span className="rounded bg-canvas px-1.5 py-0.5 font-mono text-[9px] text-ink-400">{action.owner}</span>
         </span>
-        {action.action && (
-          <span className="mt-1 block text-2xs font-medium leading-relaxed text-ink-700">{action.action}</span>
-        )}
-        <span className="mt-1 block text-[10px] leading-relaxed text-ink-400">
+        <span className="mt-1 block text-2xs leading-relaxed text-ink-500">
           {action.criticalityLabel}
-          {reason && <span>. {reason}.</span>}
+          {reason && <span className="text-ink-400">. {reason}.</span>}
         </span>
       </span>
       <span className="mt-0.5 hidden shrink-0 items-center gap-1 self-center rounded-md border border-line px-2.5 py-1 text-xs font-medium text-ink-600 sm:inline-flex group-hover:text-ink-900">

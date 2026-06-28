@@ -295,12 +295,6 @@ function critTier(pb, stage) {
 function headlineTier(pb, stage, weights) {
   const pw = priorityWeight(pb, weights);
   if (pw >= HARD_OVERRIDE_MIN) return 3;
-  // The founder's BINDING CONSTRAINT leads. A play that directly addresses the constraint the founder
-  // named (no_users -> acquisition, regulatory_legal -> compliance, runway_burn -> unit economics) is
-  // pinned to the top tier, so the do-or-die survival work outranks generic foundation/optimization.
-  // This is the single biggest lever from the 40-company eval: the constraint was derived and displayed
-  // but never used to rank. Now it ranks first.
-  if (weights && Array.isArray(weights.constraint_ids) && weights.constraint_ids.includes(pb.id)) return 3;
   const tier = critTier(pb, stage);
   return pw >= PROMOTE_BUMP_MIN ? Math.min(tier + 1, 3) : tier;
 }
@@ -321,14 +315,8 @@ function score(pb, slack, flags, weights, fit) {
   // email-deliverability) is background maintenance, not the frontier: it keeps running but must not
   // headline a launched company over its activation/retention work. Demote it out of the top cluster.
   const maint = fit && pb.recurring && levelKey(pb.level) < fit.currentLevel && effectiveCriticality(pb, fit.stage) !== "existential" ? 0.6 : 1;
-  // Premature infra: reliability/ops plumbing (observability, backups, incident response, email
-  // deliverability, a security baseline) only earns its keep once there are users to protect. Before
-  // any live traffic it is busywork that buried the first-users work for pre-launch companies in the
-  // 40-company eval. Demote it hard until the company has traffic. The constraint tier still overrides
-  // (a tech_scale company keeps it on top), and a company with traffic is unaffected.
-  const premature = fit && PRE_TRAFFIC_DEFER.has(pb.id) && !flags.has("has_live_traffic") ? 0.3 : 1;
   const pw = priorityWeight(pb, weights);
-  return Math.round((lev * urgency * sf * ff * maint * premature * rev / eff * pw) * 1000) / 1000;
+  return Math.round((lev * urgency * sf * ff * maint * rev / eff * pw) * 1000) / 1000;
 }
 
 function buildMap(playbooks, profile, { completed = [], level = 0 } = {}) {
@@ -358,31 +346,6 @@ function buildMap(playbooks, profile, { completed = [], level = 0 } = {}) {
   }));
   return { member_count: members.length, levels, skipped };
 }
-
-// Enforce dependency order by PULLING PREREQUISITES UP, not pushing dependents down. If an item's
-// in-list prerequisite ranks below it, move the prerequisite to just above the item. This fixes the
-// inversion the eval caught (a task ranked above its own prerequisite) while keeping the high-value
-// item near the top and surfacing its unblocker right above it, instead of sinking the headline beneath
-// a low-scored foundational play. Bounded iterations so a cycle can never loop forever.
-function enforceDeps(items, byId) {
-  const inList = new Set(items.map((x) => x.id));
-  const out = items.slice();
-  for (let pass = 0, changed = true; changed && pass < out.length + 2; pass++) {
-    changed = false;
-    for (let i = 0; i < out.length; i++) {
-      const deps = arr(byId.get(out[i].id)?.depends_on).filter((d) => inList.has(d));
-      for (const d of deps) {
-        const di = out.findIndex((x) => x.id === d);
-        if (di > i) { const [p] = out.splice(di, 1); out.splice(i, 0, p); changed = true; }
-      }
-    }
-  }
-  return out;
-}
-const NS_TODO = new Set(["north-star-metric", "ceo-dashboard-build"]);
-const EXISTENTIAL_DISPLAY_CAP = 2;
-// Reliability/ops infra that is premature before a company has live traffic (see score()).
-const PRE_TRAFFIC_DEFER = new Set(["observability-setup", "data-backup-recovery", "incident-response", "email-deliverability-setup", "security-baseline"]);
 
 function nextActions(playbooks, profile, { completed = [], level = 0, weights = null } = {}) {
   const { members } = select(playbooks, profile);
@@ -421,28 +384,7 @@ function nextActions(playbooks, profile, { completed = [], level = 0, weights = 
       .slice(0, 4)
       .map((m) => m.id);
   }
-  // The engine already derived and asserted the north star, so a "define your north star" play as a top
-  // todo is a self-contradiction. Sink those out of the headline FIRST so they neither lead nor get
-  // pulled up as a dependency, then enforce dependency order on the visible set.
-  // A north-star-todo is sunk UNLESS the founder hard-overrides it (an explicit byId weight wins over
-  // every heuristic, including this one).
-  const isSunk = (a) => NS_TODO.has(a.id) && priorityWeight(byId.get(a.id), weights) < HARD_OVERRIDE_MIN;
-  const visible = scored.filter((a) => !isSunk(a));
-  const sunk = scored.filter((a) => isSunk(a));
-  const ordered = enforceDeps(visible, byId);
-  // Cap how many items wear "existential" so triage survives. Only the top EXISTENTIAL_DISPLAY_CAP
-  // keep it in DISPLAY; the rest step down one rung. The underlying criticality is unchanged (gating
-  // and scoring still use effective_criticality); this only stops "everything is a fire". The #1 item
-  // is flagged primary so the advisor can lead with a single reasoned action.
-  let exShown = 0;
-  for (const a of ordered) {
-    if (a.effective_criticality === "existential" && exShown < EXISTENTIAL_DISPLAY_CAP) { a.display_criticality = "existential"; exShown++; }
-    else if (a.effective_criticality === "existential") a.display_criticality = "core";
-    else a.display_criticality = a.effective_criticality;
-  }
-  if (ordered[0]) ordered[0].primary = true;
-  for (const a of sunk) a.display_criticality = a.effective_criticality;
-  return [...ordered, ...sunk];
+  return scored;
 }
 
 // ---- CLI ----

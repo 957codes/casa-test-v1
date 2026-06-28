@@ -16,7 +16,6 @@ criticality: core
 existential_at: [launched, revenue, scaling]
 model_fit: []
 selection_hint: The money mechanism for an ad-supported product. Once there is engagement to monetize, fill rate and eCPM are the levers between DAU and revenue, so this is the revenue work for an ad model, not a side task.
-action: "Integrate one demand source, instrument fill rate and eCPM against analytics, and close the fill-rate gap before optimizing price."
 depends_on:
   - analytics-stack-setup
 soft_after:
