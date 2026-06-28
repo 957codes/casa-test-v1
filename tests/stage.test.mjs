@@ -121,9 +121,10 @@ test("level floor: a backfilled lower-level gap surfaces as ready without regres
 
 test("deriveInitialPulse: a retention archetype seeds retention-favoring weights", () => {
   const p = deriveInitialPulse({ north_star_archetype: "engagement_retention", constraint_archetype: "runway_burn" }, INDEX);
-  assert.ok(p.weights.byDepartment.Success >= 1.6, "Success (churn/retention ops) boosted");
-  assert.ok(p.weights.byDepartment.Data >= 1.4, "Data (cohort/retention analysis) boosted");
-  assert.ok(p.weights.byDepartment.Finance >= 1.0, "runway_burn constraint adds Finance");
+  assert.ok(p.weights.byDepartment.Success >= 1.35, "Success (churn/retention ops) boosted");
+  assert.ok(p.weights.byDepartment.Data >= 1.3, "Data (cohort/retention analysis) boosted");
+  assert.ok(p.weights.byDepartment.Finance > 1.0, "runway_burn constraint adds Finance");
+  assert.ok(p.weights.byDepartment.Success <= 1.5, "but the tilt stays gentle so it cannot leapfrog existential work");
   assert.equal(p.north_star_archetype, "engagement_retention");
 });
 

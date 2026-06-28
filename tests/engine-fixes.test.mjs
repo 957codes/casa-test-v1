@@ -98,6 +98,14 @@ test("reachability: holds for a full-featured software b2c business too (incl. l
   assert.deepEqual(deadMembers(a), [], "members never reachable");
 });
 
+test("reachability: an idea-tier company (level-0 start) has no permanently-dead members", () => {
+  // pre_idea_only must DROP as the company climbs past idea, or every playbook that excludes it
+  // stays permanently un-ready. This was 37 dead (43% of members) on a level-0 start - a gap the
+  // earlier reachability tests missed by only ever climbing from revenue/launched tiers.
+  const a = { type: "consumer", traits: ["b2c", "builds_software", "sends_email", "collects_user_data", "runs_paid_media"], monetization: "subscription", tier: "idea", gaps: [] };
+  assert.deepEqual(deadMembers(a), [], "members never reachable from a level-0 start");
+});
+
 test("reachability: milestone flags mint their backing artifact (retention track unblocks)", () => {
   // has_paying_customers (a revenue-tier milestone) mints the paying_customer artifact,
   // so the retention playbooks that consume it become reachable for a b2c business that

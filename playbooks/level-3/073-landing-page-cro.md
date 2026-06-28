@@ -7,7 +7,7 @@ applies_to:
   types:
     - "*"
   requires_traits:
-    - has_landing_page
+    - has_website
   excluded_traits: []
 relevance: recommended
 department: Growth

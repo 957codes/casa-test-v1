@@ -66,9 +66,14 @@ function achievedFlags(profile, completed, level) {
   // lets a b2c business cross into has_paying_customers without the b2b contract-close
   // playbook (its only graph producer). Codebase flags are NOT granted here: they come
   // from the profile (software businesses only) so a non-software business never gains one.
+  if (level >= 1) { f.add("has_website"); f.add("has_landing_page"); }
   if (level >= 4) { f.add("has_user_accounts"); f.add("has_live_traffic"); }
   if (level >= 5) { f.add("has_paying_customers"); f.add("has_revenue"); f.add("has_live_customers"); }
   if (level >= 6) f.add("pmf_achieved");
+  // pre_* flags are true only while the company is below the stage they describe. pre_idea_only
+  // is seeded from the idea tier's profile traits; like the others it must DROP once the company
+  // climbs past idea, or every playbook excluding it stays permanently un-ready for an idea start.
+  if (level >= 1) f.delete("pre_idea_only");
   if (level < 4) f.add("pre_launch_only");
   if (level < 6) f.add("pre_pmf");
   if (level < 5) f.add("pre_product_pre_customer");

@@ -92,7 +92,14 @@ export function deriveStage(answers, playbooks) {
   // Software milestone flags imply a codebase, so only a software business inherits
   // has_repo / has_deployed_app / has_datastore. A non-software business does not.
   const builds = (answers.traits || []).includes("builds_software");
-  const traitSet = new Set([...(answers.traits || []), ...milestoneFlags(answers.tier)]);
+  // Monetization implies payment traits even if the trait list omitted them: a subscription
+  // business takes payments and has recurring revenue; a one-time or take-rate business takes
+  // payments. Without this, a "subscription" SaaS whose answers lacked takes_payments lost its
+  // entire pricing / unit-economics / churn track (all gated on takes_payments).
+  const mon = answers.monetization;
+  const monTraits = mon === "subscription" ? ["takes_payments", "recurring_revenue"]
+    : (mon === "one-time" || mon === "transaction-fee") ? ["takes_payments"] : [];
+  const traitSet = new Set([...(answers.traits || []), ...monTraits, ...milestoneFlags(answers.tier)]);
   // Only the flags that imply an actual codebase are software-exclusive. has_user_accounts
   // and has_live_traffic are NOT: a launched store or local business genuinely has customer
   // accounts and live traffic, so stripping them wrongly dead-ended traffic/account-gated
@@ -140,23 +147,27 @@ export function deriveStage(answers, playbooks) {
 // is business-aware (a retention-focused founder sees retention work lead) before any manual
 // pulse cascade. Pure and table-driven; byDepartment keys use the 11-department vocabulary so
 // the weights actually bite. With no archetype/constraint it returns a neutral pulse.
+// Department tilts are kept GENTLE (<= ~1.4) on purpose: a broad department boost must not
+// leapfrog a do-or-die (existential) play in another department. The criticality fitFactor
+// (existential 1.5) plus a gentle tilt keeps the do-or-die work on top while still steering
+// toward the founder's north-star department. A founder's EXPLICIT pulse can go stronger.
 const NS_DEPT = {
-  activation: { Product: 1.6, Data: 1.3, Growth: 1.1 },
-  engagement_retention: { Success: 1.7, Data: 1.5, Product: 1.2 },
-  revenue_mrr: { Finance: 1.5, Growth: 1.3, Success: 1.3 },
-  acquisition_growth: { Growth: 1.7, Data: 1.2 },
-  conversion: { Growth: 1.5, Product: 1.4, Data: 1.3 },
-  gmv_liquidity: { Growth: 1.5, Operations: 1.3, Data: 1.3 },
-  efficiency_unit_econ: { Finance: 1.7, Data: 1.4 },
-  local_reputation: { Growth: 1.5, Success: 1.4 },
+  activation: { Product: 1.4, Data: 1.2, Growth: 1.1 },
+  engagement_retention: { Success: 1.4, Data: 1.35, Product: 1.15 },
+  revenue_mrr: { Finance: 1.35, Growth: 1.2, Success: 1.2 },
+  acquisition_growth: { Growth: 1.4, Data: 1.15 },
+  conversion: { Growth: 1.35, Product: 1.3, Data: 1.2 },
+  gmv_liquidity: { Growth: 1.35, Operations: 1.2, Data: 1.2 },
+  efficiency_unit_econ: { Finance: 1.4, Data: 1.25 },
+  local_reputation: { Growth: 1.35, Success: 1.3 },
 };
 const CONSTRAINT_DELTA = {
-  no_users: { Growth: 0.3, Strategy: 0.3 },
-  no_revenue: { Finance: 0.3, Sales: 0.2, Growth: 0.2 },
-  runway_burn: { Finance: 0.4 },
-  regulatory_legal: { Legal: 0.6 },
-  tech_scale: { Engineering: 0.5 },
-  hiring_capacity: { Operations: 0.4 },
+  no_users: { Growth: 0.2, Strategy: 0.2 },
+  no_revenue: { Finance: 0.2, Sales: 0.15, Growth: 0.15 },
+  runway_burn: { Finance: 0.25 },
+  regulatory_legal: { Legal: 0.4 },
+  tech_scale: { Engineering: 0.3 },
+  hiring_capacity: { Operations: 0.3 },
 };
 const clamp = (x, lo, hi) => Math.min(hi, Math.max(lo, x));
 
