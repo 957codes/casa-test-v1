@@ -17,6 +17,7 @@ applies_to:
 relevance: conditional
 department: Growth
 criticality: optional
+model_fit: [sales_led]
 selection_hint: Only with ACV >= $5k, budget >= $3k/mo, audience >= 50k, and CAPI. CPM economics are fatal below the ACV floor; a B2C or low-ACV company never runs this.
 depends_on:
   - linkedin-organic

@@ -11,6 +11,7 @@ applies_to:
 relevance: recommended
 department: Growth
 criticality: growth
+model_fit: [self_serve]
 selection_hint: The owned, algorithm-independent audience channel. Stand up once an ESP and authenticated domain exist; then run continuously. Other channels feed it.
 depends_on: []
 soft_after:

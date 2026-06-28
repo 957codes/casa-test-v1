@@ -18,6 +18,7 @@ applies_to:
 relevance: core
 department: Sales
 criticality: core
+model_fit: [sales_led]
 selection_hint: Run before any outbound for a sales-led or hybrid B2B motion. Skip for pure B2C or self-serve products with no named-account targeting. Refresh on ICP drift (CAC up, churn up, win rate down).
 depends_on: []
 soft_after:

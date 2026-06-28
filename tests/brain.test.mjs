@@ -56,7 +56,7 @@ test("sync: renders build-map + NOW and rewrites the CLAUDE.md profile block", (
     assert.equal(r.code, 0, r.stderr);
     const map = JSON.parse(readFileSync(join(dir, "build-map.json"), "utf8"));
     assert.equal(map.current_level, 0);
-    assert.equal(map.member_count, 85, "Memescope selects 85 playbooks");
+    assert.equal(map.member_count, 87, "Memescope selects 87 playbooks");
     const now = readFileSync(join(dir, "NOW.md"), "utf8");
     assert.match(now, /Memescope/);
     const cm = readFileSync(join(dir, "CLAUDE.md"), "utf8");

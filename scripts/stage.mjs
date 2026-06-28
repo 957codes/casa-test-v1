@@ -49,11 +49,11 @@ function loadIndex() {
 // simply ignored (a business that does not select that playbook is unaffected).
 const CONSTRAINT_SURFACE = {
   regulatory_legal: ["kyc-aml-program", "tos-and-privacy-policy", "token-and-licensing-strategy", "security-baseline", "hardware-certification-and-compliance"],
-  no_revenue: ["pricing-research", "packaging-tier-design", "unit-economics", "pricing-page-copy-layout", "freemium-trial-decision"],
-  runway_burn: ["unit-economics", "financial-model-forecast", "pricing-research"],
+  no_revenue: ["pricing-research", "packaging-tier-design", "unit-economics", "pricing-page-copy-layout", "freemium-trial-decision", "ad-revenue-and-yield"],
+  runway_burn: ["unit-economics", "financial-model-forecast", "pricing-research", "ad-revenue-and-yield"],
   tech_scale: ["observability-setup", "incident-response", "data-backup-recovery", "security-baseline"],
-  no_users: ["problem-validation-interviews", "beachhead-selection", "landing-page-cro"],
-  hiring_capacity: [],
+  no_users: ["problem-validation-interviews", "beachhead-selection", "landing-page-cro", "marketplace-supply-acquisition", "hardware-preorder-demand-validation"],
+  hiring_capacity: ["hiring-and-org-scaling"],
 };
 
 // Cumulative milestone flags for a tier. "idea" is exclusive (nothing shipped yet);
@@ -172,15 +172,19 @@ export function deriveStage(answers, playbooks) {
 // leapfrog a do-or-die (existential) play in another department. The criticality fitFactor
 // (existential 1.5) plus a gentle tilt keeps the do-or-die work on top while still steering
 // toward the founder's north-star department. A founder's EXPLICIT pulse can go stronger.
+// Primary (north-star-central) department sits at 1.4 so the onboarding pulse can reorder WITHIN
+// the existential tier and bend which do-or-die play headlines (1.8 * 1.4 = 2.52). The cap is 1.4
+// by design: a higher tilt would let a core play (1.25) cross the existential floor (1.4 * 1.25 =
+// 1.75 < 1.8), which would bury do-or-die work. So existential always leads; the pulse picks which.
 const NS_DEPT = {
-  activation: { Product: 1.4, Data: 1.2, Growth: 1.1 },
-  engagement_retention: { Success: 1.4, Data: 1.35, Product: 1.15 },
-  revenue_mrr: { Finance: 1.35, Growth: 1.2, Success: 1.2 },
-  acquisition_growth: { Growth: 1.4, Data: 1.15 },
-  conversion: { Growth: 1.35, Product: 1.3, Data: 1.2 },
-  gmv_liquidity: { Growth: 1.35, Operations: 1.2, Data: 1.2 },
-  efficiency_unit_econ: { Finance: 1.4, Data: 1.25 },
-  local_reputation: { Growth: 1.35, Success: 1.3 },
+  activation: { Product: 1.4, Data: 1.25, Growth: 1.15 },
+  engagement_retention: { Success: 1.4, Data: 1.4, Product: 1.2 },
+  revenue_mrr: { Finance: 1.4, Growth: 1.25, Success: 1.25 },
+  acquisition_growth: { Growth: 1.4, Data: 1.2 },
+  conversion: { Growth: 1.4, Product: 1.35, Data: 1.25 },
+  gmv_liquidity: { Operations: 1.4, Growth: 1.4, Data: 1.25 },
+  efficiency_unit_econ: { Finance: 1.4, Data: 1.3 },
+  local_reputation: { Growth: 1.4, Success: 1.35 },
 };
 const CONSTRAINT_DELTA = {
   no_users: { Growth: 0.2, Strategy: 0.2 },
@@ -198,7 +202,9 @@ export function deriveInitialPulse(answers, playbooks) {
   if (nsa && NS_DEPT[nsa]) for (const [d, w] of Object.entries(NS_DEPT[nsa])) byDepartment[d] = w;
   const con = answers.constraint_archetype;
   if (con && CONSTRAINT_DELTA[con]) for (const [d, delta] of Object.entries(CONSTRAINT_DELTA[con])) byDepartment[d] = (byDepartment[d] ?? 1) + delta;
-  for (const d of Object.keys(byDepartment)) byDepartment[d] = clamp(byDepartment[d], 0.25, 2.0);
+  // Clamp the AUTO pulse to 1.4 so a constraint delta can never push a department high enough for a
+  // core play to leapfrog an existential one. A founder's EXPLICIT pulse (pulse.json) is not bound here.
+  for (const d of Object.keys(byDepartment)) byDepartment[d] = clamp(byDepartment[d], 0.25, 1.4);
   const ids = new Set(playbooks.map((p) => p.id));
   const demote_ids = (answers.anti_priorities || []).filter((ap) => ids.has(ap));
   const weights = { default: 1 };

@@ -14,6 +14,7 @@ applies_to:
 relevance: recommended
 department: Growth
 criticality: growth
+model_fit: [self_serve]
 selection_hint: Run for a consumer mobile app around launch. The store listing is the top of the mobile funnel; optimize it before spending on installs.
 depends_on: []
 soft_after:

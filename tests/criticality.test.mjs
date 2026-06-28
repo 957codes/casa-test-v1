@@ -19,8 +19,10 @@ test("score: backward compatible when fit is absent (no behavior change for exis
   const pb = find("north-star-metric");
   // identical inputs, with and without the 5th arg omitted, are equal and deterministic
   assert.equal(score(pb, 0, flags, null), score(pb, 0, flags, null, undefined));
-  // the pre-fit formula: lev * urgency * rev / eff (north-star-metric is not revenue-blocking)
-  const expected = Math.round((4 * 1.3 * 1 / 1.3) * 1000) / 1000; // critical leverage, slack 0
+  // the pre-fit formula: lev * urgency * rev / eff (computed from the playbook's own fields so the
+  // assertion does not break when a playbook is re-tuned; north-star-metric is not revenue-blocking)
+  const LEV = { critical: 4, high: 3, med: 2, low: 1 }, EFF = { S: 1, M: 1.3, L: 1.7, XL: 2.2 };
+  const expected = Math.round((LEV[pb.leverage] * 1.3 * 1 / EFF[pb.effort]) * 1000) / 1000; // slack 0
   assert.equal(score(pb, 0, flags, null), expected);
 });
 

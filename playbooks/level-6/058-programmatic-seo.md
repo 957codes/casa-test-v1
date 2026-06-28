@@ -13,6 +13,7 @@ applies_to:
 relevance: conditional
 department: Growth
 criticality: growth
+model_fit: [self_serve]
 selection_hint: Only when a keyword pattern has aggregate volume and a unique dataset can populate 100+ genuinely distinct pages. Scale only post-PMF; thin pages at scale risk sitewide deindexation.
 depends_on:
   - seo-keyword-research

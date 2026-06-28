@@ -959,5 +959,36 @@
     "model_fit": [
       "physical_goods"
     ]
+  },
+  {
+    "id": "hiring-and-org-scaling",
+    "department": "Operations",
+    "criticality": "core",
+    "existential_at": [
+      "scaling"
+    ],
+    "model_fit": []
+  },
+  {
+    "id": "account-expansion-and-upsell",
+    "department": "Sales",
+    "criticality": "core",
+    "existential_at": [
+      "scaling"
+    ],
+    "model_fit": [
+      "recurring",
+      "sales_led"
+    ]
+  },
+  {
+    "id": "services-delivery-and-utilization",
+    "department": "Operations",
+    "criticality": "core",
+    "existential_at": [
+      "revenue",
+      "scaling"
+    ],
+    "model_fit": []
   }
 ]

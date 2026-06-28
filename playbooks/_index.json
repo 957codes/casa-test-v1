@@ -1,6 +1,6 @@
 {
   "schema": "docs/PLAYBOOK-SCHEMA.md",
-  "count": 124,
+  "count": 127,
   "playbooks": [
     {
       "id": "opportunity-scan",
@@ -1342,7 +1342,7 @@
         "event_taxonomy"
       ],
       "effort": "M",
-      "leverage": "critical",
+      "leverage": "high",
       "reversibility": "medium",
       "human_gate": false,
       "blocks_revenue": false,
@@ -2061,7 +2061,9 @@
       "department": "Growth",
       "criticality": "growth",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [
+        "self_serve"
+      ]
     },
     {
       "id": "hacker-news-launch",
@@ -2109,7 +2111,9 @@
       "department": "Growth",
       "criticality": "optional",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [
+        "self_serve"
+      ]
     },
     {
       "id": "pr-press-launch",
@@ -2263,7 +2267,9 @@
       "department": "Growth",
       "criticality": "growth",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [
+        "self_serve"
+      ]
     },
     {
       "id": "content-calendar",
@@ -2303,7 +2309,9 @@
       "department": "Growth",
       "criticality": "growth",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [
+        "self_serve"
+      ]
     },
     {
       "id": "pillar-cluster-content",
@@ -2344,7 +2352,9 @@
       "department": "Growth",
       "criticality": "growth",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [
+        "self_serve"
+      ]
     },
     {
       "id": "long-form-blog-post",
@@ -2385,7 +2395,9 @@
       "department": "Growth",
       "criticality": "growth",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [
+        "self_serve"
+      ]
     },
     {
       "id": "programmatic-seo",
@@ -2426,7 +2438,9 @@
       "department": "Growth",
       "criticality": "growth",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [
+        "self_serve"
+      ]
     },
     {
       "id": "technical-seo-audit",
@@ -2463,7 +2477,9 @@
       "department": "Growth",
       "criticality": "growth",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [
+        "self_serve"
+      ]
     },
     {
       "id": "link-building",
@@ -2504,7 +2520,9 @@
       "department": "Growth",
       "criticality": "growth",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [
+        "self_serve"
+      ]
     },
     {
       "id": "newsletter-growth",
@@ -2539,7 +2557,9 @@
       "department": "Growth",
       "criticality": "growth",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [
+        "self_serve"
+      ]
     },
     {
       "id": "youtube-strategy",
@@ -2577,7 +2597,9 @@
       "department": "Growth",
       "criticality": "optional",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [
+        "self_serve"
+      ]
     },
     {
       "id": "tiktok-growth",
@@ -2619,7 +2641,9 @@
       "department": "Growth",
       "criticality": "optional",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [
+        "self_serve"
+      ]
     },
     {
       "id": "twitter-x-playbook",
@@ -2657,7 +2681,9 @@
       "department": "Growth",
       "criticality": "optional",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [
+        "self_serve"
+      ]
     },
     {
       "id": "linkedin-organic",
@@ -2700,7 +2726,9 @@
       "department": "Growth",
       "criticality": "optional",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [
+        "self_serve"
+      ]
     },
     {
       "id": "instagram-growth",
@@ -2742,7 +2770,9 @@
       "department": "Growth",
       "criticality": "optional",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [
+        "self_serve"
+      ]
     },
     {
       "id": "reddit-marketing",
@@ -2779,7 +2809,9 @@
       "department": "Growth",
       "criticality": "optional",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [
+        "self_serve"
+      ]
     },
     {
       "id": "google-ads",
@@ -2919,7 +2951,9 @@
       "department": "Growth",
       "criticality": "optional",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [
+        "sales_led"
+      ]
     },
     {
       "id": "retargeting",
@@ -3043,7 +3077,9 @@
       "department": "Growth",
       "criticality": "growth",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [
+        "self_serve"
+      ]
     },
     {
       "id": "affiliate-program-setup",
@@ -3465,7 +3501,9 @@
       "department": "Sales",
       "criticality": "core",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [
+        "sales_led"
+      ]
     },
     {
       "id": "outbound-email-sequences",
@@ -3514,7 +3552,9 @@
       "department": "Sales",
       "criticality": "core",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [
+        "sales_led"
+      ]
     },
     {
       "id": "discovery-call-framework",
@@ -3563,7 +3603,9 @@
       "department": "Sales",
       "criticality": "core",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [
+        "sales_led"
+      ]
     },
     {
       "id": "demo-script",
@@ -3610,7 +3652,9 @@
       "department": "Sales",
       "criticality": "core",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [
+        "sales_led"
+      ]
     },
     {
       "id": "objection-handling-library",
@@ -3656,7 +3700,9 @@
       "department": "Sales",
       "criticality": "growth",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [
+        "sales_led"
+      ]
     },
     {
       "id": "contract-close-playbook",
@@ -3707,7 +3753,9 @@
       "department": "Sales",
       "criticality": "existential",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [
+        "sales_led"
+      ]
     },
     {
       "id": "support-workflow",
@@ -4459,7 +4507,9 @@
       "department": "Growth",
       "criticality": "growth",
       "existential_at": [],
-      "model_fit": []
+      "model_fit": [
+        "self_serve"
+      ]
     },
     {
       "id": "pre-seed-fundraise",
@@ -5225,6 +5275,125 @@
       "model_fit": [
         "physical_goods"
       ]
+    },
+    {
+      "id": "hiring-and-org-scaling",
+      "title": "Hiring and Org Scaling",
+      "level": 6,
+      "file": "playbooks/level-6/125-hiring-and-org-scaling.md",
+      "applies_to": {
+        "types": [
+          "*"
+        ],
+        "requires_traits": [],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "The ready target the moment the founder's do-or-die constraint is hiring capacity. Run when product and demand work but headcount caps output; skip while the team is still finding the product.",
+      "depends_on": [],
+      "soft_after": [],
+      "produces": [
+        "hiring_plan"
+      ],
+      "consumes": [],
+      "effort": "L",
+      "leverage": "high",
+      "reversibility": "medium",
+      "human_gate": true,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "org-scaling-live",
+      "department": "Operations",
+      "criticality": "core",
+      "existential_at": [
+        "scaling"
+      ],
+      "model_fit": []
+    },
+    {
+      "id": "account-expansion-and-upsell",
+      "title": "Account Expansion and Upsell",
+      "level": 6,
+      "file": "playbooks/level-6/126-account-expansion-and-upsell.md",
+      "applies_to": {
+        "types": [
+          "saas",
+          "marketplace",
+          "b2b-service",
+          "crypto"
+        ],
+        "requires_traits": [
+          "recurring_revenue"
+        ],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "The offense side of net revenue retention. Run once there is recurring revenue and a retained base; the cheapest revenue is expansion inside accounts the company already serves. Distinct from churn defense.",
+      "depends_on": [],
+      "soft_after": [],
+      "produces": [
+        "expansion_motion"
+      ],
+      "consumes": [
+        "retention_report"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "expansion-motion-live",
+      "department": "Sales",
+      "criticality": "core",
+      "existential_at": [
+        "scaling"
+      ],
+      "model_fit": [
+        "recurring",
+        "sales_led"
+      ]
+    },
+    {
+      "id": "services-delivery-and-utilization",
+      "title": "Services Delivery and Utilization",
+      "level": 5,
+      "file": "playbooks/level-5/127-services-delivery-and-utilization.md",
+      "applies_to": {
+        "types": [
+          "b2b-service"
+        ],
+        "requires_traits": [],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "The operating core of a services firm. Run once the business delivers paid engagements; billable utilization is the metric the whole business turns on, so this is monitored, not a one-time setup.",
+      "depends_on": [],
+      "soft_after": [],
+      "produces": [
+        "delivery_ops"
+      ],
+      "consumes": [],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "medium",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "delivery-ops-live",
+      "department": "Operations",
+      "criticality": "core",
+      "existential_at": [
+        "revenue",
+        "scaling"
+      ],
+      "model_fit": []
     }
   ]
 }

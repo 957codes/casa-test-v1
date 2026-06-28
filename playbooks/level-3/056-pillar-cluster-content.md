@@ -12,6 +12,7 @@ applies_to:
 relevance: recommended
 department: Growth
 criticality: growth
+model_fit: [self_serve]
 selection_hint: Use to build topical authority on a target domain. Run after keywords exist; produces the linkable long-form assets later channels and link-building depend on.
 depends_on:
   - seo-keyword-research

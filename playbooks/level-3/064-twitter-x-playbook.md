@@ -12,6 +12,7 @@ applies_to:
 relevance: optional
 department: Growth
 criticality: optional
+model_fit: [self_serve]
 selection_hint: Real-time audience and reply-surface channel; strong for founder-led and tech audiences. Run continuously where the ICP is active on X.
 depends_on: []
 soft_after:

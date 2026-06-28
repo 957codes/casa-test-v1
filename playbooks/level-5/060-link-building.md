@@ -12,6 +12,7 @@ applies_to:
 relevance: recommended
 department: Growth
 criticality: growth
+model_fit: [self_serve]
 selection_hint: Run once long-form linkable assets exist and a domain is warmed. Safe earlier, but compounds best post-PMF. Never outreach without a linkable asset to point at.
 depends_on:
   - long-form-blog-post

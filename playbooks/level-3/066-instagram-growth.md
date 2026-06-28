@@ -16,6 +16,7 @@ applies_to:
 relevance: conditional
 department: Growth
 criticality: optional
+model_fit: [self_serve]
 selection_hint: B2C / consumer channel. Reels-first acquisition with DM funnels replacing link-in-bio. Skip for pure B2B; run continuously when the audience is on Instagram.
 depends_on: []
 soft_after:

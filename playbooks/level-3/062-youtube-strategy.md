@@ -12,6 +12,7 @@ applies_to:
 relevance: optional
 department: Growth
 criticality: optional
+model_fit: [self_serve]
 selection_hint: A compounding video channel where packaging and retention drive distribution. Run continuously if video fits the audience and the team can sustain production.
 depends_on: []
 soft_after:

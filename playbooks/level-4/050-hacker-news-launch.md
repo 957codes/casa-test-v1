@@ -18,6 +18,7 @@ applies_to:
 relevance: optional
 department: Growth
 criticality: optional
+model_fit: [self_serve]
 selection_hint: Run under the launch plan only when the product appeals to a technical audience and the submitting account is aged. Skip for non-technical B2C.
 depends_on:
   - launch-plan-t90

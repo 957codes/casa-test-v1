@@ -12,6 +12,7 @@ applies_to:
 relevance: recommended
 department: Growth
 criticality: growth
+model_fit: [self_serve]
 selection_hint: "Run on a live page with traffic or qualitative signal. The pre-flight gate for paid: scaling spend onto an unoptimized page wastes budget."
 depends_on: []
 soft_after:

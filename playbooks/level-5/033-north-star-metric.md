@@ -25,7 +25,7 @@ consumes:
   - analytics_stack
   - event_taxonomy
 effort: M
-leverage: critical
+leverage: high
 reversibility: medium
 human_gate: false
 blocks_revenue: false
