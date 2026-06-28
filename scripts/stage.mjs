@@ -92,8 +92,11 @@ export function deriveStage(answers, playbooks) {
   // has_repo / has_deployed_app / has_datastore. A non-software business does not.
   const builds = (answers.traits || []).includes("builds_software");
   const traitSet = new Set([...(answers.traits || []), ...milestoneFlags(answers.tier)]);
-  // Flags that imply a codebase or a running app only apply to a software business.
-  if (!builds) for (const f of ["has_repo", "has_deployed_app", "has_datastore", "has_user_accounts", "has_live_traffic"]) traitSet.delete(f);
+  // Only the flags that imply an actual codebase are software-exclusive. has_user_accounts
+  // and has_live_traffic are NOT: a launched store or local business genuinely has customer
+  // accounts and live traffic, so stripping them wrongly dead-ended traffic/account-gated
+  // loops (ab-testing) for non-software businesses.
+  if (!builds) for (const f of ["has_repo", "has_deployed_app", "has_datastore"]) traitSet.delete(f);
   const traits = [...traitSet];
 
   const profile = {

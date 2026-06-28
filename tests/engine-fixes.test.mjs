@@ -61,24 +61,41 @@ test("membership: software-ops playbooks are not members of a non-software busin
   }
 });
 
-test("reachability: a non-software revenue b2c business has no permanently-dead members", () => {
-  // The state/artifact reconciliation (flag-minting + producible-bypass) must leave no
-  // member that can never become ready across the full level climb. This was 18-41%.
-  const a = { type: "ecommerce", traits: ["b2c", "takes_payments", "recurring_revenue", "sends_email", "collects_user_data"], tier: "revenue", gaps: [] };
-  const { profile } = deriveStage(a, INDEX);
+// Run a from-scratch climb (re-derive every playbook up the ladder) and return the set of
+// members that are NEVER ready at any level. Includes recurring loops on purpose: a dead
+// loop is still a dead node the founder sees in the build map. opt-in state flags the
+// profile carries (e.g. runs_paid_media) are honored, so a loop that is merely conditional
+// on a choice the founder HAS made is reachable, not counted dead.
+function deadMembers(answers) {
+  const { profile } = deriveStage(answers, INDEX);
   const { members } = select(INDEX, profile);
   const byId = new Map(members.map((m) => [m.id, m]));
   const everReady = new Set();
   let completed = [];
-  for (let lvl = 0; lvl <= 8; lvl++) for (let pass = 0; pass < 6; pass++) {
+  for (let lvl = 0; lvl <= 8; lvl++) for (let pass = 0; pass < 8; pass++) {
     const acts = nextActions(INDEX, profile, { completed, level: lvl });
     for (const x of acts) everReady.add(x.id);
     const newly = acts.map((x) => x.id).filter((id) => !completed.includes(id) && !byId.get(id)?.recurring);
     if (!newly.length) break;
     completed = [...completed, ...newly];
   }
-  const dead = members.filter((m) => !everReady.has(m.id) && !m.recurring).map((m) => m.id);
-  assert.deepEqual(dead, [], `members never reachable: ${dead.join(", ")}`);
+  return members.filter((m) => !everReady.has(m.id)).map((m) => m.id);
+}
+
+test("reachability: no member (incl. recurring loops) is permanently unreachable for a full-featured non-software b2c business", () => {
+  // The state/artifact reconciliation (flag-minting + producible-bypass + by-level milestone
+  // grants + software-ops membership gating) must leave NO member that can never become ready
+  // across the full climb, recurring loops included. This was 18-41% dead; the loop residue
+  // (mixpanel-reading, incident-response, ab-testing, revenue loops) is now closed too. The
+  // profile carries the opt-in flags so conditional loops (attribution needs runs_paid_media)
+  // are reachable rather than falsely flagged.
+  const a = { type: "ecommerce", traits: ["b2c", "takes_payments", "recurring_revenue", "sends_email", "collects_user_data", "runs_paid_media"], tier: "revenue", gaps: [] };
+  assert.deepEqual(deadMembers(a), [], "members never reachable");
+});
+
+test("reachability: holds for a full-featured software b2c business too (incl. loops)", () => {
+  const a = { type: "consumer", traits: ["b2c", "builds_software", "takes_payments", "recurring_revenue", "sends_email", "collects_user_data", "runs_paid_media"], tier: "revenue", gaps: [] };
+  assert.deepEqual(deadMembers(a), [], "members never reachable");
 });
 
 test("reachability: milestone flags mint their backing artifact (retention track unblocks)", () => {

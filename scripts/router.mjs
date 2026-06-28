@@ -29,9 +29,13 @@ const EFFORT_W = { S: 1, M: 1.3, L: 1.7, XL: 2.2 };
 const STATE_FLAGS = new Set([
   "pre_idea_only", "pre_launch_only", "pre_product_pre_customer", "pre_pmf", "pmf_achieved",
   "has_user_accounts", "has_paying_customers", "has_website", "has_deployed_app", "has_repo",
-  "has_datastore", "runs_paid_media", "uses_ga4", "uses_mixpanel", "has_landing_page",
+  "has_datastore", "runs_paid_media", "uses_ga4", "has_landing_page",
   "has_live_traffic", "has_live_customers", "has_revenue",
 ]);
+// uses_mixpanel is deliberately NOT a state flag: nothing grants it, so a tool-specific
+// reading loop gated on it would be a permanently-dead member of every business. It is a
+// static opt-in trait instead (a founder who runs Mixpanel declares it), so the loop is a
+// clean non-member until then. GA4 is the grantable default (via analytics-stack-setup).
 // completing a playbook grants these state flags
 const COMPLETION_FLAGS = {
   "hosting-deployment-setup": ["has_deployed_app", "has_repo", "has_datastore"],
@@ -55,6 +59,15 @@ function loadProfile(file) {
 function achievedFlags(profile, completed, level) {
   const f = new Set(arr(profile.traits).filter((t) => STATE_FLAGS.has(t)));
   for (const id of completed) for (const g of COMPLETION_FLAGS[id] || []) f.add(g);
+  // Reaching a level grants the milestone flags that level implies, so a company climbing
+  // up gains them even if it started below that tier. The level is the universal producer
+  // of a milestone: reaching "Launch" (4) means real users and traffic; reaching "First
+  // Customers" (5) means paying customers and revenue; "Scale" (6) means PMF. This is what
+  // lets a b2c business cross into has_paying_customers without the b2b contract-close
+  // playbook (its only graph producer). Codebase flags are NOT granted here: they come
+  // from the profile (software businesses only) so a non-software business never gains one.
+  if (level >= 4) { f.add("has_user_accounts"); f.add("has_live_traffic"); }
+  if (level >= 5) { f.add("has_paying_customers"); f.add("has_revenue"); f.add("has_live_customers"); }
   if (level >= 6) f.add("pmf_achieved");
   if (level < 4) f.add("pre_launch_only");
   if (level < 6) f.add("pre_pmf");

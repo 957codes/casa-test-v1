@@ -150,8 +150,8 @@ short, date entries, never delete the protocol).
   tests. casa-start, casa-next, and playbook-planner now call the engine; the LLM
   only does intake, disambiguation, and phrasing.
 - Dry-run passing: two sample profiles in examples/ produce personalized build
-  maps (b2c self-serve selects 81/100 and drops sales/enterprise with reasons;
-  b2b high-acv selects 97/100 and keeps them). Recommender advances correctly
+  maps (b2c self-serve selects 79/107 and drops sales/enterprise with reasons;
+  b2b high-acv selects 96/107 and keeps them). Recommender advances correctly
   L0 -> L1, writes build-map.json + NOW.md.
 - Brain state engine: scripts/brain.mjs (init, sync, complete, loop-ran).
   Progress lives in company-brain/state.json; everything else is rendered. sync
@@ -189,7 +189,7 @@ short, date entries, never delete the protocol).
   brain lifecycle + router + hook running on a simulated fresh clone (no npm install).
 - Test suite (2026-06-26): tests/ on Node's built-in runner (node --test, zero new
   deps, in keeping with the zero-dep runtime). 26 tests, all green. router unit
-  tests assert the golden build maps (b2b 97/100, b2c 81/100), topo+slack
+  tests assert the golden build maps (b2b 96/107, b2c 79/107), topo+slack
   invariants, whole-graph acyclicity, score monotonicity, and level/dep gating.
   brain + operate integration tests (subprocess over a temp brain) cover the
   init->sync->complete lifecycle, the L0->L1 advance, read-only Capx Pay spend
@@ -265,7 +265,27 @@ short, date entries, never delete the protocol).
   gating; the advisor owns the final relevance ranking + reasoning. Tested in
   tests/weights.test.mjs (weights move rankings). NOTE: pulse.json (founder priorities,
   drives recommendations) is a different thing from the casa-pulse skill (weekly KPI recap).
+- State/artifact reachability (2026-06-27, measured by the multi-agent quality test
+  57 -> 70 -> 79 -> 83): closed the dead-member problem where 18-41% of a business's
+  selected playbooks could never become ready. Two engine reconciliations in router.mjs:
+  (1) a milestone state flag mints its backing artifact (has_paying_customers ->
+  paying_customer), so a b2c business reaches its retention track though the only graph
+  producer is the b2b contract-close playbook; (2) a consumed input gates readiness only
+  when a member can produce it - a true orphan is ambient, not a permanent block; plus
+  by-level milestone grants in achievedFlags (reaching L4 grants user/traffic flags, L5
+  paying/revenue, L6 pmf), the universal producer a b2c climb needs. Catalog: software-ops
+  playbooks (observability, data-backup, security-baseline, incident-response, onboarding,
+  beta) now require builds_software so a non-software business never carries them as dead
+  nodes; welcome/transactional email drop the redundant has_user_accounts requirement;
+  onboarding-flow-design drops its circular has_user_accounts self-requirement; uses_mixpanel
+  is now a static opt-in trait (nothing grants it) so mixpanel-reading is a clean non-member,
+  not a dead one (GA4 is the grantable default). stage.mjs strips only the codebase flags
+  (has_repo/has_deployed_app/has_datastore) for non-software, keeping user/traffic flags.
+  Result: 0 permanently-unreachable members (recurring loops included) across 7 diverse
+  profiles, was 18-41%. selection_fit 63 -> 80, output_usefulness 67 -> 78. Golden member
+  counts shifted (b2b 97->96, b2c 80->79) as mixpanel-reading left universal membership.
+  Suite 76 tests, preflight 48, all green.
 - Next: a real interactive /casa-start in a live Claude Code session (the one test
-  only the user can run); Pay v0 BYO-key mode; publish prep (public repo + README +
-  disclaimer); then trait/milestone polish and the attest.metrics path.
+  only the user can run); the pulse cannot yet move the NOW headline (promote 2x loses to
+  the slack term) - the open pulse_effect/ranking work; Pay v0 BYO-key mode; publish prep.
 <!-- /CASA:AUTO:repo-status -->

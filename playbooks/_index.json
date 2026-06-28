@@ -1032,6 +1032,7 @@
           "*"
         ],
         "requires_traits": [
+          "builds_software",
           "has_deployed_app"
         ],
         "excluded_traits": [
