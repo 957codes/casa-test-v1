@@ -2164,7 +2164,8 @@
         ],
         "requires_traits": [],
         "excluded_traits": [
-          "local_service_only"
+          "local_service_only",
+          "high_acv"
         ]
       },
       "relevance": "optional",
@@ -2411,7 +2412,8 @@
         "requires_traits": [],
         "excluded_traits": [
           "pre_pmf",
-          "local_service_only"
+          "local_service_only",
+          "high_acv"
         ]
       },
       "relevance": "conditional",
@@ -2572,7 +2574,8 @@
         ],
         "requires_traits": [],
         "excluded_traits": [
-          "local_service_only"
+          "local_service_only",
+          "high_acv"
         ]
       },
       "relevance": "optional",
@@ -2785,7 +2788,8 @@
         ],
         "requires_traits": [],
         "excluded_traits": [
-          "local_service_only"
+          "local_service_only",
+          "high_acv"
         ]
       },
       "relevance": "optional",
@@ -4543,8 +4547,12 @@
       "recurring": false,
       "typical_milestone": "preseed-ready",
       "department": "Finance",
-      "criticality": "growth",
-      "existential_at": [],
+      "criticality": "core",
+      "existential_at": [
+        "landing",
+        "building",
+        "launched"
+      ],
       "model_fit": []
     },
     {

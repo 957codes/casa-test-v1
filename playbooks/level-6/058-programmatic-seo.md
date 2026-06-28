@@ -10,6 +10,7 @@ applies_to:
   excluded_traits:
     - pre_pmf
     - local_service_only
+    - high_acv
 relevance: conditional
 department: Growth
 criticality: growth

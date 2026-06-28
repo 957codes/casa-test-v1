@@ -11,7 +11,8 @@ applies_to:
   excluded_traits: []
 relevance: recommended
 department: Finance
-criticality: growth
+criticality: core
+existential_at: [landing, building, launched]
 selection_hint: Run early for a founder who intends to raise, before revenue or PMF exist. The pre-seed raise sells the team and the insight, not metrics; do not wait for traction the round does not require.
 depends_on: []
 soft_after:

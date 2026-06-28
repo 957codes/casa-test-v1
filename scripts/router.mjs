@@ -275,6 +275,22 @@ function fitFactor(pb, stage, models) {
   const cw = CRIT_W[effectiveCriticality(pb, stage)] ?? 1;
   return Math.min(FIT_CAP, Math.max(FIT_FLOOR, cw * modelFitW(pb, models)));
 }
+// The headline TIER decides the order of the ready set before the (pulse-weighted) score breaks
+// ties WITHIN a tier. This is what makes a do-or-die play reliably lead -- a multiplicative score
+// alone let a low-criticality but high-leverage/low-slack play edge an existential one. Tiers:
+//   3  the founder's explicit focus  (a hard promote or the seeded north-star promote, weight >= 2)
+//   2  existential (do-or-die at this stage)
+//   1  core (foundational)
+//   0  growth / optional (optimization)
+// So the founder's pulse and a hard override still reach #1 (tier 3), existential always leads the
+// rest, and the score personalizes the order inside each tier. PROMOTE_TIER_MIN matches the
+// promote_ids weight (2.5) and byId overrides, but not the gentle department tilt (<= 1.4).
+const PROMOTE_TIER_MIN = 2.0;
+function headlineTier(pb, stage, weights) {
+  if (priorityWeight(pb, weights) >= PROMOTE_TIER_MIN) return 3;
+  const c = effectiveCriticality(pb, stage);
+  return c === "existential" ? 2 : c === "core" ? 1 : 0;
+}
 
 // The unified fitness score. fit = { currentLevel, stage, models } is OPTIONAL: when absent
 // the result is byte-identical to the pre-fit score (every existing score unit test passes).
@@ -335,9 +351,11 @@ function nextActions(playbooks, profile, { completed = [], level = 0, weights = 
     .filter((pb) => ready(pb, ctx))
     .map((pb) => ({ id: pb.id, title: pb.title, level: pb.level, department: pb.department || null,
       score: score(pb, slack.get(pb.id), flags, weights, fit),
+      tier: headlineTier(pb, fit.stage, weights),
       effective_criticality: effectiveCriticality(pb, fit.stage),
       human_gate: pb.human_gate, blocks_revenue: pb.blocks_revenue, leverage: pb.leverage, effort: pb.effort }))
-    .sort((a, b) => b.score - a.score || levelKey(a.level) - levelKey(b.level) || (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
+    // tier first (do-or-die and the founder's focus lead), then the pulse-weighted score within tier
+    .sort((a, b) => b.tier - a.tier || b.score - a.score || levelKey(a.level) - levelKey(b.level) || (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
   return scored;
 }
 

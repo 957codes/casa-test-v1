@@ -9,6 +9,7 @@ applies_to:
   requires_traits: []
   excluded_traits:
     - local_service_only
+    - high_acv
 relevance: optional
 department: Growth
 criticality: optional

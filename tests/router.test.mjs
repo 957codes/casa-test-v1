@@ -1,7 +1,7 @@
 // Unit tests for the deterministic router engine (scripts/router.mjs).
 // These assert the graph math directly through the library exports, against the
 // real catalog (127 playbooks) and the two shipped example profiles. The numbers
-// here (101/127, 87/127) are the golden build maps; they are a tripwire for any
+// here (97/127, 87/127) are the golden build maps; they are a tripwire for any
 // unintended membership change.
 
 import { test } from "node:test";
@@ -14,10 +14,10 @@ const MEME = loadJson("examples/profile-solana-analytics.json"); // b2c, self_se
 
 // ---- select ----
 
-test("select: b2b high-acv profile selects 101/127", () => {
+test("select: b2b high-acv profile selects 97/127", () => {
   const { members, skipped } = select(INDEX, PROBE);
-  assert.equal(members.length, 101);
-  assert.equal(skipped.length, 26);
+  assert.equal(members.length, 97);
+  assert.equal(skipped.length, 30);
   assert.equal(members.length + skipped.length, INDEX.length);
 });
 
@@ -116,10 +116,12 @@ test("nextActions: at level 0 nothing above level 0 is recommended", () => {
   for (const a of acts) assert.ok(levelKey(a.level) <= 0, `${a.id} is above level 0`);
 });
 
-test("nextActions: results are sorted by score descending", () => {
+test("nextActions: results are sorted by tier then score", () => {
+  // do-or-die and the founder's focus lead (tier); the pulse-weighted score orders within a tier.
   const acts = nextActions(INDEX, PROBE, { completed: [], level: 0 });
   for (let i = 1; i < acts.length; i++) {
-    assert.ok(acts[i - 1].score >= acts[i].score, "score is non-increasing");
+    const prev = acts[i - 1], cur = acts[i];
+    assert.ok(prev.tier > cur.tier || (prev.tier === cur.tier && prev.score >= cur.score), "tier desc, then score desc within tier");
   }
 });
 

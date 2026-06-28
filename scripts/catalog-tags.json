@@ -349,14 +349,18 @@
     "department": "Growth",
     "criticality": "growth",
     "existential_at": [],
-    "model_fit": []
+    "model_fit": [
+      "self_serve"
+    ]
   },
   {
     "id": "hacker-news-launch",
     "department": "Growth",
     "criticality": "optional",
     "existential_at": [],
-    "model_fit": []
+    "model_fit": [
+      "self_serve"
+    ]
   },
   {
     "id": "pr-press-launch",
@@ -384,98 +388,126 @@
     "department": "Growth",
     "criticality": "growth",
     "existential_at": [],
-    "model_fit": []
+    "model_fit": [
+      "self_serve"
+    ]
   },
   {
     "id": "content-calendar",
     "department": "Growth",
     "criticality": "growth",
     "existential_at": [],
-    "model_fit": []
+    "model_fit": [
+      "self_serve"
+    ]
   },
   {
     "id": "pillar-cluster-content",
     "department": "Growth",
     "criticality": "growth",
     "existential_at": [],
-    "model_fit": []
+    "model_fit": [
+      "self_serve"
+    ]
   },
   {
     "id": "long-form-blog-post",
     "department": "Growth",
     "criticality": "growth",
     "existential_at": [],
-    "model_fit": []
+    "model_fit": [
+      "self_serve"
+    ]
   },
   {
     "id": "programmatic-seo",
     "department": "Growth",
     "criticality": "growth",
     "existential_at": [],
-    "model_fit": []
+    "model_fit": [
+      "self_serve"
+    ]
   },
   {
     "id": "technical-seo-audit",
     "department": "Growth",
     "criticality": "growth",
     "existential_at": [],
-    "model_fit": []
+    "model_fit": [
+      "self_serve"
+    ]
   },
   {
     "id": "link-building",
     "department": "Growth",
     "criticality": "growth",
     "existential_at": [],
-    "model_fit": []
+    "model_fit": [
+      "self_serve"
+    ]
   },
   {
     "id": "newsletter-growth",
     "department": "Growth",
     "criticality": "growth",
     "existential_at": [],
-    "model_fit": []
+    "model_fit": [
+      "self_serve"
+    ]
   },
   {
     "id": "youtube-strategy",
     "department": "Growth",
     "criticality": "optional",
     "existential_at": [],
-    "model_fit": []
+    "model_fit": [
+      "self_serve"
+    ]
   },
   {
     "id": "tiktok-growth",
     "department": "Growth",
     "criticality": "optional",
     "existential_at": [],
-    "model_fit": []
+    "model_fit": [
+      "self_serve"
+    ]
   },
   {
     "id": "twitter-x-playbook",
     "department": "Growth",
     "criticality": "optional",
     "existential_at": [],
-    "model_fit": []
+    "model_fit": [
+      "self_serve"
+    ]
   },
   {
     "id": "linkedin-organic",
     "department": "Growth",
     "criticality": "optional",
     "existential_at": [],
-    "model_fit": []
+    "model_fit": [
+      "self_serve"
+    ]
   },
   {
     "id": "instagram-growth",
     "department": "Growth",
     "criticality": "optional",
     "existential_at": [],
-    "model_fit": []
+    "model_fit": [
+      "self_serve"
+    ]
   },
   {
     "id": "reddit-marketing",
     "department": "Growth",
     "criticality": "optional",
     "existential_at": [],
-    "model_fit": []
+    "model_fit": [
+      "self_serve"
+    ]
   },
   {
     "id": "google-ads",
@@ -496,7 +528,9 @@
     "department": "Growth",
     "criticality": "optional",
     "existential_at": [],
-    "model_fit": []
+    "model_fit": [
+      "sales_led"
+    ]
   },
   {
     "id": "retargeting",
@@ -517,7 +551,9 @@
     "department": "Growth",
     "criticality": "growth",
     "existential_at": [],
-    "model_fit": []
+    "model_fit": [
+      "self_serve"
+    ]
   },
   {
     "id": "affiliate-program-setup",
@@ -587,42 +623,54 @@
     "department": "Sales",
     "criticality": "core",
     "existential_at": [],
-    "model_fit": []
+    "model_fit": [
+      "sales_led"
+    ]
   },
   {
     "id": "outbound-email-sequences",
     "department": "Sales",
     "criticality": "core",
     "existential_at": [],
-    "model_fit": []
+    "model_fit": [
+      "sales_led"
+    ]
   },
   {
     "id": "discovery-call-framework",
     "department": "Sales",
     "criticality": "core",
     "existential_at": [],
-    "model_fit": []
+    "model_fit": [
+      "sales_led"
+    ]
   },
   {
     "id": "demo-script",
     "department": "Sales",
     "criticality": "core",
     "existential_at": [],
-    "model_fit": []
+    "model_fit": [
+      "sales_led"
+    ]
   },
   {
     "id": "objection-handling-library",
     "department": "Sales",
     "criticality": "growth",
     "existential_at": [],
-    "model_fit": []
+    "model_fit": [
+      "sales_led"
+    ]
   },
   {
     "id": "contract-close-playbook",
     "department": "Sales",
     "criticality": "existential",
     "existential_at": [],
-    "model_fit": []
+    "model_fit": [
+      "sales_led"
+    ]
   },
   {
     "id": "support-workflow",
@@ -773,13 +821,19 @@
     "department": "Growth",
     "criticality": "growth",
     "existential_at": [],
-    "model_fit": []
+    "model_fit": [
+      "self_serve"
+    ]
   },
   {
     "id": "pre-seed-fundraise",
     "department": "Finance",
-    "criticality": "growth",
-    "existential_at": [],
+    "criticality": "core",
+    "existential_at": [
+      "landing",
+      "building",
+      "launched"
+    ],
     "model_fit": []
   },
   {
