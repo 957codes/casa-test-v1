@@ -60,3 +60,29 @@ test("nextActions: every action carries its department for the briefing", () => 
   const acts = nextActions(INDEX, MEME, { completed: [], level: 0 });
   for (const a of acts) assert.ok(typeof a.department === "string" && a.department.length > 0, `${a.id} has a department`);
 });
+
+// A revenue-stage consumer software business, used to assert the ranking behaviour.
+const CALMLY = deriveStage({ type: "consumer", traits: ["b2c", "builds_software", "takes_payments", "recurring_revenue", "sends_email", "collects_user_data"], tier: "revenue", gaps: [] }, INDEX);
+const CALMLY_STATE = { completed: CALMLY.completed_seed, level: CALMLY.start_level };
+
+test("score: leverage leads slack - a critical play outranks a high-leverage low-slack infra loop", () => {
+  // north-star-metric (critical) must rank above incident-response (high) by default for a
+  // revenue business, even though incident-response sits on a lower-slack path. The old
+  // 1/(slack+1) inverted this and made the infra loop the headline.
+  const acts = nextActions(INDEX, CALMLY.profile, CALMLY_STATE);
+  const rank = (id) => acts.findIndex((a) => a.id === id);
+  const ns = rank("north-star-metric"), ir = rank("incident-response");
+  assert.ok(ns >= 0 && ir >= 0, "both north-star-metric and incident-response are ready");
+  assert.ok(ns < ir, `critical north-star-metric (#${ns}) should outrank high incident-response (#${ir})`);
+});
+
+test("nextActions: a realistic pulse (promote_ids + department demote) steers the headline", () => {
+  // The synthesis found a 2x promote could not overcome the old steep slack term. With the
+  // gentle slack band a promote_ids entry plus a department demote moves the founder's focus
+  // to #1 - the pulse can finally steer NOW.md, not just reorder the tail.
+  const top0 = nextActions(INDEX, CALMLY.profile, CALMLY_STATE)[0].id;
+  const weights = { promote_ids: ["cohort-retention-analysis"], byDepartment: { Engineering: 0.4, Operations: 0.6 } };
+  const top1 = nextActions(INDEX, CALMLY.profile, { ...CALMLY_STATE, weights })[0].id;
+  assert.equal(top1, "cohort-retention-analysis", "the founder's promoted focus becomes the headline");
+  assert.notEqual(top1, top0, "the pulse changed the headline from the default");
+});

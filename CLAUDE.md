@@ -285,7 +285,16 @@ short, date entries, never delete the protocol).
   profiles, was 18-41%. selection_fit 63 -> 80, output_usefulness 67 -> 78. Golden member
   counts shifted (b2b 97->96, b2c 80->79) as mixpanel-reading left universal membership.
   Suite 76 tests, preflight 48, all green.
-- Next: a real interactive /casa-start in a live Claude Code session (the one test
-  only the user can run); the pulse cannot yet move the NOW headline (promote 2x loses to
-  the slack term) - the open pulse_effect/ranking work; Pay v0 BYO-key mode; publish prep.
+- Ranking rebalance (2026-06-27): the score let critical-path slack dominate leverage, so a
+  low-slack infra loop (incident-response) was the headline over a critical revenue play
+  (north-star-metric, unit-economics), and a pulse promote (2x) could not overcome the gap.
+  Replaced 1/(slack+1) with a gentle urgency band (1.3 -> 0.7 across SLACK_SPAN=10) so leverage
+  and the founder's pulse lead; slack only breaks ties and nudges true bottlenecks. promote_ids
+  bumped 2 -> 2.5. Now the default headline for a revenue business is north-star-metric (was #5),
+  and a realistic pulse (promote_ids + department demote) moves retention to #1 and pushes infra
+  off the top. All score/weights invariants preserved (strictly decreasing in slack, multiplicative
+  pulse, revenue boost). Two ranking tests added (weights.test.mjs). Suite 78 tests, preflight 48.
+- Next: a real interactive /casa-start in a live Claude Code session (the one test only the user
+  can run); department-tag accuracy (north-star-metric tags Operations, not Growth) so pulse dept
+  weights bite precisely; Pay v0 BYO-key mode; publish prep (public repo + README + disclaimer).
 <!-- /CASA:AUTO:repo-status -->

@@ -194,18 +194,26 @@ function priorityWeight(pb, w) {
   const has = (o, k) => o && Object.prototype.hasOwnProperty.call(o, k);
   if (has(w.byId, pb.id)) return w.byId[pb.id];
   if (Array.isArray(w.demote_ids) && w.demote_ids.includes(pb.id)) return 0.25;
-  if (Array.isArray(w.promote_ids) && w.promote_ids.includes(pb.id)) return 2;
+  if (Array.isArray(w.promote_ids) && w.promote_ids.includes(pb.id)) return 2.5;
   if (pb.department && has(w.byDepartment, pb.department)) return w.byDepartment[pb.department];
   if (has(w.byLevel, String(pb.level))) return w.byLevel[String(pb.level)];
   return w.default ?? 1;
 }
 
+// Slack at or above this gets the full low-urgency discount; below it, urgency ramps up.
+const SLACK_SPAN = 10;
 function score(pb, slack, flags, weights) {
   const lev = LEVERAGE_W[pb.leverage] || 2;
   const eff = EFFORT_W[pb.effort] || 1.3;
   const rev = pb.blocks_revenue && !flags.has("has_revenue") ? 1.5 : 1;
+  // Urgency from critical-path slack, but a GENTLE band so leverage leads. A zero-slack
+  // bottleneck gets ~1.3x, a very slack item ~0.7x. The old 1/(slack+1) was so steep that a
+  // low-slack infra loop (incident-response) buried a critical revenue play (north-star,
+  // unit-economics) and the pulse could not overcome the gap. Leverage and the founder's
+  // pulse now drive the ranking; slack only breaks ties and nudges true bottlenecks up.
+  const urgency = 1.3 - 0.6 * Math.min(Math.max(slack, 0) / SLACK_SPAN, 1);
   const pw = priorityWeight(pb, weights);
-  return Math.round((lev * (1 / (slack + 1)) * rev / eff * pw) * 1000) / 1000;
+  return Math.round((lev * urgency * rev / eff * pw) * 1000) / 1000;
 }
 
 function buildMap(playbooks, profile, { completed = [], level = 0 } = {}) {
