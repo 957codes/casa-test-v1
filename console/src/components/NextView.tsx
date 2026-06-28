@@ -1,11 +1,12 @@
-// The homepage: what to do next for THIS company, ranked by the engine (identical to /casa-next),
-// framed by the founder's actual win, binding constraint, and north star. It leads with do-or-die
-// work and never shows the wall of presumed-done basics. Clicking an action opens its node panel,
-// where the work actually happens.
+// The homepage: a SINGLE clear move framed by the founder's binding constraint and journey, not a
+// wall of co-equal emergencies. Ranked by the engine (identical to /casa-next). The journey ladder
+// and momentum are the connected "game" (the real company moving toward the win), and THE MOVE is
+// the one thing to do now. The rest queue below. Clicking opens the node panel, where work happens.
 
 import { company, type NextAction } from "../mockData";
 import { CriticalityBadge } from "./CriticalityBadge";
-import { ArrowRightIcon } from "./icons";
+import { JourneyBar } from "./JourneyBar";
+import { ArrowRightIcon, PlayIcon } from "./icons";
 
 function reasonLine(a: NextAction): string {
   const parts: string[] = [];
@@ -15,27 +16,54 @@ function reasonLine(a: NextAction): string {
   return parts.join(" / ");
 }
 
-function ActionCard({ action, index, onOpen }: { action: NextAction; index: number; onOpen: (id: string) => void }) {
+// THE MOVE: the single highest-leverage action, framed by the constraint it beats. Big, singular,
+// one CTA -- the antidote to "seven co-equal existential emergencies".
+function TheMove({ action, constraint, onOpen }: { action: NextAction; constraint: string | null; onOpen: (id: string) => void }) {
+  const reason = reasonLine(action);
+  return (
+    <section className="rounded-xl border border-agent-100 bg-agent-50/40 p-5 shadow-card">
+      <div className="flex items-center gap-2">
+        <span className="font-mono text-[10px] uppercase tracking-wider text-agent-700">Your move now</span>
+        {constraint && (
+          <span className="font-mono text-[10px] text-ink-400">to beat: {constraint}</span>
+        )}
+      </div>
+      <div className="mt-2 flex flex-wrap items-center gap-2">
+        <h2 className="text-lg font-semibold leading-tight text-ink-900">{action.title}</h2>
+        {action.criticality && <CriticalityBadge value={action.criticality} />}
+        <span className="rounded bg-canvas px-1.5 py-0.5 font-mono text-[9px] text-ink-500">{action.owner}</span>
+      </div>
+      {reason && <p className="mt-1.5 text-xs leading-relaxed text-ink-600">{reason}.</p>}
+      <button
+        type="button"
+        onClick={() => onOpen(action.id)}
+        className="mt-4 inline-flex items-center gap-2 rounded-lg bg-agent-500 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-agent-600"
+      >
+        <PlayIcon width={15} height={15} />
+        Start this
+      </button>
+    </section>
+  );
+}
+
+function QueueCard({ action, index, onOpen }: { action: NextAction; index: number; onOpen: (id: string) => void }) {
   const reason = reasonLine(action);
   return (
     <button
       type="button"
       onClick={() => onOpen(action.id)}
-      className="group flex w-full items-start gap-4 rounded-xl border border-line bg-surface px-5 py-4 text-left shadow-card transition-colors hover:border-line-strong hover:bg-canvas"
+      className="group flex w-full items-start gap-4 rounded-xl border border-line bg-surface px-5 py-3.5 text-left shadow-card transition-colors hover:border-line-strong hover:bg-canvas"
     >
       <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-canvas font-mono text-2xs font-semibold tabular text-ink-400 group-hover:bg-surface">
-        {index + 1}
+        {index + 2}
       </span>
       <span className="min-w-0 flex-1">
         <span className="flex flex-wrap items-center gap-2">
-          <span className="text-sm font-semibold text-ink-900">{action.title}</span>
+          <span className="text-sm font-medium text-ink-900">{action.title}</span>
           {action.criticality && <CriticalityBadge value={action.criticality} />}
           <span className="rounded bg-canvas px-1.5 py-0.5 font-mono text-[9px] text-ink-400">{action.owner}</span>
         </span>
-        <span className="mt-1 block text-2xs leading-relaxed text-ink-500">
-          {action.criticalityLabel}
-          {reason && <span className="text-ink-400">. {reason}.</span>}
-        </span>
+        {reason && <span className="mt-1 block text-2xs leading-relaxed text-ink-400">{reason}.</span>}
       </span>
       <span className="mt-0.5 hidden shrink-0 items-center gap-1 self-center rounded-md border border-line px-2.5 py-1 text-xs font-medium text-ink-600 sm:inline-flex group-hover:text-ink-900">
         Open
@@ -45,56 +73,57 @@ function ActionCard({ action, index, onOpen }: { action: NextAction; index: numb
   );
 }
 
-function FocusChip({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="rounded-lg border border-line bg-surface px-3.5 py-2.5">
-      <div className="font-mono text-[10px] uppercase tracking-wider text-ink-400">{label}</div>
-      <div className="mt-0.5 text-xs font-medium leading-snug text-ink-800">{value}</div>
-    </div>
-  );
-}
-
 export function NextView({ onOpenTask }: { onOpenTask: (id: string) => void }) {
   const actions = company.nextActions || [];
-  const focus = company.focus;
-  const northStarValue = focus?.northStar
-    ? focus.northStar + (focus.northStarMature ? ` (toward ${focus.northStarMature})` : "")
-    : null;
+  const journey = company.journey;
+  const constraint = company.focus?.constraint ?? null;
+  const move = actions[0] || null;
+  const rest = actions.slice(1, 9);
+
   return (
     <div className="scroll-thin h-full overflow-y-auto bg-canvas">
       <div className="mx-auto max-w-3xl px-8 py-8">
         <div className="mb-5">
-          <h1 className="text-xl font-semibold text-ink-900">What to do next</h1>
+          <h1 className="text-xl font-semibold text-ink-900">{company.name || "Your company"}</h1>
           <p className="mt-1 text-sm text-ink-500">
-            The highest-leverage work for {company.name || "your company"} right now, in order. Open any
-            item to run it, approve it, or hand it to an agent.
+            One move at a time. Here is the highest-leverage thing to do now, and where it sits on the
+            path to your win.
           </p>
         </div>
 
-        {focus && (focus.win || focus.constraint || northStarValue) && (
-          <div className="mb-6 grid grid-cols-1 gap-2.5 sm:grid-cols-3">
-            {focus.win && <FocusChip label="Your win" value={focus.win} />}
-            {focus.constraint && <FocusChip label="Binding constraint" value={focus.constraint} />}
-            {northStarValue && <FocusChip label="North star" value={northStarValue} />}
+        {journey && (
+          <div className="mb-6">
+            <JourneyBar journey={journey} health={company.health?.overall} />
           </div>
         )}
 
-        <div className="space-y-2.5">
-          {actions.length === 0 && (
-            <div className="rounded-xl border border-line bg-surface px-5 py-6 text-center text-2xs text-ink-400 shadow-card">
-              Nothing is ready right now. Advance the current level, or open the Build map to see what is
-              waiting on earlier work.
+        {move ? (
+          <TheMove action={move} constraint={constraint} onOpen={onOpenTask} />
+        ) : (
+          <div className="rounded-xl border border-line bg-surface px-5 py-6 text-center text-2xs text-ink-400 shadow-card">
+            Nothing is ready right now. Advance the current level, or open the Build map to see what is
+            waiting on earlier work.
+          </div>
+        )}
+
+        {rest.length > 0 && (
+          <div className="mt-6">
+            <div className="mb-2.5 flex items-center justify-between">
+              <h3 className="text-sm font-semibold text-ink-900">Also ready</h3>
+              <span className="font-mono text-2xs text-ink-400">do after your move, or in parallel</span>
             </div>
-          )}
-          {actions.slice(0, 12).map((a, i) => (
-            <ActionCard key={a.id} action={a} index={i} onOpen={onOpenTask} />
-          ))}
-        </div>
+            <div className="space-y-2.5">
+              {rest.map((a, i) => (
+                <QueueCard key={a.id} action={a} index={i} onOpen={onOpenTask} />
+              ))}
+            </div>
+          </div>
+        )}
 
         {actions.length > 0 && (
           <p className="mt-6 text-2xs text-ink-400">
-            Ranked by the same engine as /casa-next. Work you marked as already done lives in the Build
-            map, labeled as assumed until Casa verifies it.
+            Ranked by the same engine as /casa-next, led by your binding constraint. Work you marked as
+            already done lives in the Build map, labeled assumed until Casa verifies it.
           </p>
         )}
       </div>

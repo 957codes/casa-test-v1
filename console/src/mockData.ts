@@ -105,6 +105,23 @@ export interface Focus {
   northStarMature: string | null;
 }
 
+// The connected "game": a band ladder toward the founder's win with the current rung lit, the
+// metric to move now, and honest momentum (real plays shipped). Every cue is tied to the real
+// company, never generic XP.
+export interface JourneyRung { key: string; label: string; blurb: string; reached: boolean; current: boolean }
+export interface Journey {
+  band: string;
+  bandLabel: string;
+  metric: string | null;
+  win: string | null;
+  ladder: JourneyRung[];
+  nextBand: string | null;
+  shipped: number;
+  assumed: number;
+  total: number;
+  momentumPct: number;
+}
+
 export interface Company {
   name: string;
   oneLiner: string;
@@ -118,6 +135,7 @@ export interface Company {
   currentLevel?: number;
   nextActions?: NextAction[];
   focus?: Focus;
+  journey?: Journey;
   health?: CompanyHealth;
   loops?: LoopStatus[];
   spend?: SpendPanel;

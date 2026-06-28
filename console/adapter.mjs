@@ -214,6 +214,33 @@ export function toFoundry(brain, enrich = {}) {
     northStarMature: ns && ns.band !== "scale" ? ns.mature_growth_label : null,
   };
 
+  // Journey: the connected "game". A four-rung band ladder toward the founder's win, the current
+  // rung lit, plus HONEST momentum (verified plays shipped + assumed-from-stage). Every cue ties to
+  // the real north star and win, never generic XP, so progress feels like the company moving, not a
+  // points meter. The current band's metric is the one number to move now.
+  const BANDS = [
+    { key: "validation", label: "Validation", blurb: "prove someone wants it" },
+    { key: "activation", label: "Activation", blurb: "get users to first value" },
+    { key: "retention", label: "Retention", blurb: "keep them coming back" },
+    { key: "scale", label: "Scale", blurb: "grow what works" },
+  ];
+  const curBand = (ns && ns.band) || "validation";
+  const curIdx = Math.max(0, BANDS.findIndex((b) => b.key === curBand));
+  const shipped = tasks.filter((t) => t.verified).length;
+  const assumedCount = tasks.filter((t) => t.assumed).length;
+  const journey = {
+    band: curBand,
+    bandLabel: BANDS[curIdx].label,
+    metric: ns ? ns.label : null,
+    win: pulse.win || null,
+    ladder: BANDS.map((b, i) => ({ key: b.key, label: b.label, blurb: b.blurb, reached: i < curIdx, current: i === curIdx })),
+    nextBand: BANDS[curIdx + 1] ? BANDS[curIdx + 1].label : null,
+    shipped,
+    assumed: assumedCount,
+    total: tasks.length,
+    momentumPct: tasks.length ? Math.round((100 * (shipped + assumedCount)) / tasks.length) : 0,
+  };
+
   const health = computeHealth(tasks, stages, loops);
   // Loops sorted for the view: due first, then soonest-next, eligible above locked.
   const loopsView = (loops || []).slice().sort((a, b) =>
@@ -237,6 +264,7 @@ export function toFoundry(brain, enrich = {}) {
     currentLevel: buildMap.current_level ?? 0,
     nextActions: nextActionsView,
     focus,
+    journey,
     health,
     loops: loopsView,
     spend: spendPanel,

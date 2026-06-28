@@ -159,6 +159,24 @@ test("toFoundry: nextActions carries the engine ranking and resolves unblocks to
   assert.deepEqual(a.unblocks, ["Market sizing"]); // id resolved to the downstream node's title
 });
 
+test("toFoundry: journey is a band ladder with the current rung lit and honest momentum", () => {
+  const brain = { buildMap: { ...HEALTH_MAP, active_north_star: { band: "activation", label: "match rate", mature_growth_label: "GMV" } }, profile: PROFILE };
+  const enrich = { ...ENRICH, outputs: new Set(["problem-validation-interviews"]), pulse: { win: "Win the niche" } };
+  const { company } = toFoundry(brain, enrich);
+  const j = company.journey;
+  assert.equal(j.band, "activation");
+  assert.equal(j.bandLabel, "Activation");
+  assert.equal(j.metric, "match rate");
+  assert.equal(j.win, "Win the niche");
+  assert.equal(j.ladder.length, 4);
+  assert.equal(j.ladder[0].reached, true);   // validation passed
+  assert.equal(j.ladder[1].current, true);   // activation is now
+  assert.equal(j.ladder[2].current, false);  // retention is future
+  assert.equal(j.nextBand, "Retention");
+  assert.equal(j.shipped, 2);                 // problem-validation (output) + market-sizing (score) -> verified
+  assert.ok(j.momentumPct >= 0 && j.momentumPct <= 100);
+});
+
 test("toFoundry: focus reads the founder's win and constraint and humanizes the constraint", () => {
   const brain = { buildMap: { ...HEALTH_MAP, active_north_star: { label: "match rate", band: "retention", mature_growth_label: "GMV" } }, profile: PROFILE };
   const enrich = { ...ENRICH, pulse: { win: "Tokenise agent-run companies", constraint: "no_users" } };
