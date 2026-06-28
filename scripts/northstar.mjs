@@ -119,9 +119,21 @@ export function band(level) {
 export function northStar(profile, level) {
   const mature = matureNorthStar(profile);
   const b = band(level);
+  const type = profile.primary_type || "";
+  const traits = new Set(profile.traits || []);
+  // The leading metric while pre-PMF is TYPE-AWARE, not a generic SaaS "activation rate": a
+  // marketplace watches matched transactions, a services firm utilization, a content/ads business
+  // engagement, a local business bookings. Default (saas/consumer/ecommerce/hardware) activates to
+  // first value. This is the fix for "a marketplace at building stage is told its metric is activation".
+  const activationMetric =
+    traits.has("local_service_only") ? "bookings" :
+    type === "marketplace" ? "match_rate" :
+    type === "b2b-service" ? "utilization" :
+    (type === "content" && profile.monetization !== "subscription") ? "dau_mau" :
+    "activation_rate";
   const metric =
     b === "validation" ? "validated_demand" :
-    b === "activation" ? "activation_rate" :
+    b === "activation" ? activationMetric :
     b === "retention" ? mature.retention :
     mature.growth;
   return {

@@ -52,12 +52,27 @@ const CONSTRAINT_SURFACE = {
   no_revenue: ["pricing-research", "packaging-tier-design", "unit-economics", "pricing-page-copy-layout", "freemium-trial-decision", "ad-revenue-and-yield"],
   runway_burn: ["unit-economics", "financial-model-forecast", "pricing-research", "ad-revenue-and-yield"],
   tech_scale: ["observability-setup", "incident-response", "data-backup-recovery", "security-baseline"],
-  // Forward-looking acquisition work, not backward L0 validation: an early company already has the
-  // validation plays ready (they are not seeded), and a revenue company should not be told to re-run
-  // problem-validation just because it declared a user shortage.
-  no_users: ["landing-page-cro", "funnel-analysis", "marketplace-supply-acquisition", "hardware-preorder-demand-validation", "referral-and-virality-loops"],
-  hiring_capacity: ["hiring-and-org-scaling"],
+  // Forward-looking acquisition work, not backward L0 validation. The EARLY plays (first-users-
+  // traction, beachhead) lead the list so a building/landing company with no users actually has
+  // ready, promoted user-getting work instead of having it seeded-done beneath its stage.
+  no_users: ["first-users-traction", "beachhead-selection", "landing-page-cro", "funnel-analysis", "marketplace-supply-acquisition", "hardware-preorder-demand-validation", "referral-and-virality-loops"],
+  hiring_capacity: ["hiring-and-org-scaling", "services-delivery-and-utilization"],
 };
+
+// Work a company has effectively DONE by reaching a stage, even though the play sits AT its current
+// level (so the level < start rule below does not catch it). A building company has chosen its stack
+// and deployed; a launched company has run its launch. Seeding these kills the leakage where Casa
+// tells a mid-build founder to "select a tech stack" or a live company to "plan a T-90 launch".
+const STAGE_SEED = {
+  building: ["tech-stack-selection", "hosting-deployment-setup"],
+  launched: ["launch-plan-t90", "product-hunt-launch", "beta-program-management", "pr-press-launch"],
+};
+function stageSeededIds(tier) {
+  const out = new Set();
+  const upto = TIERS.indexOf(tier);
+  for (let i = 0; i <= upto; i++) for (const id of STAGE_SEED[TIERS[i]] || []) out.add(id);
+  return out;
+}
 
 // Cumulative milestone flags for a tier. "idea" is exclusive (nothing shipped yet);
 // every other tier inherits the flags of the tiers beneath it.
@@ -149,12 +164,13 @@ export function deriveStage(answers, playbooks) {
   // Gaps the founder named that do not apply to this business (wrong type or trait): they
   // would be neither seeded nor surfaced, so flag them rather than dropping them silently.
   const gaps_not_applicable = [...gaps].filter((g) => !memberIds.has(g));
+  const stageDone = stageSeededIds(answers.tier);
   const completed_seed = members
     .filter(
       (m) =>
         m.level !== "always-on" && // Foundations gates are never auto-completed
         !m.recurring && // loops are never "done", they come due
-        levelKey(m.level) < start_level &&
+        (levelKey(m.level) < start_level || stageDone.has(m.id)) && // below stage, or done-by-reaching-stage
         !gaps.has(m.id) && // a named gap stays open as a catch-up item
         !surface.has(m.id) && // the founder's do-or-die constraint work stays visible
         // only mark done what the business could actually have done: its state-flag
@@ -228,7 +244,14 @@ export function deriveInitialPulse(answers, playbooks) {
   // The archetype's specific north-star plays are PROMOTED so the founder's declared focus actually
   // headlines (the department tilt alone could not cross the existential floor and the headline never
   // moved). Only real, member-eligible ids are kept.
-  const promote_ids = (nsa && NS_PROMOTE[nsa] ? NS_PROMOTE[nsa] : []).filter((id) => ids.has(id));
+  const nsPromote = (nsa && NS_PROMOTE[nsa] ? NS_PROMOTE[nsa] : []).filter((id) => ids.has(id));
+  // The BINDING CONSTRAINT promotes its own key plays too, not just a faint department tilt. This is
+  // the fix for the eval's #1 finding ("the constraint is decorative, not a sort key"): a no_users
+  // company headlines first-users/beachhead; a regulatory_legal company headlines KYC/licensing; a
+  // no_revenue company headlines pricing. The constraint plays lead the list (CONSTRAINT_SURFACE is
+  // already kept out of the seed), so the founder's do-or-die risk is the work, not a label.
+  const conPlays = (con && CONSTRAINT_SURFACE[con] ? CONSTRAINT_SURFACE[con] : []).filter((id) => ids.has(id));
+  const promote_ids = [...new Set([...conPlays, ...nsPromote])];
   const demote_ids = (answers.anti_priorities || []).filter((ap) => ids.has(ap));
   const weights = { default: 1 };
   if (Object.keys(byDepartment).length) weights.byDepartment = byDepartment;
