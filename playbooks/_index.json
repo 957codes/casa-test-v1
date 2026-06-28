@@ -1,6 +1,6 @@
 {
   "schema": "docs/PLAYBOOK-SCHEMA.md",
-  "count": 112,
+  "count": 122,
   "playbooks": [
     {
       "id": "opportunity-scan",
@@ -4703,6 +4703,439 @@
       "existential_at": [],
       "model_fit": [
         "physical_goods"
+      ]
+    },
+    {
+      "id": "activation-rate-optimization",
+      "title": "Activation Rate Optimization",
+      "level": 4,
+      "file": "playbooks/level-4/113-activation-rate-optimization.md",
+      "applies_to": {
+        "types": [
+          "saas",
+          "consumer",
+          "marketplace",
+          "content",
+          "crypto"
+        ],
+        "requires_traits": [
+          "builds_software"
+        ],
+        "excluded_traits": []
+      },
+      "relevance": "core",
+      "selection_hint": "The first compounding gate after launch. A launched product lives or dies on whether new users reach value, so this is the metric to watch once signups exist, not top-of-funnel acquisition.",
+      "depends_on": [
+        "event-taxonomy-design",
+        "first-run-aha-experience"
+      ],
+      "soft_after": [
+        "onboarding-flow-design"
+      ],
+      "produces": [
+        "activation_analysis"
+      ],
+      "consumes": [
+        "event_taxonomy",
+        "aha_definition"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "activation-optimized",
+      "department": "Data",
+      "criticality": "core",
+      "existential_at": [
+        "launched"
+      ],
+      "model_fit": [
+        "self_serve"
+      ]
+    },
+    {
+      "id": "first-run-aha-experience",
+      "title": "First-Run Aha Experience",
+      "level": 3,
+      "file": "playbooks/level-3/114-first-run-aha-experience.md",
+      "applies_to": {
+        "types": [
+          "saas",
+          "consumer",
+          "marketplace",
+          "content",
+          "crypto"
+        ],
+        "requires_traits": [
+          "builds_software"
+        ],
+        "excluded_traits": []
+      },
+      "relevance": "core",
+      "selection_hint": "Define the destination before building or measuring the path. Run once the PRD and core value are set, so onboarding design, activation optimization, and retention all measure against one aha.",
+      "depends_on": [
+        "prd-drafting"
+      ],
+      "soft_after": [],
+      "produces": [
+        "aha_definition",
+        "activation_milestone"
+      ],
+      "consumes": [
+        "prd"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "aha-defined",
+      "department": "Product",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": [
+        "self_serve"
+      ]
+    },
+    {
+      "id": "hardware-certification-and-compliance",
+      "title": "Hardware Certification & Compliance",
+      "level": 3,
+      "file": "playbooks/level-3/115-hardware-certification-and-compliance.md",
+      "applies_to": {
+        "types": [
+          "hardware"
+        ],
+        "requires_traits": [],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "A hard legal gate for selling physical product. An uncertified device cannot lawfully ship in its target markets, and shipping one risks seizure, recall, and liability. Start the testing early because lab queues and retests are slow.",
+      "depends_on": [
+        "hardware-prototyping-and-dfm"
+      ],
+      "soft_after": [],
+      "produces": [
+        "certifications"
+      ],
+      "consumes": [
+        "hardware_prototype"
+      ],
+      "effort": "L",
+      "leverage": "critical",
+      "reversibility": "hard",
+      "human_gate": true,
+      "blocks_revenue": true,
+      "recurring": false,
+      "typical_milestone": "certified-to-sell",
+      "department": "Legal",
+      "criticality": "existential",
+      "existential_at": [
+        "launched",
+        "revenue"
+      ],
+      "model_fit": [
+        "physical_goods"
+      ]
+    },
+    {
+      "id": "kyc-aml-program",
+      "title": "KYC/AML Program",
+      "level": 2,
+      "file": "playbooks/level-2/116-kyc-aml-program.md",
+      "applies_to": {
+        "types": [
+          "crypto"
+        ],
+        "requires_traits": [],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "The do-or-die gate for any crypto business that custodies or transmits customer value. No onboarding, deposit, or transfer can go live until identity verification, sanctions screening, and transaction monitoring are operating.",
+      "depends_on": [],
+      "soft_after": [
+        "entity-formation"
+      ],
+      "produces": [
+        "compliance_program"
+      ],
+      "consumes": [],
+      "effort": "L",
+      "leverage": "critical",
+      "reversibility": "hard",
+      "human_gate": true,
+      "blocks_revenue": true,
+      "recurring": false,
+      "typical_milestone": "compliance-program-live",
+      "department": "Legal",
+      "criticality": "existential",
+      "existential_at": [
+        "launched",
+        "revenue",
+        "scaling"
+      ],
+      "model_fit": [
+        "transactional"
+      ]
+    },
+    {
+      "id": "smart-contract-audit",
+      "title": "Smart Contract Audit",
+      "level": 3,
+      "file": "playbooks/level-3/117-smart-contract-audit.md",
+      "applies_to": {
+        "types": [
+          "crypto"
+        ],
+        "requires_traits": [
+          "builds_software"
+        ],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "The do-or-die gate before mainnet. A contract that holds user funds is unforgiving and immutable once deployed; an unaudited deploy is an unbounded loss waiting to happen. Run before any value-bearing contract ships.",
+      "depends_on": [],
+      "soft_after": [
+        "tech-stack-selection"
+      ],
+      "produces": [
+        "audit_report"
+      ],
+      "consumes": [],
+      "effort": "L",
+      "leverage": "critical",
+      "reversibility": "hard",
+      "human_gate": true,
+      "blocks_revenue": true,
+      "recurring": false,
+      "typical_milestone": "contracts-audited",
+      "department": "Engineering",
+      "criticality": "existential",
+      "existential_at": [
+        "building",
+        "launched",
+        "revenue"
+      ],
+      "model_fit": []
+    },
+    {
+      "id": "token-and-licensing-strategy",
+      "title": "Token & Licensing Strategy",
+      "level": 4,
+      "file": "playbooks/level-4/118-token-and-licensing-strategy.md",
+      "applies_to": {
+        "types": [
+          "crypto"
+        ],
+        "requires_traits": [],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "Decide the regulatory shape of the business, which licenses to hold or avoid, how the token is classified, and which jurisdictions to serve. Operating unlicensed where a license is required becomes existential at scale.",
+      "depends_on": [
+        "kyc-aml-program"
+      ],
+      "soft_after": [
+        "entity-formation"
+      ],
+      "produces": [
+        "licensing_plan"
+      ],
+      "consumes": [
+        "compliance_program"
+      ],
+      "effort": "L",
+      "leverage": "high",
+      "reversibility": "hard",
+      "human_gate": true,
+      "blocks_revenue": false,
+      "recurring": false,
+      "typical_milestone": "licensing-posture-set",
+      "department": "Legal",
+      "criticality": "core",
+      "existential_at": [
+        "scaling"
+      ],
+      "model_fit": [
+        "transactional"
+      ]
+    },
+    {
+      "id": "hardware-prototyping-and-dfm",
+      "title": "Hardware Prototyping & DFM",
+      "level": 2,
+      "file": "playbooks/level-2/119-hardware-prototyping-and-dfm.md",
+      "applies_to": {
+        "types": [
+          "hardware"
+        ],
+        "requires_traits": [],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "The first hardware build gate. No contract manufacturer, certification, or production quote is real until a working prototype and a costed, manufacturable BOM exist.",
+      "depends_on": [],
+      "soft_after": [],
+      "produces": [
+        "hardware_prototype",
+        "bom"
+      ],
+      "consumes": [],
+      "effort": "L",
+      "leverage": "high",
+      "reversibility": "medium",
+      "human_gate": false,
+      "blocks_revenue": true,
+      "recurring": false,
+      "typical_milestone": "prototype-validated",
+      "department": "Engineering",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": [
+        "physical_goods"
+      ]
+    },
+    {
+      "id": "contract-manufacturing-setup",
+      "title": "Contract Manufacturing Setup",
+      "level": 3,
+      "file": "playbooks/level-3/120-contract-manufacturing-setup.md",
+      "applies_to": {
+        "types": [
+          "hardware"
+        ],
+        "requires_traits": [],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "Run once a released design package and a costed BOM exist. Turns a validated design into repeatable units at volume. The tooling and CM choice are expensive to reverse, so qualify before you commit.",
+      "depends_on": [
+        "hardware-prototyping-and-dfm"
+      ],
+      "soft_after": [
+        "supplier-sourcing-and-cogs"
+      ],
+      "produces": [
+        "manufacturing_line"
+      ],
+      "consumes": [
+        "bom"
+      ],
+      "effort": "XL",
+      "leverage": "high",
+      "reversibility": "hard",
+      "human_gate": true,
+      "blocks_revenue": true,
+      "recurring": false,
+      "typical_milestone": "production-line-ready",
+      "department": "Operations",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": [
+        "physical_goods"
+      ]
+    },
+    {
+      "id": "dunning-and-involuntary-churn",
+      "title": "Dunning & Involuntary Churn Recovery",
+      "level": 5,
+      "file": "playbooks/level-5/121-dunning-and-involuntary-churn.md",
+      "applies_to": {
+        "types": [
+          "saas",
+          "consumer",
+          "ecommerce",
+          "content",
+          "marketplace",
+          "crypto"
+        ],
+        "requires_traits": [],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "Run once recurring charges are live. Involuntary churn (failed cards, not cancellations) is commonly 20 to 40 percent of total churn and the cheapest to recover, because the customer never chose to leave.",
+      "depends_on": [
+        "analytics-stack-setup"
+      ],
+      "soft_after": [
+        "churn-diagnosis-winback"
+      ],
+      "produces": [
+        "dunning_recovery"
+      ],
+      "consumes": [
+        "analytics_stack"
+      ],
+      "effort": "M",
+      "leverage": "high",
+      "reversibility": "easy",
+      "human_gate": false,
+      "blocks_revenue": false,
+      "recurring": true,
+      "typical_milestone": "retention-baselined",
+      "department": "Finance",
+      "criticality": "core",
+      "existential_at": [
+        "revenue",
+        "scaling"
+      ],
+      "model_fit": [
+        "recurring"
+      ]
+    },
+    {
+      "id": "marketplace-supply-acquisition",
+      "title": "Marketplace Supply Acquisition",
+      "level": 4,
+      "file": "playbooks/level-4/122-marketplace-supply-acquisition.md",
+      "applies_to": {
+        "types": [
+          "marketplace"
+        ],
+        "requires_traits": [],
+        "excluded_traits": [
+          "pre_idea_only"
+        ]
+      },
+      "relevance": "core",
+      "selection_hint": "The hard side of a marketplace. Supply (sellers, providers, hosts, creators) is usually the binding constraint; concentrate it in one beachhead so early demand always finds a fillable match.",
+      "depends_on": [],
+      "soft_after": [
+        "marketplace-trust-and-safety"
+      ],
+      "produces": [
+        "supply_pipeline"
+      ],
+      "consumes": [],
+      "effort": "L",
+      "leverage": "high",
+      "reversibility": "medium",
+      "human_gate": false,
+      "blocks_revenue": true,
+      "recurring": false,
+      "typical_milestone": "supply-onboarded",
+      "department": "Growth",
+      "criticality": "core",
+      "existential_at": [],
+      "model_fit": [
+        "marketplace"
       ]
     }
   ]

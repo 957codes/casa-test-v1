@@ -830,5 +830,111 @@
     "model_fit": [
       "physical_goods"
     ]
+  },
+  {
+    "id": "activation-rate-optimization",
+    "department": "Data",
+    "criticality": "core",
+    "existential_at": [
+      "launched"
+    ],
+    "model_fit": [
+      "self_serve"
+    ]
+  },
+  {
+    "id": "first-run-aha-experience",
+    "department": "Product",
+    "criticality": "core",
+    "existential_at": [],
+    "model_fit": [
+      "self_serve"
+    ]
+  },
+  {
+    "id": "hardware-certification-and-compliance",
+    "department": "Legal",
+    "criticality": "existential",
+    "existential_at": [
+      "launched",
+      "revenue"
+    ],
+    "model_fit": [
+      "physical_goods"
+    ]
+  },
+  {
+    "id": "kyc-aml-program",
+    "department": "Legal",
+    "criticality": "existential",
+    "existential_at": [
+      "launched",
+      "revenue",
+      "scaling"
+    ],
+    "model_fit": [
+      "transactional"
+    ]
+  },
+  {
+    "id": "smart-contract-audit",
+    "department": "Engineering",
+    "criticality": "existential",
+    "existential_at": [
+      "building",
+      "launched",
+      "revenue"
+    ],
+    "model_fit": []
+  },
+  {
+    "id": "token-and-licensing-strategy",
+    "department": "Legal",
+    "criticality": "core",
+    "existential_at": [
+      "scaling"
+    ],
+    "model_fit": [
+      "transactional"
+    ]
+  },
+  {
+    "id": "hardware-prototyping-and-dfm",
+    "department": "Engineering",
+    "criticality": "core",
+    "existential_at": [],
+    "model_fit": [
+      "physical_goods"
+    ]
+  },
+  {
+    "id": "contract-manufacturing-setup",
+    "department": "Operations",
+    "criticality": "core",
+    "existential_at": [],
+    "model_fit": [
+      "physical_goods"
+    ]
+  },
+  {
+    "id": "dunning-and-involuntary-churn",
+    "department": "Finance",
+    "criticality": "core",
+    "existential_at": [
+      "revenue",
+      "scaling"
+    ],
+    "model_fit": [
+      "recurring"
+    ]
+  },
+  {
+    "id": "marketplace-supply-acquisition",
+    "department": "Growth",
+    "criticality": "core",
+    "existential_at": [],
+    "model_fit": [
+      "marketplace"
+    ]
   }
 ]
