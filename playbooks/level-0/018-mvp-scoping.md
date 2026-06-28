@@ -6,7 +6,8 @@ summary: Cut the thinnest slice that delivers the core value, with explicit non-
 applies_to:
   types:
     - "*"
-  requires_traits: []
+  requires_traits:
+    - builds_software
   excluded_traits: []
 relevance: core
 selection_hint: Defines the smallest buildable product after the thesis survives red-teaming. Gates tech stack, positioning, and PRD.

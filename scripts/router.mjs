@@ -55,7 +55,7 @@ function loadProfile(file) {
 function achievedFlags(profile, completed, level) {
   const f = new Set(arr(profile.traits).filter((t) => STATE_FLAGS.has(t)));
   for (const id of completed) for (const g of COMPLETION_FLAGS[id] || []) f.add(g);
-  if (level >= 6 || completed.length > 30) f.add("pmf_achieved");
+  if (level >= 6) f.add("pmf_achieved");
   if (level < 4) f.add("pre_launch_only");
   if (level < 6) f.add("pre_pmf");
   if (level < 5) f.add("pre_product_pre_customer");
@@ -276,4 +276,4 @@ function main() {
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) main();
-export { select, sequence, score, buildMap, nextActions };
+export { select, sequence, score, buildMap, nextActions, STATE_FLAGS };

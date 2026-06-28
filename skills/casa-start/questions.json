@@ -115,6 +115,12 @@
           "sets_when_true": { "trait": "local_service_only" }
         },
         {
+          "id": "runs_paid_media",
+          "prompt": "Are you actively running paid acquisition right now (ads on Google, Meta, TikTok, and similar)?",
+          "kind": "boolean",
+          "sets_when_true": { "trait": "runs_paid_media" }
+        },
+        {
           "id": "runs_agents",
           "prompt": "Will AI agents run parts of this company autonomously, beyond you using AI tools yourself?",
           "kind": "boolean",
@@ -156,7 +162,8 @@
             { "label": "Set up hosting and deployment", "sets": { "gap": "hosting-deployment-setup" } },
             { "label": "Wired up analytics", "sets": { "gap": "analytics-stack-setup" } },
             { "label": "Done a basic security pass", "sets": { "gap": "security-baseline" } },
-            { "label": "Published terms of service and a privacy policy", "sets": { "gap": "tos-and-privacy-policy" } }
+            { "label": "Published terms of service and a privacy policy", "sets": { "gap": "tos-and-privacy-policy" } },
+            { "label": "Raised a pre-seed or seed round", "sets": { "gap": "pre-seed-fundraise" } }
           ]
         }
       ]

@@ -18,7 +18,7 @@
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
-import { select } from "./router.mjs";
+import { select, STATE_FLAGS } from "./router.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const repo = dirname(here);
@@ -92,7 +92,8 @@ export function deriveStage(answers, playbooks) {
   // has_repo / has_deployed_app / has_datastore. A non-software business does not.
   const builds = (answers.traits || []).includes("builds_software");
   const traitSet = new Set([...(answers.traits || []), ...milestoneFlags(answers.tier)]);
-  if (!builds) for (const f of ["has_repo", "has_deployed_app", "has_datastore"]) traitSet.delete(f);
+  // Flags that imply a codebase or a running app only apply to a software business.
+  if (!builds) for (const f of ["has_repo", "has_deployed_app", "has_datastore", "has_user_accounts", "has_live_traffic"]) traitSet.delete(f);
   const traits = [...traitSet];
 
   const profile = {
@@ -118,7 +119,11 @@ export function deriveStage(answers, playbooks) {
         m.level !== "always-on" && // Foundations gates are never auto-completed
         !m.recurring && // loops are never "done", they come due
         levelKey(m.level) < start_level &&
-        !gaps.has(m.id), // a named gap stays open as a catch-up item
+        !gaps.has(m.id) && // a named gap stays open as a catch-up item
+        // only mark done what the business could actually have done: its state-flag
+        // requirements must be met (do not seed security work for a company with no
+        // repo, or onboarding for one with no user accounts).
+        (m.applies_to.requires_traits || []).every((r) => !STATE_FLAGS.has(r) || traitSet.has(r)),
     )
     .map((m) => m.id);
 

@@ -11,6 +11,7 @@ applies_to:
     - crypto
     - marketplace
   requires_traits:
+    - builds_software
     - takes_payments
   excluded_traits: []
 relevance: core

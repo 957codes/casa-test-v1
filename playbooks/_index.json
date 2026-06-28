@@ -617,7 +617,9 @@
         "types": [
           "*"
         ],
-        "requires_traits": [],
+        "requires_traits": [
+          "builds_software"
+        ],
         "excluded_traits": []
       },
       "relevance": "core",
@@ -1667,6 +1669,7 @@
           "marketplace"
         ],
         "requires_traits": [
+          "builds_software",
           "takes_payments"
         ],
         "excluded_traits": []
