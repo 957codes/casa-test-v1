@@ -764,13 +764,6 @@
     "model_fit": []
   },
   {
-    "id": "llm-cost-and-model-routing",
-    "department": "Engineering",
-    "criticality": "core",
-    "existential_at": [],
-    "model_fit": []
-  },
-  {
     "id": "marketplace-trust-and-safety",
     "department": "Operations",
     "criticality": "existential",

@@ -1,6 +1,6 @@
 {
   "schema": "docs/PLAYBOOK-SCHEMA.md",
-  "count": 151,
+  "count": 150,
   "playbooks": [
     {
       "id": "opportunity-scan",
@@ -4649,46 +4649,6 @@
       "recurring": true,
       "typical_milestone": "foundations-installed",
       "department": "Operations",
-      "criticality": "core",
-      "existential_at": [],
-      "model_fit": [],
-      "deliverable": null,
-      "rubric": null
-    },
-    {
-      "id": "llm-cost-and-model-routing",
-      "title": "LLM Cost and Model Routing",
-      "level": "always-on",
-      "file": "playbooks/always-on/100-llm-cost-and-model-routing.md",
-      "applies_to": {
-        "types": [
-          "*"
-        ],
-        "requires_traits": [
-          "runs_agents"
-        ],
-        "excluded_traits": []
-      },
-      "relevance": "core",
-      "selection_hint": "Installed day zero before Level 0, right after HITL gates. Every LLM call passes through it. A misconfigured loop can burn five figures in minutes.",
-      "depends_on": [
-        "human-in-the-loop-approval-gates"
-      ],
-      "soft_after": [],
-      "produces": [
-        "llm_routing"
-      ],
-      "consumes": [
-        "hitl_gates"
-      ],
-      "effort": "M",
-      "leverage": "critical",
-      "reversibility": "easy",
-      "human_gate": false,
-      "blocks_revenue": false,
-      "recurring": true,
-      "typical_milestone": "foundations-installed",
-      "department": "Engineering",
       "criticality": "core",
       "existential_at": [],
       "model_fit": [],
